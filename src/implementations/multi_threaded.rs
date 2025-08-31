@@ -306,7 +306,6 @@ impl Crawler for MultiThreadedCrawler {
                     worker_stats: HashMap::new(),
                 },
                 config: self.config.clone(),
-                content: Vec::new(), // Initialize content
             }));
 
             // Create channels for task distribution and result collection
@@ -402,7 +401,11 @@ impl CrawlerFactory {
     /// Create a new multi-threaded crawler with default components
     pub fn create_multi_threaded(config: CrawlerConfig) -> Result<impl Crawler, String> {
         let http_client = Arc::new(ReqwestClient::new(&config.user_agent)?);
-        let html_parser = Arc::new(StandardHtmlParser::new()); // Fix: use new() method
+
+        // Convert Box<dyn std::error::Error> to String for error propagation
+        let html_parser = Arc::new(StandardHtmlParser::new()
+            .map_err(|e| format!("Failed to create HTML parser: {}", e))?);
+
         let url_parser = Arc::new(StandardUrlParser);
 
         MultiThreadedCrawler::new(config, http_client, html_parser, url_parser)

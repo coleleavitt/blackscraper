@@ -52,5 +52,4 @@ pub struct CrawlState {
     pub queue: Vec<(String, usize)>,
     pub result: CrawlResult,
     pub config: crate::config::CrawlerConfig,
-    pub content: Vec<u8>, // Add this field to store the raw content
 }

@@ -24,9 +24,7 @@ pub enum ResourceType {
 #[derive(Debug, Clone)]
 pub struct Resource {
     pub url: String,
-    pub resource_type: ResourceType,
     pub depth: usize,
-    pub referrer: String,
 }
 
 /// Configuration for resource extraction
@@ -100,9 +98,9 @@ impl CssExtractor {
     fn new() -> Result<Self, regex::Error> {
         Ok(Self {
             import_regex: Regex::new(
-                r#"@import\s+(?:url\s*\(\s*["']?([^"'\)]+)["']?\s*\)|["']([^"']+)["'])"#
+                r#"@import\s+(?:url\s*\(\s*[\"']?([^\"')]+)[\"']?\s*\)|[\"']([^\"']+)[\"'])"#
             )?,
-            url_regex: Regex::new(r#"url\s*\(\s*["']?([^"'\)]+)["']?\s*\)"#)?,
+            url_regex: Regex::new(r#"url\s*\(\s*[\"']?([^\"')]+)[\"']?\s*\)"#)?,
         })
     }
 
@@ -311,28 +309,6 @@ impl ResourceTypeGuesser {
         }
     }
 
-    fn from_mime_type(mime_type: &str, fallback_url: &str) -> ResourceType {
-        if mime_type.starts_with("text/html") {
-            ResourceType::Html
-        } else if mime_type.starts_with("text/css") {
-            ResourceType::Css
-        } else if mime_type.starts_with("image/") {
-            ResourceType::Image
-        } else if mime_type.starts_with("application/javascript") || mime_type.starts_with("text/javascript") {
-            ResourceType::JavaScript
-        } else if mime_type.starts_with("font/") || mime_type.contains("font") {
-            ResourceType::Font
-        } else if mime_type.starts_with("video/") {
-            ResourceType::Video
-        } else if mime_type.starts_with("audio/") {
-            ResourceType::Audio
-        } else if mime_type.starts_with("application/pdf") {
-            ResourceType::Document
-        } else {
-            Self::guess_from_url(fallback_url, &ResourceType::Other("unknown".to_string()))
-        }
-    }
-
     fn is_html_file(url: &str) -> bool {
         url.ends_with(".html") || url.ends_with(".htm") || url.ends_with(".asp")
             || url.ends_with(".php") || url.ends_with(".jsp") || url.ends_with(".shtml")
@@ -407,9 +383,7 @@ impl ResourceProcessor {
             if self.should_include_resource(resource_type, &fixed_url, config) {
                 self.resources.push(Resource {
                     url: fixed_url,
-                    resource_type: resource_type.clone(),
                     depth: config.depth,
-                    referrer: config.base_url.clone(),
                 });
             }
         }
@@ -525,14 +499,13 @@ impl ResourceExtractor {
         processor.into_resources()
     }
 
-    /// Determine the MIME type from a URL or content
-    pub fn detect_mime_type(&self, url: &str, content_type: Option<&str>) -> ResourceType {
-        if let Some(mime) = content_type {
-            ResourceTypeGuesser::from_mime_type(mime, url)
-        } else {
-            ResourceTypeGuesser::guess_from_url(url, &ResourceType::Other("unknown".to_string()))
-        }
-    }
+    // fn detect_mime_type(&self, url: &str, content_type: Option<&str>) -> ResourceType { // Unused
+    //     if let Some(mime) = content_type {
+    //         ResourceTypeGuesser::from_mime_type(mime, url)
+    //     } else {
+    //         ResourceTypeGuesser::guess_from_url(url, &ResourceType::Other("unknown".to_string()))
+    //     }
+    // }
 
     fn extract_html_resources(
         &self,

@@ -2,3 +2,5 @@
 Cargo.lock
 **.idea
 #**obagy
+.gitignore
+output/

@@ -1,12 +1,10 @@
 use crate::models::CrawlResult;
 use crate::models::PageInfo;
-use crate::traits::http_client::HttpClient;
 
 use std::collections::{HashMap, HashSet};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
 use url::Url;
 
 use super::link_rewriter::LinkRewriter;
@@ -19,18 +17,15 @@ pub struct SiteSaver {
     url_to_path: HashMap<String, PathBuf>,
     /// Link rewriter for HTML content
     rewriter: LinkRewriter,
-    /// HTTP client for downloading additional resources
-    http_client: Arc<dyn HttpClient>,
 }
 
 impl SiteSaver {
     /// Creates a new SiteSaver with the specified output directory and http client
-    pub fn new<P: AsRef<Path>>(output_dir: P, http_client: Arc<dyn HttpClient>) -> Self {
+    pub fn new<P: AsRef<Path>>(output_dir: P) -> Self {
         Self {
             output_dir: output_dir.as_ref().to_path_buf(),
             url_to_path: HashMap::new(),
             rewriter: LinkRewriter::new(),
-            http_client,
         }
     }
 

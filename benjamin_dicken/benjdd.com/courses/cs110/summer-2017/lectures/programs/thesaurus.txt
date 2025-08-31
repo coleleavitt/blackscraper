@@ -1,3 +1,0 @@
-fast : speedy quick agile
-brave : courageous fearless
-scary : creepy

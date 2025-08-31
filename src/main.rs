@@ -12,10 +12,9 @@ mod downloader;
 
 use std::env;
 use std::path::PathBuf;
-use std::sync::Arc;
 use config::{CrawlerConfig, DEFAULT_WORKERS};
 use traits::crawler::Crawler;
-use implementations::{CrawlerFactory, ReqwestClient};
+use implementations::{CrawlerFactory};
 use downloader::site_saver::SiteSaver;
 
 use std::time::Instant;
@@ -98,12 +97,7 @@ fn main() -> Result<(), String> {
     if let Some(dir) = save_dir {
         println!("\nSaving website to: {}", dir.display());
 
-        // Create an HTTP client for the SiteSaver - using the public re-export
-        let http_client = runtime.block_on(async {
-            Ok::<_, String>(Arc::new(ReqwestClient::new(&config.user_agent)?) as Arc<dyn traits::http_client::HttpClient>)
-        })?;
-
-        let mut saver = SiteSaver::new(dir, http_client);
+        let mut saver = SiteSaver::new(dir);
 
         // Execute the saving operation in the async runtime
         runtime.block_on(async {
