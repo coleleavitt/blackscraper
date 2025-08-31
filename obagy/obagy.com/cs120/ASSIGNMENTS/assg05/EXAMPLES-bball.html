@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Basketball Data Analysis Examples</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Basketball Data Analysis Examples</h1>
+
+<h2>Input file information</h2> 
+The examples below are based on input files of various different sizes:
+<p/>
+    <blockquote>
+      <dl>
+	<dt>
+	  <a href="DATA/in02.txt" target="_blank">
+	    	  <b><tt>in02.txt</tt></b></a>
+	</dt>
+	<dd>
+	  2 teams, 1 conference.
+	</dd>
+
+	<dt>
+	  <a href="DATA/in04.txt" target="_blank">
+	    	  <b><tt>in04.txt</tt></b></a>
+	</dt>
+	<dd>
+	  4 teams, 4 conferences; tie for best team.
+	</dd>
+
+	<dt>
+	  <a href="DATA/in06.txt" target="_blank">
+	    	  <b><tt>in06.txt</tt></b></a>
+	</dt>
+	<dd>
+	  6 teams, 3 conferences.
+	</dd>
+
+	<dt>
+	  <a href="DATA/in12.txt" target="_blank">
+	    	  <b><tt>in12.txt</tt></b></a>
+	</dt>
+	<dd>
+	  12 teams, 9 conferences.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2009-10.txt" target="_blank">
+	    	  <b><tt>2009-10.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2009-10 season.  332 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2010-11.txt" target="_blank">
+	    	  <b><tt>2010-11.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2010-11 season.  333 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2011-12.txt" target="_blank">
+	    	  <b><tt>2011-12.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2011-12 season.  336 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2012-13.txt" target="_blank">
+	    	  <b><tt>2012-13.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2012-13 season.  343 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2013-14.txt" target="_blank">
+	    	  <b><tt>2013-14.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2013-14 season.  343 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2014-15.txt" target="_blank">
+	    	  <b><tt>2014-15.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2014-15 season.  343 teams.
+	</dd>
+
+	<dt>
+	  <a href="DATA/2015-16.txt" target="_blank">
+	    	  <b><tt>2015-16.txt</tt></b></a>
+	</dt>
+	<dd>
+	  Full dataset, 2015-16 season.  344 teams.
+	</dd>
+
+      </dl>
+    </blockquote>
+
+
+<h2>Examples</h2>
+
+<ol>
+  <li>
+    Input: <b>in02.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>AAC : 0.9342105263157895</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input: <b>in04.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Atlantic Coast : 0.9428571428571428<br/>
+	Southeastern : 0.9428571428571428</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>in06.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>AAC : 0.9342105263157895</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>in12.txt</b><br/>
+    Output:
+    <blockquote>
+	<tt>Atlantic Coast : 0.918918918918919<br/>
+	Pac-12 : 0.918918918918919<br/>
+        Southeastern : 0.918918918918919</tt><br/>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2009-10.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Big 12 : 0.6322945418630405</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2010-11.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Big 12 : 0.6272368532277525</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2011-12.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Big 12 : 0.6318802521008403</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2012-13.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Southeastern : 0.6152719690151863</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2013-14.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Southeastern : 0.628360307955049</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2014-15.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Southeastern : 0.6119526116501924</tt>
+    </blockquote>
+  </li>
+
+  <li>
+    Input:       <b>2015-16.txt</b><br/>
+    Output:
+    <blockquote>
+      <tt>Southeastern : 0.611411722558036</tt>
+    </blockquote>
+  </li>
+
+
+</ol>
+<p/>
+<hr/>
+
+</body>
+</html>
+

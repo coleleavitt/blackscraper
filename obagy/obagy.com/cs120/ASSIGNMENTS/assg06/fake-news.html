@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Fake News</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Fake News</h1>
+
+The primary purpose of this assignment is to work with linked lists.
+
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problems, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+  <li>
+ list (or dictionary) comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  <li>
+ nested functions (using def <i>within</i> a function to define another function)
+  </li>
+  <li>
+ recursion
+  </li>
+  <li>
+ exceptions and asssertions
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ generators and user defined iterators
+  </li>
+  <li>
+ default arguments
+  </li>
+  <li>
+ importing libraries (except for this assignment you will import the csv and string modules)
+  </li>
+  <li>
+<strong>New restriction:</strong> Using <b><tt>try/except</b></tt> to avoid having to check for <b><tt>None</b></tt> when iterating through a linked list is banned.
+  </li>
+</ul>
+  </li>
+</ol>
+
+<h2>Background</h2>
+Fake news 
+has become a topic of interest in current times, but it is certainly nothing new. Creating and using "fake news" was a tactic used in the Roman era; 
+recently, the U of A special collections exhibit demonstrated the use of fake news during the Reformation by showing how the bible was altered to conform to the 
+politics of the era.
+<p/>
+
+This programming assignment involves writing a
+program to analyze some data about possibly "fake" news articles (from 2016) and identify
+what they most commonly focus on.
+<p/>
+The input data for this assignment are derived from
+<a href="https://www.kaggle.com/mrisdal/fake-news" 
+   target="_blank">www.kaggle.com/mrisdal/fake-news</a>.  For use in this
+assignment, the original data file has been modified as follows:
+<p/>
+<ol>
+  <li>
+    In order to simplify processing, non-ASCII characters have been replaced by blanks.
+  </li>
+  <li>
+    In order to reduce file sizes and make the analysis more manageable, the
+    bodies of the articles have been removed.  The analysis in this assignment
+    is therefore limited to the titles (i.e., headlines) of articles.
+  </li>
+  <li>
+    Only US news sources have been considered.
+  </li>
+  <li>
+    For each discussion thread, only the first posting has been retained, i.e.,
+    comments and replies have been omitted.
+  </li>
+</ol>
+<p/>
+If you would like to examine or work with the original un-edited data, see
+the website mentioned above.
+
+<h2>Expected Behavior</h2>
+Write a program, in a file <b><tt>fake_news.py</tt></b>, that behaves as follows.
+<p/>
+<ol>
+  <li>
+    Read in the name of an input file with a silent prompt:
+    <blockquote>
+      <b><tt>input()</tt></b>
+    </blockquote>
+    <p/>
+  </li>
+  <li>
+    Read in the data and process it as specified below.  You must 
+    use the <b><tt>csv module</tt></b> to read the input data (see
+    <b>Using Python's csv module</b> below, under <b>Miscellaneous</b>).
+    <p/>
+    <ul>
+      <li>
+	Extract the title from each input line;
+      </li>
+      <li>
+	Process each title as follows:
+	<ul>
+	  <li>
+	    Divide the title into a Python list of words by processing the title 
+	    in such a way that no word in the resulting
+	    list contains any whitespace or any punctuation characters.  
+   	    Use <b>string.punctuation</b> for your punctuation characters.
+	    You will have to import the <b>string</b> module for this. 
+            (see <b>Processing titles</b> below)
+          </li>
+	  <li>
+	    From the resulting list, discard words with length &le; 2.  This
+	    gets rid of small fragments of words that are created by the
+	    splitting process in the previous step (e.g., the word 
+	    &quot;<tt>Tom's</tt>&quot;
+	    gets split into &quot;<tt>Tom</tt>&quot; and &quot;<tt>s</tt>&quot;,
+	    and this step gets rid of &quot;<tt>s</tt>&quot;) as well as
+	    common words, like &quot;<tt>a</tt>&quot;, &quot;<tt>an</tt>&quot;,
+	    and &quot;<tt>is</tt>&quot;, that convey little information here.
+	    (Not all common words are excluded, but we'll leave that be as a
+	    concession to keeping things from getting overly complex.)
+          </li>
+	  <li>
+	    Convert all words to lower case to make counting word occurrences
+	    case-insensitive.
+          </li>
+	</ul>
+	<p/>
+	We will refer to the resulting list of words as the 
+	&quot;<i>cleaned list</i>&quot;.
+	<p/
+      </li>
+      <li>
+	Use a <u>linked list</u> to maintain a count of the number of times
+	each word occurs across all of the input data (but remember that this
+	program limits itself to just the title of each news item).  To this end,
+	for each word <i>w</i> in the cleaned list:
+	<ul>
+	  <li>
+	    if <i>w</i> occurs in the linked list, update its count appropriately;
+          </li>
+          <li>
+	    otherwise, add <i>w</i> to the linked list with  count
+	    	    initialized to 1.
+          </li>
+        </ul>
+	<p/>
+      </li>
+      <li>
+	After the data file has been read in and processed, sort the linked list
+	of words in descending order by count.  The relative order of different
+	words that have the same count is up to you. Use your solution for the
+        sort() method from the previous long assignment.
+	<p/>
+      </li>
+    </ul>
+    <p/>
+  </li>
+  <li>
+    Read in an integer value <tt>n</tt> using a silent prompt:
+    <blockquote>
+      <b><tt>n = input()</tt></b>
+    </blockquote>
+    <tt>n</tt> will be &ge; 0.
+    <p/>
+  </li>
+  <li>
+    Traverse the sorted list to find the count for the node in the sorted list
+    at position <tt>n</tt><sup>th</sup> (the very first node is at
+    position 0).  We refer to this value
+    as <i>k</i>.
+    <p/>
+    For example, suppose the linked list has the following values for
+    word counts (in descending order of count):
+    <blockquote>
+      <tt>monsoon: 10<br/>
+	heat: 7<br/>
+	dry: 7<br/>
+	chili: 5<br/>
+	canyon: 5<br/>
+	bicycle: 3<br/>
+	room: 2</tt>
+    </blockquote>
+    and <tt>n</tt> = 3, then the word at position 3 is <tt>chili</tt>,
+    so <i>k</i> = 5 (because <tt>chili</tt> has count 5).
+    <p/>
+  </li>
+  <li>
+    Print out all the words in the sorted list that have count &ge; <i>k</i> 
+    (see <b>Output format</b> below).  The order in which they are printed
+    out is up to you.
+    <p/>
+  </li>
+</ol>
+<p/>
+
+<h2>Data Structures</h2>
+You should use linked lists to keep track of words encountered in the
+input data and their occurrence counts.  You are free to either adapt the code
+shown in the class lecture notes for this, e.g., by using any additional
+attributes you may need, or to write your own. You may also use any code provided in 
+the short problems and the long problem that covered linked lists.
+<p/>
+Since the primary purpose of this assignment is to practice using linked
+lists, code that tries to sidestep linked lists, e.g., by copying data
+to or from Python lists and doing some or all of the actual work of the
+program in Python lists, will not get credit.  (Python's csv module returns
+a Python list when reading from a file.  This is OK.  Your code should
+then process the strings in that list and insert them into your linked list,
+and subsequent processing should be done using linked lists.)
+
+
+<h2>Input format</h2>
+Each line in the input file represents data about a particular news post.
+Lines have the following format:
+<p/>
+<ul>
+  <li>
+    A line that begins with the character <b><tt>&quot;#&quot;</tt></b> 
+    is a comment and should be ignored.
+    <p/>
+  </li>
+  <li>
+    A non-comment line contains the following fields.  (Here, 
+    &quot;...&quot; indicates a field that has no bearing on this
+    programming problem and whose description has been omitted to
+    reduce clutter.)
+    <p/>
+    <blockquote>
+        <table border="1" cellpadding="3">
+	  <tr>
+            <td align="center" width="70">
+               0<br/>
+	       identifier
+            </td>
+            <td align="center" width="70">
+              1<br/>
+	      ...
+            </td>
+            <td align="center" width="70">
+              2<br/>
+	      author
+            </td>
+            <td align="center" width="70">
+              3<br/>
+	      date published
+            </td>
+            <td align="center" width="70" bgcolor="yellow">
+              4<br/>
+	      title of story
+            </td>
+            <td align="center" width="70">
+              5<br/>
+	      language
+            </td>
+            <td align="center" width="70">
+              6<br/>
+	      ...
+            </td>
+            <td align="center" width="70">
+              7<br/>
+	      site URL
+            </td>
+            <td align="center" width="70">
+              8<br/>
+	      country
+            </td>
+	    <td align="center" width="70">
+	      9&ndash;19<br/>
+	      ...
+            </td>
+         </tr>
+      </table>
+    </blockquote>
+    <p/>
+    The highlighted field (field 4, &quot;title of story&quot;) is the
+    field this program will analyze.
+  </li>
+</ul>
+
+<h2>Output format</h2>
+Print out the top <i>k</i> words by count from the sorted list using the
+statement
+<blockquote>
+  <b><tt>print("{} : {:d}".format(word, count))</tt></b>
+</blockquote>
+where <b><tt>word</tt></b> is a string (a word occurring in some title in the
+input file) and <b><tt>count</tt></b> is an integer value giving the number
+of occurrences of that string in the title field of posts in the input file.
+
+<h2>Programming Requirements</h2>
+Your program should implement (at least) the following classes along with the
+methods specified.  
+<blockquote>
+  <dl>
+    <dt>
+      <b>class Node</b>
+    </dt>
+    <dd>
+      An object of this class represents information about a word.  It should 
+      contain (at least) the following attributes:
+      <ul>
+	<li>
+	  <b><tt>_word</tt></b>: the word string.
+	</li>
+	<li>
+	  <b><tt>_count</tt></b>: a count of the number of occurrences of the word.
+	</li>
+	<li>
+	  <b><tt>_next</tt></b>: a reference to the next node in the linked list.
+	</li>
+      </ul>
+      <p/>
+      It should implement (at least) the following methods:
+      <ul>
+	<li>
+	  <b><tt>__init__(self, word)</tt></b>: initializes the object's
+	  attributes as follows: <b><tt>_word</tt></b> is set to
+	  <b><tt>word</tt></b>; <b><tt>_count</tt></b> is set to 1;
+	  <b><tt>_next</tt></b> is set to <tt>None</tt>.
+	</li>
+	<li>
+	  <b><tt>word(self)</tt></b>: returns the value of <b><tt>_word</tt></b>.
+	</li>
+	<li>
+	  <b><tt>count(self)</tt></b>: returns the value of <b><tt>_count</tt></b>.
+	</li>
+	<li>
+	  <b><tt>next(self)</tt></b>: returns the value of <b><tt>_next</tt></b>.
+	</li>
+	<li>
+	  <b><tt>set_next(self, target)</tt></b>: sets the <b><tt>_next</tt></b>
+	  attribute to <b><tt>target</tt></b>.
+	</li>
+	<li>
+	  <b><tt>incr(self)</tt></b>: increments the value of <b><tt>_count</tt></b>.
+	</li>
+	<li>
+	  <b><tt>__str__(self)</tt></b> and, optionally,
+	  <b><tt>__repr__(self)</tt></b>.
+	</li>
+      </ul>
+      <p/>
+    </dd>
+    <dt>
+      <b>class LinkedList</b>
+    </dt>
+    <dd>
+      An object of this class represents a linked list.  It should contain
+      (at least) the following attributes:
+      <ul>
+	<li>
+	  <b><tt>_head</tt></b>: a reference to the first node in the list.
+        </li>
+      </ul>
+      It should implement (at least) the following methods:
+      <ul>
+	<li>
+	  <b><tt>__init__(self)</tt></b>: initializes <b><tt>_head</tt></b>
+	  to <tt>None</tt>.
+	</li>
+	<li>
+	  <b><tt>is_empty(self)</tt></b>: returns a Boolean indicating whether
+	  or not the list contains any nodes.
+	</li>
+	<li>
+	  <b><tt>head(self)</tt></b>: returns a reference to the first node
+	  in the linked list, <tt>None</tt> if the list is empty.
+	</li>
+	<li>
+	  <b><tt>update_count(self, word)</tt></b>: if <b><tt>word</tt></b>
+	  is present in the list, increments its count; otherwise, adds a node
+	  for it with count initialized to 1.
+	</li>
+	<li>
+	  <b><tt>rm_from_hd(self)</tt></b>: removes the first node in the
+	  linked list (updates the list's <b><tt>_head</tt></b> attribute
+	  appropriately) and returns this node.  It generates an error if this
+	  method is invoked on an empty list.
+	</li>
+	<li>
+	  <b><tt>insert_after(self, node1, node2)</tt></b>: 
+	  <b><tt>node1</tt></b> and <b><tt>node2</tt></b> are references
+	  to nodes.  Inserts <b><tt>node2</tt></b> into the list containing
+	  <b><tt>node1</tt></b> so that the node that comes  after
+          <b><tt>node1</tt></b> is <b><tt>node2</tt></b>.
+	</li>
+	<li>
+	  <b><tt>sort(self)</tt></b>: sorts the linked list in descending order
+	  by <b><tt>_count</tt></b>.
+	</li>
+	<li>
+	  <b><tt>get_nth_highest_count(self, n)</tt></b>: returns the
+	  count associated with the node in the linked list at position
+	  <b><tt>n</tt></b>.
+	</li>
+	<li>
+	  <b><tt>print_upto_count(self, n)</tt></b>: print out all the words 
+	  that have count at least <b><tt>n</tt></b>.
+	</li>
+	<li>
+	  <b><tt>__str__(self)</tt></b> and, optionally,
+	  <b><tt>__repr__(self)</tt></b>.
+	</li>
+      </ul>
+    </dd>
+  </dl>
+</blockquote>
+<p/>
+<b>Note</b> It is OK to use or adapt the code you were given for 
+the short problems and the previous long problem for this assignment. 
+<i>If you do so, however, then for
+<u>each</u> such method that you did not write yourself, you must add a
+comment above the method indicating that it is taken from, or based on,
+code you were given as part of the short problem.</i>
+
+<h2>Processing titles</h2>
+<p>
+When considering how to parse the titles, it isn't sufficient to simply split on whitespace.  For example, for the title,
+"It's a dog's life, full of treats!"
+splitting on whitespace would give the list
+<blockquote>
+["It's", 'a', "dog's", 'life,', 'full', 'of', 'treats!']
+</blockquote>
+You might then attempt to iterate through this list and separate each string element by punctuation characters using <b><tt>element.split(string.punctuation)</b></tt>, however, the <b><tt>split(arg)</b></tt> method does not split by <i>any</i> character in the argument string <b><tt>arg</b></tt>. The argument string must be contiguous in order to be considered a split point. 
+A better approach would be to first create a new string where all punctuation has been replaced by spaces. 
+Using that approach, for the title 
+"It's a dog's life, full of treats!", the newly created string would be "It s a dog s life  full of treats ".
+ When that string is then split on whitespaces, the resulting list is
+<blockquote>
+['It', 's', 'a', 'dog', 's', 'life', 'full', 'of', 'treats']
+</blockquote>
+<p/>
+
+<h2>Errors</h2>
+<p>
+No error checking is required for this assignment.
+
+<h2>Examples</h2>
+Some examples of the behavior of this program are given
+
+<a href="EXAMPLES-fake-news.html" target="_blank">Input/Output examples</a>.
+<p/>
+
+<h2>Commenting</h2>
+<p>
+<ol>
+  <li>
+    Your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class.
+  </li>
+  <li>
+   Write docstrings for the classes and methods that are not setters and getters.
+  </li>
+  <li>
+   You are allowed to use code provided in the short problems, the previous long problem, 
+   or in the 120 class slides for methods that 
+   you might use in the <b><tt>LinkedList</b></tt> and <b><tt>Node</b></tt> classes.
+   However, if you do, in the docstring for the method, include the origin of the source 
+   in your comments.
+   </li>
+<p/>
+
+<h2>Miscellaneous</h2>
+
+<h3>Using Python's csv module</h3>
+In general, CSV files can have a complex structure such that they
+cannot be parsed using <b><tt>split(&quot;,&quot;)</tt></b>. The file 
+<a href="csv-example.py" target="_blank">csv-example.py</a>,
+which uses a small example input file 
+<a href="dummy.csv" target="_blank">dummy.csv</a>, shows how
+Python's csv module can be used to read CSV files.
+<p/>
+
+<h3>Sorting a linked list</h3>
+You should use your solution for sorting a linked list from the previous long problem.
+ However, for reference, the algorithm that must be used for sorting linked lists in this 
+assignment is given 
+<a href="linked-list-sorting.html" target="_blank">sorting a linked list</a>.	
+<p/>
+
+
+<hr/>
+
+</body>
+</html>
+

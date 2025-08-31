@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Short PP - Shaper</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---short-pa---shaper">CSc 110 - Short PA - Shaper</h1>
+
+<p>In this programming assignment, you will be writing a program that prints out several shapes via text.
+In this PA, you will be required to use functions and parameters.
+This is both to reduce redundancy and to make your code clean and well-structured.
+Name your program <code class="language-plaintext highlighter-rouge">shaper.py</code>.</p>
+
+<p>Your program should have the capability to print out three different shapes: An <code class="language-plaintext highlighter-rouge">hourglass</code>, a <code class="language-plaintext highlighter-rouge">plumbbob</code>, or a <code class="language-plaintext highlighter-rouge">house</code>.
+Below is a table that shows examples of each of these shapes.</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>hourglass</b></td>
+  <td style="background-color:#ededed;"><b>plumbbob</b></td>
+  <td style="background-color:#ededed;"><b>house</b></td>
+</tr>
+
+<tr>
+<td class="topic-general">
+<pre><code>|---------|
+***********
+ *********
+  *******
+   *****
+    ***
+     *
+     *
+    ***
+   *****
+  *******
+ *********
+***********
+|---------|
+</code></pre>
+</td>
+
+<td class="topic-general">
+<pre><code>     !
+    !!!
+   !!!!!
+  !!!!!!!
+ !!!!!!!!!
+!!!!!!!!!!!
+|---------|
+|---------|
+|---------|
+|---------|
+!!!!!!!!!!!
+ !!!!!!!!!
+  !!!!!!!
+   !!!!!
+    !!!
+     !
+</code></pre>
+</td>
+
+<td class="topic-general">
+    <pre><code>     ^
+    ^^^
+   ^^^^^
+  ^^^^^^^
+ ^^^^^^^^^
+^^^^^^^^^^^
+|---------|
+|---------|
+|---------|
+</code></pre>
+</td>
+</tr>
+
+</table>
+
+<p>Notice that there are some common shapes <em>within</em> these larger shapes.
+All three utilize the <code class="language-plaintext highlighter-rouge">|---------|</code> line.
+All three utilize an upward-facing arrow.
+Both the hourglass and the plumbbob Have a downward-facing arrow.
+The characters in the arrows may differ, but the overall shapes are the same (other than the two directions).</p>
+
+<h2 id="input-values">Input Values</h2>
+
+<p>Your program should accept two values as input.
+The first should be a selection of the shape to print.
+It should check for <code class="language-plaintext highlighter-rouge">hourglass</code>, <code class="language-plaintext highlighter-rouge">plumbbob</code>, and <code class="language-plaintext highlighter-rouge">house</code>.
+After asking for the shape, the program should ask for a single character, which should be used for the arrow(s).
+It should also ask for an integer, which will determine the number of <code class="language-plaintext highlighter-rouge">|---------|</code> rows to print out at one or more location(s) in the shape.</p>
+
+<p>If a supported shape is entered, the program should print out that shape utilizing the character for the arrow(s).
+If none of the three valid shapes are entered, the program should print out a message and then the program can end.
+You do not need to validate the single-character or integer input.
+See the examples to determine what the prompts and message should be.</p>
+
+<h2 id="program-structure">Program Structure</h2>
+
+<p>In your program, you should write a function that allows you to print out these three sub-shapes.
+You should write one function for the upward-facing arrow, one for the downward-facing arrow, and one to print any number of rows of <code class="language-plaintext highlighter-rouge">|---------|</code>.
+Each of these functions should take one parameter.
+The two arrow functions should take the character that the arrow should be made up of as a parameter.
+The row function should accept an integer, which will determine the number of rows to print.</p>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<ul>
+  <li>You should follow the style guide</li>
+  <li>You must have a main function</li>
+  <li>No function should be longer than 30 lines, including comments</li>
+  <li>You should have at least 4 purposeful functions
+    <ul>
+      <li>One for the <code class="language-plaintext highlighter-rouge">|---------|</code> line(s)</li>
+      <li>One for the up-arrow</li>
+      <li>One for the down arrow</li>
+      <li>A main function</li>
+    </ul>
+  </li>
+  <li>You may not have any code that is not in a function, other than a call to <code class="language-plaintext highlighter-rouge">main()</code></li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+
+<table>
+<tr>
+<td class="topic-general">
+<pre><code>Enter shape to display:
+house
+Enter arrow character:
+#
+Enter row-area height:
+3
+
+     #
+    ###
+   #####
+  #######
+ #########
+###########
+|---------|
+|---------|
+|---------|
+</code></pre>
+</td>
+
+<td class="topic-general">
+<pre><code>Enter shape to display:
+plumbbob
+Enter arrow character:
+5
+Enter row-area height:
+4
+
+     5
+    555
+   55555
+  5555555
+ 555555555
+55555555555
+|---------|
+|---------|
+|---------|
+|---------|
+55555555555
+ 555555555
+  5555555
+   55555
+    555
+     5
+</code></pre>
+</td>
+
+<td class="topic-general">
+    <pre><code>Enter shape to display:
+Enter shape to display:
+house
+Enter arrow character:
+^
+Enter row-area height:
+3
+
+     ^
+    ^^^
+   ^^^^^
+  ^^^^^^^
+ ^^^^^^^^^
+^^^^^^^^^^^
+|---------|
+|---------|
+|---------|
+</code></pre>
+</td>
+</tr>
+
+</table>
+
+<p>There will be additional test cases on Gradescope.</p>
+
+<h2 id="turning-it-in">Turning it In</h2>
+
+<p>This program is due Tuesday, February 12th at 7:00pm.
+Turn it in on Gradescope.
+You should get your submission to pass as many of the test cases as possible.
+Also, ensure that your code conforms to the code style requirements.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

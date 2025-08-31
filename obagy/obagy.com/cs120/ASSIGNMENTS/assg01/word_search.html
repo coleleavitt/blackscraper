@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Word Search</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Word Search</h1>
+
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problems, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class. You must following the updated guidelines for commenting classes.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+  <li>
+ Python dictionaries or sets 
+  </li>
+  <li>
+ dictionary or list comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  </li>
+  <li>
+ recursion
+  </li>
+  <li>
+ exceptions (try/except)
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ importing libraries (unless a library is explicitly mentioned in the specification)
+  </li>
+</ul>
+  </li>
+</ol>
+
+<h2>Background</h2>
+
+Word search is a word game that involves searching for words in a (random) grid of letters. This program
+simulates the game by searching for words in a grid. The program differs from the physical game in several 
+ways:
+<p/>
+<ul>
+  <li>
+    The physical game is usually played with a 4 &times; 4 grid. Your program will generalize this to any N &times; N
+    grid (N &ge; 4), where N is determined by the size of the grid provided (see next bullet point).
+  </li>
+  <li>
+    The physical game uses a random grid. Your program will read the grid of letters from a file.
+  </li>
+  <li>
+    The physical game is timed: players try to find as many words as they can before a timer runs out.
+    Your program will not have this constraint.
+  </li>
+  <li>
+    The pyhsical game includes words found on all diagonals. We will simplify the word search by eliminating all but one diagonal search.
+  </li>
+</ul>
+
+
+
+<h2>Definitions</h2>
+Given a grid of letters <i>G</i> and a list of words <i>L</i>, a word in <i>G</i> is <i><u>legal</u></i> if it meets 
+the following criteria:
+    <ul>
+      <li>
+	it is at least three letters long;
+      </li>
+      <li>
+	it can be formed from letters in <i>G</i> that are adjacent along a row (two cases: going left-to-right
+	or right-to-left), a column (two cases: going top-to-bottom or bottom-to-top), or a diagonal
+	(one case: going upper-left to lower-right); and
+      </li>
+      <li>
+	it can be found in the list of words <i>L</i>.
+      </li>
+    </ul>
+
+<h2>File Names</h2>
+Your program should be in a file named <b><tt>word_search.py</tt></b>. (NOTE: use an underscore, not a dash.)
+
+<h2>Expected Behavior</h2>
+
+Write a program, in a file named <b><tt>word_search.py</tt></b>, to do the following:
+<ul>
+  <li>
+    Read in, in this order, the name of a word-list file and a grid-of-letters file.  Do not
+    prompt the user, that is, do not supply an argument to input(). Simply read in two file names and treat the first as the name of a word-list
+    file and the second as a grid-of-letters file.
+  </li>
+  <li>
+    Read the word-list file into a list and the grid-of-letters file into a square grid. You
+    may assume that these files are organized as follows:
+    <ul>
+      <li>
+	the word-list file contains one word per line;
+      </li>
+      <li>
+	the grid-of-letters consists of N lines, each line consisting of N
+        letters separated by whitespace. (Note: The file <i>may</i> 
+        be empty.)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Search this grid for legal words. 
+    Matches of words found in the grid against those in the list-of-words should be
+    case-insensitive.
+  </li>
+  <li>
+    Collect the legal words found into a list and then print them out as indicated under
+    <b>Output format</b> below.
+  </li>
+</ul>
+<p/>
+
+<h2>Examples</h2>
+
+The following is an example of the grid of letters file:
+<blockquote>
+  <pre>
+    <tt>y c o d e j
+    h s e y p k
+    l p h b w a
+    l o b w x z
+    w o b a a i
+    p l y y c g</tt></pre>
+</blockquote>
+In this example (and as your program can figure out after reading the first line), N = 6. For this grid, the words your
+program should print out are: 
+<ul>
+  <li>
+    code, cod, ode, lob (horizontal, L-to-R)
+  </li>
+  <li>
+    bow, yes, doc (horizontal, R-to-L)
+  </li>
+  <li>
+    spool, pool, way (vertical, top-to-bottom)
+  </li>
+  <li>
+    loop, loops (vertical, bottom-to-top)
+  </li>
+  <li>
+    lob, wag (diagonal, top-left to bottom-right)
+  </li>
+</ul>
+
+<h2>Input files</h2>
+You can use the file <a href="WORDS" target="_blank">WORDS</a>, which is a list of about 45,000 words, to
+test your program.  However, note that we may also use other word-lists, which may be bigger or smaller
+than this list, when testing your code.  You should test your code using your own word-lists, which
+can be bigger or smaller than this list and whose words that may or may not be real English words.
+
+<h2>Output format</h2>
+The words you find should be printed in alphabetical order, one to a line without any extra whitespace.  
+<p>
+Note: If the grid-of-letters file is empty, there is no output.
+
+<h2>Development Strategy</h2>
+
+<h3>Data Structures</h3>
+Organize the list of valid words as a list of strings. Organize the grid as a list of lists.
+
+<h3>Program development</h3>
+<ol>
+<!--
+  <li>
+    Write a function ​<b><tt>occurs_in(</tt></b> <i>substr, word_list)</i> <b><tt>)</tt></b> that indicates whether the
+    string <i>substr</i> occurs in a list of words <i>word_list</i> ignoring upper/lower case differences.
+  </li>
+-->
+  <li>
+    <i>Searching horizontally.</i>
+    First, consider the problem of finding words horizontally in the grid going from left to
+    right. Consider the first row in the example shown above:
+    <blockquote>
+      <tt>y c o d e j</tt>
+    </blockquote>
+    Notice that this row contains the words <tt>cod</tt>, <tt>code</tt>, and <tt>ode</tt>. Suppose that the row is represented as the list
+    <b><tt>[‘y’, ‘c’, ‘o’, ‘d’, ‘e’, ‘j’]</tt></b>.
+    A simple way to explore all the possible words (going L to R) in this list would be as follows
+    (the process for the other rows is similar).
+    <ul>
+      <li>
+	Starting at the first element (i.e., ‘y’), check whether the sequence of length 3 starting at
+	that position is a legal word (we start with length 3 because a legal word has to be at least
+	three letters long). Then check for length 4, then for length 5, etc., until you reach the end
+	of the list.
+      </li>
+      <li>
+	Now repeat this step, but starting at the second element (i.e., ‘c’). Notice that this time you
+	will come to the end of the list one step sooner. Then repeat for the third element, and so
+	on.
+      </li>
+      <li>
+	In each of these steps, your code is checking a sequence of list elements (e.g., the
+	sequence of elements ‘c’, ‘o’, ‘d’, ‘e’) to see whether this is a word that occurs in your list
+	of words.  How can you use the function <a href="list2string-v2.html"><b><tt>concat_list()</tt></b></a>
+	from the Short Problems for this assignment?
+      </li>
+    </ul>
+    <p/>
+    Next consider the problem of searching for words horizontally going right to left. Suppose we want to search
+    the row ​ <tt>y c o d e j</tt>​ going right to left. This is actually the same as reversing the row, to
+    <blockquote>
+      j e d o c y
+    </blockquote>
+    and then searching left to right (a problem you’ve solved already). The key thing to note here is that you’ve
+    taken the problem of searching R-to-L and converted it into an equivalent problem involving an L-to-R
+    search, for which you’ve already written code.
+  </li>
+  <li>
+    <i>Searching vertically.</i>
+    Next consider the problem of searching for words vertically, i.e., among columns. Can you use the function
+    <a href="column2list.html" target="_blank"><b><tt>column2list()</tt></b></a> from the Short Problems
+    for this assignment to solve this problem going from top to bottom?  Can you figure out a way of using
+    <b><tt>column2list()</tt></b> with list-reversing to solve the problem of searching vertically
+    going from bottom to top?
+  </li>
+  <li>
+    <i>Searching diagonally.</i>
+    Searching diagonally is the hardest part of this problem, however, we are only considering one case: upper-left to lower-right.
+    <p/>
+    <ul>
+      <li>
+	If you can extract each diagonal into a list
+	of letters, then you can simply search through this list as you did before&mdash;again, reducing this problem to
+	one you’ve already written code to solve.
+	<p/>
+	<ul>
+	  <li>
+	    Suppose you start the diagonal at position 0 of row 0, i.e., at <b><tt>grid[0][0]</tt></b>.
+	    The diagonal elements are <tt>y s h f a g</tt>
+            and correspond to the index values: [0][0], [1][1], [2][2], ... How do the x- and y-coordinates change
+	    as you go from one element to the next? Why do they change in this way?
+          </li>
+          <li>
+	    Suppose you start the diagonal at position 1 in row 0, i.e., <b><tt>grid[0][1]</tt></b>. The diagonal
+	    elements are <tt>c e b x i</tt> (Note: this diagonal is shorter than the previous one)
+	    and correspond to the index values: [0][1], [1][2], [2][3], .... How do the x- and y-coordinates change
+	    as you go from one element to the next? Why do they change in this way?
+          </li>
+          <li>
+	    Repeat this exercise for the diagonal starting at <b><tt>grid[1][0]</tt></b>. Look at how the x- and
+	    y-coordinates change from each element to the next. How does this compare to the way they changed
+	    for the other two diagonals you considered (above)?
+          </li>
+        </ul>
+        <p/>
+        Do you see a pattern in how the x- and y-coordinates change between successive elements? Can you use
+        this pattern to extract a diagonal going from the upper-left to lower-right given its starting coordinates into a list?
+        <p/>
+      </li>
+</ol>
+
+<h3>Program Structure</h3>
+
+There are many ways to structure a given program, but at the very least, your program
+is required to have a <b><tt>main()</tt></b> function that calls the functions that you have
+written to satisfy the <b>Expected Behavior</b> described previously.
+Specifically, your program should 
+call functions to read the word-list file and the grid of letters file, 
+call one or more functions that find the legal words in the grid, and, finally,
+call a function to print out the resulting words found.
+<p>
+The use of a <b><tt>main()</tt></b> function and supporting functions described 
+above is similar to 
+the structure that was provided to you for the  <b><tt>word_grid.py</tt></b> program.
+<p>
+<b>Note:</b> You may <b>not</b> use global variables.
+<p>
+If you would like more guidance on how to structure your program, you may use the outline below:
+
+<blockquote>
+<pre>
+<b><tt>def get_word_list():
+    ....
+    return</b></tt> <i>a list of valid words </i>
+
+<b><tt>def read_letters_files():
+    ...
+    return</b></tt> <i>a grid of letters</i>
+...
+<i>more functions are defined here</i>
+...
+
+<b><tt>def main():
+    word_list = get_word_list()
+    letters_grid = read_letters_file() 
+
+    # a list used to accumulate the valid words found
+    all_words = []  </b></tt>
+
+    <i>call a function that finds the words appearing horizontally, passing in the needed arguments</i>
+
+    <i>call a function that finds the words appearing vertically, passing in the needed arguments</i>
+
+    <i>call a function that finds words appearing on the diagonals, passing in the needed arguments</i>
+
+    <i>call a function that prints the words found, passing in the needed argument(s)</i>
+
+ <b><tt>main()  </b></tt>
+</pre>
+</blockquote>
+<p>
+Be sure to follow the style guidelines for commenting your program.
+
+<h3>Testing</h3>
+Make sure you test your code thoroughly before you turn it in.  Some of the things you may wish to consider during testing are:
+case-sensitivity; different-sized word lists and/or grids; words occurring in different directions in the grid; and words and grids of different
+size. The test cases used in the Gradescope autograder are given in the <strong>assg01-long.zip</strong>
+ file on the Assignments webpage.
+
+<p/>
+<hr/>
+<p/>
+
+</body>
+</html>
+

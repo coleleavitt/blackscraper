@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 Guessing Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110-guessing-game">CSc 110: Guessing Game</h1>
+
+<p>This assignment focuses on loops, numbers, and lists.
+You may use for loops and/or while loops.
+Write all of your code in a file named <code class="language-plaintext highlighter-rouge">guessing.py</code>.
+Your program allows the user to play a guessing-game in which two “players” participate.</p>
+
+<p><strong>Player 1</strong> has a very simple job: all he/she need do is enter a number between 0 and 100 for player 2 to guess.
+If the number entered is negative, or greater than 100, your program will complain (see the example outputs).</p>
+
+<p>Next, <strong>Player 2</strong> must repeatedly guess numbers until he/she finds the one that player 1 chose.
+After each incorrect guess, you will tell the user whether the correct answer is higher or lower.
+Once the correct number is guessed, you will inform player 2 of this, and report how many guesses it took them, and show all of the numbers that they guessed, in order.</p>
+
+<p>Your program must exactly reproduce the format and behavior of the logs in this document, and on the diff-testing tool.
+Below are a few example runs of the program:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Welcome to the guessing game!
+
+Player 1: Enter number for Player 2 to guess between 0 and 100: 78
+
+Player 2, guess a number: 50
+Too low...
+Player 2, guess a number: 90
+Too high...
+Player 2, guess a number: 70
+Too low...
+Player 2, guess a number: 80
+Too high...
+Player 2, guess a number: 75
+Too low...
+Player 2, guess a number: 77
+Too low...
+Player 2, guess a number: 78
+Correct!
+
+It took you 7 tries to guess correctly!
+The numbers you guessed were: 50 90 70 80 75 77 78
+Goodbye!
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Welcome to the guessing game!
+
+Player 1: Enter number for Player 2 to guess between 0 and 100: 12
+
+Player 2, guess a number: 30
+Too high...
+Player 2, guess a number: 20
+Too high...
+Player 2, guess a number: 10
+Too low...
+Player 2, guess a number: 12
+Correct!
+
+It took you 4 tries to guess correctly!
+The numbers you guessed were: 30 20 10 12
+Goodbye!
+</code></pre></div></div>
+
+<p>Your output will differ depending on the number entered by player 1 and the numbers guessed by player 2.
+However, the overall output structure should match that shown in the examples.</p>
+
+<p>First, the program prints out a basic introduction.</p>
+
+<p>Next, a guessing game is played.
+Player 1 enters the number to be guessed.
+Then, the game asks player 2 for guesses until the correct number is guessed.
+After each incorrect guess, the program gives a clue about whether the correct number is higher or lower than the guess.
+Once the user types the correct number, the game ends and the program reports how many guesses were needed, and what all of the guessed were.
+At this point, the program will print a goodbye message and then exit.</p>
+
+<p>You should handle the special case where player 2 guesses the correct number on the very first try.
+Print a message as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Player 2, guess a number: 30
+You got it right in 1 guess! Wow, you are AMAZING.
+</code></pre></div></div>
+
+<p>You may assume valid user input, except you must validate the number entered by player 1.
+When prompted for numbers, player 2 will type integers only, and they will be in proper ranges.</p>
+
+<h2 id="implementation-guidelines">Implementation Guidelines:</h2>
+
+<p>Define a variable that establishes the maximum number that player 1 can input for player 2 to guess.
+This should be 100 by default, bit should be something that is changeable.
+Don’t use <code class="language-plaintext highlighter-rouge">100</code> directly in your code.
+Instead, declare a variable at the very top of your program <code class="language-plaintext highlighter-rouge">100</code>, and use the variable to check the limit.
+The example output in this spec shows games from 1 to 100, but you should be able to change the variable value to use other ranges such as from 1 to 50 or any maximum.
+Use your variable throughout your code and do not refer to the number 100 directly.
+Test your program by changing your variable and running it again to make sure that everything uses the new value.
+The web site shows other expected output cases.</p>
+
+<p>Read user input using <code class="language-plaintext highlighter-rouge">input()</code>.</p>
+
+<p>Produce repetition using while or for loops.
+Some students try to avoid properly using while loops by writing a function that calls itself, or a pair of functions A and B where A calls B and B calls A, creating a cycle of calls. 
+Such solutions are not appropriate on this assignment and will result in a deduction.</p>
+
+<h2 id="style-guidelines">Style Guidelines:</h2>
+
+<p>For this assignment you are limited to the language features discussed in lecture so far.</p>
+
+<p>Structure your solution using functions that accept parameters and return values where appropriate.
+For full credit, you must have at least the following two functions other than main in your program:</p>
+
+<ul>
+  <li>A function to play one game with the user. 
+This function should not contain code to ask the user to play again. Nor should it play multiple games in one call.</li>
+  <li>A function to report the overall statistics to the user.
+This function should print the statistics only, not do anything else such as while loops or playing games.</li>
+</ul>
+
+<p>You may define more functions if you like.
+It is okay for some print statements to be in main, as long as you use good structure and main is concise.</p>
+
+<p>Use whitespace and indentation properly.
+Limit lines to 100 characters.
+Give meaningful names to functions/variables, and follow Python’s naming standards.
+Localize variables.
+Put descriptive comments at the start of your program and each function.
+Since this program has longer functions, also put brief comments inside functions on complex sections of code.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This is due on 7/10/2017 at 7:00pm.</p>
+
+<p>You should submit a single python file named <code class="language-plaintext highlighter-rouge">guessing.py</code>, with each of the functions in it.
+Submit these files to the associated D2L dropbox.
+Following these turn-in and naming instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+<p><br /></p>
+
+<p><em>Based on an assignment by Marty Stepp, Stuart Reges, and Allison Obourn</em></p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

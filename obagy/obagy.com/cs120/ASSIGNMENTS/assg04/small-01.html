@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Classes: Color</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Classes: Color</h1>
+
+<h2>Expected Behavior</h2>
+
+The class <b>Color</b> represents a color using the RGB color model. (See the following reference for information on the RGB color model:
+<a href="https://en.wikipedia.org/wiki/RGB_color_model">https://en.wikipedia.org/wiki/RGB_color_model </a>.)
+The class <b>Color</b> stores the red, green, and blue components of a color as integers. 
+Each integer is in the range of range of 0 to 255 (inclusive).
+<p>
+
+Write a Python class <b>Color</b> that meets the following requirements:
+<p/>
+<b>Attributes:</b>
+<p/>
+<ul>
+  <li>
+    <b><tt>_r</tt></b>: an integer in the range of 0 to 255 (inclusive)
+  </li>
+  <li>
+    <b><tt>_g</tt></b>: an integer in the range of 0 to 255 (inclusive)
+  </li>
+  <li>
+    <b><tt>_b</tt></b>: an integer in the range of 0 to 255 (inclusive)
+  </li>
+</ul>
+<p/>
+<b>Methods:</b>
+<p/>
+<ul>
+  <li>
+    <b><tt>__init__(self, r, g, b)</tt></b>: initializes the <b><tt>_r</tt></b>, <b><tt>_g</tt></b>,
+    and <b><tt>_b</tt></b> attributes of the object with the integers <b><tt>r</tt></b>,
+    <b><tt>g</tt></b>, and <b><tt>b</tt></b> supplied as the method's arguments. 
+    If any of the values is less than 0, the
+    attribute should be set to 0, and if any of the values is greater than 255, the attribute should 
+    be set to 255. 
+    <p>
+   <b>Requirement:</b> You must use a helper method to contain the common code 
+    that checks that each argument is in range and returns the correct value if the
+    argument is out-of-range.
+  </li>
+  <li>
+    <b><tt>get_rgb(self)</tt></b>: returns the RGB integer attributes of the
+    object as a tuple.
+  </li>
+  <p>
+  <li>
+    <b><tt>remove_red(self)</tt></b>: sets the attribute representing the red component of the
+    object to zero. Leaves the green and blue attributes unchanged.
+  </li>
+  <p>
+  <li>
+    <b><tt>__str__(self)</tt></b>: returns a string of the RGB integer attributes of the object
+    in a specific format. For an object created by the expression <b><tt>Color(20,150, 200)</tt></b>,
+    the string returned would be
+    <blockquote>
+    <b><tt>&quot;Color(20,150,200)&quot;</tt></b>
+    </blockquote>
+  </li>
+  <li>
+    A method that takes a <b><tt>Color</tt></b> object <b><tt>other</tt></b> as
+    argument and returns <b><tt>True</tt></b> if
+    <b><tt>other</tt></b> is the same color, and <b><tt>False</tt></b>
+    otherwise. Two colors are equal if their corresponding RGB attribute values are equal.
+    <p/>
+    Given two <b><tt>Color</tt></b> objects <b><tt>c1</tt></b> and
+    <b><tt>c2</tt></b>, 
+    the following expression should determine if the colors are equal:
+    <blockquote>
+      <b><tt>c1 == c2</tt></b>
+    </blockquote>
+  </li>
+</ul>
+<p/>
+<h2>Examples</h2>
+<ol>
+  <li>
+    <b><tt>color1 = Color(50,100,140)<br/>
+	color1.get_rgb()</tt></b><br/>
+	<br/>
+	Result: <b><tt>(50, 100, 140)</tt></b>
+	<p/>
+  </li>
+
+  <li>
+    <b><tt>color1 = Color(50,100,140)<br/>
+	str(color1)</tt></b><br/>
+	<br/>
+	Result: <b><tt>&quot;Color(50,100,140)&quot;</tt></b>
+	<p/>
+  </li>
+
+  <li>
+    <b><tt>color1 = Color(135,50,140)<br/>
+	color1.remove_red()<br/>
+        str(color1)</tt></b><br/>
+	<br/>
+	Result: <b><tt>&quot;Color(0,50,140)&quot;</tt></b>
+	<p/>
+  </li>
+
+
+  <li>
+    <b><tt>color1 = Color(50,100,140)<br/>
+	color2 = Color(135,50,140)<br/>
+	color1 == color2</tt></b><br/>
+	<br/>
+	Result: <b><tt>False</tt></b>
+	<p/>
+  </li>
+  <li>
+    <b><tt>color1 = Color(65,100,180)<br/>
+	color2 = Color(65,100,180)<br/>
+	color1 == color2</tt></b><br/>
+	<br/>
+	Result: <b><tt>True</tt></b>
+	<p/>
+  </li>
+
+
+  <li>
+    <b><tt>color1 = Color(255,255,255)<br/>
+	color1.remove_red()<br/>
+        str(color1)</tt></b><br/>
+	<br/>
+	Result: <b><tt>&quot;Color(0,255,255)&quot;</tt></b>
+	<p/>
+  </li>
+
+  <li>
+    <b><tt>color1 = Color(255,255,255)<br/>
+	color1.remove_red()<br/>
+        color1.get_rgb()</tt></b><br/>
+	<br/>
+	Result: <b><tt>(0,255,255)</tt></b>
+	<p/>
+  </li>
+
+  <li>
+    <b><tt>color1 = Color(50,100,140)<br/>
+	color1.get_rgb()[2]</tt></b><br/>
+	<br/>
+	Result: <b><tt>140</tt></b>
+	<p/>
+  </li>
+</ol>
+
+<p/>
+<hr/>
+</body>
+</html>
+

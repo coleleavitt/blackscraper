@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Maze</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-maze">CSc 101: Maze</h1>
+
+<p>This assignment should be written in the processing programming language.
+You should only use processing features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!
+You may use any processing version 3.0 or newer.</p>
+
+<p>Your program file should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
+// Author: Student Name
+// Description:
+//    A short description of what this program does!
+// 
+</code></pre></div></div>
+
+<h2 id="drawing-the-maze">Drawing the Maze</h2>
+
+<p>In this assignment, you will write a processing program that creates an image of a maze, similar to the one shown below:</p>
+
+<p><img src="./res/maze.png" width="400" /></p>
+
+<p>However, You should <em>not</em> create a maze that is identical to this one!
+In fact, if you do, there will be severe point deductions.</p>
+
+<p>Instead, must use the website <a href="http://www.mazegenerator.net/">www.mazegenerator.net</a> to determine what maze to draw.
+This website creates randomly-generated mazes, based on a few settings that you give it.
+Navigate to this site, and input the settings as shown below:</p>
+
+<p><img src="./res/7x7-maze-settings.png" width="400" /></p>
+
+<p>Notice that all of the settings are the default, except the width and height are set to 7.
+One all settings are set, click “Generate new” to see the maze.
+Part of the point of this assignment is for you to build a maze that is unique to you, and draw the solution path through it.
+You should not be sharing mazes with others.
+If we notice that you and another student built the exact same maze, you will be penalized.
+A few other things that you must do when drawing your maze:</p>
+
+<ul>
+  <li>It must have an open entry point, indicated by a green ellipse</li>
+  <li>It must have an open exit point, indicated by a red ellipse</li>
+  <li>There must be at least 13 “walls” of the maze (colored black).
+    <ul>
+      <li>If the randomly-generated one has less than this, generate a new one.</li>
+    </ul>
+  </li>
+  <li>After creating the maze, you must draw a <em>blue</em> line marking the path through the maze.
+The path to get from the start to the end must require at least 7 “turns” like the one pictured.
+You also may have more turns, if you like…
+    <ul>
+      <li>Again. ff the randomly-generated one has less turns in the solution, generate a new one.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Like I said before, your maze should be unique to you.
+Do not just copy my maze, and do not share your maze design with other students in the class.</p>
+
+<p>You processing window must be square (meaning, the width and height are the same).
+The smallest you may go is 400x400 pixels, and the largest is 700x700 pixels.</p>
+
+<p>You should name your code file <code class="language-plaintext highlighter-rouge">maze.pde</code>.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This was assigned on 9/1/2017.
+It is due on 9/8/2017 at 5:00pm.</p>
+
+<p>Turn in each of the files described in the spec (1 total) the assignment 2 dropbox in D2L before the due date.
+Make sure to name the files <strong>exactly</strong> as this document specifies.
+In general, make sure to follow these instructions precisely.
+If you don’t, we will deduct points!!!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

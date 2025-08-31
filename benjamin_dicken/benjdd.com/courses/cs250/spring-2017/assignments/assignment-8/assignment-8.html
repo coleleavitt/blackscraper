@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 8</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-8">CSc 250: Assignment 8</h1>
+
+<p>This assignment is all python.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!</p>
+
+<p>When grading your assignments, each problem/script/function will be thoroughly tested with many types of input, so make sure you test your scripts/functions well!</p>
+
+<p>The python in this assignment will be graded using python 3.6, and tests will be run on a Mac machine.
+In general python works well cross-platform, but if you want to be absolutely sure your program works as expected, test on a mac!
+Any python version 3.4 or newer should suffice though.</p>
+
+<p>All of your scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program / script / set of functions does!
+# 
+</code></pre></div></div>
+
+<p>Each function in your script(s) should have a descriptive comment above it.
+If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="for-all-problems">For all problems</h2>
+
+<p>Put all of the functions below in a file named <code class="language-plaintext highlighter-rouge">asg8.py</code>.
+You can test these functions using the techniques described in lab 4.</p>
+
+<h2 id="problem-1-25-points">Problem 1 (25 points)</h2>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">convert_keys</code>.
+This function takes one argument named <code class="language-plaintext highlighter-rouge">numbers</code>.
+<code class="language-plaintext highlighter-rouge">numbers</code> is a dictionary in which all of the <em>keys</em> are integer numbers.
+This function will <em>return</em> a dictionary that has the same key/value pairs, but the keys will be converted to text given the process described below.
+Each digit of the key will be converted to it’s corresponding word.
+For example:</p>
+
+<ul>
+  <li>The key <code class="language-plaintext highlighter-rouge">5</code> will be converted to <code class="language-plaintext highlighter-rouge">Five</code></li>
+  <li>The key <code class="language-plaintext highlighter-rouge">7</code> will be converted to <code class="language-plaintext highlighter-rouge">Seven</code></li>
+  <li>The key <code class="language-plaintext highlighter-rouge">10</code> will be converted to <code class="language-plaintext highlighter-rouge">OneZero</code></li>
+  <li>The key <code class="language-plaintext highlighter-rouge">789</code> will be converted to <code class="language-plaintext highlighter-rouge">SevenEightNine</code></li>
+  <li>The key <code class="language-plaintext highlighter-rouge">12345</code> will be converted to <code class="language-plaintext highlighter-rouge">OneTwoThreeFourFive</code></li>
+</ul>
+
+<p>… and so on.</p>
+
+<p>Below are a few examples of calling this function in an interactive python shell:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; nums = { 23:'Samuel', 18:'Todd', 34:'Katy' }
+&gt;&gt;&gt; asg8.convert_keys(nums)
+{'TwoThree': 'Samuel', 'OneEight': 'Todd', 'ThreeFour': 'Katy'}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; employee_ids = { 34753:'John', 99311:'Jan', 11331:'Kathy' }
+&gt;&gt;&gt; asg8.convert_keys(employee_ids)
+{'ThreeFourSevenFiveThree': 'John', 'NineNineThreeOneOne': 'Jan', 'OneOneThreeThreeOne': 'Kathy'}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; employee_ids = { 12345:'James', 67890:'Alex', 13579:'Andy' }
+&gt;&gt;&gt; asg8.convert_keys(employee_ids)
+{'OneTwoThreeFourFive': 'James', 'SixSevenEightNineZero': 'Alex', 'OneThreeFiveSevenNine': 'Andy'}
+</code></pre></div></div>
+
+<h2 id="problem-2-25-points">Problem 2 (25 points)</h2>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">search_file</code>.
+This function will take two arguments.
+The <em>first</em> will be <code class="language-plaintext highlighter-rouge">file_name</code> and will specify the name of the file.
+The second will be called <code class="language-plaintext highlighter-rouge">search_term</code> and will be a string.
+This function will <em>return</em> a number, indicating the number of lines in the file that <code class="language-plaintext highlighter-rouge">search_term</code> appears at least one time in.</p>
+
+<p>For example, say there is a file named <code class="language-plaintext highlighter-rouge">story.txt</code> in the current working directory with the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My heart leaps up when I behold
+A rainbow in the sky:
+So was it when my life began,
+So is it now I am a man,
+So be it when I shall grow old
+Or let me die!
+The Child is father of the Man:
+And I could wish my days to be
+Bound each to each by natural piety.
+</code></pre></div></div>
+
+<p>Below are a few example calls to <code class="language-plaintext highlighter-rouge">search_file</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'rainbow')
+1
+</code></pre></div></div>
+
+<p>Clearly, “rainbow” only appears on 1 line in this file, so <code class="language-plaintext highlighter-rouge">1</code> is returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'each')
+1
+</code></pre></div></div>
+
+<p>Notice that the word “each” appears in the file twice, but both appearances are on the same line (line 9), so <code class="language-plaintext highlighter-rouge">1</code> is still returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'the')
+2
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">the</code> actually appears three times in this file (once on line 2, and twice on line 7), but <code class="language-plaintext highlighter-rouge">2</code> is returned because it appears in 2 lines total.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'it')
+3
+</code></pre></div></div>
+
+<p>Clearly, <code class="language-plaintext highlighter-rouge">it</code> appears on 3 unique lines so <code class="language-plaintext highlighter-rouge">3</code> is returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'o')
+8
+</code></pre></div></div>
+
+<p>The letter “o” appears on 8 lines (all but line 6).
+As this example suggests, this search should be case-sensitive, because it ignores the upper-case “O” at the beginning of line 6.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.search_file('story.txt', 'fellowship')
+0
+</code></pre></div></div>
+
+<p>The word “fellowship” never appears, so <code class="language-plaintext highlighter-rouge">0</code> is returned.</p>
+
+<h2 id="problem-3-25-points">Problem 3 (25 points)</h2>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">count_lines</code>.
+This function takes one argument named <code class="language-plaintext highlighter-rouge">file_name</code> which is the name of the file to read.
+This function will count and report the number of times each line of the file appears in the file.
+Note that you should <code class="language-plaintext highlighter-rouge">strip()</code> each line of the file after reading it in to get rid of extra whitespace at the beginning and end of each line.</p>
+
+<p>Below are a few examples:</p>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat lines.txt
+orange
+apple
+orange
+apple
+orange
+apple
+grape
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.count_lines('lines.txt')
+"orange" appeared 3 time(s).
+"apple" appeared 3 time(s).
+"grape" appeared 1 time(s).
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat lines.txt
+Star Wars
+Indiana Jones
+Star Wars
+ Star Wars
+   Star Wars
+LOTR
+A Tale of Two Cities
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.count_lines('lines.txt')
+"Star Wars" appeared 4 time(s).
+"Indiana Jones" appeared 1 time(s).
+"LOTR" appeared 1 time(s).
+"A Tale of Two Cities" appeared 1 time(s).
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat lines.txt
+A B C D
+ A B C D
+A B C D
+ A B C D
+X Y Z
+A B C D
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; asg8.count_lines('lines.txt')
+"A B C D" appeared 5 time(s).
+"X Y Z" appeared 1 time(s).
+</code></pre></div></div>
+
+<h2 id="problem-4-25-points">Problem 4 (25 points)</h2>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">reverse_file</code> which will take a single argument named <code class="language-plaintext highlighter-rouge">file_name</code>.
+This function will open the file with the name stored in <code class="language-plaintext highlighter-rouge">file_name</code>, reverse the order of the lines, and then write the file to disk with the same name.</p>
+
+<p>Below are a few example runs:</p>
+
+<p><img src="./assignment-8/examples/gifs/reverse_file_1.gif" width="600" /></p>
+
+<p><img src="./assignment-8/examples/gifs/reverse_file_2.gif" width="600" /></p>
+
+<p>In both cases, after calling <code class="language-plaintext highlighter-rouge">reverse_file</code> on a file, the ordering of the lines is reversed.
+Remember, the <code class="language-plaintext highlighter-rouge">list</code> data structure has a <code class="language-plaintext highlighter-rouge">reverse()</code> function!</p>
+
+<h2 id="testing-for-correctness">Testing for correctness</h2>
+
+<p>This assignment requires printing out precise text messages and notifications.
+As already mentioned, it is important to be precise when doing these printouts.</p>
+
+<p>We will only take minimal points off for very minor differences (for example, minor character spacing issues).
+However, we will take points off for any non-trivial differences, so try to be as precise as you can!</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 100 points.</p>
+
+<p>This was assigned on Sunday, March 19, 2017.
+It is due Friday, March 24, 2017, at 6:00pm (right before spring break).</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place the <code class="language-plaintext highlighter-rouge">.py</code> file in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-8</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only the <code class="language-plaintext highlighter-rouge">.py</code> file(s) exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-8</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-8.zip</code>.
+There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>.
+Make sure to zip the directory, not the file(s) individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-8.zip</code> to the assignment-8 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

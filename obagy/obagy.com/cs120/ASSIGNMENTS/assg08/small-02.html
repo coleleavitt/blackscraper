@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120:Tree Sum (Recursive)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Tree Sum (Recursive)</h1>
+
+<h2>Expected Behavior</h2>
+Write a recursive function <b>tree_sum</b>(<i>tree</i>), where
+<i>tree</i> is a binary tree, that returns the sum of the nodes
+in the tree.
+<p>
+Your function should work for empty trees, trees with one node, and trees
+with many nodes. 
+<p>
+<b>Note:</b> Write a function and not a method.
+</p>
+<h2>Programming Requirements</h2>
+Solve this problem using recursion.
+
+<h2>Examples</h2>
+<p>
+In the examples below, the tree argument is illustrated by its string representation, however the 
+actual argument is a tree object.
+</p>
+<ol>
+  <li>
+    <b><tt>tree_sum(tree)</tt></b> where tree is
+    <b><tt>None</tt></b><br/>
+    return value: <b><tt>0</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>tree_sum(tree)</tt></b> where tree is
+    <b><tt>(6 (8 None None) (9 None None))</tt></b><br/> 
+    return value: <b><tt>23</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>tree_sum(tree)</tt></b> where tree is
+    <b><tt>(6 (8 None None) (9 None (20 None None)))</tt></b><br/> 
+    return value: <b><tt>43</tt></b>
+    <p/>
+  </li>
+
+  <li>
+    <b><tt>tree_sum(tree)</tt></b> where tree is
+    <b><tt>(6 (5 (8 None None) None) (7 None (9 None None)))</tt></b><br/> 
+    return value: <b><tt>35</tt></b>
+    <p/>
+  </li>
+</ol>
+
+</body>
+</html>
+

@@ -1,0 +1,9 @@
+A Tale of Two Cities,Charles Dickens,5
+The Pearl,John Steinbeck,4
+Pride and Prejudice,Jane Austin,5
+Harry Potter,J. K. Rowlings,4
+1984,George Orwell,4
+Persuasion,Jane Austin,4
+The Great Gatsby,F. Scott Fitzgerald,4
+The Lord of the Rings,J.R.R. Tolkien,4
+The Sound and the Fury,William Faulkner,3

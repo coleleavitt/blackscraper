@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Column to List</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Column to List</h1>
+
+<h2>Expected Behavior</h2>
+Write a function <b>column2list</b>(<i>grid</i>, <i>n</i>), where
+<i>grid</i> is a list of lists and <i>n</i> is an integer, that returns
+a list consisting of the element at position <i>n</i> of each row of
+<i>grid</i>.
+<p/>
+You can assume that <b><tt>0</tt></b> &le; <i>n</i> &lt; <b><tt>len</tt></b>(<i>r</i>) for each row
+(i.e., element) of <i>grid</i>.
+<p/>
+
+<h2>Examples</h2>
+In the examples below, <b><tt>x</tt></b> is assumed to be the following list of lists:
+<blockquote>
+  <b>
+    <pre>
+      [ [ 'aa', 'bb', 'cc', 'dd' ],
+        [ 'ee', 'ff', 'gg', 'hh', 'ii', 'jj' ],
+        [ 'kk', 'll', 'mm', 'nn' ] ]
+    </pre>
+  </b>
+</blockquote>
+
+<ol>
+  <li>
+    <b><tt>column2list(x,3)</tt></b><br/>
+    return value: <b><tt>['dd', 'hh', 'nn' ]</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>column2list(x,0)</tt></b><br/>
+    return value: <b><tt>[ 'aa', 'ee', 'kk' ]</tt></b>
+    <p/>
+  </li>
+</ol>
+
+</body>
+</html>
+

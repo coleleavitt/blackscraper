@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Battleship: Rules</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Battleship: Rules</h1>
+
+<h2>Legal Placement</h2>
+In order for a placement to be legal, each of the five ships must be placed legally.
+A ship  placement with endpoints (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>)
+and (<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>) is
+legal if all of the following conditions are satisfied:
+<p/>
+<ol>
+  <li>
+    The ship must either be parallel to the <i>x</i> axis or 
+    else parallel to the <i>y</i> axis.
+    <p/>
+  </li>  
+  <li>
+    The ship must be contained within the 10x10 grid of the game board,
+    i.e., 0 &le; <i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>,
+    <i>x</i><sub>2</sub>, <i>y</i><sub>2</sub> &le; 9.
+    <p/>
+  </li>
+  <li>
+    The distance between the end-points (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>)
+    and (<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>) must match the
+    size of the ship.
+    <p/>
+  </li>
+  <li>
+    Each grid point (<i>x</i>, <i>y</i>)
+    occupied by the ship, i.e., including and lying between
+    the end-points (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>)
+    and (<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>), cannot be occupied by
+    any other ship.
+    <p/>
+  </li>
+</ol>
+<p/>
+The following illustrates examples of legal and illegal placements:
+<p/>
+<blockquote>
+<img src="battleship-legal-placement-example.png" style="width:700px" alt="examples of legal and illegal placement" />
+</blockquote>
+<p/>
+<h2>Legal Guesses</h2>
+
+A guess <i>x, y</i> is legal if it is within the game board, i.e.,
+<blockquote>
+  0 &le; <i>x, y</i> &le; 9
+</blockquote>
+</body>
+</html>

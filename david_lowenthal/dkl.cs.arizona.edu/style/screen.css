@@ -1,0 +1,1002 @@
+/*  screen.css -- Computer Science stylesheet for screen and print media  */
+
+html{height:100%;}
+
+body 
+{
+    margin: 0 0 0 10px;
+    padding: 0;
+    font-family: verdana, "lucida grande", geneva, sans-serif;
+    font-size: 11px;
+    line-height: 16px;
+    color: #333;
+    height:100%;
+    background: #ddd url(elements/bg_fullpage.gif) repeat-y 10px 0;
+}
+
+#wrapper
+{
+    position: relative; 
+    width: 760px;
+    background-color: #fff;
+    min-height: 100%;  
+}
+
+* html #wrapper
+{
+    height: 100%; 
+}
+
+
+/*-----[BLUE BAND HEADER STYLES]----------*/
+
+#topbar
+{
+    position: relative;
+    width: 742px;
+    height: 42px;
+    margin-bottom: 4px;
+    padding-left: 18px;
+    background-color: #036;
+}
+
+#masthead
+{
+    clear: both;
+    position: relative;
+    margin: 0 0 18px 24px;
+    width: 724px;
+    height: 155px;    
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc; 
+}
+
+#masthead img
+{
+    display: block;
+    margin: 0;
+}
+
+#uaLink
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 42px;
+}
+
+#validateLink
+{
+    position: absolute;
+    top: 0px;
+    left: 750px;
+    width: 10px;
+    height: 42px;
+}
+
+#logoLink
+{
+    position: absolute;
+    top: 60px;
+    left: 485px;
+    width: 170px;
+    height: 68px;
+}
+
+#cosLink
+{
+    position: absolute;
+    top: 128px;
+    left: 485px;
+    width: 100px;
+    height: 26px;
+}
+
+#uaLink a, #validateLink a, #logoLink a, #cosLink a
+{    
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* hideous hack: IE 6 needs bg to display anchor in positioned div */
+    background: transparent url(elements/bg_1x1.gif) no-repeat 0 0;
+}
+
+#content
+{
+    float: left;
+    margin: 0 0 20px 24px;
+    width: 468px;
+    display: inline; /*for IE's doubled float margin bug*/    
+}
+
+
+DIV.widepage#content
+{
+    float: left;
+    margin: 0 0 20px 24px;
+    width: 726px;
+    display: inline; /*for IE's doubled float margin bug*/    
+}
+
+
+
+/*-----[UTILITY NAVIGATION STYLES]----------*/
+
+#utilityContainer
+{
+    float: left;
+    width: 725px;    
+    margin: 0 0 0 24px;
+    display: inline;    
+}
+
+#utilityNav
+{
+    float: right;
+    margin: 0 0 4px 0;
+    padding: 0;
+    list-style: none;
+}
+
+#utilityNav li
+{
+    display: block;
+    float: left;
+    padding: 2px 0;
+    margin-left: 2px;  
+}
+
+#utilityNav img
+{
+    border: 0;
+}
+
+
+
+#utilityNav li a
+{
+    display: inline;
+    float: left;
+    padding: 4px 9px;    
+}
+
+#utilityNav li a:hover
+{
+    background-color: #ddd;
+}
+
+#utilityNav li.menuOn a
+{
+    background-color: #ddd;
+}
+
+
+
+
+/*-----[GLOBAL NAVIGATION STYLES]----------*/
+
+#navContainer
+{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    float: left;
+    width: 725px;    
+    margin: 0 0 30px 24px;
+    display: inline;    
+}
+
+
+#globalNav
+{
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+}
+
+#globalNav li
+{
+    display: block;
+    float: left;
+    padding: 2px 0;
+    margin-right: 2px;       
+}
+
+#globalNav img
+{
+    border: 0;
+}
+
+#globalNav li a
+{
+    display: inline;
+    float: left;
+    padding: 8px 15px;    
+}
+
+#globalNav li a:hover
+{
+    background-color: #ddd;
+}
+
+/*both li and nested anchor must have background image*/
+#globalNav li.menuOn
+{
+    background: #fff url(elements/bg_navarrow.gif) no-repeat 48% 0;
+}
+
+#globalNav li.menuOn a
+{
+    background: #ddd url(elements/bg_navarrow.gif) no-repeat 48% -2px;
+}
+
+
+
+
+/*-----[SIDEBAR NAVIGATION STYLES]----------*/
+
+
+#menuContainer
+{
+    float: right;
+    margin: 0 10px 60px 0;
+    width: 244px;
+    display: inline; /*for IE's doubled float margin bug*/
+}
+
+#content #menuContainer
+{
+    margin: 0 0 30px 13px;
+}
+
+#menuContainer #sidebarMenu
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #ccc;    
+}
+
+#menuContainer #sidebarMenu li
+{       
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: white;
+
+    height: 18px;
+    width: 244px;
+    font-size: 10px;
+    line-height: 17px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+}
+
+#menuContainer #sidebarMenu li.spacer
+{       
+    height: 24px;
+}
+
+#menuContainer #sidebarMenu li.downplay
+{
+    width: 230px;
+    padding: 0 0 0 14px;    
+    color: #777;
+}
+
+/*Tan hack for IE*/
+* html #menuContainer #sidebarMenu li.downplay
+{
+    width: 244px;
+}
+
+
+#menuContainer #sidebarMenu li a
+{
+    display: block;
+    width: 226px;    
+    padding: 2px 4px 3px 14px;    
+    line-height: 13px;
+    color: #333;
+    text-decoration: none;
+}
+
+/*nest this to avoid bad side effects on IE5/Mac */
+@media all
+{
+    /*Tan hack for IE5 width*/
+    * html #menuContainer #sidebarMenu li a
+    {
+	width: 244px;
+    }
+}
+
+#sidebarMenu li a:hover
+{   
+    background-color: #eee;
+}
+
+#sidebarMenu li.menuOn a
+{   
+    color: #333;
+    background: #dbdbdb url(elements/bg_menuarrow.gif) no-repeat 6px 5px;
+}
+
+* html #sidebarMenu li.menuOn a
+{   
+     background: #dbdbdb url(elements/bg_menuarrow.gif) no-repeat 6px 6px;
+}
+
+#sidebarMenu li.menuOn a:hover
+{
+    background-color: #dbdbdb;
+}
+
+
+
+
+
+
+
+/*-----[GENERIC CONTENT STYLES]----------*/
+
+
+
+
+h1,h2,h3,h4,h5, h6 
+{
+    margin: 0;
+    font-family: arial, helvetica, sans-serif;
+    color: #c03;
+    line-height: 1em;
+}
+
+p 
+{
+    margin: 0 0 14px 0;
+    line-height: 17px;
+}
+
+p.unfinished
+{
+    background: #F0F8FF;
+    border: 1px dashed #5AF;
+    padding: 4px;
+}
+
+h1
+{
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+h1.context
+{
+    color: #999;
+    margin-bottom: 0.7ex;
+}
+
+h2
+{
+    font-size: 14px;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 6px;
+}
+
+h3
+{
+    font-size: 13px;    
+    margin-bottom: 4px;
+}
+
+h4
+{
+    font-size: 12px;
+    color: #333;
+}
+
+h5
+{
+    font-size: 11px;
+    
+}
+
+h6
+{
+    font-size: 11px;
+    color: #000;
+    font-weight: normal;  
+}
+
+strong, b
+{
+    color: #444;
+}
+
+
+a
+{
+    color: #444;
+}
+
+a:visited
+{
+    color: #000;
+}
+
+a:hover
+{
+    color: #777;
+}
+
+
+#content ul
+{
+    margin: 4px 0 18px 0;
+    padding: 0;
+    list-style: none;    
+}
+
+#content ul li
+{
+    padding-left: 12px;
+    background: transparent url(elements/bg_list_bullet.gif) no-repeat 0 5px;
+    line-height: 14px;
+    margin-bottom: 4px;
+}
+
+#content ul li.spacer
+{
+    height: 5px;
+}
+
+
+#content ol
+{
+    margin-bottom: 18px;
+    margin-left: 1.6em;
+    margin-top: 4px;
+    padding: 0;
+}
+
+* html #content ol
+{
+    margin-left: 2em;
+}
+
+#content ol li
+{   
+    line-height: 14px;
+    margin-bottom: 8px;
+}
+
+
+blockquote
+{
+    margin: 14px 0;
+    padding: 0 30px;
+    font-style: italic;
+}
+
+
+table
+{
+    width: 100%;
+    margin: 4px 0 18px 0;
+    border-collapse: collapse;
+    empty-cells: show;
+}
+
+caption
+{
+    padding: 4px 2px 4px 0;
+    text-align: left;
+    font-size: 11px;
+}
+
+th
+{
+    background-color: #efefef;
+}
+
+th, td
+{
+    padding: 2px 5px;
+    border: 1px solid #c9c9c9;    
+    font-size: 11px;
+    vertical-align: top;
+    text-align: left;
+}
+
+tfoot td
+{
+    font-size: 10px;
+    color: #666;
+    border: none;
+}
+
+td p
+{
+    margin: 0;
+}
+
+table.eventlist     { width: auto; }
+table.eventlist td  { border: 0; padding: 1px 3px 1px 0px; }
+
+table.eventlist2     { width: auto; }
+table.eventlist2 td  { border: 0; padding: 1px 3px 1px 0px; }
+
+
+#content img
+{
+    display: block;
+    margin: 5px 0 18px 0;
+}
+
+#content img.wrapText
+{
+    float: left;
+    margin: 5px 10px 2px 0;
+}
+
+
+
+
+div.line hr
+{
+    margin: 0;
+    padding: 0;
+    display: none;
+    
+}
+
+div.line
+{
+    height: 2px;
+    margin: 0 0 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+
+
+
+/* left half / right half for special situations */
+
+div.left
+{
+    display: inline;
+    float:   left;
+    width:   225px;
+}
+
+div.right
+{
+    display: inline;
+    float:   right;
+    width:   225px;
+}
+
+#content div.left img, #content div.right img
+{
+   border: 1px solid #CCC;
+   margin: 5px 5px 5px 0;
+}
+
+
+
+
+
+/*-----[HOME PAGE STYLES]----------*/
+
+
+
+
+img#homeWelcome
+{
+    display: block;
+    margin: 0 0 18px 0;
+}
+
+
+
+#leftCol
+{
+    width: 225px;
+    float: left;
+    margin: 0 0 18px 0;
+}
+
+#midCol
+{
+    width: 225px;
+    float: left;
+    margin: 0 0 18px 25px;
+}
+
+#rightCol
+{
+    width: 225px;
+    float: right;
+    margin: 0 0 18px 0;
+}
+
+
+#leftCol img, #rightCol img
+{
+    display: block;
+    border: 1px solid #ccc;
+    margin: 0 0 12px 0;
+}
+
+
+#content.homepage h1
+{
+    margin-bottom: 12px;
+    padding: 5px 0 6px 0;
+    border-top: 18px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 14px;
+    font-size: 13px;
+     
+}
+
+
+#content.homepage h1 a
+{
+    display: block;
+    width: 219px;
+    height: 15px;
+    padding-left: 2px;
+    text-decoration: none;
+    color: #c03;
+    background: transparent url(elements/bg_header_arrow.gif) no-repeat 100% 2px;   
+}
+
+
+#content.homepage h2
+{
+    margin-bottom: 0;            
+    font-size: 12px;
+    line-height: 15px; 
+}
+
+
+#content.homepage p
+{
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+
+
+
+/*homepage sidebar styles*/
+
+#homeSidebar
+{
+    float: right;
+    margin: 0 10px 60px 0;
+    width: 244px;
+    display: inline; /*for IE's doubled float margin bug*/
+}
+
+
+#homeSidebar h1
+{
+    margin-bottom: 6px;
+    padding: 5px 0 6px 0;
+    border-top: 4px solid #999;
+    border-bottom: 1px solid #ccc;    
+    line-height: 14px;
+    font-size: 13px;
+     
+}
+
+#homeSidebar h1 a
+{
+    display: block;
+    width: 236px;
+    padding-left: 2px;
+    text-decoration: none;
+    color: #c03;
+    background: transparent url(elements/bg_header_arrow.gif) no-repeat 100% 2px;   
+}
+
+
+#homeSidebar p
+{
+    line-height: 16px;
+    margin-bottom: 12px;
+}
+
+
+/*homepage employment div styles*/
+
+#employment
+{
+    background-color: #eee;
+    margin-bottom: 12px;
+}
+
+#employment h1 a
+{
+    width: 232px;
+    padding-left: 6px;
+    color: #c03;
+}
+
+#employment p
+{
+    padding: 6px;
+}
+
+
+/*homepage special announcement styles */
+
+div.attention
+{
+    background: #FFA;
+    border: 2px solid #700;
+    padding: 4px;
+}
+
+#content.homepage div.attention h1
+{
+    color: #FFE;
+    background: #400;
+    font-weight: bold;
+    border: 0;
+    padding-left: 3px;
+}
+
+#content.homepage div.attention h2
+{
+    color: #200;
+}
+
+div.attention p
+{
+    color: black;
+}
+
+
+
+
+
+/*-----[LANDING PAGE STYLES]----------*/
+
+
+.landingpage img
+{
+    display: block;
+    border: 1px solid #ccc;
+    margin: 0 0 12px 0;
+}
+
+.landingpage h2
+{
+    margin-bottom: 12px;
+    padding: 5px 0 6px 0;
+    border-top: 13px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 14px;
+    font-size: 13px;
+    color: #c03;
+}
+
+
+.landingpage h2 a
+{
+    display: block;
+    width: 202px;
+    padding-left: 2px;
+    padding-right: 15px;
+    text-decoration: none;
+    color: #c03;
+    background: transparent url(elements/bg_header_arrow.gif) no-repeat 100% 2px;   
+}
+
+/*Tan hack for IE5 width*/
+* html .landingpage h2 a
+{
+    width: 226px;
+    widt\h: 202px;
+}
+
+.landingpage h3
+{
+    margin-bottom: 0;            
+    font-size: 12px;
+    line-height: 15px; 
+}
+
+.landingpage h4
+{
+    margin-bottom: 12px;
+    padding: 5px 0 6px 0;
+    border-top: 13px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 14px;
+    font-size: 13px;
+    color: #c03;
+}
+
+.landingpage h4 a
+{
+    display: block;
+    width: 125px;
+    padding-left: 2px;
+    padding-right: 15px;
+    text-decoration: none;
+    color: #c03;
+    background: transparent url(elements/bg_header_arrow.gif) no-repeat 100% 2px;
+}
+
+
+.landingpage p
+{
+    line-height: 16px;
+    margin-bottom: 12px;
+}
+
+
+
+
+
+
+
+
+
+/*-----[FOOTER STYLES]----------*/
+
+
+#footer
+{
+    clear: both;
+    margin: 0 0 0 24px;
+    padding-bottom: 20px;    
+    width: 724px;
+    position: relative;
+    border-top: 1px solid #ccc;
+    font-size: 10px;
+    color: #999;
+}
+
+
+#footer p
+{
+    margin: 0;
+    font-size: 10px;
+    color: #999;
+}
+
+#footer a
+{
+    color: #999;
+}
+
+
+p.footnote
+{
+    margin-top: 50px;
+    border-top: 1px solid #CCC;
+    padding-top: 1ex;
+    font-size: 10px;
+    color: #444;
+}
+
+
+
+p.maintainedBy
+{
+    margin: 100px 0 0 0;
+    font-size: 10px;
+    color: #999;
+}
+
+
+
+
+
+
+
+
+
+
+/*-----[FACULTY TEMPLATE STYLES]----------*/
+
+#wrapper.template #topbar
+{
+    margin-bottom: 12px;
+}
+
+#wrapper.template #masthead
+{
+    height: 68px;
+    margin-bottom: 24px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 0;
+}
+
+#templateHeader
+{
+    float: left;
+    width: 468px;
+    height: 68px;
+    border-right: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+#templateLogo
+{
+    float: left;    
+    border-left: 1px solid #ccc;
+    height: 68px;    
+}
+
+#templateLogo #smallLogo
+{
+    margin: 8px 0 0 15px;
+    border: 0; 
+}
+
+
+#wrapper.template h2
+{
+    padding-top: 6px;
+    margin-bottom: 6px;
+    border-top: 1px solid #ccc;
+    font-size: 13px;
+}
+
+#tplDeptLink
+{
+    position: absolute;
+    top: 0px;
+    left: 480px;
+    display: block;
+    width: 150px;
+    height: 43px;
+    background: transparent;
+    letter-spacing: -1000em;
+    font-size: 1px;
+}
+
+#tplCollgLink
+{
+    position: absolute;
+    top: 43px;
+    left: 480px;
+    display: block;
+    width: 150px;
+    height: 25px;
+    background: transparent;
+    letter-spacing: -1000em;
+    font-size: 1px;
+}
+
+
+
+/*-----[VARIATIONS FOR PRINTING]----------*/
+
+@media print {
+
+#topbar		{ padding-left: 24px; }
+
+#uaLink, #logoLink, #cosLink, #utilityContainer, #navContainer, #sidebarMenu
+		{ display: none; }
+
+body, h1, h2, h3, h4, h5, h6, strong, b, a, a:hover, #topbar
+		{ color: black; background: white; } 
+
+#content	{ margin-bottom: 8px; }
+
+#footer		{ padding-bottom: 0; }
+
+#leftCol #sidebarMenu, #midCol #sidebarMenu, #rightCol #sidebarMenu
+		{ display: block; }			/* for site map */
+#menuContainer #sidebarMenu li a
+		{ color: black	}			/* for site map */
+
+}

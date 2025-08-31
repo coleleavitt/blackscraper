@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Summarizer</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <p><img src="./res/sports1.gif" height="125px" style="display:inline; margin-right:5px;" alt="sports 1" />
+<img src="./res/sports2.gif" height="125px" style="display:inline; margin-right:5px;" alt="sports 2" />
+<img src="./res/sports3.gif" height="125px" style="display:inline; margin-right:5px;" alt="sports 3" /></p>
+
+<h1 id="game-summarizer">Game Summarizer</h1>
+
+<p>In this short PA, you will be writing a program that reads in a game log file.
+You program will process the information, and then print out a summary.
+This program should both read from a file.
+Thus, use the <code class="language-plaintext highlighter-rouge">open()</code> command.
+Name the program <code class="language-plaintext highlighter-rouge">summarizer.py</code>.</p>
+
+<h2 id="the-input">The Input</h2>
+
+<p>Your program should prompt the user for a name of a game log file to read in.
+The game log file will consist of lines that have this format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>team player points
+</code></pre></div></div>
+
+<p>Each of these lines represents a scoring event in a game.
+<code class="language-plaintext highlighter-rouge">team</code> will be an indicator of the team that scores, <code class="language-plaintext highlighter-rouge">player</code> indicates which player scored, and <code class="language-plaintext highlighter-rouge">points</code> is a number representing the amount of points scored.
+Below is an example gamelog file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Atletico Costa 1
+Atletico Kalinic 1
+Bayern Wagner 1
+Bayern Gnabry 1
+Atletico Costa 1
+Bayern Gnabry 1
+Atletico Kalinic 1
+</code></pre></div></div>
+
+<p>This is an example from soccer.
+The two teams are Atletico (Madrid) and Bayern (Munich).
+In total, 7 goals are scored over the course of the game, by a total of 4 players.
+Your program should read in game log files of this format and be able to process them.
+You can assume that:</p>
+
+<ul>
+  <li>One team will always have more points that the other by the end of the game.</li>
+  <li>There will be at least two two log lines</li>
+  <li>Each line has the three components (team, player, and points)</li>
+</ul>
+
+<p>The number of points scored does not always have to be 1.
+For example, below is also valid content form a log file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHX Booker 2
+DEN Jokic 2
+PHX Ayton 3
+DEN Harris 3
+PHX Booker 2
+DEN Jokic 2
+PHX Jackson 2
+PHX Warren 2
+</code></pre></div></div>
+
+<h2 id="summarizing-a-game">Summarizing a Game</h2>
+
+<p>After reading the file and completing the necessary processing, your program should print a summary of the game.
+The printed output should include the following information:</p>
+
+<ul>
+  <li>An indication of the team that won.</li>
+  <li>The final score for each team. The score of the team that scored first should be displayed first.</li>
+  <li>The number of players that scored.</li>
+  <li>The player to score first.</li>
+  <li>The player to score last.</li>
+</ul>
+
+<p>For example, if your program were to run on the soccer gamelog file shown earlier (the match between Atletico and Bayern), the result should appear like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Atletico won!
+Atletico scored 4 points.
+Bayern scored 3 points.
+4 players scored.
+Costa scored first.
+Kalinic scored last.
+</code></pre></div></div>
+
+<h2 id="test-cases">Test Cases</h2>
+
+<p>Linked below are serveral examples of log files and outputs.</p>
+
+<ul>
+  <li><a href="./res/files/log1/log1.txt">log1.txt</a>
+    <ul>
+      <li><a href="./res/files/log1/summary.txt">summary.txt</a></li>
+    </ul>
+  </li>
+  <li><a href="./res/files/log2/log2.txt">log2.txt</a>
+    <ul>
+      <li><a href="./res/files/log2/summary.txt">summary.txt</a></li>
+    </ul>
+  </li>
+  <li><a href="./res/files/log3/log3.txt">log3.txt</a>
+    <ul>
+      <li><a href="./res/files/log3/summary.txt">summary.txt</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Look there for reference.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>Your program should be structured into at last three non-trivial functions.
+Ensure that you follow the style guidelines.</p>
+
+<h2 id="submission">Submission</h2>
+
+<p>This program is due on Tuesday, March 19th at 7pm.
+Submit the program via on Gradescope.
+Do you best to get your program to pass all of the test-cases, and follow the style guidelines.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: List Palindrome (Recursive)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: List Palindrome (Recursive)</h1>
+
+<h2>Expected Behavior</h2>
+Write a <u>recursive</u> function <b>palindrome_list</b>(<i>arglist</i>), where
+<i>arglist</i> is a list, that returns <tt>True</tt> if and only if 
+<i>arglist</i> is a palindrome, i.e., is the same sequence of elements
+whether it is traversed forwards from the first element or backwards from
+the last element.
+<p/>
+<h2>Programming Requirements</h2>
+Solve this problem using recursion.  You are allowed to use <u>only</u>
+the following programming constructs:
+<p/>
+<ul>
+  <li>
+    <b>if</b> statements;
+  </li>
+  <li>
+    <b>return</b> statements;
+  </li>
+  <li>
+    assignment;
+  </li>
+  <li>
+    recursive function calls (but not to helper functions);
+  </li>
+  <li>
+    comparison operations (<b>==</b>, <b>!=</b>, etc.);
+  </li>
+  <li>
+    list indexing and slicing;
+  </li>
+  <li>
+    Boolean operations (<b>and</b>, <b>or</b>, <b>not</b>).
+  </li>
+</ul>
+<p/>
+Solutions that go outside these constructs, e.g., by
+using <b>for</b>/<b>while</b> loops or list comprehensions,
+will not get credit.
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    <b><tt>palindrome_list(['aa','bb','bb','aa'])</tt></b><br/>
+    return value: <tt>True</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list(['aa','bb','','bb','','aa'])</tt></b><br/>
+    return value: <tt>False</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list(['aa','bb','aa',''])</tt></b><br/>
+    return value: <tt>False</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list([])</tt></b><br/>
+    return value: <tt>True</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list([1,2,3,2,1])</tt></b><br/>
+    return value: <tt>True</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list([1,2,3,2])</tt></b><br/>
+    return value: <tt>False</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list([[1,2],[3,4,3],[1,2]])</tt></b><br/>
+    return value: <tt>True</tt>
+    <p/>
+  </li>
+  <li>
+    <b><tt>palindrome_list([[1,2],[3,4,3],[2,1]])</tt></b><br/>
+    return value: <tt>False</tt>
+    <p/>
+  </li>
+</ol>
+
+</body>
+</html>
+

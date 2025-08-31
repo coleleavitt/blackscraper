@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 2</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-2">CSc 250: Assignment 2</h1>
+
+<p>This assignment has a few more “advanced” bash programs to write than the last one.
+Specifically, we will need to use complex regular expressions to solve some of these problems.
+For all problems in this assignment, students are limited to using the following command line tools:</p>
+
+<p><code class="language-plaintext highlighter-rouge">pwd</code> <code class="language-plaintext highlighter-rouge">ls</code> <code class="language-plaintext highlighter-rouge">cd</code> <code class="language-plaintext highlighter-rouge">touch</code> <code class="language-plaintext highlighter-rouge">rm</code> <code class="language-plaintext highlighter-rouge">rmdir</code> <code class="language-plaintext highlighter-rouge">find</code> <code class="language-plaintext highlighter-rouge">echo</code> <code class="language-plaintext highlighter-rouge">cat</code> <code class="language-plaintext highlighter-rouge">sort</code> <code class="language-plaintext highlighter-rouge">grep</code> <code class="language-plaintext highlighter-rouge">head</code> <code class="language-plaintext highlighter-rouge">tail</code> <code class="language-plaintext highlighter-rouge">uniq</code> <code class="language-plaintext highlighter-rouge">rev</code> <code class="language-plaintext highlighter-rouge">cut</code> <code class="language-plaintext highlighter-rouge">sed</code> <code class="language-plaintext highlighter-rouge">awk</code> <code class="language-plaintext highlighter-rouge">date</code> <code class="language-plaintext highlighter-rouge">if</code>/<code class="language-plaintext highlighter-rouge">else</code> <code class="language-plaintext highlighter-rouge">for</code> <code class="language-plaintext highlighter-rouge">wc</code></p>
+
+<p>You can also use any other bash feature discussed in the lecture notes.</p>
+
+<p>As with the last assignment:</p>
+
+<p>Notice that a few of these commands we have not learned about in lecture. Use the <code class="language-plaintext highlighter-rouge">man</code> pages, Google or office-hours to figure out how to use these commands.
+When grading your assignments, each problem will be thoroughly tested with many types of input, so make sure you test your scripts well!</p>
+
+<p>Obviously, this homework requires the use of the bash shell.
+If you do not have a Mac, Unix, or Linux computer that can run bash, do this assignment in one of the CS computer labs in Gould-Simpson.</p>
+
+<p>Your bash scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top (under the Sha-Bang) that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A description of what this program/script does!
+#    In this section, you can document how the script works, and what the
+#    command-line options are.
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<p>Many of the script that you are to write require the user to specify an input file.
+Each script should check to ensure that the files passed to them exist.
+If the file does not exist, and error should be printed with the form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File X does not exist
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">X</code> is the name of the file that the user specified.
+We will test your scripts with invalid file names, and points will be deducted if this feature doesn’t work properly.</p>
+
+<h2 id="problem-1-25-points">Problem 1 (25 Points)</h2>
+
+<p>In this problem, you will be writing regular expressions that match and don’t match specified strings.
+For each entry below, write a single regular expression that matches the string listed after “Matches:” and does not match the strings listed after “Doesn’t Match”.</p>
+
+<ul>
+  <li>(A) Matches: <code class="language-plaintext highlighter-rouge">1freedom2</code> <code class="language-plaintext highlighter-rouge">77someletters2346</code> <code class="language-plaintext highlighter-rouge">101k234</code>. Doesn’t match: <code class="language-plaintext highlighter-rouge">freedom2</code> <code class="language-plaintext highlighter-rouge">1237</code> <code class="language-plaintext highlighter-rouge">3K3lore</code> <code class="language-plaintext highlighter-rouge">2HELLO1</code></li>
+  <li>(B) Matches: <code class="language-plaintext highlighter-rouge">${VAR}</code> <code class="language-plaintext highlighter-rouge">${LONG_VAR_NAME}</code> <code class="language-plaintext highlighter-rouge">${PI}</code>. Doesn’t match: <code class="language-plaintext highlighter-rouge">$VAR</code> <code class="language-plaintext highlighter-rouge">${test}</code> <code class="language-plaintext highlighter-rouge">${LONG_variable_NAme}</code> <code class="language-plaintext highlighter-rouge">$H{EL}LO</code></li>
+  <li>(C) Matches: <code class="language-plaintext highlighter-rouge">freedom</code> <code class="language-plaintext highlighter-rouge">kingdom</code> <code class="language-plaintext highlighter-rouge">KiNGdOM</code> <code class="language-plaintext highlighter-rouge">ranDOM</code> . Doesn’t match: <code class="language-plaintext highlighter-rouge">dome</code> <code class="language-plaintext highlighter-rouge">DOME</code> <code class="language-plaintext highlighter-rouge">freedome</code> <code class="language-plaintext highlighter-rouge">KingDomness</code></li>
+</ul>
+
+<p>You will put the resulting regular expressions in a file named <code class="language-plaintext highlighter-rouge">regex.txt</code>.
+Each regex will be on it’s own line of the .txt file.
+(A) will go one line 1, (B) will go on line two, and (C) will go on line 3.</p>
+
+<p>When coming up with your solutions, look for patters and key differences in the strings to match and the strings to ignore.
+I recommend using <a href="http://regexr.com/">RegExr</a> while comping up with your solutions.
+Also, remember to enable the multi-line flag.</p>
+
+<h2 id="problem-2-25-points">Problem 2 (25 Points)</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">three-vowels.sh</code>.
+This script finds words with three (or more) vowels in a row in them.
+This script takes one positional argument, and returns each word that contains three vowels in a row (in a sequence).
+Each word will be printed to stdout, one per line.</p>
+
+<p>Let’s say that <code class="language-plaintext highlighter-rouge">words.txt</code> has the following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a very curious lion.
+Onomatopoeia is a really long word!
+Why do you always talk about superfluOus things?
+This sentence does not have a word with three vowels.
+And neither does this one.
+</code></pre></div></div>
+
+<p>When we run <code class="language-plaintext highlighter-rouge">three-vowels.sh</code> on it, we should see:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./three-vowels.sh words.txt 
+curious
+Onomatopoeia
+superfluOus
+</code></pre></div></div>
+
+<p>Notice that the search is case insensitive, because it included <code class="language-plaintext highlighter-rouge">superfluOus</code> (upper-case O) in the result.</p>
+
+<h2 id="problem-3-25-points">Problem 3 (25 Points)</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">sequence.sh</code>.
+This script searches for words with sequences of characters.
+The user of the script can specify the characters to look for, and the length of the sequence.</p>
+
+<p>This script will take three positional arguments.</p>
+
+<p>The first argument is a string of characters.
+The characters in this string specify the characters to search for sequences of.
+For example, say the string <code class="language-plaintext highlighter-rouge">"rdft"</code> is provided as the first argument.
+<code class="language-plaintext highlighter-rouge">sequence.sh</code> will search for sequences of the characters <code class="language-plaintext highlighter-rouge">r</code> <code class="language-plaintext highlighter-rouge">d</code> <code class="language-plaintext highlighter-rouge">f</code> <code class="language-plaintext highlighter-rouge">t</code> in any order.
+The script only needs to handle alphanumeric characters in this input string (1-9, A-Z, a-z).</p>
+
+<p>The second argument is a number, specifying the length of the sequence to search for.</p>
+
+<p>The last argument is the name of the file to search through.</p>
+
+<p>Say we have another <code class="language-plaintext highlighter-rouge">words.txt</code> file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Heeeeeyyyyy... How are ya?
+This is a very curious lion.
+look, look! a book.
+Onomatopoeia is a really long word!
+Why do you always talk about superfluOus things?
+This sentence does not have a word with three vowels.
+And neither does this one.
+</code></pre></div></div>
+
+<p>Here are several examples of running <code class="language-plaintext highlighter-rouge">sequence.sh</code> on with this file as input:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sequence.sh aeiou 3 words.txt 
+Heeeeeyyyyy
+curious
+Onomatopoeia
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sequence.sh AEIOUaeiou 3 words.txt 
+Heeeeeyyyyy
+curious
+Onomatopoeia
+superfluOus
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sequence.sh y 4 words.txt 
+Heeeeeyyyyy
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sequence.sh o 2 words.txt 
+look
+look
+book
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sequence.sh abcdefg 2 words.txt 
+Heeeeeyyyyy
+really
+about
+sentence
+three
+</code></pre></div></div>
+
+<p>Notice that the searching this script does is case-sensitive.
+When you run your version of the script, you should get this same output for all of these examples.</p>
+
+<h2 id="problem-4-25-points">Problem 4 (25 Points)</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">word-search.sh</code>.
+This script consumes an input file full of words (one per line) and searches for those words in another file.
+This script will take two positional arguments.
+The first is the name of a text file that contains a list of words, one per line.
+The second is the name of a text file to search in.</p>
+
+<p>This script will grab all of the words from the first file, and use a <code class="language-plaintext highlighter-rouge">for</code> loop to iterate over them all and search for each one individually in the second file.</p>
+
+<p>Let’s say that <code class="language-plaintext highlighter-rouge">words.txt</code> has the following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>torch
+employ
+trade
+palladium
+qwerty
+azerty
+adapted
+</code></pre></div></div>
+
+<p>In this example, we will use <a href="./metal.txt">this text file discussing palladium</a>.
+Go ahead and download it if you want to follow along with the examples below.
+(You should also test your script on other text files in addition to this one.)</p>
+
+<p>Running this will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./word-search.sh words.txt metal.txt 
+torch appears 1 times in metal.txt
+employ appears 1 times in metal.txt
+trade appears 1 times in metal.txt
+palladium appears 33 times in metal.txt
+qwerty appears 0 times in metal.txt
+azerty appears 0 times in metal.txt
+adapted appears 2 times in metal.txt
+</code></pre></div></div>
+
+<p>The search should be case-sensitive.</p>
+
+<h2 id="problem-5-15-points-extra-credit">Problem 5 (15 Points, Extra Credit)</h2>
+
+<p>Write a script named <code class="language-plaintext highlighter-rouge">date.sh</code>.
+This script will print out a day of the week, depending on what other arguments the user specifies.
+This script will take one positional argument.
+The positional argument is a string representing the day to print.
+This option can legally be one of three values: <code class="language-plaintext highlighter-rouge">yesterday</code>, <code class="language-plaintext highlighter-rouge">today</code>, or <code class="language-plaintext highlighter-rouge">tomorrow</code>.
+If the value provided by the user is not <em>exactly</em> one of these three, the following should be printed to the command line, and the program should stop:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invalid option. Use yesterday, today, or tomorrow.
+</code></pre></div></div>
+
+<p>This script will dynamically print the day of the week that corresponds with yesterday, today, or tomorrow.</p>
+
+<p>If “today” is a Thursday, then this is how the script should behave:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./date.sh blah
+Invalid option. Use yesterday, today, or tomorrow.
+$ ./date.sh yesterday
+Wednesday
+$ ./date.sh today
+Thursday
+$ ./date.sh tomorrow
+Friday
+$
+</code></pre></div></div>
+
+<p>However, if “today” is a Tuesday, the script should behave like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./date.sh blah
+Invalid option. Use yesterday, today, or tomorrow.
+$ ./date.sh yesterday
+Monday
+$ ./date.sh today
+Tuesday
+$ ./date.sh tomorrow
+Wednesday
+$
+</code></pre></div></div>
+
+<p>This script should print the appropriate yesterday, today, and tomorrow days for <em>all</em> days of the week.
+You can test that this script works for multiple days of the week either by <em>manually</em> changing the date on your computer in your system preferences, or by testing out your script over the course of multiple days.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 100 points.
+With the extra credit, there is a possibility for a total of 115 points.</p>
+
+<p>This was assigned on Thursday, January 26, 2017. It is due Thursday, February 2, 2017, at 5:00pm.</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place each file (<code class="language-plaintext highlighter-rouge">word-search.sh</code>, <code class="language-plaintext highlighter-rouge">three-vowels.sh</code>, <code class="language-plaintext highlighter-rouge">sequence.sh</code>, <code class="language-plaintext highlighter-rouge">regex.txt</code>, and <code class="language-plaintext highlighter-rouge">date.sh</code>) in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-2</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only these 5 files exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-2</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-2.zip</code>. There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>. Make sure to zip the directory, not the files individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-2.zip</code> to the assignment-2 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

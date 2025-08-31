@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 Bat</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110-bat">CSc 110: Bat</h1>
+
+<p>This assignment should be written in the python programming language.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!
+You may use any python version 3.0 or newer.</p>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+Some points are allocated towards style and commenting!
+Each program file should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program does!
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="bat-24-points">Bat (24 points)</h2>
+
+<p>You will be writing a program that prints out a bat to the python console.
+However, the program will not <em>always</em> print out the same exact bat.
+At the top of the program, you will declare a constant variable named <code class="language-plaintext highlighter-rouge">BAT_WIDTH</code>, which can hold the value of any positive integer, or zero.
+Your program will print out a bat whose wing width corresponds to this constant value.</p>
+
+<p>For example, if <code class="language-plaintext highlighter-rouge">BAT_WIDTH = 0</code>, then your program will print out a bat that looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\****\ /\_/\ /****/
+ \    \|* *|/    /
+  \    | - |    /
+   \__ ||*|| __/
+       {   }
+</code></pre></div></div>
+
+<p>This is the smallest possible bat that your program will print out.</p>
+
+<p>When <code class="language-plaintext highlighter-rouge">BAT_WIDTH = 1</code>, the bat will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\****\_  /\_/\  _/****/
+ \    *\_|* *|_/*    /
+  \     *| - |*     /
+   \___ *||*||* ___/
+         {   }
+</code></pre></div></div>
+
+<p>When <code class="language-plaintext highlighter-rouge">BAT_WIDTH = 2</code>, the bat will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\****\__   /\_/\   __/****/
+ \    **\__|* *|__/**    /
+  \      **| - |**      /
+   \____ **||*||** ____/
+           {   }
+</code></pre></div></div>
+
+<p>When <code class="language-plaintext highlighter-rouge">BAT_WIDTH = 5</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\****\_____      /\_/\      _____/****/
+ \    *****\_____|* *|_____/*****    /
+  \         *****| - |*****         /
+   \_______ *****||*||***** _______/
+                 {   }
+</code></pre></div></div>
+
+<p>Notice how the bat increases in width each time the value is changed.
+The two “dipped” sections of the bat wings increase in width each time the number changes.</p>
+
+<p>To get full points, you should make sure that your bat prints out just like the above examples.
+You should also test your bat with the constant values: 3, 7, 10, 15, and 25.</p>
+
+<p>You may not use loops to implement this.
+You should only use strings, string variables, the <code class="language-plaintext highlighter-rouge">print()</code> function, and string multiplicaiton/concatenation.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 24 points.
+It is due on 6/16/2017 at 6:00pm.</p>
+
+<p>You should put all of your code in to a python file named <code class="language-plaintext highlighter-rouge">bat.py</code>.
+Submit <code class="language-plaintext highlighter-rouge">bat.py</code> to the associated D2L dropbox.
+Following these turn-in and naming instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

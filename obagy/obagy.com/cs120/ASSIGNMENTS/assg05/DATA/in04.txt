@@ -1,0 +1,4 @@
+3	Notre Dame (Atlantic Coast)	33		2
+3	South Carolina (Southeastern)	33		2
+5	Colorado St. (Mountain West)	31		2
+6	Army West Point (Patriot)	29		3

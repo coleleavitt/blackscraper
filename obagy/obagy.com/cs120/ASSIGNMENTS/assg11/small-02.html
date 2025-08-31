@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: List Comprehensions 02</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: List Comprehensions 02</h1>
+
+<h2>Expected Behavior</h2>
+
+Write a Python function 
+<b><tt>kth_elements(L, k)</tt></b> that takes as arguments a list
+<b><tt>L</tt></b> and an integer <b><tt>k</tt></b>, and
+returns a list consisting of the elements of <b><tt>L</tt></b> at
+positions that are divisible by <b><tt>k</tt></b>.
+(Your solution need not do anything special for <b><tt>k</tt></b> = 0:
+in this case, it is OK to let Python generate an exception.)
+<p/>
+Your solution should use list comprehensions only.  It should not
+use any other control statements&mdash;i.e., no if, for, while, or try
+statements, except as needed within the list comprehension.
+<p/>
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    Call: <b><tt>kth_elements([11,22,33,44,55,66,77,88,99,111], 2)</tt></b><br/>
+    Result: <b><tt>[11,33,55,77,99]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>kth_elements([11,22,33,44,55,66,77,88,99,111], 3)</tt></b><br/>
+    Result: <b><tt>[11,44,77,111]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>kth_elements([11,22,33,44,55,66,77,88,99,111], 5)</tt></b><br/>
+    Result: <b><tt>[11,66]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>kth_elements([11,22,33,44,55,66,77,88,99,111], 999)</tt></b><br/>
+    Result: <b><tt>[11]</tt></b>
+    <p/>
+  </li>
+</ol>
+
+<p/>
+<hr/>
+</body>
+</html>
+

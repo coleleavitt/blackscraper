@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-regex">CSc 250: Lecture Notes: Regex</h1>
+
+<p><img src="/assets/memes/use-regex.jpg" width="225" /></p>
+
+<p>Earlier in this semester, we learned about regular expressions.
+As we’ve already discussed, <strong>regular expressions are used to search and match patterns of characters in text</strong>.
+In particular, we primarily used regular expressions with the <code class="language-plaintext highlighter-rouge">grep</code> program in bash.
+In these notes, we’ll do some basic regular expression review, and then learn how to use it in python.</p>
+
+<h2 id="regex-review">RegEx Review</h2>
+
+<p>As we know by now, regular expressions are simply strings that represent a patter to match in another string.</p>
+
+<p>A regular expression string is composed of three types of characters:</p>
+
+<ul>
+  <li>
+    <p><strong>A “normal” character</strong>.
+These are the characters retaining their literal meaning.
+The simplest type of regex consists only of a character set, with no meta-characters.
+These “regular expressions” represent and match exactly what was typed.</p>
+  </li>
+  <li>
+    <p>An <strong>Anchor</strong>.
+These designate (anchor) the position in the line of text that the regex is to match.
+<code class="language-plaintext highlighter-rouge">^</code> and <code class="language-plaintext highlighter-rouge">$</code> are anchors.</p>
+  </li>
+  <li>
+    <p><strong>Modifiers</strong>.
+These expand or narrow (modify) the range of text the RE is to match.
+Modifiers include the asterisk, period, brackets, and the backslash, etc.
+Modifiers do <em>not</em> match the character that they literally represent.</p>
+  </li>
+</ul>
+
+<p>If you feel in need of extra practice to get back up to speed with regex, go back through the <a href="https://regexone.com/">RegexOne Tutorial</a>.</p>
+
+<p>For review, let’s iterate through a few examples on regexr.com, and in bash.
+For each of the below snippets of text, come up with a regex that matches the top section but not the bottom:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WE ARE GOING TO LEARN
+THIS. IS. REGEX.
+UPPER CASE EH?
+-------
+We would LIKE to learn
+this. is. also. regex.
+lower CASE EH
+what is your Name?
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>one two three
+SEVEN EIGHT nine
+who are you?
+is this real?
+-------
+why wait?
+when can you stop by?
+one two THREE FOUR five six
+hello!
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1234
++45834959
+-5672
+-------
+23952
+not a number
++type
+-number
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www.gmail.com
+www.espn.com
+www.arizona.edu
+benjdd.com
+code.org
+-------
+we are farmers
+the website ends with dot-com
+google.au
+gee mail dot com
+world wide web
+amazon.ca
+</code></pre></div></div>
+
+<h2 id="regex-in-python">RegEx in Python</h2>
+
+<p>To use regular expressions on a python program, we must import a module named <code class="language-plaintext highlighter-rouge">re</code>.
+As with <code class="language-plaintext highlighter-rouge">sys</code> and <code class="language-plaintext highlighter-rouge">sqlite3</code>, the <code class="language-plaintext highlighter-rouge">re</code> module is built-in to python by default, so there is no need to download or install anything separately.</p>
+
+<p>The steps to use a regular expression in python are:</p>
+
+<ul>
+  <li>Import the <code class="language-plaintext highlighter-rouge">re</code> module</li>
+  <li>Write your regular expression as a python string</li>
+  <li><strong>Compile</strong> the regular expression string</li>
+  <li>Match/Search/Find text from other strings using the compiled regular expression</li>
+</ul>
+
+<p>The first step is easy:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import re
+</code></pre></div></div>
+
+<p>Next, we need to come up with a regular expression to use.
+In this very simple demonstration, we’ll use a regular expression that matches a capitalized word that is two letters or longer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex_str = r'[A-Z][a-z]+'
+</code></pre></div></div>
+
+<p>In the next step, we’ll use the <code class="language-plaintext highlighter-rouge">compile()</code> function from the regex module to <em>compile</em> the regex so that it can be used to do searching and matching.
+<strong>Compiling</strong> a regex converts it from a string to a python object which has the logic to do matching.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pattern = re.compile(regex_str)
+</code></pre></div></div>
+
+<p>Let’s check the <code class="language-plaintext highlighter-rouge">type</code> of the <code class="language-plaintext highlighter-rouge">pattern</code> variable:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; type(pattern)
+&lt;class '_sre.SRE_Pattern'&gt;
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">_sre.SRE_Pattern</code> is a special type that is defined internally in the <code class="language-plaintext highlighter-rouge">re</code> module.
+It represents a particular regex pattern, which we specified with the <code class="language-plaintext highlighter-rouge">regex_str</code> string.
+We can now use the <code class="language-plaintext highlighter-rouge">pattern</code> variable to do searching and matching!
+Matching and searching can occur on other python strings.</p>
+
+<p>We will discuss three different functions that the <code class="language-plaintext highlighter-rouge">pattern</code> variable has that we can call to check for the specified pattern:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">findall()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">search()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">match()</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">findall()</code> is (arguably) the simplest and easiest to understand of these, so we’ll focus on this function first.</p>
+
+<h3 id="a-simple-findall-example">A Simple findall() Example</h3>
+
+<p>Perhaps we have another variable named <code class="language-plaintext highlighter-rouge">sentence</code> in the program, declared in this way:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sentence = "The boy's father, George, lived in France for 17 years."
+</code></pre></div></div>
+
+<p>Let’s try using <code class="language-plaintext highlighter-rouge">findall()</code> to search for capitalized words in this sentence.
+To do this, we’ll use the same <code class="language-plaintext highlighter-rouge">regex_str</code> and <code class="language-plaintext highlighter-rouge">pattern</code> used in the last section.
+When called, <code class="language-plaintext highlighter-rouge">findall()</code> will return a list of all strings that it finds within the input string that match the pattern.
+So, what do you think this snippet of code will print (first think, then try!):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex_str = '[A-Z][a-z]+'
+pattern = re.compile(regex_str)
+result = pattern.findall(sentence)
+for item in result:
+    print(item)
+</code></pre></div></div>
+
+<p>Run it to find out the right answer!
+Since a list is returned, we could also just print the list directly:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex_str = '[A-Z][a-z]+'
+pattern = re.compile(regex_str)
+result = pattern.findall(sentence)
+print(result)
+</code></pre></div></div>
+
+<p>Open up a python terminal session, and try using the same pattern to find matches in a few other strings:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sentence = "One TWO three Four FIVE six Seven EIGHT nine"
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sentence = "It was the best of times, It was the worst of times."
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sentence = "James, John, Sam, and Alex drove to the Tucson mall together."
+</code></pre></div></div>
+
+<p>Does it work the way you expect it to?</p>
+
+<h3 id="why-use-re">Why Use re?</h3>
+
+<p>Now that we’ve used the <code class="language-plaintext highlighter-rouge">findall()</code> function a few times, we can start to get a feel for how it works.
+However, let’s take a step back to consider an important question:
+Why use <code class="language-plaintext highlighter-rouge">re</code>/regular-expressions in the first place?
+Couldn’t we just write our own code to search for these things?
+Let’s take a look.</p>
+
+<p>As a recap, this is the sequence of code necessary to search for upper-case words in a string:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import re
+regex_str = '[A-Z][a-z]+'
+pattern = re.compile(regex_str)
+result = pattern.findall(sentence)
+</code></pre></div></div>
+
+<p>Assuming that the code-writer has some experience with regular expressions, this is rather simple code.
+In contrast, here is some code that accomplishes the same thing without using <code class="language-plaintext highlighter-rouge">re</code> (or any other module, for that matter):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>result = []
+i = 0
+while i &lt; len(sentence)-1:
+    if sentence[i] &gt;= 'A' and sentence[i] &lt;= 'Z':
+        if sentence[i+1] &gt;= 'a' and sentence[i+1] &lt;= 'z':
+            j = i+1
+            while sentence[j] &gt;= 'a' and sentence[j] &lt;= 'z':
+                j += 1
+            result.append(sentence[i:j])
+    i += 1
+</code></pre></div></div>
+
+<p>Try running both of these, to be sure that they give the same results.
+Which of these is easier to understand?
+This is an arguable point, but I think most would agree that the former is much more clean and concise.</p>
+
+<p>The usefulness of the <code class="language-plaintext highlighter-rouge">re</code> module because even more obvious when need to match multiple patterns throughout a program.
+Perhaps later in the same program, the program needs to match for another pattern, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>regex_str = r'\d+ \w+'
+pattern = re.compile(regex_str)
+result = pattern.findall(sentence)
+</code></pre></div></div>
+
+<p>In this case the <code class="language-plaintext highlighter-rouge">pattern</code> specifies a number, followed by a word.
+We only had to make minimal changes the code used before (only the <code class="language-plaintext highlighter-rouge">regex_str</code> had to change slightly, to support a new type of string).
+How can this match be accomplished without <code class="language-plaintext highlighter-rouge">re</code>? 
+One way to do so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>result = []
+i = 0
+while i &lt; len(sentence):
+    nb = i
+    if sentence[i].isdigit():
+        while nb &lt; len(sentence) and sentence[nb].isdigit():
+            nb += 1
+        if nb &lt; len(sentence) and sentence[nb] is ' ':
+            wb = nb + 1
+            while wb &lt; len(sentence) and sentence[wb].isalpha():
+                wb += 1
+            if wb &lt; len(sentence) and sentence[wb] is ' ':
+                result.append(sentence[i:wb])
+        i = wb-1
+    else:
+        i += 1
+</code></pre></div></div>
+
+<p>As should be obvious, the code to accomplish this manually is absolutely non-trivial, and required significant change to be able to match only a slightly different pattern.
+If you are a programmer who intends to do any type of text searching and processing, the <code class="language-plaintext highlighter-rouge">re</code> library is an invaluable tool if used correctly.
+You can save yourself a lot of code-writing with a well-designed regex!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-if-statements-and-while-loops-in-python">CSc 250: Lecture Notes: if-statements and while-loops in python</h1>
+
+<h2 id="review">Review</h2>
+
+<p>Now that we know how to write python scripts with functions inside of them, we can learn how to do more interesting and intricate things with our programs.
+In this section, we will be talking about python conditionals and loops.</p>
+
+<h2 id="conditionals">Conditionals</h2>
+
+<p><img src="/assets/memes/cat-if-statement.jpg" width="200" /></p>
+
+<p>We have already done of lot of work with bash conditionals.
+By now, you should be pretty familiar and comfortable with using them.
+Conditionals in python look rather similar, but there are a few key differences that you’ll notice as we go through this lesson.</p>
+
+<p>Let’s start by taking a look at the basic syntax of a conditional-statement (also called an if-statement) in python, and comparing it to the syntax used in bash.
+In bash, a basic conditional statement looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if [ SOMETHING ] ;
+then
+    CMD 1
+    CMD 2
+    ...
+    CMD N
+fi
+</code></pre></div></div>
+
+<p>This is saying “If <code class="language-plaintext highlighter-rouge">SOMETHING</code> is true, then do <code class="language-plaintext highlighter-rouge">CMD1</code>, <code class="language-plaintext highlighter-rouge">CMD2</code>… <code class="language-plaintext highlighter-rouge">CMD N</code>.”
+In python, the syntax is similar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if SOMETHING:
+    STMT 1
+    STMT 2
+    ...
+    STMT N
+</code></pre></div></div>
+
+<p>In English, this reads “If <code class="language-plaintext highlighter-rouge">SOMETHING</code> is true, then do <code class="language-plaintext highlighter-rouge">STMT 1</code>, <code class="language-plaintext highlighter-rouge">STMT 2</code>, … <code class="language-plaintext highlighter-rouge">STMT N</code>.”
+This looks very similar, but notice a few key differences:</p>
+
+<ul>
+  <li>You don’t specify the condition (<code class="language-plaintext highlighter-rouge">SOMETHING</code>) in braces(<code class="language-plaintext highlighter-rouge">[</code> <code class="language-plaintext highlighter-rouge">]</code>)</li>
+  <li>A colon instead of a semi-colon</li>
+  <li>Do not explicitly specify the <code class="language-plaintext highlighter-rouge">then</code> keyword</li>
+  <li>There is no <code class="language-plaintext highlighter-rouge">fi</code> (or similar) special word to “close” the conditional.</li>
+  <li>The format of <code class="language-plaintext highlighter-rouge">SOMETHING</code> will be different than bash (more on this later)</li>
+  <li>We write python statements instead of bash commands in the body</li>
+</ul>
+
+<p>In bash, the body of the conditional begins at the <code class="language-plaintext highlighter-rouge">then</code> and ends at the <code class="language-plaintext highlighter-rouge">fi</code>.
+Between those two identifiers, the code-writer can write commands in any way they want, and indenting the code is optional.</p>
+
+<p>In python, the body of a conditional is specified differently.
+The body is made up of all sequential lines of code below the <code class="language-plaintext highlighter-rouge">if SOMETHING:</code> and is indented at least four spaces more it.
+Because of this, there is no need for an explicit <code class="language-plaintext highlighter-rouge">fi</code> ending to the if.
+Thus, indentation is <em>strictly</em> required when doing conditionals in python.
+The body of the if statement <em>ends</em> when a non-indented line of code is encountered following the statement.</p>
+
+<p>Let’s do another comparison between the two syntaxes.
+Here is bash conditional with multiple if/elif/else cases:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if [ THING1 ] ;
+then
+    CMD 1
+    CMD 2
+elif [ THING2 ];
+then
+    CMD X
+    CMD Y
+else
+    CMD A
+    CMD B
+fi
+</code></pre></div></div>
+
+<p>The equivalent in python is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if THING1:
+    STMT 1
+    STMT 2
+elif THING2:
+    STMT X
+    STMT Y
+else:
+    STMT A
+    STMT B
+</code></pre></div></div>
+
+<p>Again, the syntax is recognizable, but there are distinctions.
+As with the last one there are no square brackets, no <code class="language-plaintext highlighter-rouge">then</code> special-token, no <code class="language-plaintext highlighter-rouge">fi</code> special-token, and a colon is used instead of a semi-colon.</p>
+
+<p>Now let’s look at some actual examples, and take a closer look at what types of expressions can be used in the condition of the if-statement itself.</p>
+
+<p>Back in <a href="TODO">lecture notes 4</a> we used the following as a simple example of how to write an actual, runnable bash script that uses a conditional statement.
+Below is a simplified version of that example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+
+SERIES="StarWars"
+
+if [ "${SERIES}" = "StarWars" ]; then
+    echo "Episide 5: The Empire Strikes Back"
+    echo "Episide 6: The Return of the Jedi"
+elif [ "${SERIES}" = "LOTR" ]; then
+    echo "The Two Towers"
+    echo "The Return of the King"
+elif [ "${SERIES}" = "IndianaJones" ]; then
+    echo "The Temple of Doom"
+    echo "The Last Crusade"
+else
+    echo "I do not recognize: ${SERIES}"
+fi
+</code></pre></div></div>
+
+<p>Knowing what you know about python conditional statements, printing, and strings, what do you think a python script with equivalent behavior/functionality would look like?
+Try implementing this on your own, and we will discuss the solution soon…</p>
+
+<p>…</p>
+
+<p>Done?</p>
+
+<p>…</p>
+
+<p>Ok, here is the equivalent python solution:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Notice that we make the series variable lower-case.
+# This is the correct format for python!
+series = "StarWars"
+
+if series == "StarWars":
+    print("Episode 5: The Empire Strikes Back")
+    print("Episode 6: The Return of the Jedi")
+elif series == "LOTR":
+    print("The Two Towers")
+    print("The Return of the King)
+elif series == "IndianaJones":
+    print("The Temple of Doom")
+    print("The Last Crusade")
+else:
+    print("I do not recognize" + series)
+</code></pre></div></div>
+
+<p>Functionally, this behaves the exact same way as the bash version, but we have implemented it in a different language.</p>
+
+<p>For if-statements, in-between the <code class="language-plaintext highlighter-rouge">if</code> and the <code class="language-plaintext highlighter-rouge">:</code> you can write any python expressions that evaluates to either <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code>.
+In the last lecture notes, we looked at examples of expressions that evaluated to <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code>.
+Often, these expressions compare strings for equality or compare the value of two numbers.
+You can even call a function directly between the <code class="language-plaintext highlighter-rouge">if</code> and the <code class="language-plaintext highlighter-rouge">:</code> if it returns a boolean value!</p>
+
+<p>Let’s look at another example.
+In this one, we will write a function, and the condition will use the value passed as an argument when checking the condition.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def get_letter_grade(percent):
+    if percent &gt;= 90:
+        return 'A'
+    elif percent &gt;= 80:
+        return 'B'
+    elif percent &gt;= 70:
+        return 'C'
+    elif percent &gt;= 60:
+        return 'D'
+    else:
+        return 'F'
+</code></pre></div></div>
+
+<p>In this if-statement, each condition check compares the value of two numbers.
+When called a few times with various arguments, we can see it gives us the result we anticipate.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; get_letter_grade(91)
+'A'
+&gt;&gt;&gt; get_letter_grade(78)
+'C'
+&gt;&gt;&gt; get_letter_grade(45)
+'F'
+</code></pre></div></div>
+
+<p>Below is an example of another function that has some conditional statements, and the conditions use the value returned by <code class="language-plaintext highlighter-rouge">get_letter_grade</code>.
+This demonstrates another way in which a programmer can construct the condition for a conditional statement.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_grade_summary(percent):
+    letter = get_letter_grade(percent)
+    if letter == 'A' or letter == 'B':
+        print('Nice work! Good Grade!')
+    elif letter == 'C':
+        print('Cutting it close!')
+    else:
+        print('Put some more work in!')
+</code></pre></div></div>
+
+<p>In the above if-statement, string comparison is used in the condition instead of numbers.
+Also, notice that the first part of the if statement uses an <code class="language-plaintext highlighter-rouge">or</code> to combine the value of two separate comparisons that return booleans.
+If either <code class="language-plaintext highlighter-rouge">letter == 'A'</code> or <code class="language-plaintext highlighter-rouge">letter == 'B'</code> is true, the first case of the if-statement will be executed.
+Below are a few examples of calling this function:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print_grade_summary(60)
+Put some more work in!
+&gt;&gt;&gt; print_grade_summary(72)
+Cutting it close!
+&gt;&gt;&gt; print_grade_summary(84)
+Nice work! Good Grade!
+</code></pre></div></div>
+
+<p>Make sure you fully understand how any why these two functions behave the way they do.</p>
+
+<h2 id="while-loops">While Loops</h2>
+
+<p><img src="/assets/memes/while-i-do.jpg" width="200" /></p>
+
+<p>We have already discussed bash loops (<code class="language-plaintext highlighter-rouge">for</code> loops) in this course, so you should be familiar with the concept of looping.
+As with bash, python has multiple types of loops (<code class="language-plaintext highlighter-rouge">for</code> loops and <code class="language-plaintext highlighter-rouge">while</code> loops).
+In bash, we started by looking at <code class="language-plaintext highlighter-rouge">for</code> loops and focussed most of our attention on this type of loop.
+In python, we are going to study both <code class="language-plaintext highlighter-rouge">while</code> and <code class="language-plaintext highlighter-rouge">for</code> loops in depth.
+However, we are going to <em>start</em> with while loops.
+Before learning about for loops, we need to learn about <em>lists</em>, which is a topic yet-to-be-studied.</p>
+
+<p>The general syntax of <code class="language-plaintext highlighter-rouge">while</code> loops is similar to the look of a conditional, and follows similar syntactical rules.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while SOME_CONDITION:
+    STMT 1
+    STMT 2
+    ...
+    STMT N
+</code></pre></div></div>
+
+<p>In English, this reads “While <code class="language-plaintext highlighter-rouge">SOME_CONDITION</code> is a true expression, execute the sequence of python statements <code class="language-plaintext highlighter-rouge">STMT 1</code>, <code class="language-plaintext highlighter-rouge">STMT 2</code>, … <code class="language-plaintext highlighter-rouge">STMT N</code> repeatedly.”
+Similar to if-statements, <code class="language-plaintext highlighter-rouge">SOME_CONDITION</code> can be any expressions that evaluates to a boolean (<code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code>). As long as <code class="language-plaintext highlighter-rouge">SOME_CONDITION</code> evaluates to <code class="language-plaintext highlighter-rouge">True</code>, the sequence of python statements will keep on executing. Once it evaluates to <code class="language-plaintext highlighter-rouge">False</code>, the loop with be exited and execution will continue after it.</p>
+
+<p>Like if-statements, we use a colon to end the condition, and the body of the loop <em>must</em> be indented four spaces.</p>
+
+<p>Let’s start with a super-basic example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while True:
+    print("Hi There!")
+</code></pre></div></div>
+
+<p>If we put this in a script and then ran it, what do you think it would do?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3.6 while-true.sh
+Hi There!
+Hi There!
+Hi There!
+Hi There!
+Hi There!
+Hi There!
+Hi There!
+Hi There!
+...
+</code></pre></div></div>
+
+<p>Running this script will actually print <code class="language-plaintext highlighter-rouge">"Hi There!"</code> forever (or until you quit the program, or until your computer dies).
+Why is this?
+In the loop condition, we put the expression <code class="language-plaintext highlighter-rouge">True</code> in the condition.
+Obviously, this will <em>always</em> evaluate to true, so the statement(s) within the body of the loop will loop through and execute forever.</p>
+
+<p>Let’s try another more complex example.
+We will use a variable to limit the number of times that the <code class="language-plaintext highlighter-rouge">while</code> loop will iterate through the body of statements.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>count = 1
+while count &lt;= 5:
+    print ("The count is " + str(count))
+    count = count + 1
+</code></pre></div></div>
+
+<p>If we put this in a script and run it, we get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3.6 while-count.sh
+The count is 1
+The count is 2
+The count is 3
+The count is 4
+The count is 5
+</code></pre></div></div>
+
+<p>In this case, the body of the loop only executed 5 times.
+In this loop, the condition is <code class="language-plaintext highlighter-rouge">count &lt;= 5</code>.
+Thus once the value of <code class="language-plaintext highlighter-rouge">count</code> is 6 or more, the loop will have to exit.
+<code class="language-plaintext highlighter-rouge">count</code> starts out having the value 0.
+However, the statement <code class="language-plaintext highlighter-rouge">count = count + 1</code> adds 1 to the value of <code class="language-plaintext highlighter-rouge">count</code> each time the body of the loop is executed.
+Every time the body of the loop executes, <code class="language-plaintext highlighter-rouge">count</code> gets bigger.
+Eventually, it becomes large enough to make the condition expression <code class="language-plaintext highlighter-rouge">False</code>, and the <code class="language-plaintext highlighter-rouge">while</code> loop exits.</p>
+
+<p>Below is another even more complex example.
+In this one, the <code class="language-plaintext highlighter-rouge">while</code> loop is in a function whose job it is to print out text-art tree.
+The argument specified the height that the tree should have.
+This argument is used in the loop to compute how the tree should be printed/displayed.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_tree(height):
+    count = 0
+    while count &lt; height:
+        width = (count * 2 + 1)
+        space = (height - count);
+        print(' ' * space + '^' * width)
+        count = count + 1
+</code></pre></div></div>
+
+<p>Here are a few executions of this loop:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print_tree(1)
+^
+&gt;&gt;&gt; print_tree(3)
+  ^
+ ^^^
+^^^^^
+&gt;&gt;&gt; print_tree(5)
+    ^
+   ^^^
+  ^^^^^
+ ^^^^^^^
+^^^^^^^^^
+&gt;&gt;&gt; print_tree(12)
+           ^
+          ^^^
+         ^^^^^
+        ^^^^^^^
+       ^^^^^^^^^
+      ^^^^^^^^^^^
+     ^^^^^^^^^^^^^
+    ^^^^^^^^^^^^^^^
+   ^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^
+ ^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre></div></div>
+
+<p>Let’s modify this function to use an if-statement within the while loop.
+We will use the if to print alternating patterns in the tree being printed.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_pattern_tree(height):
+    count = 0
+    while count &lt; height:
+        width = (count * 2 + 1)
+        space = (height - count);
+        if count % 2 == 0:
+            print(' ' * space + '^' * width)
+        else:
+            print(' ' * space + '~' * width)
+        count = count + 1
+</code></pre></div></div>
+
+<p>Here are a few runs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print_pattern_tree(5)
+    ^
+   ~~~
+  ^^^^^
+ ~~~~~~~
+^^^^^^^^^
+&gt;&gt;&gt; print_pattern_tree(15)
+              ^
+             ~~~
+            ^^^^^
+           ~~~~~~~
+          ^^^^^^^^^
+         ~~~~~~~~~~~
+        ^^^^^^^^^^^^^
+       ~~~~~~~~~~~~~~~
+      ^^^^^^^^^^^^^^^^^
+     ~~~~~~~~~~~~~~~~~~~
+    ^^^^^^^^^^^^^^^^^^^^^
+   ~~~~~~~~~~~~~~~~~~~~~~~
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre></div></div>
+
+<p>As with bash, we can nest loops within loops, nest loops within if-statements, if-statements within loops, etc.
+Below is a script named <code class="language-plaintext highlighter-rouge">ridge-trees.py</code> that has a function with several levels of such nesting</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># This functions prints a text-art tree to standard output.
+# The first argument (ridges) specifies the number of ridges the tree will have.
+# The second argument (ridge_height) specifies the height of each ridge on the tree.
+def print_tree_with_ridges(ridges, ridge_height):    
+    width = (ridges*3) + ridge_height
+    i = 0                     
+    while i &lt; ridges:         
+        j = 0                 
+        while j &lt; ridge_height:
+            total = (i * 3 + j)
+            space = (width - total) // 2
+            print( ' ' * space + '^' * total + ' ' * space )
+            j = j+1           
+        i = i+1
+
+print_tree_with_ridges(6, 8)
+print_tree_with_ridges(5, 10) 
+print_tree_with_ridges(3, 8)
+</code></pre></div></div>
+
+<p>Below is what running this script generates:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3.6 ridge-trees.py
+                          
+            ^            
+            ^^            
+           ^^^           
+           ^^^^           
+          ^^^^^          
+          ^^^^^^          
+         ^^^^^^^         
+           ^^^           
+           ^^^^           
+          ^^^^^          
+          ^^^^^^          
+         ^^^^^^^         
+         ^^^^^^^^         
+        ^^^^^^^^^        
+        ^^^^^^^^^^        
+          ^^^^^^          
+         ^^^^^^^         
+         ^^^^^^^^         
+        ^^^^^^^^^        
+        ^^^^^^^^^^        
+       ^^^^^^^^^^^       
+       ^^^^^^^^^^^^       
+      ^^^^^^^^^^^^^      
+        ^^^^^^^^^        
+        ^^^^^^^^^^        
+       ^^^^^^^^^^^       
+       ^^^^^^^^^^^^       
+      ^^^^^^^^^^^^^      
+      ^^^^^^^^^^^^^^      
+     ^^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^^     
+       ^^^^^^^^^^^^       
+      ^^^^^^^^^^^^^      
+      ^^^^^^^^^^^^^^      
+     ^^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^^     
+    ^^^^^^^^^^^^^^^^^    
+    ^^^^^^^^^^^^^^^^^^    
+   ^^^^^^^^^^^^^^^^^^^   
+     ^^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^^     
+    ^^^^^^^^^^^^^^^^^    
+    ^^^^^^^^^^^^^^^^^^    
+   ^^^^^^^^^^^^^^^^^^^   
+   ^^^^^^^^^^^^^^^^^^^^   
+  ^^^^^^^^^^^^^^^^^^^^^  
+  ^^^^^^^^^^^^^^^^^^^^^^  
+                        
+            ^            
+           ^^           
+           ^^^           
+          ^^^^          
+          ^^^^^          
+         ^^^^^^         
+         ^^^^^^^         
+        ^^^^^^^^        
+        ^^^^^^^^^        
+           ^^^           
+          ^^^^          
+          ^^^^^          
+         ^^^^^^         
+         ^^^^^^^         
+        ^^^^^^^^        
+        ^^^^^^^^^        
+       ^^^^^^^^^^       
+       ^^^^^^^^^^^       
+      ^^^^^^^^^^^^      
+         ^^^^^^         
+         ^^^^^^^         
+        ^^^^^^^^        
+        ^^^^^^^^^        
+       ^^^^^^^^^^       
+       ^^^^^^^^^^^       
+      ^^^^^^^^^^^^      
+      ^^^^^^^^^^^^^      
+     ^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^     
+        ^^^^^^^^^        
+       ^^^^^^^^^^       
+       ^^^^^^^^^^^       
+      ^^^^^^^^^^^^      
+      ^^^^^^^^^^^^^      
+     ^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^     
+    ^^^^^^^^^^^^^^^^    
+    ^^^^^^^^^^^^^^^^^    
+   ^^^^^^^^^^^^^^^^^^   
+      ^^^^^^^^^^^^      
+      ^^^^^^^^^^^^^      
+     ^^^^^^^^^^^^^^     
+     ^^^^^^^^^^^^^^^     
+    ^^^^^^^^^^^^^^^^    
+    ^^^^^^^^^^^^^^^^^    
+   ^^^^^^^^^^^^^^^^^^   
+   ^^^^^^^^^^^^^^^^^^^   
+  ^^^^^^^^^^^^^^^^^^^^  
+  ^^^^^^^^^^^^^^^^^^^^^  
+                
+        ^        
+       ^^       
+       ^^^       
+      ^^^^      
+      ^^^^^      
+     ^^^^^^     
+     ^^^^^^^     
+       ^^^       
+      ^^^^      
+      ^^^^^      
+     ^^^^^^     
+     ^^^^^^^     
+    ^^^^^^^^    
+    ^^^^^^^^^    
+   ^^^^^^^^^^   
+     ^^^^^^     
+     ^^^^^^^     
+    ^^^^^^^^    
+    ^^^^^^^^^    
+   ^^^^^^^^^^   
+   ^^^^^^^^^^^   
+  ^^^^^^^^^^^^  
+  ^^^^^^^^^^^^^  
+</code></pre></div></div>
+
+<p><br />
+<img style="float:left; margin-right:15px; margin-bottom:15px;" src="/assets/in-class-assignment.png" width="50" /></p>
+
+<p>Write a function called <code class="language-plaintext highlighter-rouge">generate_square_numbers</code>.
+This takes one argument named <code class="language-plaintext highlighter-rouge">num</code>, which specified how many square numbers to generate.
+This function will print out the first <code class="language-plaintext highlighter-rouge">num</code> square numbers, starting from 1, one number per line of stdout.</p>
+
+<p>For example, when <code class="language-plaintext highlighter-rouge">num</code> is 6 it would produce:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+4
+9
+16
+25
+36
+</code></pre></div></div>
+
+<p>When <code class="language-plaintext highlighter-rouge">num</code> is 10 it would produce:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+</code></pre></div></div>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

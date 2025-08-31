@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Rhymer Examples</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Rhymer Examples</h1>
+
+<h2>Pronunciation Dictionary Characteristics</h2>
+
+It can be helpful, for testing and debugging, to start out with small input files
+and work up to larger inputs.  In addition to the 
+full pronunciation dictionary 
+<a href="PronunciationDictionary.txt" target="_blank">PronunciationDictionary.txt</a>,
+the examples below use three smaller pronunciation dictionaries:
+<p/>
+<ol>
+  <li>
+    <a href="PDict-tiny-01.txt" target="_blank">PDict-tiny-01.txt</a>.
+    11 words.
+    <p/>
+  </li>
+  <li>
+    <a href="PDict-tiny-02.txt" target="_blank">PDict-tiny-02.txt</a>.
+    21 words.
+    <p/>
+  </li>
+  <li>
+    <a href="PDict-small.txt" target="_blank">PDict-small.txt</a>.
+    42 words.
+    <p/>
+  </li>
+  <li>
+    <a href="PronunciationDictionary.txt" target="_blank">PronunciationDictionary.txt</a>,
+    133,789 words.
+    <p/>
+  </li>
+</ol>
+<p/>
+You are encouraged to construct your own small pronunciation dictionaries for testing
+purposes by extracting slices of the full dictionary.
+
+<h2>Examples</h2>
+
+<ul>
+  <li>
+    <b>Pronunciation dictionary:</b> PDict-tiny-01.txt<br/>
+    <b>Input word:</b> <tt>silly</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;CHILE<br/>
+      &nbsp;&nbsp;&nbsp;CHILI<br/>
+      &nbsp;&nbsp;&nbsp;LILLY
+  </li>
+
+  <li>
+    <b>Pronunciation dictionary:</b> PDict-tiny-01.txt<br/>
+    <b>Input word:</b> <tt>chile</tt>
+</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;LILLY<br/>
+      &nbsp;&nbsp;&nbsp;SILLY
+  </li>
+
+  <li>
+    <b>Pronunciation dictionary:</b> PDict-tiny-02.txt<br/>
+    <b>Input word:</b> <tt>sour</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;DOUR<br/>
+      &nbsp;&nbsp;&nbsp;OVERPOWER<br/>
+      &nbsp;&nbsp;&nbsp;SHOWER<br/>
+      &nbsp;&nbsp;&nbsp;THREE-HOUR<br/>
+      &nbsp;&nbsp;&nbsp;TOWER
+  </li>
+
+  <li>
+    <b>Pronunciation dictionary:</b> PDict-tiny-02.txt<br/>
+    <b>Input word:</b> <tt>four</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;BOER<br/>
+      &nbsp;&nbsp;&nbsp;DOOR<br/>
+      &nbsp;&nbsp;&nbsp;STORE
+  </li>
+
+  <li>
+    <b>Pronunciation dictionary:</b> PronunciationDictionary.txt<br/>
+    <b>Input word:</b> <tt>blister</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;BRISTER<br/>
+      &nbsp;&nbsp;&nbsp;FISTER<br/>
+      &nbsp;&nbsp;&nbsp;HYSTER<br/>
+      &nbsp;&nbsp;&nbsp;ISTRE<br/>
+      &nbsp;&nbsp;&nbsp;KISTER<br/>
+      &nbsp;&nbsp;&nbsp;MISTER<br/>
+      &nbsp;&nbsp;&nbsp;MR<br/>
+      &nbsp;&nbsp;&nbsp;MR.<br/>
+      &nbsp;&nbsp;&nbsp;PFISTER<br/>
+      &nbsp;&nbsp;&nbsp;PISTOR<br/>
+      &nbsp;&nbsp;&nbsp;RISTER<br/>
+      &nbsp;&nbsp;&nbsp;SISTER<br/>
+      &nbsp;&nbsp;&nbsp;SR<br/>
+      &nbsp;&nbsp;&nbsp;TRANSISTOR<br/>
+      &nbsp;&nbsp;&nbsp;TWISTER<br/>
+  </li>
+
+  <li>
+    <b>Pronunciation dictionary:</b> PronunciationDictionary.txt<br/>
+    <b>Input word:</b> <tt>eraser</tt><br/>
+    <b>Output:</b><br/>
+      &nbsp;&nbsp;&nbsp;ACER<br/>
+      &nbsp;&nbsp;&nbsp;ACER<br/>
+      &nbsp;&nbsp;&nbsp;BASER<br/>
+      &nbsp;&nbsp;&nbsp;BASER<br/>
+      &nbsp;&nbsp;&nbsp;CHASER<br/>
+      &nbsp;&nbsp;&nbsp;CHASER<br/>
+      &nbsp;&nbsp;&nbsp;FACER<br/>
+      &nbsp;&nbsp;&nbsp;FACER<br/>
+      &nbsp;&nbsp;&nbsp;KACER<br/>
+      &nbsp;&nbsp;&nbsp;KACER<br/>
+      &nbsp;&nbsp;&nbsp;LACER<br/>
+      &nbsp;&nbsp;&nbsp;LACER<br/>
+      &nbsp;&nbsp;&nbsp;PACER<br/>
+      &nbsp;&nbsp;&nbsp;PACER<br/>
+      &nbsp;&nbsp;&nbsp;PLACER<br/>
+      &nbsp;&nbsp;&nbsp;PLACER<br/>
+      &nbsp;&nbsp;&nbsp;SPACER<br/>
+      &nbsp;&nbsp;&nbsp;SPACER<br/>
+    <p/>
+    In this example, the input word has two pronunciations for the vowel sound preceding the
+    stressed syllable.  This gives rise to all of the duplicates in the output.
+  </li>
+
+</ul>
+
+<p/>
+<hr/>
+
+</body>
+</html>
+

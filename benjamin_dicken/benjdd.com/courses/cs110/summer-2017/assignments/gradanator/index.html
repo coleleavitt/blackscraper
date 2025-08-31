@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 Gradanator</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110-gradanator">CSc 110: Gradanator</h1>
+
+<p>This interactive program focuses on if/else statements, input, and returning values.
+You will turn in a file named <code class="language-plaintext highlighter-rouge">gradanator.py</code>.
+The program reads as input a student’s grades on homework and three exams, and uses them to compute the student’s course grade.
+Below is one example log of execution of the program.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This program reads exam/homework scores
+and reports your overall course grade.
+
+Midterm 1:
+Weight (0-100)? 10
+Score earned? 78
+Were scores shifted (1=yes, 2=no)? 2
+Total points = 78 / 100
+Weighted score = 7.8 / 10
+
+Midterm 2:
+Weight (0-100)? 10
+Score earned? 84
+Were scores shifted (1=yes, 2=no)? 2
+Total points = 84 / 100
+Weighted score = 8.4 / 10
+
+Final:
+Weight (0-100)? 30
+Score earned? 95
+Were scores shifted (1=yes, 2=no)? 1
+Shift amount? 10
+Total points = 100 / 100
+Weighted score = 30.0 / 30
+
+Homework:
+Weight (0-100)? 50
+Number of assignments? 3
+Assignment 1 score? 14
+Assignment 1 max? 15
+Assignment 2 score? 17
+Assignment 2 max? 20
+Assignment 3 score? 19
+Assignment 3 max? 25
+How many sections did you attend? 5
+Section points = 15 / 34
+Total points = 65 / 94
+Weighted score = 34.6 / 50
+
+Overall percentage = 80.8
+Your grade will be at least: B
+&lt;&lt; your custom grade message here &gt;&gt;
+</code></pre></div></div>
+
+<p>This program behaves differently depending on the user input.
+Your output should match our examples exactly, given the same input.
+(Be mindful of spacing, such as after input prompts and between output sections.)
+Look at the other example logs on the course web site to get more examples of the program’s behavior.</p>
+
+<p>The program begins with an introduction message that briefly explains the program.
+The program then reads scores in four categories: midterm 1, midterm 2, homework and final.
+Each category is weighted: its points are scaled up to a fraction of the 100 percent grade for the course.
+As the program begins reading each category, it first prompts for the category’s weight.
+The user begins by entering scores earned on midterm 1.
+The program asks whether exam scores were shifted, interpreting an answer of 1 to mean “yes” and 2 to mean “no.”
+If there is a shift, the program prompts for the shift amount, and the shift is added to the user’s midterm 1 score.</p>
+
+<p>Exam scores are capped at a max of 100; for example, if the user got 95 and there was a shift of 10, the score to use would be 100.
+The midterm’s “weighted score” is printed, which is equal to the user’s score multiplied by the exam’s weight.</p>
+
+<p>Next, the program prompts for data about midterm 2 and then about the final.
+The behavior for each is the same as the behavior for midterm 1.</p>
+
+<p>Next, the user enters information about his/her homework, including the weight and how many assignments were given.
+For each assignment, the user enters a score and points possible. 
+Part of the homework score comes from sections attended.
+We will simplify the formula to assume that each section attended is worth 3 points, up to a maximum of 34 points.
+Once the program has read the user information for both exams and homework, it prints the student’s overall percentage earned in the course, which is the sum of the weighted scores from the four categories, as shown below:</p>
+
+<p><img src="./res/math.png" width="800" /></p>
+
+<p>The program prints a loose guarantee about a minimum grade the student will get in the course, based on the following scale.
+See the logs of execution on the course web site to see the expected output for each grade range.</p>
+
+<ul>
+  <li>90% and above: A;</li>
+  <li>89.99% - 80%: B;</li>
+  <li>79.99% - 70%: C;</li>
+  <li>69.99% - 60%: D;</li>
+  <li>under 60%: F</li>
+</ul>
+
+<p>After printing the guaranteed minimum grade, print a custom message of your choice about the grade.
+This message should be different for each grade range shown above.
+It should be at least 1 line of any non-offensive text you like.</p>
+
+<p>This program processes user input using the <code class="language-plaintext highlighter-rouge">input()</code> function.
+You should handle the following two special cases of input:</p>
+
+<ul>
+  <li>
+    <p>A student can receive extra credit on an individual assignment, but the total points for homework are capped at the maximum possible.
+For example, a student can receive a score of 22/20 on one homework assignment, but if their total homework score for all assignments is 63/60, this score should be capped at 60/60.
+Section points are capped at 34.</p>
+  </li>
+  <li>
+    <p>Cap exam scores at 100.
+If the raw or shifted exam score exceeds 100, a score of 100 is used.</p>
+  </li>
+</ul>
+
+<p>Otherwise, you may assume the user enters valid input.
+When prompted for a value, the user will enter an integer in the proper range.
+The user will enter a number of homework assignments &gt;= 1, and the sum of the four weights will be exactly 100.
+The weight of each category will be a non-negative number.
+Exam shifts will be &gt;= 0.</p>
+
+<h2 id="development-strategy-and-hints">Development Strategy and Hints</h2>
+
+<ul>
+  <li>
+    <p>Tackle parts of the program (midterm 1, midterm 2, homework, final exam) one at a time, rather than writing the entire program at once.
+Write a bit of code, get it to run, and test what you have so far.
+If you try to write large amounts of code without attempting to run it, you may encounter a large list of errors and/or bugs.</p>
+  </li>
+  <li>
+    <p>To compute homework scores, you will need to cumulatively sum not only the total points the student has earned, but also the total points possible on all homework assignments.</p>
+  </li>
+  <li>
+    <p>Many students get errors because they forget to pass / return a needed value, forget to store a returned value into a variable, and refer to a variable by the wrong name.</p>
+  </li>
+  <li>All weighted scores and grades are printed with no more than 1 digit after the decimal point.
+Achieve this with a custom function or round.
+The following code prints variable x rounded to the nearest tenth:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x = 1.2345
+print("x rounded to the nearest tenth is " + round(x, 1)) # 1.2
+</code></pre></div>    </div>
+  </li>
+  <li>Use max and min to constrain numbers to within a particular bound.</li>
+</ul>
+
+<h2 id="style-guidelines">Style Guidelines</h2>
+
+<p>For this assignment, you are limited to Python features discussed so far in the class.
+A major part of this assignment is demonstrating that you understand parameters and return values.
+Use functions, parameters, and returns for structure and to eliminate redundancy.
+For full credit, use at least 4 non-trivial functions other than main.</p>
+
+<p>Like on previous assignments, you should not have print statements in your main function.
+Also, main should be a concise summary of the overall program; main should make calls to several of your other functions that implement the majority of the program’s behavior.
+Your functions will need to make appropriate use of parameters and return values.
+Each function should perform a coherent task and should not do too large a share of the overall work.
+Avoid lengthy “chaining” of function calls, where each function calls the next, no values are returned, and control does not come back to main.</p>
+
+<p>This document describes several numbers that are important to the overall program.
+For full credit, you should make at least one of such numbers into a constant so that the constant could be changed and your program would adapt.</p>
+
+<p>Some of your code will use conditional execution with if and if/else statements.
+Part of your grade will come from using these statements properly.
+Review the portion of lecture 8 about nested if/else statements and factoring them.</p>
+
+<p>Give meaningful names to functions and variables, and use proper indentation and whitespace.
+Follow Python’s naming standards as specified in lecture.
+Localize variables when possible; declare them in the smallest scope needed.
+Include meaningful comment headers at the top of your program and at the start of each function.
+Limit line lengths to 100 chars.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This assignment is due on 6/26/2017 at 6:00pm.</p>
+
+<p>You should put all of your code in to a python file named <code class="language-plaintext highlighter-rouge">gradanator.py</code>.
+Submit <code class="language-plaintext highlighter-rouge">gradanator.py</code> to the associated D2L dropbox.
+Following these turn-in and naming instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+<h3 id="based-on-an-assignment-by-marty-stepp-and-allison-obourn"><em>Based on an assignment by Marty Stepp and Allison Obourn</em></h3>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

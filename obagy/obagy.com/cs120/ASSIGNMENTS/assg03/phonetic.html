@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Phonetics and Pronunciation</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Phonetics and Pronunciation</h1>
+
+There are two components to figuring out the pronunciation of an
+English word: the sequence of sounds involved, and the emphasis
+(or stress) on different syllables.  This document describes how
+these two components are described in 
+<a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict#phones" target="_blank">the
+Carnegie-Mellon Pronunciation Dictionary</a>.
+
+<h2>Phonemes</h2>
+
+A <a href="https://en.wikipedia.org/wiki/Phoneme" target="_blank">phoneme</a>
+is a unit of sound.  To describe the sounds uttered when pronouncing a word,
+we give the sequence of phonemes that entails.
+<p/>
+One issue that we have to deal with is that in English, the same letter can
+be pronounced in a number of different ways, e.g.:
+<p/>
+<ul>
+  <li>
+    the letter <b><u>i</u></b> in the words
+    &quot;inside&quot; and &quot;item&quot;;
+  </li>
+  <li>
+    the letter <b><u>c</u></b> in the words 
+    &quot;cat&quot; and &quot;certain&quot;.
+  </li>
+</ul>
+<p/>
+
+The <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict#phones" target="_blank">the
+CMU pronunciation dictionary</a> gets around this problem by using pairs of
+letters to indicate specific sounds, i.e., phonemes.  There are 39 such phonemes;
+they are shown <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict#phones" target="_blank">
+here</a>.  For example:
+<p/>
+<ul>
+  <li>
+    the phoneme <b>IY</b> describes the &quot;ee&quot; sound in the words
+    <i>meek</i>, <i>weak</i>, <i>me</i>, and <i>knee</i>; 
+  </li>
+  <li>
+    the phoneme <b>TH</b> describes the &quot;th&quot; sound in <i>sixth</i> and
+    <i>thousand</i>; and
+  </li>
+  <li>
+    <b>DH</b> describes the sound of the letters &quot;th&quot; in <i>thee</i> and
+    <i>weather</i>.
+  </li>
+</ul>
+<p/>
+
+<h2>Stress</h2>
+In addition to the sounds of a word, different syllables of a word are often
+emphasized, or stressed, differently.  Different patterns of stress can 
+correspond to different word meanings, as 
+<a href="http://EzineArticles.com/?expert=Heather_Hansen http://EzineArticles.com/?English-Word-Stress—Does-It-Really-Matter?&id=662774" target="_blank">this story</a> illustrates:
+<p/>
+<blockquote>
+<i>&quot;A pilot once told me a story about a member of his cabin crew informing him 
+that they had an in<u>VAL</u>id passenger on board. The pilot was a bit confused and 
+wondered if the passenger didn’t have a ticket or wasn’t on the roster. He 
+couldn’t figure out what the problem was. It wasn’t until the flight attendant 
+continued to explain that the passenger was in a wheel chair and had special 
+needs that the pilot realized he meant to say <u>IN</u>valid!&quot;</i>
+</blockquote>
+<p/>
+The CMU pronunciation dictionary indicates stressed syllables by adding one
+of the numbers <b>0</b>, <b>1</b>, or <b>2</b> to the phoneme for the vowel
+sound of that syllable, with the following meaning:
+<p/>
+<blockquote>
+  <b><tt>0</tt></b> : no stress<br/>
+  <b><tt>1</tt></b> : primary stress<br/>
+  <b><tt>2</tt></b> : secondary stress
+</blockquote>
+<p/>
+For example:
+<p/>
+<blockquote>
+  <table border="1" cellpadding="5" >
+    <tr>
+      <th>Word</th>
+      <th>Phonemes</th>
+      <th>Stressed syllables</th>
+    </tr>
+    <tr>
+      <td>weekly</td>
+      <td>W &nbsp; IY1&nbsp; K &nbsp; L &nbsp; IY0</td>
+      <td>The main (primary) stressed syllable is <u>week</u>; this stress
+	is indicated by the '<b>1</b>' in the phoneme <b>IY1</b>.<br/> 
+	The syllable &quot;ly&quot; is unstressed; this is indicated by
+	the '<b>0</b>' in the phoneme <b>IY0</b>.
+      </td>
+    </tr>
+    <tr>
+      <td>computerize</td>
+      <td>K &nbsp; AH0 &nbsp; M &nbsp; P &nbsp; Y &nbsp; UW1 &nbsp; T &nbsp; ER0 &nbsp; AY2 &nbsp; Z</td>
+      <td>
+	The main (primary) stress is on the syllable <u>put</u>; this is indicated
+	by the '<b>1</b>' in the phoneme <b>UW1</b>.<br/>
+	The secondary stress&mdash;i.e., a syllable that has some stress, but not
+	as much as the primary stressed syllable&mdash; is <u>ize</u>; this is
+	indicated by the '<b>2</b>' in the phoneme <b>AY2</b>.<br/>
+	The other two syllables in this word (&quot;com&quot; and &quot;ter&quot;)
+	are unstressed; this is indicated by
+	the '<b>0</b>' in the corresponding phonemes.
+      </td>
+    </tr>
+  </table>
+</blockquote>
+
+
+</body>
+</html>
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Sound Board</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-sound-board">CSc 101: Sound Board</h1>
+
+<p>In this (extra-credit) assignment, you’ll be implementing a basic sound-board application.
+You will need to both play sounds and display images.
+Below is a video-recording showing the behavior of a solution to this assignment:</p>
+
+<video controls="controls" width="550" height="380" name="sound board" src="./res/animal_sound_board.mov"></video>
+
+<p>The high-level requirements for this program are as follows:</p>
+
+<ul>
+  <li>There should be a title at the top of the canvas.</li>
+  <li>You should use an image for the background.</li>
+  <li>Below the title will be the main sound-board.
+The sound board will consist of several buttons.
+Each button should be an image, and an associated (and unique) sound should play when each image-button is pressed.</li>
+  <li>You must have at least 5 different sound-buttons.
+The provided example has 9 buttons, but you just need to have at least 5.</li>
+  <li>Sound shoud be able to play “on-top” of each-other.
+If you click on a button, then immediately click on another, both can be playing at the same time.</li>
+  <li>The left or right side of the screen should have a volume slider.
+This volume slider can be controlled with mouse clicks.
+When the mouse is clicked in the volume-slider area of the canvas, the slider box sill move to the corresponding position.
+Moving the slider should update the overall volume of the sounds that the board generates.
+There is an example of this in the video-recording.</li>
+</ul>
+
+<p>You can choose whatever theme that you want for this assignment (it doesnt have to be animal-themed).
+To find sounds for the theme of your choice, just google for sound files.
+You can also use <a href="https://freesound.org/">https://freesound.org/</a>.</p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>If you break the problem down into smaller “chunks” it becomes much more manageable to tackle.
+I recommend you use the following strategy to complete:</p>
+
+<h3 id="1-choose-and-display-a-background">(1) Choose and display a background</h3>
+
+<p>Select a good background image and then set it as the background of your canvas.
+Make sure the tha image size fits will with the canvas size.</p>
+
+<p><img src="./res/sound_board_background.png" width="270" /></p>
+
+<h3 id="2-create-the-volume-slider">(2) Create the volume slider</h3>
+
+<p>Add a volume slider like the one shows to the side of your canvas.
+Don’t worry about having it actually adjust the volume yet.
+Just get the clicking and movement working and displaying.</p>
+
+<p><img src="./res/sound_board_vol.gif" width="270" /></p>
+
+<h3 id="3-display-a-title">(3) Display a title</h3>
+
+<p>Choose a appropriate title for your program, and display it at the top.
+Make sure you choose a font color that doesnt blend in with the background image too much.</p>
+
+<p><img src="./res/sound_board_title.png" width="270" /></p>
+
+<h3 id="4-display-the-image-buttons">(4) Display the image buttons</h3>
+
+<p>Next, place all of the image buttons in the lower portion of the canvas, like you see pictured.
+Don’t worry about playing the sounds for now.</p>
+
+<p><img src="./res/sound_board_buttons.png" width="270" /></p>
+
+<h3 id="5-playing-sounds">(5) Playing sounds!</h3>
+
+<p>Now, add in the logic to play a sound with each image click.
+We have done button-pressing in several of the past sections and assignments, so refer to those if you can’t remember how to do so!
+Each button should play a different sound!
+Remember to use the <code class="language-plaintext highlighter-rouge">SoundFile</code> type to load and play the files.
+You can refer to the example programs from class or the slides for reference.</p>
+
+<h3 id="6-get-the-volume-control-working">(6) Get the volume control working</h3>
+
+<p>Lastly, make the volume controller actually change the volume.
+You can use the <code class="language-plaintext highlighter-rouge">SoundFile.amp()</code> function to adjust volume.
+Remember: volume is controlled with a number between 0.0 and 1.0, so the position of the volume slider needs to be converted to a float!</p>
+
+<h2 id="comments">Comments</h2>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+You should follow the style guidelines that we have discussed in class.
+Each program file should have a header comment at the top that has roughly the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
+// Author: Student Name
+// Description:
+//    A short description of what this program does!
+// 
+</code></pre></div></div>
+
+<p>Each function should have a descriptive block-comment above it, and other helpful comments.
+If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.
+Name your program <code class="language-plaintext highlighter-rouge">netid_sound_board.pde</code> (where <code class="language-plaintext highlighter-rouge">netid</code> is your UA username).</p>
+
+<h2 id="this-assignment-is-extra-credit">This assignment is Extra Credit!</h2>
+
+<p>This assignment is purely for extra credit, and is not required.
+As you know, assignments are worth 50% of your total class grade.
+This assignment may be used to earn-back points lost on previous assignments.
+Doing this assignment can improve your assignments portion of your grade up to 3.5% total.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>It is due on 12/6/2017 at 5:00pm (but you may use a late day).</p>
+
+<p>Turn in each of the files described in the spec to the assignment drop-box in D2L before the due date.
+Make sure to name the file <strong>exactly</strong> as this document specifies.
+Make sure to follow all instructions precisely.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

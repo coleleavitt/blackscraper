@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Primary-stress phoneme</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Primary stress position</h1>
+
+<h2>Context</h2>
+This is a sub-problem of the 
+<a href="rhyming-words.html" target="_blank">rhyming words</a> long problem.
+
+<h2>Expected Behavior</h2>
+Write a function <tt><b>primary_stress_position</b>(phoneme_list)</tt> that behaves as follows.
+The argument <tt>phoneme_list</tt> is a list of phonemes, as described 
+<a href="phonetic.html">here</a>.  It returns an integer that is the position
+of the primary stress phoneme (i.e., the phoneme with the main stress) in
+<tt>phoneme_list</tt>.  If there is no primary stress in <tt>phoneme_list</tt>,
+your function should return <tt>None</tt>.
+<p/>
+<a href="phonetic.html">This document</a> describes how the primary-stress phoneme
+is indicated.  
+<p/>
+You can assume that there is at most one primary-stress phoneme in <tt>phoneme_list</tt>.
+
+<h2>Examples</h2>
+<p/>
+<ol>
+  <li>
+    <tt><b>primary_stress_position</b>(['W',   'IY1',  'K',   'L',   'IY0'])</tt><br/>
+    <b>Return value:</b> <tt>1</tt><br/>
+    <b>Reason:</b> the return value is the position of the primary-stress phoneme, <tt>'IY1'</tt>,
+    in the argument list of phonemes.<br/>
+    <b>Comment:</b> The argument list of phonemes gives the pronunciation of the word <tt>WEEKLY</tt>.
+    <p/>
+  </li>
+  <li>
+    <tt><b>primary_stress_position</b>(['K',   'AH0',   'M',   'P',   'Y',   'UW1',   'T',   'ER0',   'AY2',   'Z'])</tt><br/>
+    <b>Return value:</b> <tt>5</tt><br/>
+    <b>Reason:</b> the return value is the position of the primary-stress phoneme, <tt>'UW1'</tt>,
+    in the argument list of phonemes.<br/>
+    <b>Comment:</b> The argument list here is the pronunciation of the word <tt>COMPUTERIZE</tt>.
+    <p/>
+  </li>
+  <li>
+    <tt><b>primary_stress_position</b>(['R',  'AH0',  'K',  'AO1',  'R',  'D' ])</tt><br/>
+    <b>Return value:</b> <tt>3</tt><br/>
+    <b>Reason:</b> the return value is the position of the primary-stress phoneme, <tt>'AO1'</tt>,
+    in the argument list of phonemes.<br/>
+    <b>Comment:</b> The argument list here is the pronunciation of the word <tt>RECORD</tt>.
+    <p/>
+  </li>
+  <li>
+    <tt><b>primary_stress_position</b>(['EY1', 'K'])</tt><br/>
+    <b>Return value:</b> <tt>0</tt><br/>
+    <b>Reason:</b> the return value is the position of the primary-stress phoneme, <tt>'EY1'</tt>,
+    in the argument list of phonemes.<br/>
+    <b>Comment:</b> The argument list here is the pronunciation of the word <tt>ACHE</tt>.
+    <p/>
+  </li>
+  <li>
+    <tt><b>primary_stress_position</b>(['AH0', 'V'])</tt><br/>
+    <b>Return value:</b> <tt>None</tt><br/>
+    <b>Reason:</b> the return value indicates that there is no primary stress phoneme in the 
+    argument list.<br/>
+    <b>Comment:</b> The argument list here is a pronunciation of the word <tt>OF</tt>.
+    <p/>
+  </li>
+</ol>
+<p/>
+<hr/>
+</body>
+</html>
+

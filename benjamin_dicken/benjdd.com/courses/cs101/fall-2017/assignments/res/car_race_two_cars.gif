@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /courses/cs101/fall-2017/assignments/res/car_race_two_cars.gif</pre>
+</body>
+</html>

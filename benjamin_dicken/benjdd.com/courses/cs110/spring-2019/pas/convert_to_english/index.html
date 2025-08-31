@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Convert to English</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---convert-to-english">CSc 110 - Convert to English</h1>
+
+<p>In this short PA, you will be writing a program that can convert words from non-English to their English form.
+The program will accept two inputs via the console.</p>
+
+<ul>
+  <li>The first input will be the name of a file which has English words and words that mean the same thing from other language(s).</li>
+  <li>The second input is a word in a non-English language, which should be converted to English.</li>
+</ul>
+
+<p>You are provided with starter code (see below).
+Main is already implemented.
+Your task is to implement the two other functions.
+You are not allowed to change main or the function names or parameters.
+All of your code should go in the body of the first two functions.</p>
+
+<h2 id="convertpy"><a href="./convert.py">convert.py</a></h2>
+
+<h2 id="the-functions">The Functions</h2>
+
+<p>In the section below, I describe how to implement each function</p>
+
+<h3 id="get_word_conversions">get_word_conversions</h3>
+
+<p>This function should open up the file that is passed into it.
+You can assume that line of the file will have the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>English_word,other_1,other_2,other_3 . . .
+</code></pre></div></div>
+
+<p>The first word is a word spelled in English.
+The remaining words on the line are words with the same meaning in other languages.
+For instance, the file might have the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>car,coche,auto
+chair,silla,stuhl,sella
+</code></pre></div></div>
+
+<p>Note that this is similar formatting the input file of the long PA.
+If you get this working, you might be able to reuse some code for the long one!
+You should read in this file and create a dictionary that maps all of the non-English words to the English translation.
+Given the example contents shown previously, the dictionary should have these contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conversions = {'coche'  : 'car',
+               'auto'   : 'car',
+               'stilla' : 'chair',
+               'stuhl'  : 'chair',
+               'sella'  : 'chair' }
+</code></pre></div></div>
+
+<p>Then, return the dictionary.</p>
+
+<h3 id="print_conversion">print_conversion</h3>
+
+<p>This function has two parameter variables.
+The first is a word, which you can assume is a word from a non-English language.
+The second is the dictionary mapping non-English words to English words that should have been created in the <code class="language-plaintext highlighter-rouge">get_word_conversions</code> function.</p>
+
+<p>If the non-English word is a key in the dictionary, print out <code class="language-plaintext highlighter-rouge">English version is: A</code>, but replace <code class="language-plaintext highlighter-rouge">A</code> with the English word.
+If not, Just print <code class="language-plaintext highlighter-rouge">Not sure.</code></p>
+
+<h2 id="examples">Examples</h2>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>input file</b></td>
+  <td style="background-color:#ededed;"><b>program run</b></td>
+</tr>
+<tr>
+  <td class="topic-general">
+<pre><code>car,coche,auto
+airplane,avion,flugzeug
+steak,filete,steak,carnis
+boat,bote,navis,boot
+chair,silla,stuhl,sella</code></pre>
+  </td>
+  <td class="topic-general">
+<pre><code>Enter name of words file:
+words.txt
+Enter word to convert to English:
+navis
+
+English version is: boat</code></pre>
+  </td>
+</tr>
+
+<tr>
+  <td style="background-color:#ededed;"><b>input file</b></td>
+  <td style="background-color:#ededed;"><b>program run</b></td>
+</tr>
+<tr>
+  <td class="topic-general">
+<pre><code>car,coche,auto
+airplane,avion,flugzeug
+steak,filete,steak,carnis
+boat,bote,navis,boot
+chair,silla,stuhl,sella</code></pre>
+  </td>
+  <td class="topic-general">
+<pre><code>Enter name of words file:
+words.txt
+Enter word to convert to English:
+flugzeug
+
+English version is: airplane</code></pre>
+  </td>
+</tr>
+
+</table>
+
+<h2 id="submission">Submission</h2>
+
+<p>Submit this to Gradescope by Saturday, March 30, by 7:00pm.
+Name the file <code class="language-plaintext highlighter-rouge">convert.py</code>.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

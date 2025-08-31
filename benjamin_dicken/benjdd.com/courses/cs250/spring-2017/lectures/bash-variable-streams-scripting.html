@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-variables-streams-scripting">CSc 250: Lecture Notes: variables, streams, scripting</h1>
+
+<h2 id="review">Review</h2>
+
+<p>Last time, we covered a bunch of new bash commands. In this lecture, we are going to switch gears a little bit. We are still going to be talking about bash, but we will be focussing on variables, standard inputs and outputs, output redirection, and scripting.</p>
+
+<h2 id="bash-variables">bash variables</h2>
+
+<p><img src="/assets/memes/variable-names.jpg" width="200" /></p>
+
+<p>In bash, it is possible to store values into variables.</p>
+
+<p>Storing values into variables is useful for lots of things. One particular use case is to save commonly-written values so that you don’t have to repeat yourself all of the time.</p>
+
+<p>Creating a bash variable is rather simple. The format is <code class="language-plaintext highlighter-rouge">NAME_OF_VARIABLE="value of variable"</code>. A few examples:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ NAME="Billy Joe Smith"
+$ ADDRESS="1550 N Ridgetop Drive"
+$ BIO="I am a person who like to write code"
+</code></pre></div></div>
+<p>In the above example, we set three variables, <code class="language-plaintext highlighter-rouge">NAME</code>, <code class="language-plaintext highlighter-rouge">ADDRESS</code>, and <code class="language-plaintext highlighter-rouge">BIO</code>.
+Variables do not <em>need</em> to be in upper case, but in bash making variables upper-case is a generally accepted standard, and considered good practice.
+Now that we have set these standards, how do we use them?
+First, we could try printing them with the <code class="language-plaintext highlighter-rouge">echo</code> command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo NAME
+NAME
+</code></pre></div></div>
+<p>What, what?
+When we try to print out <code class="language-plaintext highlighter-rouge">NAME</code> all that we get is <code class="language-plaintext highlighter-rouge">NAME</code> in the output.
+Why is that?
+When <em>using</em> a variable, the <code class="language-plaintext highlighter-rouge">$</code> symbol has to be pre-pended to the variable name.
+Also, the name of the variable should be surrounded by curly-brackets <code class="language-plaintext highlighter-rouge">{}</code>.
+The curly brackets are actually not a strict requirement, but it is good practice to use them.
+This indicates to bash that a variable is being used, and to treat the next character as a variable name, rather than just regular text.
+So let’s try that again:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo ${NAME}
+Billy Joe Smith
+</code></pre></div></div>
+
+<p>There we go! Now, try combining some variables in the same <code class="language-plaintext highlighter-rouge">echo</code> command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ echo My name is ${NAME} and I live at ${ADDRESS}
+ My name is Billy Joe Smith and I live at 1550 N Ridgetop Drive
+</code></pre></div></div>
+
+<p>As can be seen, we used multiple variables in a single invocation of <code class="language-plaintext highlighter-rouge">echo</code>.</p>
+
+<p>What if we create a variable, and later want to add something to it? Let’s try:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ GROCERY_LIST=Milk,Butter,Salt
+$ echo ${GROCERY_LIST}
+Milk,Butter,Salt
+$ GROCERY_LIST+=,Onions,Lettuce,Bacon
+$ echo ${GROCERY_LIST}
+Milk,Butter,Salt,Onions,Lettuce,Bacon
+</code></pre></div></div>
+
+<p>In the example above, <code class="language-plaintext highlighter-rouge">+=</code> was used to append more text to a variable that already exists. Variables can also be completely overridden:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ FAVORITE_SPORTS_TEAM=PhoenixSuns
+$ echo ${FAVORITE_SPORTS_TEAM}
+PhoenixSuns
+$ FAVORITE_SPORTS_TEAM=GoldenStateWarriors
+$ echo ${FAVORITE_SPORTS_TEAM}
+GoldenStateWarriors
+</code></pre></div></div>
+
+<h2 id="standard-output-error">standard output, error</h2>
+
+<p><img src="/assets/memes/standard-output.jpg" width="170" /></p>
+
+<p>Each running process (program) running on a UNIX system has three “standard” streams of input and output: standard output, standard error, and standard input.</p>
+
+<p>As it’s name suggests, standard output (also often referred to as stdout) is the “standard” stream of output, where most of the “printing” happens.
+For example, when we <code class="language-plaintext highlighter-rouge">echo Hello World</code>, <code class="language-plaintext highlighter-rouge">Hellow World</code> is printed to stdout. When we <code class="language-plaintext highlighter-rouge">cat names.txt</code>, the content of <code class="language-plaintext highlighter-rouge">namex.txt</code> is printed to stdout.
+By default in bash, all standard output is printed to the console after running the program.</p>
+
+<p>Standard error (also referred to as stderr) behaves similarly to stdout.
+Typically, this stream of output is where error/warning messages should be printed to.
+We won’t be using stderr much in this class, but it is good for you to be aware of because you will likely read about it when looking up documentation for bash and bash tools.</p>
+
+<p>As mentioned, stdout and stderr are printed to the console by default. However, we can change where stdout is sent to using <code class="language-plaintext highlighter-rouge">&gt;</code>. Here is an example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "one two three"
+one two three
+$ echo "one two three" &gt; stuff.txt
+$ cat stuff.txt 
+one two three
+</code></pre></div></div>
+
+<p>By typing <code class="language-plaintext highlighter-rouge">&gt; stuff.txt</code> after the <code class="language-plaintext highlighter-rouge">echo</code> command, we are telling bash to send the stdout from the <code class="language-plaintext highlighter-rouge">echo</code> command to a file named <code class="language-plaintext highlighter-rouge">stuff.txt</code>. We can also over-write an existing file with this same method:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "one two three" &gt; stuff.txt
+$ cat stuff.txt 
+one two three
+$ echo "hello world" &gt; stuff.txt
+$ cat stuff.txt 
+hello world
+</code></pre></div></div>
+
+<p>We can also <em>append</em> to an existing file if <code class="language-plaintext highlighter-rouge">&gt;&gt;</code> is used instead of <code class="language-plaintext highlighter-rouge">&gt;</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "one two three" &gt; stuff.txt
+$ cat stuff.txt 
+one two three
+$ echo "hello world" &gt;&gt; stuff.txt
+$ cat stuff.txt 
+one two three
+hello world
+$ echo "how are you?" &gt;&gt; stuff.txt
+$ cat stuff.txt 
+one two three
+hello world
+how are you?
+</code></pre></div></div>
+
+<h2 id="standard-input">standard input</h2>
+
+<p><img src="/assets/memes/standard-input.jpg" width="200" /></p>
+
+<p>Just like how stdout is a stream of text that a bash command prints <em>out</em> (actually, it is just a stream of <em>bytes</em>, but for the purposes of this class, we’ll say text), standard input (stdin) is a stream of text that bash programs recieve form the user and/or other programs.</p>
+
+<p>In many of our examples so far, we have executed shell programs that operate on a file. For example: <code class="language-plaintext highlighter-rouge">cat fine.txt</code>, <code class="language-plaintext highlighter-rouge">grep SearchTerm file.txt</code>, and <code class="language-plaintext highlighter-rouge">sort file.txt</code>. Instead of operating on a file, many of these programs can do their “work” of sorting, searching, etc on a stream of text coming from standard input.</p>
+
+<p>So how does this work? How can we tell a program like <code class="language-plaintext highlighter-rouge">sort</code> or <code class="language-plaintext highlighter-rouge">grep</code> to do it’s job with stdin instead of a text file? The easiest way to learn is by example, so let’s jump in.</p>
+
+<p>The special token <code class="language-plaintext highlighter-rouge">|</code> (called a pipe) can be used to send the stdout form one program to the stdin of another program.
+It can be placed in-between commands on the command line.</p>
+
+<p>Here is a command to simply print out rhe contents of a file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat file.txt 
+DDD
+EEE
+AAA
+CCC
+BBB
+</code></pre></div></div>
+
+<p>To sort this data using pipes, we can do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat file.txt | sort
+AAA
+BBB
+CCC
+DDD
+EEE
+</code></pre></div></div>
+
+<p>We can chain together any number of commands using pipes. We could also do a search using <code class="language-plaintext highlighter-rouge">grep</code> after running the sort:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat file.txt | sort | grep C
+CCC
+</code></pre></div></div>
+
+<p>Having the ability to read text form stdin has many uses, but the primary use when using bash is to be able to chain commands together like in the example above. It is completely legal to use both <code class="language-plaintext highlighter-rouge">|</code> and <code class="language-plaintext highlighter-rouge">&gt;</code> when chaining together commands, like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat file.txt | sort | grep C &gt; output.txt
+$ cat output.txt 
+CCC
+</code></pre></div></div>
+
+<h2 id="scripting">Scripting</h2>
+
+<p><img src="/assets/memes/do-you-even-script.jpg" width="200" /></p>
+
+<p>Without going into too much detail, a bash <em>script</em> is a text file with a sequence of bash commands, that can be executed by simply executing the file containing the commands. Writing bash scripts us useful for many purposes, but at the very least is saves the user from having to memorize and re-type the same sequence of commands over and over again. As you might imagine, storing a sequence of commands to run is a very useful feature of bash.</p>
+
+<p>How does one go about writing a bash script? First create a file with <code class="language-plaintext highlighter-rouge">.sh</code> as te extension. <code class="language-plaintext highlighter-rouge">.sh</code> is the standard extension for all bash scripts. For example, we will create a script called <code class="language-plaintext highlighter-rouge">getDirInfo.sh</code>, which prints information about the current working directory.</p>
+
+<p>The first line of every bash script should look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">#!</code> (called the “sha-bang”) at the beginning of a script tells your system that this file is a set of commands to be fed to the command interpreter indicated.
+The <code class="language-plaintext highlighter-rouge">#!</code> is actually a two-byte magic number, a special marker that designates a file type, or in this case an executable shell script.
+Typing <code class="language-plaintext highlighter-rouge">/bin/bash</code> after <code class="language-plaintext highlighter-rouge">#!</code> tells the system to use bash to interpret the commands in the file.
+This is why <em>all</em> bash commands should start with this line.</p>
+
+<p>Now, let’s finish the script to print information about the current working directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1  #!/bin/bash
+ 2   
+ 3  echo ""
+ 4  echo "The current working directory is:"
+ 5  pwd
+ 6  
+ 7  echo ""
+ 8  echo "The files in this directory are:"
+ 9  ls
+10   
+11  echo ""
+12  echo "The size of the current directory is:"
+13  du -sh `pwd`
+</code></pre></div></div>
+
+<p>Executing the script by running <code class="language-plaintext highlighter-rouge">./getDirInfo.sh</code>. The output will look something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./getDirInfo.sh 
+
+The current working directory is:
+/Users/bddicken/test
+
+The files in this directory are:
+file.txt    grades.txt  names.txt   stuff.txt
+getDirInfo.sh   image.jpg   output.txt
+
+The size of the current directory is:
+ 60K    /Users/bddicken/test
+</code></pre></div></div>
+
+<p>Let’s walk through what this script is doing, line-by-line.</p>
+
+<ul>
+  <li>1 - As already mentioned, this line is required to indicate to the system to use <code class="language-plaintext highlighter-rouge">/bin/bash</code> to interpret the commands that follow</li>
+  <li>3 - Print an empty line (so the output is easier to read)</li>
+  <li>4 - Print a message to the user</li>
+  <li>5 - Run <code class="language-plaintext highlighter-rouge">pwd</code>, which will print out the “current working directory”</li>
+  <li>7 - Print an empty line (so the output is easier to read)</li>
+  <li>8 - Print a message to the user</li>
+  <li>9 - Run <code class="language-plaintext highlighter-rouge">ls</code>, which will print all of the files/directores in the current directory to stdout</li>
+  <li>11 - Print an empty line (so the output is easier to read)</li>
+  <li>12 - Print a message to the user</li>
+  <li>13 - Execute <code class="language-plaintext highlighter-rouge">du -sh `pwd`</code> to list the size of the current working directory. We have not yet learned about the <code class="language-plaintext highlighter-rouge">du</code> command, so don’t worry about the details for now.</li>
+</ul>
+
+<p>This script can now be executed at any time, and saves a user from re-typing the same series of commands when this information is needed.
+Let’s look at another example.</p>
+
+<p>We will write another script named <code class="language-plaintext highlighter-rouge">dirs.sh</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 #!/bin/bash
+ 2  
+ 3 echo "----------------------------------------"
+ 4 echo "The files in Your current directory are:"
+ 5 ls
+ 6  
+ 7 echo "----------------------------------------"
+ 8 echo "The files one dir up are:"
+ 9 cd ..
+10 ls
+11  
+12 echo "----------------------------------------"
+13 echo "The files two dirs up are:"
+14 cd ..
+15 ls
+</code></pre></div></div>
+
+<p>When I run this script (<code class="language-plaintext highlighter-rouge">./dirs.sh</code>) from <code class="language-plaintext highlighter-rouge">/Users/bddicken/test</code>, It prints:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./dirs.sh
+----------------------------------------
+The files in Your current directory are:
+dirs.sh
+----------------------------------------
+The files one dir up are:
+Applications    Documents   Google Drive    Movies      Pictures    dev     test
+Desktop     Downloads   Library     Music       Public      rc
+----------------------------------------
+The files two dirs up are:
+Shared      bddicken
+$
+</code></pre></div></div>
+
+<p>Again, walking through what this script is doing line-by-line:</p>
+
+<ul>
+  <li>1 - As already mentioned, this line is required to indicate to the system to use <code class="language-plaintext highlighter-rouge">/bin/bash</code> to interpret the commands that follow</li>
+  <li>3 - Print out a bunch of <code class="language-plaintext highlighter-rouge">-</code> characters in sequence, to act as a nice visual separator</li>
+  <li>4 - Print a message to the user</li>
+  <li>5 - Run <code class="language-plaintext highlighter-rouge">ls</code> to show all files in the current drectory</li>
+  <li>7 - Print out a bunch of <code class="language-plaintext highlighter-rouge">-</code> characters in sequence, to act as a nice visual separator</li>
+  <li>8 - Print a message to the user</li>
+  <li>9 - Run <code class="language-plaintext highlighter-rouge">cd ..</code>, to move one directory level up</li>
+  <li>10 - Run <code class="language-plaintext highlighter-rouge">ls</code> to show all files in the directory just changed to</li>
+  <li>12 - Print out a bunch of <code class="language-plaintext highlighter-rouge">-</code> characters in sequence, to act as a nice visual separator</li>
+  <li>13 - Print a message to the user</li>
+  <li>14 - Run <code class="language-plaintext highlighter-rouge">cd ..</code>, to move one directory level up</li>
+  <li>15 - Run <code class="language-plaintext highlighter-rouge">ls</code> to show all files in the directory just changed to</li>
+</ul>
+
+<h2 id="scripting-with-arguments">Scripting with arguments!</h2>
+
+<p>As we all know by now, when we use bash commands we can usually pass arguments to those commands, such as file names and string to search for.
+Bash scripts have a very convenient way of processing command-line arguments for us to use in our scripts.</p>
+
+<p>The elements used on the command-line to execute a script are accesible via default bash variables.
+The bash variable <code class="language-plaintext highlighter-rouge">$#</code> informs us how many total options were provided on the command-line.
+The value of the variable <code class="language-plaintext highlighter-rouge">${0}</code> is the name of the script executed.
+The value of the variables<code class="language-plaintext highlighter-rouge">${1}</code>, <code class="language-plaintext highlighter-rouge">${2}</code>, <code class="language-plaintext highlighter-rouge">${3}</code>, … have the values of the first, second, third, … options.</p>
+
+<p>Here is a script named <code class="language-plaintext highlighter-rouge">args.sh</code> demonstrating how these variables can be used:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 #!/bin/bash
+2  
+3 echo "The script being run is named: ${0}"
+4 echo "Arguments provided:            $#"
+5  
+6 echo "     The first argument is:    ${1}"
+7 echo "     The second argument is:   ${2}"
+8 echo "     The third argument is:    ${3}"
+</code></pre></div></div>
+
+<p>Here are a few executions of this script:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./args.sh Aye Bee See
+The script being run is named: ./args.sh
+Arguments provided:            3
+     The first argument is:    Aye
+     The second argument is:   Bee
+     The third argument is:    See
+$
+$ ./args.sh Aye
+The script being run is named: ./args.sh
+Arguments provided:            1
+     The first argument is:    Aye
+     The second argument is:   
+     The third argument is:    
+$
+$ ./args.sh A B C D E F G H I J K L M N O P
+The script being run is named: ./args.sh
+Arguments provided:            16
+     The first argument is:    A
+     The second argument is:   B
+     The third argument is:    C
+</code></pre></div></div>
+
+<p>Try writing a similar script on your own, and playing around with these option variables.</p>
+
+<p>As you can probably image, there are lots of useful applications of being able to access the command line options.
+Here’s a silly example… an MadLib script:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 #!/bin/bash
+ 2  
+ 3 echo "----------------------------------------------"
+ 4 echo "This is an MadLib script that takes five words: name1, name2, adjective, adverb, place."
+ 5 echo ""
+ 6  
+ 7 NAME1=${1}
+ 8 NAME2=${2}
+ 9 ADJECTIVE=${3}
+10 ADVERB=${4}
+11 PLACE=${5}
+12  
+13 echo "----------------------------------------------"
+14 echo "${NAME1}: Hey ${NAME2}! How goes it?"
+15 echo "${NAME2}: Good. You wanna go to ${PLACE} and play some ${ADJECTIVE} video games?"
+16 echo "${NAME1}: Sure. But first I need to ${ADVERB} run some errands."
+17 echo "${NAME2}: OK, see you at ${PLACE} in a bit!"
+</code></pre></div></div>
+
+<p>Here are a few runs of it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./madlib-story.sh Danny-T Esteban poopy speedily Spain
+----------------------------------------------
+This is an MadLib script that takes five words: name1, name2, adjective, adverb, place.
+
+----------------------------------------------
+Danny-T: Hey Esteban! How goes it?
+Esteban: Good. You wanna go to Spain and play some poopy video games?
+Danny-T: Sure. But first I need to speedily run some errands.
+Esteban: OK, see you at Spain in a bit!
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./madlib-story.sh Bo Rex crazy slowly Madagascar
+----------------------------------------------
+This is an MadLib script that takes five words: name1, name2, adjective, adverb, place.
+
+----------------------------------------------
+Bo: Hey Rex! How goes it?
+Rex: Good. You wanna go to Madagascar and play some crazy video games?
+Bo: Sure. But first I need to slowly run some errands.
+Rex: OK, see you at Madagascar in a bit!
+</code></pre></div></div>
+
+<p>Depending on how you create your <code class="language-plaintext highlighter-rouge">.sh</code> file, it might not be executable using <code class="language-plaintext highlighter-rouge">./my-script-name.sh</code> by default.
+This is because when new files are created, they typically do not have permissions to be “executed” by a user.
+For example, when using <code class="language-plaintext highlighter-rouge">touch script.sh</code>, a file named <code class="language-plaintext highlighter-rouge">script.sh</code> will be created.
+By default, <code class="language-plaintext highlighter-rouge">touch</code> creates a file that the user has read and write permissions for, but not execute permissions.
+You can <a href="https://en.wikipedia.org/wiki/File_system_permissions">read up on file permissions on Wikipedia</a> to get familiar with how all of this works.
+We won’t be covering the details of this in this class, but you should know the basics.</p>
+
+<p>If bash will not execute your script when you type <code class="language-plaintext highlighter-rouge">./script.sh</code>, just run the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x script.sh
+</code></pre></div></div>
+
+<p>This will add the executable permissions to the file, and you should be able to execute it.
+<code class="language-plaintext highlighter-rouge">chmod</code> is a command that can be used for changing and managing the permissions on files and directories on a UNIX machine.
+the <code class="language-plaintext highlighter-rouge">+x</code> indicated that executable permissions should be added to the file with the provided name.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

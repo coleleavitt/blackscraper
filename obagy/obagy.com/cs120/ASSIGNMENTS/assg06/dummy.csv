@@ -1,0 +1,3 @@
+line01_field01,line01_field02,line01_field03
+line02_field01,"Field in quotes,csv files can have commas inside quotes,like this",line02_field03
+line03_field01,line03_field02,line03_field03,line03_field04

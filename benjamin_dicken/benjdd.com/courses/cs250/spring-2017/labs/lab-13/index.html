@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Lab 13</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lab-13">CSc 250: Lab 13</h1>
+
+<p>This lab was designed to be completed during lab-time for cs250.
+This lab is not graded for correctness.
+However, you should work through all of the problems, as it will help you on assignments and exams.
+If you cannot complete the lab in the alloted time, finish at home.</p>
+
+<p><strong>This particular lab was designed to be completed on the Mac lab machines in GS 930</strong></p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<ul>
+  <li>Open up your email</li>
+  <li>Find the link to the TCE (Teacher Course Evaluation) for cs250.
+This should have been emailed to you 1-2 weeks ago.</li>
+  <li>Click on the link</li>
+  <li>FILL IT OUT</li>
+</ul>
+
+<p><img src="/assets/memes/better-tce.jpg" width="200" /></p>
+
+<p><br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br /></p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<p>Did you really do problem 1?</p>
+
+<p><img src="/assets/memes/do-it-tce.jpg" width="200" /></p>
+
+<p><br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br /></p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<p>Seriously?</p>
+
+<p><img src="/assets/memes/ben-tce.jpg" width="200" /></p>
+
+<p><br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br />
+<br /><br /><br /></p>
+
+<h2 id="ok-now-for-some-real-problems">Ok, now for some real problems…</h2>
+
+<p>Most of the example data sets we have encountered in class have been “clean” data sets.
+By that, I mean that we’ve been looking at data files (mostly CSV) that are correctly formatted, and the information within it is neatly structured.
+However, out in the <em>real-world</em>, data is not always this clean.
+Often, data scientists and programmers need to write programs that do additional processing on data to format it in such a way that it can be better used with other programs.
+These programs could be custom ones written by the programmer, or standard ones like pages, excel, and SQLite.</p>
+
+<p>The next few problems will lead up to
+Should help you “warm-up” to the more difficult last problem, in which you will be writing a script to clean a CSV file.
+If you don’t make it to the last in lab time, don’t worry.
+Though, I do recommend you continue on your own.</p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<p>Take a look at this line of python:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>''.join(random.choice(string.ascii_letters) for i in range(12))
+</code></pre></div></div>
+
+<p>Open up a python terminal, run <code class="language-plaintext highlighter-rouge">import random</code> and <code class="language-plaintext highlighter-rouge">import string</code>, and then try running this line ~5 or so times.
+What does it spit out on each run?
+Is the result the same each time?</p>
+
+<p>What this line of code does is generate a string of random characters of length 12.
+The length can be easily changed, by changing the <code class="language-plaintext highlighter-rouge">12</code> at the end of the line of code.
+You don’t need to fully understand how this works yet, because it uses some modules that we’ve not yet learned in class.</p>
+
+<p>Create a file named <code class="language-plaintext highlighter-rouge">lab13.py</code>, and in it write a function named <code class="language-plaintext highlighter-rouge">get_random_csv_row</code>.
+This function should take two arguments: The first is a number representing how many columns the row should have, and the second is the number of characters that should be in each value. 
+The function should create this as a string, and then return it.</p>
+
+<p>Below is a python session in which I <code class="language-plaintext highlighter-rouge">import lab13</code> and then test this function.
+Your’s should behave similarly:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import lab13
+&gt;&gt;&gt; lab13.get_random_csv_row(3,3)
+'gqR, GMo, nhl'
+&gt;&gt;&gt; lab13.get_random_csv_row(3,9)
+'ROhcQpUWs, FYLWIonXX, ebDINVOVW'
+&gt;&gt;&gt; lab13.get_random_csv_row(7,2)
+'EG, Sa, mH, ZQ, ui, qY, eg'
+&gt;&gt;&gt; lab13.get_random_csv_row(20,2)
+'Fw, ey, Dp, ZN, Ue, sY, ym, Cz, uh, gh, Vc, ql, hV, pZ, ij, IR, Ei, pd, Ur, pL'
+</code></pre></div></div>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<p>We’ve encountered a lot of CSV files in this class.
+Below is a “randomly” selected example line from such a file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1,Allen,Miss Elisabeth Walton,1st,29,63,female,1,1,76,19,Engineer
+</code></pre></div></div>
+
+<p>At other times, one can encounter lines in a CSV file with missing data points:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1,,Miss Elisabeth Walton,1st,,,female,1,1,,19,Engineer
+</code></pre></div></div>
+
+<p>Notice that the line has the same number of commas (which is good), but some commas have no “value” in-between them.
+Instead of leaving the value as blank, we may want to populate those with an indicator representing that i’s a missing or incomplete values.</p>
+
+<p>Add a function named <code class="language-plaintext highlighter-rouge">replace_empty_csv_vals</code> to <code class="language-plaintext highlighter-rouge">lab13.py</code> that will do this replacement.
+This function should take one argument (a string, which is a CSV line).
+It will return a different string, with all of the empty values replaced by ‘UNK’ (for “unknown”).
+Essentially, you want to replace each <code class="language-plaintext highlighter-rouge">,,</code> with <code class="language-plaintext highlighter-rouge">,UNK,</code>, but note that some comma pairs (<code class="language-plaintext highlighter-rouge">,,</code>) could be overlapping, like <code class="language-plaintext highlighter-rouge">,,,,</code>.</p>
+
+<p>Below is an example python session, demonstrating how it should work:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import lab13
+&gt;&gt;&gt; lab13.replace_empty_csv_vals('LeBron,James,,23,,,Forward,,,2')
+'LeBron,James,UNK,23,UNK,UNK,Forward,UNK,UNK,2'
+&gt;&gt;&gt; lab13.replace_empty_csv_vals(',,Jiminy,,Smith,,,')
+'UNK,UNK,Jiminy,UNK,Smith,UNK,UNK,UNK'
+&gt;&gt;&gt; lab13.replace_empty_csv_vals(',,,')
+'UNK,UNK,UNK,UNK'
+&gt;&gt;&gt; lab13.replace_empty_csv_vals('Sally,Sander,34,,,sally@gmail.com,,,,,,,13721,,,,520-904-1788,,,')
+'Sally,Sander,34,UNK,UNK,sally@gmail.com,UNK,UNK,UNK,UNK,UNK,UNK,13721,UNK,UNK,UNK,520-904-1788,UNK,UNK,UNK'
+</code></pre></div></div>
+
+<p>Notice that if the input string <em>begins</em> with a comma, <code class="language-plaintext highlighter-rouge">UNK</code> should be added to the beginning.
+Similarly for the <em>end</em> of the string.</p>
+
+<h2 id="problem-6">Problem 6</h2>
+
+<p>For this problem, let’s say you have a csv file named <code class="language-plaintext highlighter-rouge">Titanic.csv</code>, similar to <a href="https://vincentarelbundock.github.io/Rdatasets/csv/datasets/Titanic.csv">the Titanic data set from vincentarelbundock.github.io</a>.
+This csv file represents information about each person who ws on the Titanic before it sank.
+The first few lines of this file look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ID,Name,PClass,Age,Sex,Survived,SexCode
+1,Allen, Miss Elisabeth Walton,1st,29,female,1,1,
+2,Allison, Miss Helen Loraine,1st,2,female,0,1
+3,Allison, Mr Hudson Joshua Creighton,1st,30,male,0,0
+4,Allison, Mrs Hudson JC (Bessie Waldo Daniels),1st,25,female,0,1,
+5,Allison, Master Hudson Trevor,1st,0.92,male,1,0
+...
+</code></pre></div></div>
+
+<p>As we can see, the first row describes the name of each of the 7 columns.
+The first few rows below seem to be well formatted.
+But let’s take a look at the rest of the file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ID,Name,PClass,Age,Sex,Survived,SexCode
+1,Allen, Miss Elisabeth Walton,1st,29,female,1,1,
+2,Allison, Miss Helen Loraine,1st,2,female,0,1
+3,Allison, Mr Hudson Joshua Creighton,1st,30,male,0,0
+4,Allison, Mrs Hudson JC (Bessie Waldo Daniels),1st,25,female,0,1,
+5,Allison, Master Hudson Trevor,1st,0.92,male,1,0
+6,Anderson, Mr Harry,1st,47,male,1,0
+??
+7,Andrews, Miss Kornelia Theodosia,1st,63,female,1,1 , , , , ,,,,,
+8,Andrews, Mr Thomas, jr,1st,39,male,0,0
+9,Appleton, Mrs Edward Dale (Charlotte Lamson),1st,58,female,1,1,,,,,,,,
+10,Artagaveytia, Mr Ramon,1st,71,male,0,0
+11,Astor, Colonel John Jacob,1st,47,male,0,0
+
+12,Astor, Mrs John Jacob (Madeleine Talmadge Force),1st,19,female,1,1,    A,B,C,D,E
+13,Aubert, Mrs Leontine Pauline,1st,NA,female,1,1
+14,Barkworth, Mr Algernon H,1st,NA,male,1,0 , ? , ? , ? , ?
+??
+15,Baumann, Mr John D,1st,NA,male,0,0
+16,Baxter, Mrs James (Helene DeLaudeniere Chaput),1st,50,female,1,1
+??
+XXXXX
+17,Baxter, Mr Quigg Edmond,1st,24,male,0,0
+18,Beattie, Mr Thomson,1st,36,male,0,0
+19,Beckwith, Mr Richard Leonard,1st,37,male,1,0
+20,Beckwith, Mrs Richard Leonard (Sallie Monypeny),1st,47,female,1,1
+ABC
+XXXXXXXX
+21,Behr, Mr Karl Howell,1st,26,male,1,0
+
+22,Birnbaum, Mr Jakob,1st,25,male,0,0
+23,Bishop, Mr Dickinson H,1st,25,male,1,0
+24,Bishop, Mrs Dickinson H (Helen Walton),1st,19,female,1,1  ,  ,  ,  ,  ,  ,
+XXX
+25,Bjornstrm-Steffansson, Mr Mauritz Hakan,1st,28,male,1,0
+XX
+</code></pre></div></div>
+
+<p>Yikes!
+Clearly, many of the rows further down are messed up.
+If you take a close look, you’ll see that there are a few problems:</p>
+
+<ul>
+  <li>Each line <em>should</em> have 6 total columns (separating the 7 values), but some have extra commas at the end</li>
+  <li>Some rows have <em>no</em> commas, and contain extraneous characters like <code class="language-plaintext highlighter-rouge">??</code> and <code class="language-plaintext highlighter-rouge">XXX</code></li>
+  <li>There are some blank lines!</li>
+</ul>
+
+<p>If you tried importing this into a table in SQLite 3, it would fail miserably.</p>
+
+<p>In this problem, your task is to write a python script that will fix this file.
+No fixing the file by hand! That’s cheating!
+Your program should read the <code class="language-plaintext highlighter-rouge">Titanic.csv</code> file in line-by-line.
+For each line, determine if it has any of the above-described problems.
+If so, fix it, then re-write it to a new file named <code class="language-plaintext highlighter-rouge">CleanTitanic.csv</code></p>
+
+<p>You’ll be able to tell your script is working correctly when you can successfully import <code class="language-plaintext highlighter-rouge">CleanTitanic.csv</code> into a SQLite database without errors.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

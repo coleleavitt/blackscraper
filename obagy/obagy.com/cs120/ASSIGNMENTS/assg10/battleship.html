@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EhereN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Battleship</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Battleship</h1>
+
+<h2>Background</h2>
+<a href="https://en.wikipedia.org/wiki/Battleship_(game)">Battleship</a> is a
+guessing game where two players take turns trying to guess the
+locations where their opponent has placed a set of &quot;ships&quot; on a 
+10x10 grid (<a href="https://tinyurl.com/ya8nbljv">video</a>).
+
+<p style="color: red">
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problem, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class. You must follow the updated guidelines for commenting classes.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+  <li>
+ dictionary or list comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  </li>
+  <li>
+  nested functions (using def <i>within</i> a function to define another function)
+  </li>
+  <li>
+ exceptions (try/except)
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ generators and user defined iterators
+  </li>
+  <li>
+ default arguments
+  </li>
+  <li>
+  decorators
+  </li>
+  <li>
+ importing libraries (unless a library is explicitly mentioned in the specification)
+  </li>
+</ul>
+  </li>
+</ol>
+<h2>Problem Description</h2>
+<p/>
+This program involves writing a program to model half of the actual board
+game, namely, Player 1's ship placements and Player 2's guesses.
+<p/>
+    <b>The game setup.</b>
+    For the purposes of this program, the game board is a 10x10 grid.  We 
+    use (<i>x,y</i>) coordinates to refer to the points of this grid: on
+    each axis, grid values range from 0 through 9; the
+    bottom-left corner has coordinates (0,0); and the top-right corner
+    has coordinates (9,9).
+    <p/>
+    Each player has 
+    <a href="https://en.wikipedia.org/wiki/Battleship_(game)#Description">five ships</a>
+    (one of each kind):
+    <p/>
+    <blockquote>
+      <table border="1" cellpadding="5">
+	<tr>
+	  <th>
+	    Ship type
+	  </th>
+	  <th>
+	    Abbreviation
+          </th>
+	  <th>
+	    Size
+	  </th>
+        </tr>
+	<tr>
+	  <td>Aircraft carrier</td>
+	  <td align="center"><b>A</b></td>
+	  <td align="center">5</td>
+	</tr>
+	<tr>
+	  <td>Battleship</td>
+	  <td align="center"><b>B</b></td>
+	  <td align="center">4</td>
+	</tr>
+	<tr>
+	  <td>Submarine</td>
+	  <td align="center"><b>S</b></td>
+	  <td align="center">3</td>
+	</tr>
+	<tr>
+	  <td>Destroyer</td>
+	  <td align="center"><b>D</b></td>
+	  <td align="center">3</td>
+	</tr>
+	<tr>
+	  <td>Patrol boat</td>
+	  <td align="center"><b>P</b></td>
+	  <td align="center">2</td>
+	</tr>
+      </table>
+    </blockquote>
+    <p/>
+
+<h2>Expected Behavior</h2>
+<p/>
+Write a Python program, in a file <b><tt>battleship.py</tt></b>,
+that behaves as specified below.
+<p/>
+<ol>
+  <li>
+    Use <b><tt>input()</tt></b>, without any arguments, to read in the name
+    of a <i>placement file</i> describing Player 1's ship placements.
+    Read in the contents of the placement file and initialize the board accordingly.
+    <p/>
+    The format of the placement file is described below under 
+    <b>Input Formats</b>.
+    The rules for legal placement are given in the link <a href="legal-battleship.html">battleship-rules</a>.
+    An example placement file is shown in the file  
+    <a href="example-placement.txt" target="_blank">example-placement.txt</a>.
+    <p/>
+  </li>
+  <li>
+    Use <b><tt>input()</tt></b>, without any arguments, to read in the name
+    of a <i>guess file</i> describing Player 2's guesses. Read in the contents and 
+    for each guess, respond based on the effects of the guess as described below.
+    <p/>
+    The format of a guess file is described below under <b>Input Formats</b>.
+    The rules for legal guesses are given in the link <a href="legal-battleship.html">battleship-rules</a>.
+    An example guess file is shown in the file <a href="example-guess.txt" target="_blank">example-guess.txt</a>.
+    <p/>
+    Process the guess file as follows.  For each guess:
+    <p/>
+    <ul>
+      <li>
+        If the guess is not legal: give the error message
+	<b><tt>&quot;illegal guess&quot;</tt></b>, discard the
+        guess, and continue processing.
+	<p/>
+      </li>
+      <li>
+        If the guess (<i>x</i>, <i>y</i>) is legal:
+	<p/>
+        <ol>
+          <li>
+    	If the grid point (<i>x</i>, <i>y</i>) is not occupied by
+    	any of Player 1's ships, indicate this as follows.
+	If this is the first time this grid point has been guessed,
+	print out the message <b><tt>&quot;miss&quot;</tt></b>;
+	if this grid point has been guessed previously,
+	print out the message <b><tt>&quot;miss (again)&quot;</tt></b>.
+	<p/>
+          </li>
+          <li>
+    	If (<i>x</i>, <i>y</i>) is occupied by some ship <i>S</i>,
+    	and at least one of the grid points occupied by <i>S</i> 
+    	has <u>not</u> been hit by any of Player 2's guesses up to and 
+    	including the current guess, indicate this using as follows.
+	If this is the first time this grid point has been guessed,
+	print out the message <b><tt>&quot;hit&quot;</tt></b>;
+	if this grid point has been guessed previously,
+	print out the message <b><tt>&quot;hit (again)&quot;</tt></b>.
+	<p/>
+          </li>
+          <li>
+    	If (<i>x</i>, <i>y</i>) is occupied by some ship <i>S</i>,
+    	and all of the grid points occupied by <i>S</i> have been hit
+    	by Player 2's guesses up to and including the current guess
+    	(i.e., this guess hits the last grid point of <i>S</i> that was
+    	not previously hit), indicate this using the statement
+    	<blockquote>
+    	  <b><tt>print(&quot;{} sunk&quot;.format(ship))</tt></b>
+    	</blockquote>
+    	where <b><tt>ship</tt></b> is one of
+    	{ <b><tt>'A'</tt></b>,
+    	  <b><tt>'B'</tt></b>,
+    	  <b><tt>'S'</tt></b>,
+    	  <b><tt>'D'</tt></b>,
+    	  <b><tt>'P'</tt></b> } and refers to the ship occupying
+    	  the grid point (<i>x</i>, <i>y</i>).
+          </li>
+          <li>
+    	If, after this guess, all of Player 1's ships have been sunk,
+    	indicate this using the following statement and then exit 
+    	the program:
+    	<blockquote>
+    	  <b><tt>print(&quot;all ships sunk: game over&quot;)</tt></b>.
+    	</blockquote>
+    	<p/>
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+  </li>
+  <li>
+    The game ends (the program terminates) when either all of the ships have
+    been sunk, or there are no more guesses to respond to.
+  </li>
+</ol>
+<p/>
+An example of the program's expected behavior is given
+    <a href="example-battleship.html"
+       target="_blank">Battleship Input/Output Example</a>. The input files corresponding to this
+    example are available as
+    <a href="example-placement.txt" target="_blank">example-placement.txt</a>
+    (placement file) and
+    <a href="example-guess.txt" target="_blank">example-guess.txt</a>
+    (guess file).
+    The rules for legal guesses are given in the link <a href="legal-battleship.html">battleship-rules</a>.
+<p/>
+
+<h2>Input Formats</h2>
+
+<h3>I. Player 1's ship placements</h3>
+<p/>
+	This is done by specifying the placement of each ship in turn.  Each ship's
+	placement has the following form:
+	<blockquote>
+	  <i>Abbreviation</i> <i>x</i><sub>1</sub> <i>y</i><sub>1</sub>
+	  	<i>x</i><sub>2</sub> <i>y</i><sub>2</sub>
+	</blockquote>
+	where <i>Abbreviation</i> is one of <b>A</b>, <b>B</b>, <b>S</b>, 
+	<b>D</b>, and <b>P</b> (see table above); 
+	(<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>) specifies the
+	grid coordinates of one end of the ship; and
+  	(<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>) specifies the coordinates
+	of the other end.  The rules for legal placement are given
+	<a href="legal-battleship.html">here</a>.
+	<p/>
+	For example:
+	<blockquote>
+	  <b>B</b> &nbsp; 3 &nbsp; 2 &nbsp; 3 &nbsp; 5
+	</blockquote>
+	specifies that the battleship (<b>B</b>) occupies the four grid points
+	from (3,2) to (3,5).  The input file should contain five such placements, 
+	one for each of	Player 1's ships.
+	<p/>
+
+<h3>II. Player 2's guesses</h3>
+<p/>
+Each guess is a pair of integers on a single line specifying a grid point.  The rules for 
+legal guesses are given	in the link <a href="legal-battleship.html">battleship-rules</a>.
+<p/>
+
+<h2>Programming Requirements</h2>
+
+Your program <i>must</i> implement the following classes:
+<p/>
+<blockquote>
+<dl>
+  <dt>
+    <b>class GridPos</b>
+  </dt>
+  <dd>
+    An instance of this class describes a grid position.  
+    <p/>
+    <b>Attributes</b>: These should include:
+    <ul>
+      <li>
+	the x- and y-coordinates of the position;
+      </li>
+      <li>
+	the <b><tt>Ship</tt></b> object at that position, if any, and
+	<b><tt>None</tt></b> if the position is unoccupied; and
+      </li>
+      <li>
+	whether or not it has been previously guessed.
+        <p/>
+      </li>
+    </ul>
+    <b>Methods:</b> These should include 
+    <b><tt>__init__()</tt></b> and <b><tt>__str__()</tt></b>
+    methods; and, optionally, a <b><tt>__repr__()</tt></b> method.
+    <p/>
+  </dd>
+
+  <dt>
+    <b>class Board</b>
+  </dt>
+  <dd>
+    An instance of this class describes a board with a placement of ships.
+    <p/>
+    <b>Attributes</b>: These should include:
+    <ul>
+      <li>
+	a 10 &times; 10 grid of positions, where each position is a
+	<b><tt>GridPos</tt></b> object; and
+      </li>
+      <li>
+	a collection (e.g., list, set, or dictionary) of <b><tt>Ship</tt></b>
+	objects.
+        <p/>
+      </li>
+    </ul>
+    <b>Methods:</b> These should include:
+    <p/>
+    <ul>
+      <li>
+	a method to process guesses.
+      </li>
+      <li>
+	<b><tt>__init__()</tt></b> and <b><tt>__str__()</tt></b>
+	methods.
+      </li>
+    </ul>
+    </p>
+  </dd>
+  <dt>
+    <b>class Ship</b>
+  </dt>
+  <dd>
+    An instance of this class represents a ship.
+    <p/>
+    <b>Attributes:</b> These should include:
+    <p/>
+    <ul>
+      <li>
+	the kind of ship (see the table at the top of this page);
+      </li>
+      <li>
+	the size of the ship;
+      </li>
+      <li>
+	the grid positions occupied by the ship; and
+      </li>
+      <li>
+	the number of grid positions occupied by the ship that have
+	not yet been hit.
+        <p/>
+      </li>
+    </ul>
+    <b>Methods:</b>
+    <b><tt>__init__()</tt></b> and <b><tt>__str__()</tt></b>
+    methods.
+  </dd>
+</dl>
+</blockquote>
+
+<h2>Errors</h2>
+
+
+There are several possible errors that relate to the contents 
+of the placement file (e.g., 
+too many or too few ships,
+not all of the ships are placed, 
+some ships are placed more than once, 
+one or more ships are placed off the board). Additionally, the position
+of a guess might be off the board.
+<p>
+Use if statements to detect these errors (that is, don't use asserts 
+or try/except) and perform the actions specified below.
+<ol>
+   <li>
+    There should be 5 ships, one of each type; if not print the following error message and quit:
+    <p/>
+    <p/>
+    Error message: "ERROR: fleet composition incorrect"
+    </li>
+    <li>
+    If the ship is out of the grid area, print the following error message and quit:
+    <p/>
+    <p/>
+    Error message: "ERROR: ship out-of-bounds: " + line
+    <p/>
+    </li>
+    <p/>
+    <li>
+    If the ship is not horizontal or vertical,  print the following error message and quit:
+    <p/>
+    <p/>
+    Error message: "ERROR: ship not horizontal or vertical: " + line
+    </li>
+    <p/>
+    <li>
+    If the ship overlaps with another ship, print the following error message and quit:
+    <p/>
+    <p/>
+    Error message: "ERROR: overlapping ship: " + line
+    <p/>
+    </li>
+    <p/>
+    <li>
+    If the ship is an incorrect size for its type, print the following error message and quit:
+    <p/>
+    <p/>
+    Error message: "ERROR: incorrect ship size: " + line
+    <p/>
+  </li>
+  <li>
+    If a guess is at a position not within the board,
+    print the following error message, discard the guess, and
+    continue processing:
+    <p/>
+    Error message: "illegal guess"
+    <p/>
+  </li>
+</ol>
+<p>
+<strong>Note:</strong> You must handle the errors in the order listed above so that your output
+matches the output expected by the autograder.
+<p>
+To help simplify the logic of your code to terminate the program after the 
+errors in items 1-5 above are reported, you may use Python's system library.
+First, include the following import statement at the top of your program:
+<blockquote>
+<b><tt>import sys</tt></b>
+</blockquote>
+After printing the appropriate error message, exit your program like so:
+<blockquote>
+<b><tt>sys.exit(0)</tt></b>
+</blockquote>
+
+
+<h2>Examples</h2>
+An example of the program's expected behavior is given here 
+<a href="example-battleship.html" target="_blank">Battleship Input/Output Example</a>.
+The input files corresponding to this
+    example are available as
+    <a href="example-placement.txt" target="_blank">example-placement.txt</a>
+    (placement file) and
+    <a href="example-guess.txt" target="_blank">example-guess.txt</a>
+    (guess file).
+    The rules for legal guesses are given in the link <a href="legal-battleship.html">battleship-rules</a>.
+<p/>
+`<hr/>
+
+</body>
+</html>

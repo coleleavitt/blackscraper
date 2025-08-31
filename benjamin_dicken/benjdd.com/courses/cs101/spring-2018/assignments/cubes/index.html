@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Cubes</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-cubes">CSc 101: Cubes</h1>
+
+<p>In this assignment, you will write a simple “game” that allows a user to move a character (a circle) around the screen.
+An example of the game being played is shown below:</p>
+
+<p><img src="./res/cubes.gif" width="300px" /></p>
+
+<p>Note several things about this game:</p>
+
+<ul>
+  <li>The canvas is 500x500px.
+Each Square on the grid is 100x100 pixels.</li>
+  <li>The background can be a color of your choosing (in my example, I chose blue).</li>
+  <li>Your character should start in the top-left position.
+The character must be a circle, but you can add extra shapes if you like.</li>
+  <li>The character can move up/left/down/right with the w/a/s/d keys, respectively.</li>
+  <li>The starting tile should be red.</li>
+  <li>There are two yellow tiles.
+The player should not be able to move onto a yellow tile, even if they try.</li>
+  <li>When the player lands on the green circle, the “You Win!” text should appear on the screen in large letters.</li>
+  <li>The player should be forced to stay in-bounds on the grid of tiles.</li>
+</ul>
+
+<p>The red, yellow, and green tiles should have the colors shown.
+You may choose any color you want for the player, borders, and background.</p>
+
+<p>Also, you must:</p>
+
+<ul>
+  <li>Use for-loops to generate th grid of tiles.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">keyPressed</code> function to detect key presses.</li>
+</ul>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>Below is a suggestion of how to go about implementing this program.
+You are not required to follow it though.
+First, use for-loops to get the basic grid displaying.</p>
+
+<p><img src="./res/cubes-blue.png" width="275px" /></p>
+
+<p>Next, draw the red, yellow, and green tiles.
+You don’t have to worry about enforcing the rules with the yellow or green tiles yet, just get them drawn.</p>
+
+<p><img src="./res/cubes-color.png" width="275px" /></p>
+
+<p>Next, draw the player so that it begins on the top-left tile.</p>
+
+<p><img src="./res/cubes-player.png" width="275px" /></p>
+
+<p>Next, get the player movement working, and make sure that you can properly detect that the player has won.
+You’ll need to use if-statements for both of these tasks.
+Don’t yet worry about blocking the yellow tiles or the borders.</p>
+
+<p><img src="./res/cubes-win.gif" width="275px" /></p>
+
+<p>Lastly, add some extra if-statements (or change ones you already wrote) so that the player stays on the canvas, and cannot go over a yellow tile.</p>
+
+<h2 id="comments">Comments</h2>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+You should follow the style guidelines that we have discussed in class.
+Each program file should have a header comment at the top that has roughly the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
+// Author: Student Name
+// Description:
+//    A short description of what this program does!
+// 
+</code></pre></div></div>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>It is due on 3/16/2018 at 5:00pm.</p>
+
+<p>Name the file <code class="language-plaintext highlighter-rouge">cubes.pde</code>.
+Turn in each of the files described in the spec (1 total) the assignment dropbox in D2L before the due date.
+Make sure to name the files <strong>exactly</strong> as this document specifies.
+In general, make sure to follow these instructions precisely.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

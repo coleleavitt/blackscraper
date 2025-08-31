@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Section 11</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-section-11--strings">CSc 101: Section 11 – Strings!</h1>
+
+<p>In this section, you are going to work using and displaying strings to the canvas and various string methods.</p>
+
+<p><br /></p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/section_11_1.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_2</code>.
+      This time, display the same lyrics, but you may use the <code>text()</code> function only one time.
+      How can this be done?
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./res/section_11_2.png" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_3</code>.
+      Next, repeat the lyrics four (or more) times on the canvas, as is pictured.
+      Don't just copy/paste <code>text()</code> calls four times.
+      Instead, store the String into a variable, and use the variable when displaying the text.
+      Using the variable will help you reduce the size and reprtition in your program.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/section_11_3.gif" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_4</code>.
+      As you can see, this sketch simulates the scrolling-space-text seen at the beginning of most Star-Wars films
+      (Trivia: which movie does this scrolling-space-text text not appear in?).
+      You can use the same text as I did, or find other text from Star-Wars online.
+      You should put the text into a String variable, and you may only use one String variable and one use of the <code>text()</code> function.
+      To do this, but newlines (<code>\n</code>) directly into the string with the text.
+      Also, don't forget to incldue some stars in the background!
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./res/section_11_4.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_5</code>.
+      This sketch will display some strings to the canvas that keep track of the mouse clicks, key clicks, and frames of your program.
+      Each time the mouse is clicked, the clicked count will increase by one.
+      Each time any key on the keyboard is pressed, the keyboard count will increase by one.
+      Each time a new fram is displayed (in other words, each time draw is run) the frame count will increase.
+      You should keep track of these three values with integer variables in your program.
+      To display the words to the screen, you will need to concatenate strings and numbers together with the <code>+</code> sign.
+      Also, you will probably want to make your <code>frameRate()</code> slow, so that the last line doe not change insanely fast.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<p>The last few problems require the use of the <code class="language-plaintext highlighter-rouge">substring()</code> function in processing.
+We just barely got to talk about this function in class before your section.
+If you don’t feel confident in using it, do one or more of the following before tackling these problems:</p>
+
+<ul>
+  <li>Go over the <code class="language-plaintext highlighter-rouge">substring()</code> class slides</li>
+  <li>Take a look at the official processing documentation on the function: <a href="https://processing.org/reference/String_substring_.html">processing.org/reference/String_substring_.html</a></li>
+  <li>Ask your section leader to explain the function in section</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/section_11_5.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_6</code>.
+      This sketch will display one simple string, the word "COOL".
+      However, the only string variable that you are allowed to "hard-code" in your program is the following:
+<div><pre><code>String alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";</code></pre></div>
+      You must create a new String variable with the contents "COOL" in it by acess substrings of the <code>alph</code> string.
+      Recall that to do this, use the <code>substring()</code> function, which is built-into all String variables.
+      For example, to access the letter "D" in the <code>alph</code> variable, you would do the following:
+<div><pre><code>String letterD = alph.substring(3, 4);</code></pre></div>
+      This will but the string that begins at index 3 and ends before index 4 into the <code>letterD</code> variable.
+      This ends up just being the letter "D".
+      Create a new string variable the has "COOL" in it using this technique, and then display it on the canvas.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-6">Problem 6</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./res/section_11_6.png" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_13_6</code>.
+      In this program, you will build off of what you did in problem 6.
+      Using the same <code>alph</code> variable, extract three words: "COOL", "STORY" and "BRO".
+      Once you have extracted them, display them on the canvas in three different colors, as shown
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-7">Problem 7</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./res/section_11_7.png" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_11_7</code>.
+      You can use the below code as a starting point:
+
+<div><pre><code>void setup() {
+  size(700, 200);
+  textSize(50);
+}
+
+String str = "ABCDEFGHIJKLMN[x]OPQRSTUVWXYZ";
+
+void draw() {
+  background(100);
+  // put your code here!
+}
+</code></pre></div>
+
+      You code should split the string <code>str</code> into two chunks, based on where the <code>[x]</code> is.
+      After splitting, show the string that is before it and after it on the canvas.
+      You should not just hard-code the indexes to work with only <code>"ABCDEFGHIJKLMN[x]OPQRSTUVWXYZ"</code>.
+      It should worf for other strings with <code>[x]</code> in it as well.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h3 id="submit-at-least-3-solutions-to-the-d2l-dropbox">Submit at least 3 solutions to the D2L dropbox</h3>
+
+<p><br /></p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/CustomFields</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/CustomFields</p>
+      <p>Custom Fields</p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">http://dev.ws.veriscanonline.com/VSWebServices67/CustomFields</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">POST</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Xml</td>
+          <td>
+            <a href="#request-xml">Example</a>,<a href="#request-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Json</td>
+          <td>
+            <a href="#request-json">Example</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="#response-xml">Example</a>,<a href="#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="request-xml">The following is an example request Xml body:</a>
+        <pre class="request-xml">&lt;RequestModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;
+  &lt;AppVersion&gt;String content&lt;/AppVersion&gt;
+  &lt;CompanyId&gt;String content&lt;/CompanyId&gt;
+  &lt;ComputerName&gt;String content&lt;/ComputerName&gt;
+  &lt;HardwareId&gt;String content&lt;/HardwareId&gt;
+  &lt;IsLive&gt;true&lt;/IsLive&gt;
+  &lt;TimeZoneId&gt;String content&lt;/TimeZoneId&gt;
+  &lt;UserId&gt;2147483647&lt;/UserId&gt;
+  &lt;Login&gt;String content&lt;/Login&gt;
+  &lt;Password&gt;String content&lt;/Password&gt;
+&lt;/RequestModel&gt;</pre>
+      </p>
+      <p>
+        <a name="request-json">The following is an example request Json body:</a>
+        <pre class="request-json">{
+	"AppVersion":"String content",
+	"CompanyId":"String content",
+	"ComputerName":"String content",
+	"HardwareId":"String content",
+	"IsLive":true,
+	"TimeZoneId":"String content",
+	"UserId":2147483647,
+	"Login":"String content",
+	"Password":"String content"
+}</pre>
+      </p>
+      <p>
+        <a name="response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;CustomFieldsResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+  &lt;ErrorCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ErrorCode&gt;
+  &lt;Status xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Status&gt;
+  &lt;StatusCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/StatusCode&gt;
+  &lt;ValidationResult xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+  &lt;/ValidationResult&gt;
+  &lt;CustomFieldsSettings&gt;
+    &lt;CustomFields&gt;
+      &lt;CustomField&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;Options&gt;
+          &lt;CustomFieldOption&gt;
+            &lt;Id&gt;2147483647&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/CustomFieldOption&gt;
+          &lt;CustomFieldOption&gt;
+            &lt;Id&gt;2147483647&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/CustomFieldOption&gt;
+        &lt;/Options&gt;
+        &lt;Order&gt;2147483647&lt;/Order&gt;
+        &lt;Required&gt;true&lt;/Required&gt;
+        &lt;TypeId&gt;UnknownCustomFieldType&lt;/TypeId&gt;
+      &lt;/CustomField&gt;
+      &lt;CustomField&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;Options&gt;
+          &lt;CustomFieldOption&gt;
+            &lt;Id&gt;2147483647&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/CustomFieldOption&gt;
+          &lt;CustomFieldOption&gt;
+            &lt;Id&gt;2147483647&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/CustomFieldOption&gt;
+        &lt;/Options&gt;
+        &lt;Order&gt;2147483647&lt;/Order&gt;
+        &lt;Required&gt;true&lt;/Required&gt;
+        &lt;TypeId&gt;UnknownCustomFieldType&lt;/TypeId&gt;
+      &lt;/CustomField&gt;
+    &lt;/CustomFields&gt;
+    &lt;ShowComments&gt;true&lt;/ShowComments&gt;
+    &lt;ShowEmail&gt;true&lt;/ShowEmail&gt;
+    &lt;ShowPhone&gt;true&lt;/ShowPhone&gt;
+    &lt;ShowTags&gt;true&lt;/ShowTags&gt;
+  &lt;/CustomFieldsSettings&gt;
+&lt;/CustomFieldsResponseModel&gt;</pre>
+      </p>
+      <p>
+        <a name="response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"ErrorCode":"String content",
+	"Status":"String content",
+	"StatusCode":2147483647,
+	"ValidationResult":[{
+		"Errors":["String content"],
+		"Field":"String content"
+	}],
+	"CustomFieldsSettings":{
+		"CustomFields":[{
+			"Id":2147483647,
+			"Name":"String content",
+			"Options":[{
+				"Id":2147483647,
+				"Name":"String content"
+			}],
+			"Order":2147483647,
+			"Required":true,
+			"TypeId":0
+		}],
+		"ShowComments":true,
+		"ShowEmail":true,
+		"ShowPhone":true,
+		"ShowTags":true
+	}
+}</pre>
+      </p>
+      <p>
+        <a name="request-schema">The following is the request Xml Schema:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="RequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:RequestModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModel" nillable="true" type="tns:RequestModel" /&gt;
+  &lt;xs:complexType name="RequestModelBase"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AppVersion" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLive" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeZoneId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModelBase" nillable="true" type="tns:RequestModelBase" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="request-schema">Additional request Xml Schemas:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:complexType name="CustomFieldsResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:ResponseModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="CustomFieldsSettings" nillable="true" type="tns:CustomFieldsSettingsResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomFieldsResponseModel" nillable="true" type="tns:CustomFieldsResponseModel" /&gt;
+  &lt;xs:complexType name="CustomFieldsSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CustomFields" nillable="true" type="tns:ArrayOfCustomField" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowComments" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowEmail" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowPhone" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowTags" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomFieldsSettingsResponseModel" nillable="true" type="tns:CustomFieldsSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfCustomField"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CustomField" nillable="true" type="tns:CustomField" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCustomField" nillable="true" type="tns:ArrayOfCustomField" /&gt;
+  &lt;xs:complexType name="CustomField"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Options" nillable="true" type="tns:ArrayOfCustomFieldOption" /&gt;
+      &lt;xs:element minOccurs="0" name="Order" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Required" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TypeId" xmlns:q2="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q2:CustomFieldType" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomField" nillable="true" type="tns:CustomField" /&gt;
+  &lt;xs:complexType name="ArrayOfCustomFieldOption"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldOption" nillable="true" type="tns:CustomFieldOption" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCustomFieldOption" nillable="true" type="tns:ArrayOfCustomFieldOption" /&gt;
+  &lt;xs:complexType name="CustomFieldOption"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomFieldOption" nillable="true" type="tns:CustomFieldOption" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResult" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseModel" nillable="true" type="tns:ResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfResponseValidationResultItem" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+  &lt;xs:complexType name="ResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Errors" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:simpleType name="CustomFieldType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="UnknownCustomFieldType" /&gt;
+      &lt;xs:enumeration value="String" /&gt;
+      &lt;xs:enumeration value="Number" /&gt;
+      &lt;xs:enumeration value="Date" /&gt;
+      &lt;xs:enumeration value="Dropdown" /&gt;
+      &lt;xs:enumeration value="Checkbox" /&gt;
+      &lt;xs:enumeration value="CheckboxMultiple" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="CustomFieldType" nillable="true" type="tns:CustomFieldType" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>

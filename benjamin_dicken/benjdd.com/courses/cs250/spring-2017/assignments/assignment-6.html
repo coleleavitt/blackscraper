@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 6</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-6">CSc 250: Assignment 6</h1>
+
+<p>This assignment is primarily python.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!</p>
+
+<p>When grading your assignments, each problem/script/function will be thoroughly tested with many types of input, so make sure you test your scripts/functions well!</p>
+
+<p>The python in this assignment will be graded using python 3.6, and tests will be run on a Mac machine.
+In general python works well cross-platform, but if you want to be absolutely sure your program works as expected, test on a mac!
+Any python version 3.4 or newer should suffice though.</p>
+
+<p>All of your scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program / script / set of functions does!
+# 
+</code></pre></div></div>
+
+<p>Each function in your script(s) should have a descriptive comment above it.
+If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="problem-1---hangman-100-points">Problem 1 - Hangman (100 points)</h2>
+
+<p><img src="/assets/hangman.jpg" width="300" /></p>
+
+<p>In this assignment you will implement <a href="https://en.wikipedia.org/wiki/Hangman_(game)">hangman</a> in python.
+If you are not familiar with this game, see the wikipedia article linked above.</p>
+
+<p>This implementation of hangman will be an interactive command-line interface game.
+Name the script <code class="language-plaintext highlighter-rouge">hangman.py</code>.
+There will be two players (player 1 and player 2).
+Player 1 will be responsible for choosing the word for player 2 to guess at the beginning of the game.
+This is the only time that player 1 will input information to the program.</p>
+
+<p>For the remainder of the program run, player 2 will be responsible for inputting letter guesses to the program.
+If player 2 guesses a correct letter, the program will update and will report the player’s current guessing progress.
+If the player guesses and incorrect letter, a body part will be added to the hangman, and then the program will ask for another letter.</p>
+
+<p>When you first start up hangman, you will see:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hangman.py
+GAME: Welcome to HANGMAN!
+GAME: PLAYER 1 Enter a hangman word:
+</code></pre></div></div>
+
+<p>At this point, player 1 should type in a word which player 2 will have to guess the letters of, and press enter.
+The word that player 1 inputs, may have upper or lower case alphabetical letters.
+Internally, it should be converted to all lower case.
+When player 2 guesses letters, the player may type lower and upper case letters.
+Since the word player 1 specified was converted to lower-case, the guessed letters should also be converted internally.
+After this, it will be up to player 2 to guess the word, letter-by-letter.</p>
+
+<p>For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hangman.py
+GAME: Welcome to HANGMAN!
+GAME: player 1 Enter a hangman word:
+ant
+GAME: Current hangman status:
+
+___
+GAME: player 2 guess a letter:
+</code></pre></div></div>
+
+<p>Player 2 is responsible for guessing the letters to spell out “ant”.
+Before each letter guess prompt, hangman will report the player’s current status.
+Initially the status is very simple because no body parts have been added to the hangman, and no letters have been guessed.</p>
+
+<p>Let’s say player 2 guesses ‘r’, then ‘d’, then ‘e’, all of which are not in the word “ant”.
+This is how the game should respond:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+GAME: Current hangman status:
+
+___
+GAME: player 2 guess a letter:
+r
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+
+___
+GAME: player 2 guess a letter:
+d
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+  |
+  |
+
+___
+GAME: player 2 guess a letter:
+e
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+--|
+  |
+
+___
+GAME: player 2 guess a letter:
+
+</code></pre></div></div>
+
+<p>As you can see, at each wrong guess a new body part was added to the man.
+At this point player 2 only has three guesses left before losing (which would add the other arm and both legs).</p>
+
+<p>From here, the user might guess a few correct words, say ‘a’ and ‘n’:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+GAME: player 2 guess a letter:
+a
+GAME: YES!
+GAME: Current hangman status:
+  _
+ |_|
+--|
+  |
+
+a__
+GAME: player 2 guess a letter:
+n
+GAME: YES!
+GAME: Current hangman status:
+  _
+ |_|
+--|
+  |
+
+an_
+GAME: player 2 guess a letter:
+
+</code></pre></div></div>
+
+<p>In each of these cases, no new body parts were added to the hangman, but the correctly guessed letters were added to the blanks (underscore).
+Player 2 has almost won.
+The player only needs to guess the last letter (‘t’).
+Winning from this point would look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+GAME: player 2 guess a letter:
+t
+GAME: YES!
+GAME: Current hangman status:
+  _
+ |_|
+--|
+  |
+
+ant
+GAME: player 2 wins!
+$
+</code></pre></div></div>
+
+<p>Once the player wins the program will exit.</p>
+
+<p>On the other hand, a losing sequence after the user had guessed ‘r’, ‘d’, ‘e’, ‘a’, and ‘n’ would look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+GAME: player 2 guess a letter:
+q
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+--|--
+  |
+
+an_
+GAME: player 2 guess a letter:
+x
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+--|--
+  |
+ /
+
+an_
+GAME: player 2 guess a letter:
+z
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+--|--
+  |
+ / \
+
+an_
+GAME: player 1 wins!
+$
+</code></pre></div></div>
+
+<p>Again, the program exists at this point.</p>
+
+<h2 id="duplicate-guesses">Duplicate Guesses</h2>
+
+<p>If the same letter is guessed more than once, you should not notify the user.
+If it was a correct guess, continue as normal.
+If it was an incorrect guess, this should still count as a “wrong” guess and a body part should be added to the hangman.
+Below are some examples of duplicating guesses:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hangman.py
+GAME: Welcome to HANGMAN!
+GAME: player 1 Enter a hangman word:
+tiger
+GAME: Current hangman status:
+
+_____
+GAME: player 2 guess a letter:
+g
+GAME: YES!
+GAME: Current hangman status:
+
+__g__
+GAME: player 2 guess a letter:
+g
+GAME: YES!
+GAME: Current hangman status:
+
+__g__
+GAME: player 2 guess a letter:
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hangman.py
+GAME: Welcome to HANGMAN!
+GAME: player 1 Enter a hangman word:
+zebra
+GAME: Current hangman status:
+
+_____
+GAME: player 2 guess a letter:
+x
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+
+_____
+GAME: player 2 guess a letter:
+x
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+  |
+  |
+
+_____
+GAME: player 2 guess a letter:
+x
+GAME: NOPE!
+GAME: Current hangman status:
+  _
+ |_|
+--|
+  |
+
+_____
+GAME: player 2 guess a letter:
+
+</code></pre></div></div>
+
+<h2 id="more-examples">More Examples</h2>
+
+<p>Below are several animated examples of a complete hangman game session:</p>
+
+<p><img src="/assets/hangman-win-1.gif" width="600" /></p>
+
+<p><img src="/assets/hangman-loss-1.gif" width="600" /></p>
+
+<p>The word that player 1 inputs for player 2 to guess should be a single word with no spaces.
+You do not have to handle this error.
+You may assume player 1 behaves as expected.</p>
+
+<p>Also, you can assume that players 2 will only ever guess one character at a time.
+You do not have to add error handling for the edge cases (though, you can if you want to).</p>
+
+<h2 id="testing-for-correctness">Testing for correctness</h2>
+
+<p>This assignment requires printing out precise text messages and notifications.
+As already mentioned, it is important to be precise when doing these printouts.</p>
+
+<p>We will only take minimal points off for very minor differences (for example, minor character spacing issues).
+However, we will take points off for any non-trivial differences, so try to be as precise as you can!</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 100 points.</p>
+
+<p>This was assigned on Friday, February 24, 2017.
+It is due Friday, March 3, 2017, at 6:00pm.</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place the <code class="language-plaintext highlighter-rouge">.py</code> file in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-6</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only the <code class="language-plaintext highlighter-rouge">.py</code> file(s) exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-6</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-6.zip</code>.
+There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>.
+Make sure to zip the directory, not the file(s) individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-6.zip</code> to the assignment-6 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

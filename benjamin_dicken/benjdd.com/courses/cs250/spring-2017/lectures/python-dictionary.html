@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-dictionaries">CSc 250: Lecture Notes: Dictionaries</h1>
+
+<p><img src="/assets/memes/dictionary.jpg" width="250" /></p>
+
+<p>In this section we are going to discuss the dictionary data type.</p>
+
+<h2 id="mapping-values">Mapping values</h2>
+
+<p>We previously covered lists in python.
+Lists are one of several types of “data-structures” that python has built-in.</p>
+
+<p>A <strong>data-structure</strong> is a way of arranging and organizing data in a computer program.
+Python has several useful data-structures built in to the language.
+One is a <code class="language-plaintext highlighter-rouge">list</code> (which we already covered).
+Another, which we cover in this lesson is the dictionary (<code class="language-plaintext highlighter-rouge">dict</code> type).</p>
+
+<p>Before we learn about dictionaries, we need to discuss the concept of <strong>mapping</strong>.
+Since we’re already familiar with lists, we’ll discuss how mapping works with lists first
+<strong>Mapping</strong> is the concept of assiciating a particular element (termed the “key”) to another element (termed the “value”).</p>
+
+<p>When using lists, we could access particular elements by their index.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; names[0]
+'Russ'
+&gt;&gt;&gt; names[1]
+'Lebron'
+&gt;&gt;&gt; names[4]
+'Eric'
+</code></pre></div></div>
+
+<p>One way of thinking about this is that each index (integer number) is associated with an element (string) in the list.
+Something like:</p>
+
+<ul>
+  <li>zero is associated with ‘Russ’</li>
+  <li>one is associated with ‘Lebron’</li>
+  <li>two is associated with ‘Steph’</li>
+  <li>three is associated with ‘Klay’</li>
+  <li>four is associated with ‘Eric’</li>
+</ul>
+
+<p>We use this <strong>association</strong> to access individual elements in the list.
+The number associated with each element is the position of the element in the list.
+Thus, lists have a mapping of “keys” to “values.”
+The keys of the data structure are the integer indexes of the list.
+Each index <strong>maps</strong> to a single value.</p>
+
+<p>Dictionaries expand on this idea of mapping one value to another.
+However, with dictionaries, we are not limited to mapping index numbers to a value in the list.
+Instead we can map <em>any</em> type of value to <em>any</em> other type of value.
+In lists, the values may have any type, but the keys re limited to integers that correspond to valid list indexes.
+In dictionaries, both the keys and the values may be of any type!</p>
+
+<h2 id="dictionaries">Dictionaries</h2>
+
+<p>When declaring a new dictionary, we must explicitly state which “keys” are associated with which “value”.
+Below is a very basic example, which ends up being very similar to a list since we are using numbers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = { 0:'Russ', 1:'Lebron', 2:'Steph', 3:'Klay', 4:'Eric' }
+&gt;&gt;&gt; type(names)
+&lt;class 'dict'&gt;
+&gt;&gt;&gt; print(names)
+{0: 'Russ', 1: 'Lebron', 2: 'Steph', 3: 'Klay', 4: 'Eric'}
+&gt;&gt;&gt; names[0]
+'Russ'
+&gt;&gt;&gt; names[2]
+'Steph'
+&gt;&gt;&gt; names[4]
+'Eric'
+</code></pre></div></div>
+
+<p>Notice a few things about this example:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">names</code> is not a <code class="language-plaintext highlighter-rouge">list</code> type, but a <code class="language-plaintext highlighter-rouge">dict</code> (short for dictionary).</li>
+  <li>The syntax to define a new dictionary is different that that of a list.
+When defining a list, we just put all of the values in a comma-separated list between square-brackets.
+When defining a dictionary, we put all the elements of the dictionary between curly-braces, and separate each element with commas.
+However, each element of the list is not a single value.
+Each element is a pair of values separated by a colon (<code class="language-plaintext highlighter-rouge">:</code>).
+The element on the left side of the colon is the <strong>key</strong>, and the element on the right side is the <strong>value</strong>.</li>
+  <li>Even though this is a dictionary, accessing the elements in the dictionary looks the same as accessing them in a list, because we set the <strong>keys</strong> to be the same as the position in the list.</li>
+</ul>
+
+<p>As already mentioned, when defining a dictionary we can use whatever values we want as the key for each value.
+Below are examples of using different keys for this same set of values.</p>
+
+<p>Using each player’s number as the key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = { 0:'Russ', 23:'Lebron', 30:'Steph', 11:'Klay', 2:'Eric' }
+&gt;&gt;&gt; names[0]
+'Russ'
+&gt;&gt;&gt; names[23]
+'Lebron'
+&gt;&gt;&gt; names[2]
+'Eric'
+&gt;&gt;&gt; names[123]
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+KeyError: 123
+</code></pre></div></div>
+
+<p>Using each player’s college as the key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = { 'UCLA':'Russ', 'none':'Lebron', 'Davidson':'Steph', 'WSU':'Klay', 'UK':'Eric' }
+&gt;&gt;&gt; names['UCLA']
+'Russ'
+&gt;&gt;&gt; names['Davidson']
+'Steph'
+&gt;&gt;&gt; names['MISSING']
+(error)
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+KeyError: 'MISSING'
+&gt;&gt;&gt; names[0]
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+KeyError: 0
+</code></pre></div></div>
+
+<p>In some sense, dictionaries are a more flexible/powerful version of a python list (not to say that lists are not useful in their own right).</p>
+
+<p>With dictionaries we can use the indexing syntax (square-brackets) to retrieve the value for a given key.
+Several examples of this are demonstrated above.
+We can also use this same syntax combined with an assignment (<code class="language-plaintext highlighter-rouge">=</code>) to add a key/value pair to an already-existing dictionary.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = { 'UCLA':'Russ', 'WSU':'Klay', 'KU':'Eric' }
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric'}
+&gt;&gt;&gt; names['UA'] = 'Andre'
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre'}
+&gt;&gt;&gt; names['DU'] = 'Kyrie'
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre', 'DU': 'Kyrie'}
+</code></pre></div></div>
+
+<p>Using this syntax, we were able to add two new key/value entries to the list.
+This syntax can also be used to change the value for a particular key.
+This happens automatically if we specify a key in the curly-braces that already exists.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print(names)
+{'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre', 'DU': 'Kyrie'}
+&gt;&gt;&gt; names['UCLA'] = 'Kevin'
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Kevin', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre', 'DU': 'Kyrie'}
+&gt;&gt;&gt; names['UA'] = 'Aaron'
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Kevin', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Aaron', 'DU': 'Kyrie'}
+</code></pre></div></div>
+
+<p>We can also <em>remove</em> key/value pairs from a dictionary using the <code class="language-plaintext highlighter-rouge">pop</code> function.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print(names)
+{'UCLA': 'Kevin', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Aaron', 'DU': 'Kyrie'}
+&gt;&gt;&gt; names.pop('WSU')
+'Klay'
+&gt;&gt;&gt; print(names)
+{'UCLA': 'Kevin', 'KU': 'Eric', 'UA': 'Aaron', 'DU': 'Kyrie'}
+</code></pre></div></div>
+
+<h2 id="checking-for-existence">Checking for existence</h2>
+
+<p>When writing and running programs, we can end up having dictionaries with many keys and values in them.
+We don’t always know for sure when a list might have a key that we want to loop up.
+In such cases, we want to check if a dictionary has a particular key before trying to access the values associated with the key.
+We can do this with an <code class="language-plaintext highlighter-rouge">if</code> statement and the <code class="language-plaintext highlighter-rouge">in</code> keyword:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = {'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre', 'DU': 'Kyrie'}
+&gt;&gt;&gt; college = 'WSU'
+&gt;&gt;&gt; if college in names:
+...     print('The player who playes at ' + college + ' is ' + names[college] )
+... 
+The player who playes at WSU is Klay
+</code></pre></div></div>
+
+<p>However, is we change <code class="language-plaintext highlighter-rouge">college</code> to a college name that is not any key in the dictionary <code class="language-plaintext highlighter-rouge">names</code>, the body of the <code class="language-plaintext highlighter-rouge">if</code> statement will not execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; college = 'ASU'
+&gt;&gt;&gt; if college in names:
+...     print('The player who playes at ' + college + ' is ' + names[college] )
+... 
+&gt;&gt;&gt; 
+</code></pre></div></div>
+
+<h2 id="iterating-through-keys-and-values">Iterating through keys and values</h2>
+
+<p>As with lists, it is sometimes useful to iterate over the key/value pairs in a dictionary with a loop.
+This can be accomplished with similar syntax to lists.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = {'UCLA': 'Russ', 'WSU': 'Klay', 'KU': 'Eric', 'UA': 'Andre', 'DU': 'Kyrie'}
+&gt;&gt;&gt; 
+&gt;&gt;&gt; for key,value in names.items() :
+...     print('The key "' + key + '" maps to the value "' + value + '"')
+... 
+The key "UCLA" maps to the value "Russ"
+The key "WSU" maps to the value "Klay"
+The key "KU" maps to the value "Eric"
+The key "UA" maps to the value "Andre"
+The key "DU" maps to the value "Kyrie"
+</code></pre></div></div>
+
+<p>Each time through the loop, the <code class="language-plaintext highlighter-rouge">key</code> variable will be one of the keys in the dictionary, and the <code class="language-plaintext highlighter-rouge">value</code> variable with be the corresponding value.</p>
+
+<p><br />
+<img style="float:left; margin-right:15px; margin-bottom:15px;" src="/assets/in-class-assignment.png" width="50" /></p>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">keys_with_val</code>.
+This function will take two arguments.
+The first will be named <code class="language-plaintext highlighter-rouge">dictionary</code> and will be a python dictionary.
+The second will be named <code class="language-plaintext highlighter-rouge">item</code> and will be a variable of any type.
+This function should iterate through each key/value in <code class="language-plaintext highlighter-rouge">dictionary</code>.
+If <code class="language-plaintext highlighter-rouge">item</code> is equal to both a key and value, print out “Both equal”.
+Else if <code class="language-plaintext highlighter-rouge">item</code> is equal to just the value, print out “val equal”.
+Else if <code class="language-plaintext highlighter-rouge">item</code> is equal to just the key, print out “key equal”.
+Otherwise, print nothing.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Prefix Codes</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Prefix Codes</h1>
+
+The primary purpose of this problem is to work with trees.
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problem, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class. You must follow the updated guidelines for commenting classes.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+  <li>
+ dictionary or list comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  </li>
+  <li>
+  nested functions (using def <i>within</i> a function to define another function)
+  </li>
+  <li>
+ exceptions (try/except)
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ generators and user defined iterators
+  </li>
+  <li>
+ default arguments
+  </li>
+  <li>
+ importing libraries (unless a library is explicitly mentioned in the specification))
+  </li>
+</ul>
+  </li>
+</ol>
+
+<h2>Background</h2>
+There are many ways to encode information. For example, the ASCII sequence is used to
+encode character relationships. ASCII codes are also
+fixed-length, hence the terms 7-bit ASCII and 8-bit ASCII.  Uniform lengths
+make turning a sequence of bits into the corresponding ASCII characters very
+easy.
+<p/>
+But what if you wanted variable length codes? Having variable length codes
+would permit values that are very popular (say, the letters ‘e’ and ‘t’ in
+English prose) to have shorter codes than less-popular values, thus saving
+space. Without a uniform code length, we need a way to tell when the code
+for one value stops and the next starts.  One way to do this is to create a
+<i>prefix code</i>. In a prefix code, the encoding of any value is never the first
+part of the encoding of any other value. This means that if we read a
+pattern and match it to a value, we know that we can stop trying to find a
+match; there isn’t a longer potential match to worry about.  
+<p/>
+For example, say that the encoding for ‘e’ is 11, and the encoding for ‘t’
+is 110. After reading the pattern 11, we don’t know if we should say that we
+found an ‘e’, or keep going to see if we’ll find the code for ‘t’. In a 
+prefix code, this situation can’t happen. ‘t’ would have to be encoded with
+a value whose prefix is something other than 11.
+<p/>
+One way to create a prefix code is called <i>Huffman Coding</i>. It
+generates binary encodings, which map nicely to binary trees if we allow the
+left child references to represent 0 and the right to represent 1. You won’t
+be writing the encoder for this assignment. Instead, we’ll give you a
+non-hierarchical representation of the tree and an encoded sequence of
+values. Your job will be to reconstruct the tree from the given
+representation, and use it to decode a given sequence of values.
+<p>
+<strong>Note:</strong> You may want to review the video for OCA-7, which covers Huffman Coding.
+You can watch the video again by logging into D2L and navigating to the NoCredit-OCAs.
+</p>
+
+<h2>Expected Behavior</h2>
+Write a Python program, in a file <b><tt>huffman.py</tt></b>, that
+behaves as specified below. 
+<p/>
+<ol>
+  <li>
+    Prompt the user for the name of an input file using 
+    <b><tt>input('Input file: ')</tt></b>.  The format of this file is
+    specified under <b>Input format</b> (below).
+    <p/>
+  </li>
+
+  <li>
+    <i>Build the decoding tree.</i>  This can be done recursively from the preorder and
+    inorder traversals: see <b>Algorithm</b> below.
+    <p/>
+  </li>
+
+  <li>
+    Once the tree has been constructed, the third line of the input file can
+    be decoded.  The algorithm for doing this is given under
+    <b>Algorithm</b> below.
+    <p/>
+  </li>
+</ol>
+
+<h2>Input format</h2>
+An input file is a text file containing three lines of text:
+<p/>
+<ul>
+  <li>
+    The first line is the preorder traversal of the decoding tree. 
+    This is a list of integers, each separated from the next by one or 
+    more spaces. Each integer will be unique; there will be no duplicates.
+  </li>
+  <li>
+    The second line is the inorder traversal of the same tree, formatted
+    in the same way as the preorder traversal.
+  </li>
+  <li>
+    The third line is the encoded sequence of values. The encoding will take
+    the form of a sequence of the characters ‘0’ and ‘1’. (That is, we’re 
+    simulating a file of bits.)
+  </li>
+</ul>
+<p/>
+<b>Example:</b>
+<blockquote>
+  <tt>9 0 6 3 2 8 4<br/>
+    6 0 2 3 8 9 4<br/>
+    0001011011100011</tt>
+</blockquote>
+<p/>
+(We’re not showing the corresponding tree; that’s for you to figure out!)
+
+<h2>Output format</h2>
+
+Your program is to output two sequences of values. The first is the
+postorder traversal of the tree you build from the first two lines of the
+data file. The second is the decoded sequence of values.
+<p/>
+For example, here’s output that corresponds to the sample data file shown
+above:
+<p/>
+<blockquote>
+<tt>6 2 8 3 0 4 9<br/>
+  62448468</tt>
+</blockquote>
+<p/>
+The first line is the post-order traversal of the tree; the second line
+is the decoded sequence.
+
+
+<h2>Algorithm</h2>
+<h3>1. Tree Construction</h3>
+The decoding tree can be constructed recursively from the preorder and
+inorder traversals. We know that the first value in a preorder traversal is
+the tree’s root, and we can build a binary tree node to hold it. In the
+inorder traversal, the values ahead of the root are in the root’s left
+subtree, and those to the right are in the right subtree. Each of those
+groups of values will be grouped together in the preorder traversal, too,
+but likely not in the same order. Because each of those two groups came from
+subtrees, the preorder traversal reveals the root of each subtree. Thus, we
+can recursively continue the process on the content of the subtrees and
+thereby reconstruct the original tree.
+<p/>
+As an example, here are the preorder and inorder traversals of a binary tree
+of integers: 
+<p/>
+<blockquote>
+Preorder: 5 8 9 2 4 3<br/>
+Inorder: 8 9 5 4 2 3
+</blockquote>
+<p/>
+The first value in the preorder sequence is 5. Ahead of 5 in the inorder
+traversal are 8 and 9, and after it are 4, 2, and 3. Thus, 5’s left subtree 
+must contain 8 and 9, and the right must contain 4, 2, and 3. But in which
+configurations? Back to the preorder traversal. 8 is ahead of 9 in the 
+preorder sequence, meaning that 8 is the root of that subtree. In the other 
+group, 2 is the root. We can call the method on itself twice, once for each
+subgroup, to form those trees. When completed, the resulting tree is:
+<blockquote>
+  <img src="tree.png" alt="tree.png" width="8%"/>
+</blockquote>
+
+<h3>2. Decoding an encoded sequence of values</h3>
+To decode the encoded sequence of values (the third line of the input file),
+start at the root of the tree, and read the first character. If ‘0’, follow
+the left child reference. Otherwise, follow the right. When you reach a leaf
+node, output the node’s value. 
+Return to the tree’s root, and continue until the input is exhausted.
+<p/>
+No recursion required! Note that the values of the internal nodes will never
+be output.
+<p/>
+<b>NOTE:</b> Output is generated <u>only</u> for leaf nodes.  For example,
+consider the following tree:
+<blockquote>
+  <img src="s0.png" alt="tree.png" width="7%"/>
+</blockquote>
+In this case, there are two leaf nodes, and the sequences that lead to them
+are <tt>01</tt> and <tt>10</tt>.  Thus,
+if the sequence being decoded is <tt>00</tt> or <tt>11</tt>,
+your program should not produce any output because these sequences do not
+lead to a leaf node.
+
+
+<h2>Programming Requirements</h2>
+Your program should meet the following requirements:
+<p/>
+<ul>
+  <li>
+    The decoding tree <i>must</i> be constructed recursively.  This code takes
+    as arguments two lists of integers: the preorder traversal and the inorder
+    traversal of the tree and returns the tree.
+  </li>
+  <li>
+    At each level of this recursive tree construction process, you have to 
+    find the nodes in the preorder and inorder traversals for each of the left 
+    and right subtrees of the node being processed.  
+  <li>
+    When using the tree to decode a sequence, you may find that an iterative solution 
+   is simpler. However, you are allowed to use either iteration or recursion for this step.
+  </li>
+</ul>
+<p/>
+Other than this, you are free to design your tree class and the rest of your solutions 
+as you see fit.
+We've had several assignments that use classes by now, and at this point you ought to know
+what to do and how to do it.  Have fun, and impress us!
+
+<h2>Errors</h2>
+
+The program does not require error checking.
+
+<h2>Examples and testing</h2>
+
+<a href="examples.html" target="_blank">This page</a> describes how to
+create examples and test cases for this problem.
+
+<p/>
+<hr/>
+
+</body>
+</html>
+

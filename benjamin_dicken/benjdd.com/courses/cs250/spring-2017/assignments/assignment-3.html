@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 3</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-3">CSc 250: Assignment 3</h1>
+
+<p>This assignment has a little bit of bash, and then some very basic python programs.</p>
+
+<p>For the bash problems in this assignment, students are limited to using the following commands:</p>
+
+<p><code class="language-plaintext highlighter-rouge">pwd</code> <code class="language-plaintext highlighter-rouge">ls</code> <code class="language-plaintext highlighter-rouge">cd</code> <code class="language-plaintext highlighter-rouge">touch</code> <code class="language-plaintext highlighter-rouge">rm</code> <code class="language-plaintext highlighter-rouge">rmdir</code> <code class="language-plaintext highlighter-rouge">find</code> <code class="language-plaintext highlighter-rouge">echo</code> <code class="language-plaintext highlighter-rouge">cat</code> <code class="language-plaintext highlighter-rouge">sort</code> <code class="language-plaintext highlighter-rouge">grep</code> <code class="language-plaintext highlighter-rouge">head</code> <code class="language-plaintext highlighter-rouge">tail</code> <code class="language-plaintext highlighter-rouge">uniq</code> <code class="language-plaintext highlighter-rouge">rev</code> <code class="language-plaintext highlighter-rouge">cut</code> <code class="language-plaintext highlighter-rouge">sed</code> <code class="language-plaintext highlighter-rouge">awk</code> <code class="language-plaintext highlighter-rouge">date</code> <code class="language-plaintext highlighter-rouge">if</code>/<code class="language-plaintext highlighter-rouge">else</code> <code class="language-plaintext highlighter-rouge">for</code> <code class="language-plaintext highlighter-rouge">while</code> <code class="language-plaintext highlighter-rouge">read</code> <code class="language-plaintext highlighter-rouge">wc</code></p>
+
+<p>You can also use any other bash feature discussed in the lecture notes.</p>
+
+<p>When grading your assignments, each problem will be thoroughly tested with many types of input, so make sure you test your scripts well!</p>
+
+<p>Obviously, this homework requires the use of the bash shell.
+If you do not have a Mac, Unix, or Linux computer that can run bash, do this assignment in one of the CS computer labs in Gould-Simpson.</p>
+
+<p>All of your scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top (under the Sha-Bang, in the case of the bash scripts) that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A description of what this program/script does!
+#    In this section, you can document how the script works, and what the
+#    command-line options are.
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="problem-1-80-points">Problem 1 (80 Points)</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">todo.sh</code>.
+This script will act as a very basic todo-list management tool.
+This script will have four different modes of operation: <code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">add</code>, <code class="language-plaintext highlighter-rouge">remove</code>, and <code class="language-plaintext highlighter-rouge">clear</code>.
+The mode will always be given as the first argument of the script.</p>
+
+<p>This script will use a file called <code class="language-plaintext highlighter-rouge">todo.txt</code> as a “database” to store the todo-list information in.
+For all of the operations that this script does, assume that <code class="language-plaintext highlighter-rouge">todo.txt</code> is in the current working directory.</p>
+
+<p>If an invalid mode is specified on the command line, you should print the message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unknown mode
+</code></pre></div></div>
+
+<p>And then exit the script.</p>
+
+<p>At the beginning of the script, before doing any of the list operations, you should check to ensure that <code class="language-plaintext highlighter-rouge">./todo.txt</code> exists (for all modes).
+If it does not exist, print:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The todo-list database file is missing!
+</code></pre></div></div>
+
+<p>And then immediately <code class="language-plaintext highlighter-rouge">exit</code> from the script.
+If it does exist, continue execution as normal.</p>
+
+<h3 id="list-mode">List Mode</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">list</code> mode, the current todo-list will be shown.</p>
+
+<p>So, if <code class="language-plaintext highlighter-rouge">todo.txt</code> is empty, running the script in <code class="language-plaintext highlighter-rouge">list</code> mode will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+$
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">todo.txt</code> has some todo-list entries in it, running would look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Check the mail
+* Finish assignment 3
+* Be awesome
+</code></pre></div></div>
+
+<p>Each line of <code class="language-plaintext highlighter-rouge">todo.txt</code> represents an entry in the todo-list.
+For the example run of <code class="language-plaintext highlighter-rouge">./todo.sh list</code> above, <code class="language-plaintext highlighter-rouge">todo.txt</code> would have had the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Check the mail
+Finish assignment 3
+Be awesome
+</code></pre></div></div>
+
+<p>Essentially, <code class="language-plaintext highlighter-rouge">list</code> mode iterates over each line of <code class="language-plaintext highlighter-rouge">todo.txt</code>, and prints the line to stdout with a <code class="language-plaintext highlighter-rouge">*</code> and a space before it.
+The <code class="language-plaintext highlighter-rouge">*</code> character represents list bullet points.
+Because of the way this script works, there can be no multi-line todo-list entries.</p>
+
+<h3 id="add-mode">Add Mode</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">add</code> mode, this script will <em>add</em> todo-list entries.
+It will add an entry to the to-do list by appending the entry to the file named todo.txt.</p>
+
+<p>Say <code class="language-plaintext highlighter-rouge">todo.txt</code> currently looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Check the mail
+Finish assignment 3
+Be awesome
+</code></pre></div></div>
+
+<p>And running in <code class="language-plaintext highlighter-rouge">list</code> mode displays:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Check the mail
+* Finish assignment 3
+* Be awesome
+</code></pre></div></div>
+
+<p>We can add an element to the list by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh add "Take out the trash"
+Todo entry 'Take out the trash' added.
+$
+</code></pre></div></div>
+
+<p>Notice that the first argument to the script is the mode (<code class="language-plaintext highlighter-rouge">add</code>) and the second argument is a string with the todo-list entry to add.
+A successful run in <code class="language-plaintext highlighter-rouge">add</code> mode prints out a message of the form shown above, and it should add an element to the list.
+Now, <code class="language-plaintext highlighter-rouge">todo.txt</code> will look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Check the mail
+Finish assignment 3
+Be awesome
+Take out the trash
+</code></pre></div></div>
+
+<p>And running in list mode after this will display the list, including the new entry:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Check the mail
+* Finish assignment 3
+* Be awesome
+* Take out the trash
+</code></pre></div></div>
+
+<h3 id="remove-mode">Remove Mode</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">remove</code> mode, <code class="language-plaintext highlighter-rouge">todo.sh</code> will remove an individual entry from the todo list file.</p>
+
+<p>Continuing from the last example, say <code class="language-plaintext highlighter-rouge">list</code> mode displays:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Check the mail
+* Finish assignment 3
+* Be awesome
+* Take out the trash
+</code></pre></div></div>
+
+<p>Perhaps we have now completed the task of “Be Awesome,” so we want to remove it from the list.
+To do the removal, run <code class="language-plaintext highlighter-rouge">todo.sh</code> in <code class="language-plaintext highlighter-rouge">remove</code> mode and give it an entry number to remove as a command line argument.
+In this case, “Be awesome” is entry 3, because it is the third line printed.
+So, to do the removal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh remove 3
+Todo entry 3 removed.
+$
+</code></pre></div></div>
+
+<p>If all is successful, <code class="language-plaintext highlighter-rouge">remove</code> mode should print a message with the form shown above.
+And now <code class="language-plaintext highlighter-rouge">list</code> displays:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Check the mail
+* Finish assignment 3
+* Take out the trash
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">* Be awesome</code> entry has been removed.
+Perhaps we have also checked the mail, so we want to remove the first entry.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh remove 1
+Todo entry 1 removed.
+$
+$ ./todo.sh list
+* Finish assignment 3
+* Take out the trash
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">* Check the mail</code> entry has been removed.
+You do not have to worry about a user of the script typing in an invalid row to remove, we won’t test your program in that way.</p>
+
+<p><strong>HINT:</strong> to remove an arbitrary line from a text file, you can use the command <code class="language-plaintext highlighter-rouge">sed -i '' "Nd" file-name</code>.
+Just replace <code class="language-plaintext highlighter-rouge">N</code> with the line number you want removed, and replace <code class="language-plaintext highlighter-rouge">file-name</code> with the name of the file to do the removal on.</p>
+
+<h3 id="clear-mode">Clear Mode</h3>
+
+<p>Running the script in <code class="language-plaintext highlighter-rouge">clear</code> mode clears the todo-list. If list-mode displays:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+* Feed the dog
+* Feed the fish
+* Feed the cat
+</code></pre></div></div>
+
+<p>And then we run the script in <code class="language-plaintext highlighter-rouge">clear</code> mode:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh clear
+All todo entries cleared.
+$
+</code></pre></div></div>
+
+<p>An informative message is printed, and now the todo-list is empty:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./todo.sh list
+$
+</code></pre></div></div>
+
+<p>You should use one or more bash conditionals and at least one bash loop when implementing <code class="language-plaintext highlighter-rouge">todo.sh</code>.</p>
+
+<h2 id="problem-2-10-points">Problem 2 (10 Points)</h2>
+
+<p>Write a python program named <code class="language-plaintext highlighter-rouge">star-wars.py</code>.
+This program has one job.
+When executed, it will print out the following snippet from the “Star Wars: A New Hope” script to stdout:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*** A large, multiple-eyed Creature gives Luke a rough shove.  ***
+
+CREATURE: Negola dewaghi wooldugger?!?
+
+*** The hideous freak is obviously drunk. Luke tries to ignore ***
+*** the creature and turns back on his drink. A short, grubby  ***
+*** Human and an even smaller rodent-like beast join the       ***
+*** belligerent monstrosity.                                   ***
+
+HUMAN: He doesn't like you.
+
+LUKE: I'm sorry.
+
+HUMAN: I don't like you either.
+
+*** The big creature is getting agitated and yells out some    ***
+*** unintelligible gibberish at the now rather nervous, young  ***
+*** adventurer.                                                ***
+
+HUMAN: Don't insult us.
+       You just watch yourself. 
+       We're wanted men.
+       I have the death sentence in twelve systems.
+
+LUKE: I'll be careful then.
+
+HUMAN: You'll be dead!
+</code></pre></div></div>
+
+<h2 id="problem-3-10-points">Problem 3 (10 Points)</h2>
+
+<p>Write a python program named <code class="language-plaintext highlighter-rouge">007.py</code>.
+This program has one job.
+When executed, it will print out the following text art to stdout:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       ________   ________    _________  ____________;_
+      - ______ \ - ______ \ / _____   //.  .  ._______/
+     / /     / // /     / //_/     / // ___   /
+    / /     / // /     / /       .-'//_/|_/,-'
+   / /     / // /     / /     .-'.-'
+  / /     / // /     / /     / /
+ / /     / // /     / /     / /
+/ /_____/ // /_____/ /     / /
+\________- \________-     /_/
+</code></pre></div></div>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 100 points.</p>
+
+<p>This was assigned on Thursday, February 2, 2017. It is due Tuesday, February 9, 2017, at 12:30pm (The start of class).</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place each <code class="language-plaintext highlighter-rouge">.sh</code> and <code class="language-plaintext highlighter-rouge">.py</code> file in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-3</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only the <code class="language-plaintext highlighter-rouge">.sh</code> and <code class="language-plaintext highlighter-rouge">.py</code> files exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-3</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-3.zip</code>. There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>. Make sure to zip the directory, not the files individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-3.zip</code> to the assignment-3 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

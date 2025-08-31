@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 Can't Stop The Feeling</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110-cant-stop-the-feeling">CSc 110: Can’t Stop The Feeling</h1>
+
+<p>This assignment should be written in the python programming language.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!
+You may use any python version 3.0 or newer.</p>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+Some points are allocated towards style and commenting!
+Each program file should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program does!
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="cant-stop-the-feeling-39-points">Can’t Stop The Feeling (39 points)</h2>
+
+<p>If you haven’t yet listened to “CAN’T STOP THE FEELING!” by JT, stop reading this spec and go listen.
+Like, <em>now</em>.</p>
+
+<p>Now that that’s out of the way, let’s recap the lyrics of the song:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I got this feeling inside my bones
+It goes electric, wavey when I turn it on
+All through my city, all through my home
+We're flying up, no ceiling, when we in our zone
+
+I got that sunshine in my pocket
+Got that good soul in my feet
+I feel that hot blood in my body when it drops
+I can't take my eyes up off it, moving so phenomenally
+Room on lock, the way we rock it, so don't stop
+
+And under the lights when everything goes
+Nowhere to hide when I'm getting you close
+When we move, well, you already know
+So just imagine, just imagine, just imagine
+
+Nothing I can see but you when you dance, dance, dance
+A feeling good, good, creeping up on you
+So just dance, dance, dance, come on
+All those things I shouldn't do
+But you dance, dance, dance
+And ain't nobody leaving soon, so keep dancing
+
+I can't stop the feeling
+So just dance, dance, dance
+I can't stop the feeling
+So just dance, dance, dance
+
+Ooh, it's something magical
+It's in the air, it's in my blood, it's rushing on
+I don't need no reason, don't need control
+I fly so high, no ceiling, when I'm in my zone
+
+I got that sunshine in my pocket
+Got that good soul in my feet
+I feel that hot blood in my body when it drops
+I can't take my eyes up off it, moving so phenomenally
+Room on lock, the way we rock it, so don't stop
+
+Under the lights when everything goes
+Nowhere to hide when I'm getting you close
+When we move, well, you already know
+So just imagine, just imagine, just imagine
+
+Nothing I can see but you when you dance, dance, dance
+Feeling good, good, creeping up on you
+So just dance, dance, dance, come on
+All those things I shouldn't do
+But you dance, dance, dance
+And ain't nobody leaving soon, so keep dancing
+
+I can't stop the feeling
+So just dance, dance, dance
+I can't stop the feeling
+So just dance, dance, dance
+
+I can't stop the feeling
+So just dance, dance, dance
+I can't stop the feeling
+So just dance, dance, dance
+
+I can't stop the, I can't stop the
+I can't stop the, I can't stop the
+I can't stop the feeling
+
+Nothing I can see but you when you dance, dance, dance
+Feeling good, good, creeping up on you
+So just dance, dance, dance, come on
+All those things I shouldn't do
+But you dance, dance, dance
+And ain't nobody leaving soon, so keep dancing
+</code></pre></div></div>
+
+<p>(Note that I left out a few lyrics, but this is most of them).</p>
+
+<p>You will write a python program that prints out these lyrics exactly.
+However, there are some requirements on how this program functions…</p>
+
+<p>Notice that some lyrical sections only show up once, but some lyrics show up multiple times throughout the song.
+The verses, for example, never repeat.</p>
+
+<p>However, the chorus of the song:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nothing I can see but you when you dance, dance, dance
+Feeling good, good, creeping up on you
+So just dance, dance, dance, come on
+All those things I shouldn't do
+But you dance, dance, dance
+And ain't nobody leaving soon, so keep dancing
+</code></pre></div></div>
+
+<p>Is repeated three times.
+Similarly, the post-chorus/bridge:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I can't stop the feeling
+So just dance, dance, dance
+I can't stop the feeling
+So just dance, dance, dance
+</code></pre></div></div>
+
+<p>Is also repeated a few times.</p>
+
+<p>You are going to write a <em>function</em> that prints out each “section” of the song.
+You should have all of these functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">print_verse_a</code> will print:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I got this feeling inside my bones
+It goes electric, wavey when I turn it on
+All through my city, all through my home
+We're flying up, no ceiling, when we in our zone
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_verse_b</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I got that sunshine in my pocket
+Got that good soul in my feet
+I feel that hot blood in my body when it drops
+I can't take my eyes up off it, moving so phenomenally
+Room on lock, the way we rock it, so don't stop
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_verse_c</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ooh, it's something magical
+It's in the air, it's in my blood, it's rushing on
+I don't need no reason, don't need control
+I fly so high, no ceiling, when I'm in my zone
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_pre_chorus</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>And under the lights when everything goes
+Nowhere to hide when I'm getting you close
+When we move, well, you already know
+So just imagine, just imagine, just imagine
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_chorus</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nothing I can see but you when you dance, dance, dance
+A feeling good, good, creeping up on you
+So just dance, dance, dance, come on
+All those things I shouldn't do
+But you dance, dance, dance
+And ain't nobody leaving soon, so keep dancing
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_post_chorus</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I can't stop the feeling
+So just dance, dance, dance
+I can't stop the feeling
+So just dance, dance, dance
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">print_bridge</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I can't stop the, I can't stop the
+I can't stop the, I can't stop the
+I can't stop the feeling
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Once you write each of these function, you will write two other functions that print out variants of the whole song.</p>
+
+<ul>
+  <li>First, write a function named <code class="language-plaintext highlighter-rouge">print_song</code>, which print out the lryics of whe whole “normal” song, shown at the beginning of the spec.
+Download the text <a href="./song.txt">here</a>.</li>
+  <li>Next, write a function named <code class="language-plaintext highlighter-rouge">print_remix</code>, which prints out a re-mixed version.
+Download the text <a href="./remix.txt">here</a>.</li>
+</ul>
+
+<p>Both must be implemented by making calls to the other functions.
+These functions allow you to eliminate the need for duplicate/redundant <code class="language-plaintext highlighter-rouge">print</code> statements in your code.</p>
+
+<p>To Test this, check that both of these functions print out the correct output by putting calls to them in your <code class="language-plaintext highlighter-rouge">main</code> function.
+Call your program <code class="language-plaintext highlighter-rouge">feeling.py</code>.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 39 points.
+It is due on 6/19/2017 at 6:00pm.</p>
+
+<p>You should put all of your code in to a python file named <code class="language-plaintext highlighter-rouge">feeling.py</code>.
+Submit <code class="language-plaintext highlighter-rouge">feeling.py</code> to the associated D2L dropbox.
+Following these turn-in and naming instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

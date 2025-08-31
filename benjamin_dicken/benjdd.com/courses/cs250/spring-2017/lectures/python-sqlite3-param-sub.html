@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-sqlite3-parameter-substitution">CSc 250: Lecture Notes: sqlite3 Parameter Substitution</h1>
+
+<p>We’ve learned about how executing SQ statements using “raw” string-building can be dangerous.
+Let’s learn a safer way.</p>
+
+<h2 id="parameter-substitution">Parameter Substitution</h2>
+
+<p>Instead of building queries with normal string concatenation, we need to use a technique called parameter substitution.
+Doing this is a several-step process:</p>
+
+<ul>
+  <li>Create a SQL query string, but wherever we want to use a value from a variable, just put a <code class="language-plaintext highlighter-rouge">?</code></li>
+  <li>Build a tuple containing all of the python values to use in the query</li>
+  <li>Pass the query string and the tuple to the <code class="language-plaintext highlighter-rouge">execute()</code> function</li>
+</ul>
+
+<p>Before showing specifically how this works, we need to talk just a bit about tuples.</p>
+
+<h2 id="tuples">Tuples</h2>
+
+<p>We’ve already learned about several commonly-used python types such as lists, dictionaries, and strings.
+A <em>tuple</em> is yet another type we will discuss and use in this class.
+A tuple is a <em>compound</em> type, meaning that a variable of this type can store multiple other values within it (just like lists and dictionaries).</p>
+
+<p>A tuple is actually extremely similar to a list.
+As with a list, a tuple is an ordered sequence of zero or more values.</p>
+
+<p>Declaring a list looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; lnums = [5, 10, 20, 50, 100]
+&gt;&gt;&gt; lstrs = ['how', 'are', 'you']
+&gt;&gt;&gt; lvals = [5, 'how', 10, 'are', 20, 'you']
+&gt;&gt;&gt; type(lnums)
+&lt;type 'list'&gt;
+&gt;&gt;&gt; type(lstrs)
+&lt;type 'list'&gt;
+&gt;&gt;&gt; type(lvals)
+&lt;type 'list'&gt;
+</code></pre></div></div>
+
+<p>We can easily declare tuples with the same values in them.
+The only difference is that with tuples, you use parentheses (<code class="language-plaintext highlighter-rouge">()</code>) instead of square-brackets(<code class="language-plaintext highlighter-rouge">[]</code>).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers = (5, 10, 20, 50, 100)
+&gt;&gt;&gt; strings = ('how', 'are', 'you')
+&gt;&gt;&gt; values = (5, 'how', 10, 'are', 20, 'you')
+&gt;&gt;&gt; type(numbers)
+&lt;type 'tuple'&gt;
+&gt;&gt;&gt; type(strings)
+&lt;type 'tuple'&gt;
+&gt;&gt;&gt; type(values)
+&lt;type 'tuple'&gt;
+</code></pre></div></div>
+
+<p>We can use the same curly-bracket syntax for accessing the elements in a tuple:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; lnums[3]
+50
+&gt;&gt;&gt; numbers[3]
+50
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; lvals[1]
+'how'
+&gt;&gt;&gt; values[1]
+'how'
+</code></pre></div></div>
+
+<p>Other than having a slightly-different syntax for declaring them, lists and tuples seem identical!
+So what is the point of having both?</p>
+
+<p>The difference between the two is that tuples cannot be modified after they are created.
+We’ve learned about several ways to add elements to a list, such <code class="language-plaintext highlighter-rouge">append</code> and <code class="language-plaintext highlighter-rouge">extend</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; print(lnums)
+[5, 10, 20, 50, 100]
+&gt;&gt;&gt; lnums.append(200)
+&gt;&gt;&gt; print(lnums)
+[5, 10, 20, 50, 100, 200]
+&gt;&gt;&gt; lnums.extend(lstrs)
+&gt;&gt;&gt; print(lnums)
+[5, 10, 20, 50, 100, 200, 'how', 'are', 'you']
+</code></pre></div></div>
+
+<p>Values at indexes in a list may also be changed after inserting them:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; lnums[3] = 50000
+&gt;&gt;&gt; print(lnums)
+[5, 10, 20, 50000, 100, 200, 'how', 'are', 'you']
+&gt;&gt;&gt; lnums[3] = 789
+&gt;&gt;&gt; print(lnums)
+[5, 10, 20, 789, 100, 200, 'how', 'are', 'you']
+</code></pre></div></div>
+
+<p>All of these operations change the contents in the list.
+With a tuple, these opperations are illegal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers.append(200)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+AttributeError: 'tuple' object has no attribute 'append'
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers.extend(lstrs)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+AttributeError: 'tuple' object has no attribute 'extend'
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[3] = 789
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: 'tuple' object does not support item assignment`
+</code></pre></div></div>
+
+<p>If you already understand lists well, tuples are not hard to understand.
+The two differences are:</p>
+
+<ul>
+  <li>When declaring a tuple variable, use parentheses instead of curly-braces</li>
+  <li>Tuples cannot be modified!</li>
+</ul>
+
+<p>That’s it!</p>
+
+<h2 id="back-to-parameter-substitution">Back to Parameter Substitution</h2>
+
+<p>In the injection lecture notes, we saw the following example of running a SQL query with <code class="language-plaintext highlighter-rouge">execute()</code> and normal string concatenation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import sys
+import sqlite3
+
+print('Enter a city:')
+city = sys.stdin.readline().strip()
+print('Enter the population:')
+pop = sys.stdin.readline().strip()
+
+conn = sqlite3.connect('citydb')
+query = "INSERT INTO city VALUES ('" + city + "', " + population + ")"
+res = conn.execute(query)
+</code></pre></div></div>
+
+<p>The safer way to do this, using parameter substitution is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import sys
+import sqlite3
+
+print('Enter a city:')
+city = sys.stdin.readline().strip()
+print('Enter the population:')
+pop = sys.stdin.readline().strip()
+
+conn = sqlite3.connect('citydb')
+query = "INSERT INTO city VALUES (?, ?)"
+params = (city, pop)
+res = conn.execute(query, params)
+</code></pre></div></div>
+
+<p>When using parameter substitution, the sqlite3 module makes sure that the values passed to the query will not be able to execute any malicious queries.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

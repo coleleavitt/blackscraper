@@ -1,0 +1,2632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/CheckHashes</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/CheckHashes</p>
+      <p>Check Hashes</p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">http://dev.ws.veriscanonline.com/VSWebServices67/CheckHashes</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">POST</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Xml</td>
+          <td>
+            <a href="#request-xml">Example</a>,<a href="#request-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Json</td>
+          <td>
+            <a href="#request-json">Example</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="#response-xml">Example</a>,<a href="#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="request-xml">The following is an example request Xml body:</a>
+        <pre class="request-xml">&lt;CheckHashesRequestModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings"&gt;
+  &lt;AppVersion xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/AppVersion&gt;
+  &lt;CompanyId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/CompanyId&gt;
+  &lt;ComputerName xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ComputerName&gt;
+  &lt;HardwareId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/HardwareId&gt;
+  &lt;IsLive xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;true&lt;/IsLive&gt;
+  &lt;TimeZoneId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/TimeZoneId&gt;
+  &lt;UserId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/UserId&gt;
+  &lt;Login xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Login&gt;
+  &lt;Password xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Password&gt;
+  &lt;AlertList&gt;2147483647&lt;/AlertList&gt;
+  &lt;BadgeCheckSum&gt;2147483647&lt;/BadgeCheckSum&gt;
+  &lt;CustomerCheckSum&gt;2147483647&lt;/CustomerCheckSum&gt;
+  &lt;CustomerSettings&gt;2147483647&lt;/CustomerSettings&gt;
+  &lt;DeviceSettings&gt;2147483647&lt;/DeviceSettings&gt;
+  &lt;EnabledAlertNotifications&gt;2147483647&lt;/EnabledAlertNotifications&gt;
+  &lt;GoldenPostalCodes&gt;2147483647&lt;/GoldenPostalCodes&gt;
+  &lt;GroupRecords&gt;2147483647&lt;/GroupRecords&gt;
+  &lt;Groups&gt;2147483647&lt;/Groups&gt;
+  &lt;LocationCheckSum&gt;2147483647&lt;/LocationCheckSum&gt;
+  &lt;Tags&gt;2147483647&lt;/Tags&gt;
+&lt;/CheckHashesRequestModel&gt;</pre>
+      </p>
+      <p>
+        <a name="request-json">The following is an example request Json body:</a>
+        <pre class="request-json">{
+	"AppVersion":"String content",
+	"CompanyId":"String content",
+	"ComputerName":"String content",
+	"HardwareId":"String content",
+	"IsLive":true,
+	"TimeZoneId":"String content",
+	"UserId":2147483647,
+	"Login":"String content",
+	"Password":"String content",
+	"AlertList":2147483647,
+	"BadgeCheckSum":2147483647,
+	"CustomerCheckSum":2147483647,
+	"CustomerSettings":2147483647,
+	"DeviceSettings":2147483647,
+	"EnabledAlertNotifications":2147483647,
+	"GoldenPostalCodes":2147483647,
+	"GroupRecords":2147483647,
+	"Groups":2147483647,
+	"LocationCheckSum":2147483647,
+	"Tags":2147483647
+}</pre>
+      </p>
+      <p>
+        <a name="response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;CheckHashesResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings"&gt;
+  &lt;ErrorCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ErrorCode&gt;
+  &lt;Status xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Status&gt;
+  &lt;StatusCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/StatusCode&gt;
+  &lt;ValidationResult xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+  &lt;/ValidationResult&gt;
+  &lt;Alerts&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+  &lt;/Alerts&gt;
+  &lt;!--Valid elements of type: AlertsChecksumDataResponseModel, DeviceSettingsChecksumDataResponseModel, EnabledAlertNotificationsChecksumDataResponseModel, GoldenPostalCodesCheckSumResponseModel, GroupRecordsChecksumDataResponseModel, GroupsChecksumDataResponseModel, SettingsChecksumDataResponseModel, TagsChecksumDataResponseModel--&gt;
+  &lt;Badge i:type="AlertsChecksumDataResponseModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+  &lt;/Badge&gt;
+  &lt;DeviceSettings&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+    &lt;Data&gt;
+      &lt;Authentication xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;true&lt;/Authentication&gt;
+      &lt;DeviceId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;2147483647&lt;/DeviceId&gt;
+      &lt;DeviceName xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;String content&lt;/DeviceName&gt;
+      &lt;DeviceReadOnly xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;true&lt;/DeviceReadOnly&gt;
+      &lt;LiveUpdates xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;true&lt;/LiveUpdates&gt;
+      &lt;LocationID xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;2147483647&lt;/LocationID&gt;
+      &lt;RemoteCommand xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;String content&lt;/RemoteCommand&gt;
+      &lt;RemoteParams xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;String content&lt;/RemoteParams&gt;
+      &lt;RequireUserLogin xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;true&lt;/RequireUserLogin&gt;
+      &lt;UpdateChannelFullName xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices"&gt;String content&lt;/UpdateChannelFullName&gt;
+    &lt;/Data&gt;
+  &lt;/DeviceSettings&gt;
+  &lt;EnabledAlertNotifications&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+    &lt;Data&gt;
+      &lt;AlertNotificationStateResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts"&gt;
+        &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+        &lt;SoundId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/SoundId&gt;
+        &lt;Type&gt;PersonInAlertList&lt;/Type&gt;
+      &lt;/AlertNotificationStateResponseModel&gt;
+      &lt;AlertNotificationStateResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts"&gt;
+        &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+        &lt;SoundId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/SoundId&gt;
+        &lt;Type&gt;PersonInAlertList&lt;/Type&gt;
+      &lt;/AlertNotificationStateResponseModel&gt;
+    &lt;/Data&gt;
+  &lt;/EnabledAlertNotifications&gt;
+  &lt;GoldenPostalCodes&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+  &lt;/GoldenPostalCodes&gt;
+  &lt;GroupRecords&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+  &lt;/GroupRecords&gt;
+  &lt;Groups&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+    &lt;Data&gt;
+      &lt;GroupResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups"&gt;
+        &lt;AppOrder&gt;2147483647&lt;/AppOrder&gt;
+        &lt;ColorId&gt;255&lt;/ColorId&gt;
+        &lt;ColorName&gt;String content&lt;/ColorName&gt;
+        &lt;CustomerName&gt;String content&lt;/CustomerName&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;IsDefault&gt;true&lt;/IsDefault&gt;
+        &lt;IsDevHide&gt;true&lt;/IsDevHide&gt;
+        &lt;IsIntegrated&gt;true&lt;/IsIntegrated&gt;
+        &lt;IsLocked&gt;true&lt;/IsLocked&gt;
+        &lt;IsShared&gt;true&lt;/IsShared&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;SemanticGroupId&gt;255&lt;/SemanticGroupId&gt;
+        &lt;SemanticGroupName&gt;String content&lt;/SemanticGroupName&gt;
+        &lt;SendAlert&gt;true&lt;/SendAlert&gt;
+        &lt;SoundId&gt;255&lt;/SoundId&gt;
+        &lt;SoundName&gt;String content&lt;/SoundName&gt;
+      &lt;/GroupResponseModel&gt;
+      &lt;GroupResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups"&gt;
+        &lt;AppOrder&gt;2147483647&lt;/AppOrder&gt;
+        &lt;ColorId&gt;255&lt;/ColorId&gt;
+        &lt;ColorName&gt;String content&lt;/ColorName&gt;
+        &lt;CustomerName&gt;String content&lt;/CustomerName&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;IsDefault&gt;true&lt;/IsDefault&gt;
+        &lt;IsDevHide&gt;true&lt;/IsDevHide&gt;
+        &lt;IsIntegrated&gt;true&lt;/IsIntegrated&gt;
+        &lt;IsLocked&gt;true&lt;/IsLocked&gt;
+        &lt;IsShared&gt;true&lt;/IsShared&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;SemanticGroupId&gt;255&lt;/SemanticGroupId&gt;
+        &lt;SemanticGroupName&gt;String content&lt;/SemanticGroupName&gt;
+        &lt;SendAlert&gt;true&lt;/SendAlert&gt;
+        &lt;SoundId&gt;255&lt;/SoundId&gt;
+        &lt;SoundName&gt;String content&lt;/SoundName&gt;
+      &lt;/GroupResponseModel&gt;
+    &lt;/Data&gt;
+  &lt;/Groups&gt;
+  &lt;Settings&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+    &lt;Data&gt;
+      &lt;AddressPointAlertTypeId&gt;255&lt;/AddressPointAlertTypeId&gt;
+      &lt;AddressVerification&gt;true&lt;/AddressVerification&gt;
+      &lt;Agreement&gt;String content&lt;/Agreement&gt;
+      &lt;AlertListLogicType&gt;Standard&lt;/AlertListLogicType&gt;
+      &lt;AlertListNotificationMessage&gt;String content&lt;/AlertListNotificationMessage&gt;
+      &lt;AlertNotification&gt;true&lt;/AlertNotification&gt;
+      &lt;AlertsSettings&gt;
+        &lt;AlertList&gt;
+          &lt;AlertSettingsResponseModel&gt;
+            &lt;AlertType&gt;PersonInAlertList&lt;/AlertType&gt;
+            &lt;Enabled&gt;true&lt;/Enabled&gt;
+            &lt;ShowPopUp&gt;true&lt;/ShowPopUp&gt;
+            &lt;SoundId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/SoundId&gt;
+          &lt;/AlertSettingsResponseModel&gt;
+          &lt;AlertSettingsResponseModel&gt;
+            &lt;AlertType&gt;PersonInAlertList&lt;/AlertType&gt;
+            &lt;Enabled&gt;true&lt;/Enabled&gt;
+            &lt;ShowPopUp&gt;true&lt;/ShowPopUp&gt;
+            &lt;SoundId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/SoundId&gt;
+          &lt;/AlertSettingsResponseModel&gt;
+        &lt;/AlertList&gt;
+        &lt;AlertTypesSettings&gt;
+          &lt;Type105_UnderageTier1TypeSettings&gt;
+            &lt;AgeOK&gt;255&lt;/AgeOK&gt;
+          &lt;/Type105_UnderageTier1TypeSettings&gt;
+          &lt;Type106_UnderageTier2TypeSettings&gt;
+            &lt;AgeOK&gt;255&lt;/AgeOK&gt;
+          &lt;/Type106_UnderageTier2TypeSettings&gt;
+          &lt;Type117_M500CalibrationTypeSettings&gt;
+            &lt;DisplayAlertEveryScansQuantity&gt;2147483647&lt;/DisplayAlertEveryScansQuantity&gt;
+          &lt;/Type117_M500CalibrationTypeSettings&gt;
+          &lt;Type118_M500CleaningTypeSettings&gt;
+            &lt;DisplayAlertEveryScansQuantity&gt;2147483647&lt;/DisplayAlertEveryScansQuantity&gt;
+          &lt;/Type118_M500CleaningTypeSettings&gt;
+          &lt;Type15_UnacceptableIdTypeSettings&gt;
+            &lt;AcceptableIdTypes&gt;
+              &lt;AcceptableIdTypeResponseModel&gt;
+                &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+                &lt;IDParserDocumentTypes&gt;
+                  &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+                  &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+                &lt;/IDParserDocumentTypes&gt;
+                &lt;IdType&gt;UsStateIssuedDriversLicenses&lt;/IdType&gt;
+                &lt;IssuedByUS&gt;true&lt;/IssuedByUS&gt;
+                &lt;Selected&gt;true&lt;/Selected&gt;
+              &lt;/AcceptableIdTypeResponseModel&gt;
+              &lt;AcceptableIdTypeResponseModel&gt;
+                &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+                &lt;IDParserDocumentTypes&gt;
+                  &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+                  &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+                &lt;/IDParserDocumentTypes&gt;
+                &lt;IdType&gt;UsStateIssuedDriversLicenses&lt;/IdType&gt;
+                &lt;IssuedByUS&gt;true&lt;/IssuedByUS&gt;
+                &lt;Selected&gt;true&lt;/Selected&gt;
+              &lt;/AcceptableIdTypeResponseModel&gt;
+            &lt;/AcceptableIdTypes&gt;
+            &lt;AlertDescription&gt;String content&lt;/AlertDescription&gt;
+            &lt;AlertTitle&gt;String content&lt;/AlertTitle&gt;
+            &lt;CreateHistoryRecord&gt;true&lt;/CreateHistoryRecord&gt;
+          &lt;/Type15_UnacceptableIdTypeSettings&gt;
+          &lt;Type1_AlertListTypeSettings&gt;
+            &lt;CheckEqualityType&gt;FirstNameLastName&lt;/CheckEqualityType&gt;
+            &lt;CheckEqualityTypes&gt;
+              &lt;CheckAlertEqualityType xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;FirstNameLastName&lt;/CheckAlertEqualityType&gt;
+              &lt;CheckAlertEqualityType xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;FirstNameLastName&lt;/CheckAlertEqualityType&gt;
+            &lt;/CheckEqualityTypes&gt;
+            &lt;ExemptGroups&gt;
+              &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+              &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+            &lt;/ExemptGroups&gt;
+            &lt;LogicType&gt;Standard&lt;/LogicType&gt;
+            &lt;SharingType&gt;255&lt;/SharingType&gt;
+          &lt;/Type1_AlertListTypeSettings&gt;
+          &lt;Type6_AddressListTypeSettings&gt;
+            &lt;AddressPointAlertType&gt;Unknown&lt;/AddressPointAlertType&gt;
+            &lt;AddressPointsComparableColumns&gt;
+              &lt;NameValueOfboolean xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions"&gt;
+                &lt;Name&gt;String content&lt;/Name&gt;
+                &lt;Value&gt;true&lt;/Value&gt;
+              &lt;/NameValueOfboolean&gt;
+              &lt;NameValueOfboolean xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions"&gt;
+                &lt;Name&gt;String content&lt;/Name&gt;
+                &lt;Value&gt;true&lt;/Value&gt;
+              &lt;/NameValueOfboolean&gt;
+            &lt;/AddressPointsComparableColumns&gt;
+          &lt;/Type6_AddressListTypeSettings&gt;
+          &lt;Type7_VisitFrequencyTypeSettings&gt;
+            &lt;AfterTimes&gt;32767&lt;/AfterTimes&gt;
+            &lt;WithinDays&gt;32767&lt;/WithinDays&gt;
+          &lt;/Type7_VisitFrequencyTypeSettings&gt;
+          &lt;Type8_MultiScanTypeSettings&gt;
+            &lt;MultiScanHours&gt;2147483647&lt;/MultiScanHours&gt;
+          &lt;/Type8_MultiScanTypeSettings&gt;
+        &lt;/AlertTypesSettings&gt;
+        &lt;EnablePopUps&gt;true&lt;/EnablePopUps&gt;
+        &lt;EnableSounds&gt;true&lt;/EnableSounds&gt;
+      &lt;/AlertsSettings&gt;
+      &lt;AllowCreateGeoScan&gt;true&lt;/AllowCreateGeoScan&gt;
+      &lt;AllowManualEntry&gt;true&lt;/AllowManualEntry&gt;
+      &lt;AllowSearchFromDevices&gt;true&lt;/AllowSearchFromDevices&gt;
+      &lt;AllowSharedAlerts&gt;true&lt;/AllowSharedAlerts&gt;
+      &lt;AsdkAutoDisplayDetailsForInvalidIDs&gt;true&lt;/AsdkAutoDisplayDetailsForInvalidIDs&gt;
+      &lt;AsdkAutoSaveReportForInvalidIDs&gt;true&lt;/AsdkAutoSaveReportForInvalidIDs&gt;
+      &lt;AsdkAutoSaveReportForValidIDs&gt;true&lt;/AsdkAutoSaveReportForValidIDs&gt;
+      &lt;AsdkEnable&gt;true&lt;/AsdkEnable&gt;
+      &lt;AsdkFaceMatch&gt;true&lt;/AsdkFaceMatch&gt;
+      &lt;AsdkRunMode&gt;EveryId&lt;/AsdkRunMode&gt;
+      &lt;AsdkStrictnessLevel&gt;Friendly&lt;/AsdkStrictnessLevel&gt;
+      &lt;AsdkThresholdAge&gt;2147483647&lt;/AsdkThresholdAge&gt;
+      &lt;AssignedGroup&gt;true&lt;/AssignedGroup&gt;
+      &lt;AutoincrementTotalCounter&gt;true&lt;/AutoincrementTotalCounter&gt;
+      &lt;BlacklistApiKey&gt;String content&lt;/BlacklistApiKey&gt;
+      &lt;BlacklistTestMode&gt;true&lt;/BlacklistTestMode&gt;
+      &lt;CheckAlertEqualityType&gt;2147483647&lt;/CheckAlertEqualityType&gt;
+      &lt;CheckAlertList&gt;true&lt;/CheckAlertList&gt;
+      &lt;CollectHistory&gt;255&lt;/CollectHistory&gt;
+      &lt;CollectableColumns&gt;
+        &lt;HistoryLogColumnsItemResponseModel&gt;
+          &lt;Checked&gt;true&lt;/Checked&gt;
+          &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;/HistoryLogColumnsItemResponseModel&gt;
+        &lt;HistoryLogColumnsItemResponseModel&gt;
+          &lt;Checked&gt;true&lt;/Checked&gt;
+          &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;/HistoryLogColumnsItemResponseModel&gt;
+      &lt;/CollectableColumns&gt;
+      &lt;DataRetentionType&gt;DemographicDataOnly&lt;/DataRetentionType&gt;
+      &lt;DefaultGroupId&gt;2147483647&lt;/DefaultGroupId&gt;
+      &lt;DeleteAllData&gt;true&lt;/DeleteAllData&gt;
+      &lt;DeleteDataAfterDays&gt;2147483647&lt;/DeleteDataAfterDays&gt;
+      &lt;DevicePinHash&gt;String content&lt;/DevicePinHash&gt;
+      &lt;DevicePinLength&gt;2147483647&lt;/DevicePinLength&gt;
+      &lt;DevicePinPermissions&gt;
+        &lt;DevicePinPermission xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;AddPhone&lt;/DevicePinPermission&gt;
+        &lt;DevicePinPermission xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;AddPhone&lt;/DevicePinPermission&gt;
+      &lt;/DevicePinPermissions&gt;
+      &lt;DeviceUpdateSettings&gt;
+        &lt;AllowUsersToDelayRelaunch&gt;true&lt;/AllowUsersToDelayRelaunch&gt;
+        &lt;DelayRelaunchForHours&gt;255&lt;/DelayRelaunchForHours&gt;
+        &lt;ManuallyDeviceUpdate&gt;true&lt;/ManuallyDeviceUpdate&gt;
+        &lt;ManuallyDownloadDeviceUpdates&gt;true&lt;/ManuallyDownloadDeviceUpdates&gt;
+      &lt;/DeviceUpdateSettings&gt;
+      &lt;DisplayWarningMessageAfterLimits&gt;true&lt;/DisplayWarningMessageAfterLimits&gt;
+      &lt;DisplayWarningMessageAfterTimes&gt;32767&lt;/DisplayWarningMessageAfterTimes&gt;
+      &lt;DisplayWarningMessageWithinDays&gt;32767&lt;/DisplayWarningMessageWithinDays&gt;
+      &lt;EncryptIdNum&gt;true&lt;/EncryptIdNum&gt;
+      &lt;GreenTotalLevel&gt;2147483647&lt;/GreenTotalLevel&gt;
+      &lt;GroupAgreement&gt;String content&lt;/GroupAgreement&gt;
+      &lt;InOutTrackingEnable&gt;true&lt;/InOutTrackingEnable&gt;
+      &lt;Interests&gt;255&lt;/Interests&gt;
+      &lt;IosSettings&gt;
+        &lt;AgeSoundAlert&gt;true&lt;/AgeSoundAlert&gt;
+        &lt;AgreementScreen&gt;NoPopup&lt;/AgreementScreen&gt;
+        &lt;AutoDimLock&gt;true&lt;/AutoDimLock&gt;
+        &lt;CameraScanButton&gt;true&lt;/CameraScanButton&gt;
+        &lt;CantScanIdButton&gt;true&lt;/CantScanIdButton&gt;
+        &lt;DefaultCamera&gt;Front&lt;/DefaultCamera&gt;
+        &lt;DisplayAddress&gt;true&lt;/DisplayAddress&gt;
+        &lt;DisplayAge&gt;true&lt;/DisplayAge&gt;
+        &lt;DisplayIdNum&gt;true&lt;/DisplayIdNum&gt;
+        &lt;DisplayPrintButton&gt;true&lt;/DisplayPrintButton&gt;
+        &lt;HideManualEntryButton&gt;true&lt;/HideManualEntryButton&gt;
+        &lt;HidePlusMinusButtons&gt;true&lt;/HidePlusMinusButtons&gt;
+        &lt;HideSuccessfulLoginAlert&gt;true&lt;/HideSuccessfulLoginAlert&gt;
+        &lt;IdExpirationPopup&gt;true&lt;/IdExpirationPopup&gt;
+        &lt;PaymentsButton&gt;true&lt;/PaymentsButton&gt;
+        &lt;PromptForGroupComment&gt;true&lt;/PromptForGroupComment&gt;
+        &lt;ScanRemainOnScreenSeconds&gt;2147483647&lt;/ScanRemainOnScreenSeconds&gt;
+        &lt;SkipPhotoDialog&gt;true&lt;/SkipPhotoDialog&gt;
+      &lt;/IosSettings&gt;
+      &lt;IsCounterDisabled&gt;true&lt;/IsCounterDisabled&gt;
+      &lt;IsGroupAgreementEnabled&gt;true&lt;/IsGroupAgreementEnabled&gt;
+      &lt;LogsStorageLimitDays&gt;2147483647&lt;/LogsStorageLimitDays&gt;
+      &lt;M500DisplayAlertEveryScansQuantity&gt;2147483647&lt;/M500DisplayAlertEveryScansQuantity&gt;
+      &lt;M500ScannerMaintenance&gt;true&lt;/M500ScannerMaintenance&gt;
+      &lt;MSHoursDoesNotIncreaseCounter&gt;true&lt;/MSHoursDoesNotIncreaseCounter&gt;
+      &lt;MembershipSubscribtion&gt;NoAccess&lt;/MembershipSubscribtion&gt;
+      &lt;MinimumAge&gt;255&lt;/MinimumAge&gt;
+      &lt;MultiScanHours&gt;2147483647&lt;/MultiScanHours&gt;
+      &lt;NotificationsSubscribtion&gt;NoAccess&lt;/NotificationsSubscribtion&gt;
+      &lt;NumberOfDevices&gt;2147483647&lt;/NumberOfDevices&gt;
+      &lt;OfflineModeSubscribtion&gt;NoAccess&lt;/OfflineModeSubscribtion&gt;
+      &lt;PicturesSubscribtion&gt;NoAccess&lt;/PicturesSubscribtion&gt;
+      &lt;PrintedDocument&gt;255&lt;/PrintedDocument&gt;
+      &lt;ProfilePhotoOption&gt;CroppedIdPhoto&lt;/ProfilePhotoOption&gt;
+      &lt;ReSyncOfflineDays&gt;2147483647&lt;/ReSyncOfflineDays&gt;
+      &lt;RedTotalLevel&gt;2147483647&lt;/RedTotalLevel&gt;
+      &lt;RetentionColumns&gt;
+        &lt;HistoryLogColumnsItemResponseModel&gt;
+          &lt;Checked&gt;true&lt;/Checked&gt;
+          &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;/HistoryLogColumnsItemResponseModel&gt;
+        &lt;HistoryLogColumnsItemResponseModel&gt;
+          &lt;Checked&gt;true&lt;/Checked&gt;
+          &lt;DisplayName&gt;String content&lt;/DisplayName&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+        &lt;/HistoryLogColumnsItemResponseModel&gt;
+      &lt;/RetentionColumns&gt;
+      &lt;ShowHistoryHours&gt;2147483647&lt;/ShowHistoryHours&gt;
+      &lt;Surveys&gt;2147483647&lt;/Surveys&gt;
+      &lt;ThirdPartyChecksSettings&gt;
+        &lt;CriminalBackgroundCheckEnabled&gt;true&lt;/CriminalBackgroundCheckEnabled&gt;
+        &lt;CriminalBackgroundCheckMode&gt;ForEveryId&lt;/CriminalBackgroundCheckMode&gt;
+        &lt;DmvVerificationEnabled&gt;true&lt;/DmvVerificationEnabled&gt;
+        &lt;DmvVerificationMode&gt;ForEveryId&lt;/DmvVerificationMode&gt;
+        &lt;EveryPoliticianEnabled&gt;true&lt;/EveryPoliticianEnabled&gt;
+        &lt;EveryPoliticianMode&gt;ForEveryId&lt;/EveryPoliticianMode&gt;
+        &lt;IdentiFraudAutoOpenQuizUpon&gt;
+          &lt;IdentiFraudAutoOpenQuizType xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;Passed&lt;/IdentiFraudAutoOpenQuizType&gt;
+          &lt;IdentiFraudAutoOpenQuizType xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums"&gt;Passed&lt;/IdentiFraudAutoOpenQuizType&gt;
+        &lt;/IdentiFraudAutoOpenQuizUpon&gt;
+        &lt;IdentiFraudDmvCombination&gt;DoNotRunCombination&lt;/IdentiFraudDmvCombination&gt;
+        &lt;IdentiFraudEnabled&gt;true&lt;/IdentiFraudEnabled&gt;
+        &lt;IdentiFraudMode&gt;ForEveryId&lt;/IdentiFraudMode&gt;
+        &lt;IdentiFraudQuizQuestionNumbers&gt;2147483647&lt;/IdentiFraudQuizQuestionNumbers&gt;
+        &lt;OfacEnabled&gt;true&lt;/OfacEnabled&gt;
+        &lt;OfacMode&gt;ForEveryId&lt;/OfacMode&gt;
+        &lt;PepEnabled&gt;true&lt;/PepEnabled&gt;
+        &lt;PepMode&gt;ForEveryId&lt;/PepMode&gt;
+        &lt;SexOffenderRegistryEnabled&gt;true&lt;/SexOffenderRegistryEnabled&gt;
+        &lt;SexOffenderRegistryMode&gt;ForEveryId&lt;/SexOffenderRegistryMode&gt;
+      &lt;/ThirdPartyChecksSettings&gt;
+      &lt;UsageDataPolicyType&gt;EnabledAutoUpload&lt;/UsageDataPolicyType&gt;
+      &lt;VehiclesSubscribtion&gt;NoAccess&lt;/VehiclesSubscribtion&gt;
+      &lt;VeriLocksDoNotAccessForUnderageVisitors&gt;true&lt;/VeriLocksDoNotAccessForUnderageVisitors&gt;
+      &lt;VeriLocksGroups&gt;
+        &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+        &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+      &lt;/VeriLocksGroups&gt;
+      &lt;VeriLocksVerifyGroups&gt;true&lt;/VeriLocksVerifyGroups&gt;
+      &lt;ViewsSettings&gt;
+        &lt;AllowEndUsersToControlViewSettings&gt;true&lt;/AllowEndUsersToControlViewSettings&gt;
+        &lt;AlwaysOnTop&gt;true&lt;/AlwaysOnTop&gt;
+        &lt;RestoreMinimizedAppAfterScan&gt;true&lt;/RestoreMinimizedAppAfterScan&gt;
+        &lt;ScanOnScreenSeconds&gt;2147483647&lt;/ScanOnScreenSeconds&gt;
+        &lt;ScanOnScreenUntilNext&gt;true&lt;/ScanOnScreenUntilNext&gt;
+        &lt;ShowPhotos&gt;true&lt;/ShowPhotos&gt;
+        &lt;ShowRecentVisitors&gt;true&lt;/ShowRecentVisitors&gt;
+        &lt;ViewOption&gt;DetailedScanResults&lt;/ViewOption&gt;
+      &lt;/ViewsSettings&gt;
+      &lt;WebHooksSettings&gt;
+        &lt;Active&gt;true&lt;/Active&gt;
+        &lt;WebHooksTypes&gt;
+          &lt;NameIdOfunsignedByte xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions"&gt;
+            &lt;Id&gt;255&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/NameIdOfunsignedByte&gt;
+          &lt;NameIdOfunsignedByte xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions"&gt;
+            &lt;Id&gt;255&lt;/Id&gt;
+            &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;/NameIdOfunsignedByte&gt;
+        &lt;/WebHooksTypes&gt;
+      &lt;/WebHooksSettings&gt;
+      &lt;YellowTotalLevel&gt;2147483647&lt;/YellowTotalLevel&gt;
+    &lt;/Data&gt;
+  &lt;/Settings&gt;
+  &lt;Tags&gt;
+    &lt;Checksum&gt;2147483647&lt;/Checksum&gt;
+    &lt;Expired&gt;true&lt;/Expired&gt;
+    &lt;Data&gt;
+      &lt;TagResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags"&gt;
+        &lt;Created&gt;1999-05-31T11:20:00&lt;/Created&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+      &lt;/TagResponseModel&gt;
+      &lt;TagResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags"&gt;
+        &lt;Created&gt;1999-05-31T11:20:00&lt;/Created&gt;
+        &lt;Id&gt;2147483647&lt;/Id&gt;
+        &lt;Name&gt;String content&lt;/Name&gt;
+      &lt;/TagResponseModel&gt;
+    &lt;/Data&gt;
+  &lt;/Tags&gt;
+&lt;/CheckHashesResponseModel&gt;</pre>
+      </p>
+      <p>
+        <a name="response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"ErrorCode":"String content",
+	"Status":"String content",
+	"StatusCode":2147483647,
+	"ValidationResult":[{
+		"Errors":["String content"],
+		"Field":"String content"
+	}],
+	"Alerts":{
+		"Checksum":2147483647,
+		"Expired":true
+	},
+	"Badge":{
+		"Checksum":2147483647,
+		"Expired":true
+	},
+	"DeviceSettings":{
+		"Checksum":2147483647,
+		"Expired":true,
+		"Data":{
+			"Authentication":true,
+			"DeviceId":2147483647,
+			"DeviceName":"String content",
+			"DeviceReadOnly":true,
+			"LiveUpdates":true,
+			"LocationID":2147483647,
+			"RemoteCommand":"String content",
+			"RemoteParams":"String content",
+			"RequireUserLogin":true,
+			"UpdateChannelFullName":"String content"
+		}
+	},
+	"EnabledAlertNotifications":{
+		"Checksum":2147483647,
+		"Expired":true,
+		"Data":[{
+			"DisplayName":"String content",
+			"SoundId":"1627aea5-8e0a-4371-9022-9b504344e724",
+			"Type":0
+		}]
+	},
+	"GoldenPostalCodes":{
+		"Checksum":2147483647,
+		"Expired":true
+	},
+	"GroupRecords":{
+		"Checksum":2147483647,
+		"Expired":true
+	},
+	"Groups":{
+		"Checksum":2147483647,
+		"Expired":true,
+		"Data":[{
+			"AppOrder":2147483647,
+			"ColorId":255,
+			"ColorName":"String content",
+			"CustomerName":"String content",
+			"Id":2147483647,
+			"IsDefault":true,
+			"IsDevHide":true,
+			"IsIntegrated":true,
+			"IsLocked":true,
+			"IsShared":true,
+			"Name":"String content",
+			"SemanticGroupId":255,
+			"SemanticGroupName":"String content",
+			"SendAlert":true,
+			"SoundId":255,
+			"SoundName":"String content"
+		}]
+	},
+	"Settings":{
+		"Checksum":2147483647,
+		"Expired":true,
+		"Data":{
+			"AddressPointAlertTypeId":255,
+			"AddressVerification":true,
+			"Agreement":"String content",
+			"AlertListLogicType":0,
+			"AlertListNotificationMessage":"String content",
+			"AlertNotification":true,
+			"AlertsSettings":{
+				"AlertList":[{
+					"AlertType":0,
+					"Enabled":true,
+					"ShowPopUp":true,
+					"SoundId":"1627aea5-8e0a-4371-9022-9b504344e724"
+				}],
+				"AlertTypesSettings":{
+					"Type105_UnderageTier1TypeSettings":{
+						"AgeOK":255
+					},
+					"Type106_UnderageTier2TypeSettings":{
+						"AgeOK":255
+					},
+					"Type117_M500CalibrationTypeSettings":{
+						"DisplayAlertEveryScansQuantity":2147483647
+					},
+					"Type118_M500CleaningTypeSettings":{
+						"DisplayAlertEveryScansQuantity":2147483647
+					},
+					"Type15_UnacceptableIdTypeSettings":{
+						"AcceptableIdTypes":[{
+							"DisplayName":"String content",
+							"IDParserDocumentTypes":["String content"],
+							"IdType":0,
+							"IssuedByUS":true,
+							"Selected":true
+						}],
+						"AlertDescription":"String content",
+						"AlertTitle":"String content",
+						"CreateHistoryRecord":true
+					},
+					"Type1_AlertListTypeSettings":{
+						"CheckEqualityType":0,
+						"CheckEqualityTypes":[0],
+						"ExemptGroups":[2147483647],
+						"LogicType":0,
+						"SharingType":255
+					},
+					"Type6_AddressListTypeSettings":{
+						"AddressPointAlertType":0,
+						"AddressPointsComparableColumns":[{
+							"Name":"String content",
+							"Value":true
+						}]
+					},
+					"Type7_VisitFrequencyTypeSettings":{
+						"AfterTimes":32767,
+						"WithinDays":32767
+					},
+					"Type8_MultiScanTypeSettings":{
+						"MultiScanHours":2147483647
+					}
+				},
+				"EnablePopUps":true,
+				"EnableSounds":true
+			},
+			"AllowCreateGeoScan":true,
+			"AllowManualEntry":true,
+			"AllowSearchFromDevices":true,
+			"AllowSharedAlerts":true,
+			"AsdkAutoDisplayDetailsForInvalidIDs":true,
+			"AsdkAutoSaveReportForInvalidIDs":true,
+			"AsdkAutoSaveReportForValidIDs":true,
+			"AsdkEnable":true,
+			"AsdkFaceMatch":true,
+			"AsdkRunMode":0,
+			"AsdkStrictnessLevel":0,
+			"AsdkThresholdAge":2147483647,
+			"AssignedGroup":true,
+			"AutoincrementTotalCounter":true,
+			"BlacklistApiKey":"String content",
+			"BlacklistTestMode":true,
+			"CheckAlertEqualityType":2147483647,
+			"CheckAlertList":true,
+			"CollectHistory":255,
+			"CollectableColumns":[{
+				"Checked":true,
+				"DisplayName":"String content",
+				"Name":"String content"
+			}],
+			"DataRetentionType":0,
+			"DefaultGroupId":2147483647,
+			"DeleteAllData":true,
+			"DeleteDataAfterDays":2147483647,
+			"DevicePinHash":"String content",
+			"DevicePinLength":2147483647,
+			"DevicePinPermissions":[0],
+			"DeviceUpdateSettings":{
+				"AllowUsersToDelayRelaunch":true,
+				"DelayRelaunchForHours":255,
+				"ManuallyDeviceUpdate":true,
+				"ManuallyDownloadDeviceUpdates":true
+			},
+			"DisplayWarningMessageAfterLimits":true,
+			"DisplayWarningMessageAfterTimes":32767,
+			"DisplayWarningMessageWithinDays":32767,
+			"EncryptIdNum":true,
+			"GreenTotalLevel":2147483647,
+			"GroupAgreement":"String content",
+			"InOutTrackingEnable":true,
+			"Interests":255,
+			"IosSettings":{
+				"AgeSoundAlert":true,
+				"AgreementScreen":0,
+				"AutoDimLock":true,
+				"CameraScanButton":true,
+				"CantScanIdButton":true,
+				"DefaultCamera":0,
+				"DisplayAddress":true,
+				"DisplayAge":true,
+				"DisplayIdNum":true,
+				"DisplayPrintButton":true,
+				"HideManualEntryButton":true,
+				"HidePlusMinusButtons":true,
+				"HideSuccessfulLoginAlert":true,
+				"IdExpirationPopup":true,
+				"PaymentsButton":true,
+				"PromptForGroupComment":true,
+				"ScanRemainOnScreenSeconds":2147483647,
+				"SkipPhotoDialog":true
+			},
+			"IsCounterDisabled":true,
+			"IsGroupAgreementEnabled":true,
+			"LogsStorageLimitDays":2147483647,
+			"M500DisplayAlertEveryScansQuantity":2147483647,
+			"M500ScannerMaintenance":true,
+			"MSHoursDoesNotIncreaseCounter":true,
+			"MembershipSubscribtion":0,
+			"MinimumAge":255,
+			"MultiScanHours":2147483647,
+			"NotificationsSubscribtion":0,
+			"NumberOfDevices":2147483647,
+			"OfflineModeSubscribtion":0,
+			"PicturesSubscribtion":0,
+			"PrintedDocument":255,
+			"ProfilePhotoOption":0,
+			"ReSyncOfflineDays":2147483647,
+			"RedTotalLevel":2147483647,
+			"RetentionColumns":[{
+				"Checked":true,
+				"DisplayName":"String content",
+				"Name":"String content"
+			}],
+			"ShowHistoryHours":2147483647,
+			"Surveys":2147483647,
+			"ThirdPartyChecksSettings":{
+				"CriminalBackgroundCheckEnabled":true,
+				"CriminalBackgroundCheckMode":0,
+				"DmvVerificationEnabled":true,
+				"DmvVerificationMode":0,
+				"EveryPoliticianEnabled":true,
+				"EveryPoliticianMode":0,
+				"IdentiFraudAutoOpenQuizUpon":[0],
+				"IdentiFraudDmvCombination":0,
+				"IdentiFraudEnabled":true,
+				"IdentiFraudMode":0,
+				"IdentiFraudQuizQuestionNumbers":2147483647,
+				"OfacEnabled":true,
+				"OfacMode":0,
+				"PepEnabled":true,
+				"PepMode":0,
+				"SexOffenderRegistryEnabled":true,
+				"SexOffenderRegistryMode":0
+			},
+			"UsageDataPolicyType":0,
+			"VehiclesSubscribtion":0,
+			"VeriLocksDoNotAccessForUnderageVisitors":true,
+			"VeriLocksGroups":[2147483647],
+			"VeriLocksVerifyGroups":true,
+			"ViewsSettings":{
+				"AllowEndUsersToControlViewSettings":true,
+				"AlwaysOnTop":true,
+				"RestoreMinimizedAppAfterScan":true,
+				"ScanOnScreenSeconds":2147483647,
+				"ScanOnScreenUntilNext":true,
+				"ShowPhotos":true,
+				"ShowRecentVisitors":true,
+				"ViewOption":0
+			},
+			"WebHooksSettings":{
+				"Active":true,
+				"WebHooksTypes":[{
+					"Id":255,
+					"Name":"String content"
+				}]
+			},
+			"YellowTotalLevel":2147483647
+		}
+	},
+	"Tags":{
+		"Checksum":2147483647,
+		"Expired":true,
+		"Data":[{
+			"Created":"\/Date(928149600000+0000)\/",
+			"Id":2147483647,
+			"Name":"String content"
+		}]
+	}
+}</pre>
+      </p>
+      <p>
+        <a name="request-schema">The following is the request Xml Schema:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:complexType name="CheckHashesRequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:RequestModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="AlertList" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="BadgeCheckSum" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="CustomerCheckSum" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="CustomerSettings" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="DeviceSettings" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="EnabledAlertNotifications" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="GoldenPostalCodes" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="GroupRecords" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="Groups" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="LocationCheckSum" nillable="true" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="Tags" nillable="true" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CheckHashesRequestModel" nillable="true" type="tns:CheckHashesRequestModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="request-schema">Additional request Xml Schemas:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="RequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:RequestModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModel" nillable="true" type="tns:RequestModel" /&gt;
+  &lt;xs:complexType name="RequestModelBase"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AppVersion" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLive" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeZoneId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModelBase" nillable="true" type="tns:RequestModelBase" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Settings" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags" /&gt;
+  &lt;xs:complexType name="CheckHashesResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:ResponseModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Alerts" nillable="true" type="tns:AlertsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="Badge" nillable="true" type="tns:ChecksumDataResponseModelBase" /&gt;
+          &lt;xs:element minOccurs="0" name="DeviceSettings" nillable="true" type="tns:DeviceSettingsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="EnabledAlertNotifications" nillable="true" type="tns:EnabledAlertNotificationsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="GoldenPostalCodes" nillable="true" type="tns:GoldenPostalCodesCheckSumResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="GroupRecords" nillable="true" type="tns:GroupRecordsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="Groups" nillable="true" type="tns:GroupsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="Settings" nillable="true" type="tns:SettingsChecksumDataResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="Tags" nillable="true" type="tns:TagsChecksumDataResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CheckHashesResponseModel" nillable="true" type="tns:CheckHashesResponseModel" /&gt;
+  &lt;xs:complexType name="AlertsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence /&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertsChecksumDataResponseModel" nillable="true" type="tns:AlertsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="ChecksumDataResponseModelBase"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Checksum" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Expired" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ChecksumDataResponseModelBase" nillable="true" type="tns:ChecksumDataResponseModelBase" /&gt;
+  &lt;xs:complexType name="DeviceSettingsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Data" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices" type="q2:DeviceResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="DeviceSettingsChecksumDataResponseModel" nillable="true" type="tns:DeviceSettingsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="EnabledAlertNotificationsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Data" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts" type="q3:ArrayOfAlertNotificationStateResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="EnabledAlertNotificationsChecksumDataResponseModel" nillable="true" type="tns:EnabledAlertNotificationsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="GoldenPostalCodesCheckSumResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence /&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GoldenPostalCodesCheckSumResponseModel" nillable="true" type="tns:GoldenPostalCodesCheckSumResponseModel" /&gt;
+  &lt;xs:complexType name="GroupRecordsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence /&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GroupRecordsChecksumDataResponseModel" nillable="true" type="tns:GroupRecordsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="GroupsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Data" nillable="true" xmlns:q4="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups" type="q4:ArrayOfGroupResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GroupsChecksumDataResponseModel" nillable="true" type="tns:GroupsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="SettingsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Data" nillable="true" type="tns:ClientSettingsResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="SettingsChecksumDataResponseModel" nillable="true" type="tns:SettingsChecksumDataResponseModel" /&gt;
+  &lt;xs:complexType name="ClientSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AddressPointAlertTypeId" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="AddressVerification" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Agreement" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertListLogicType" nillable="true" xmlns:q5="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q5:AlertListLogicType" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertListNotificationMessage" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertNotification" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertsSettings" nillable="true" type="tns:AlertsSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="AllowCreateGeoScan" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AllowManualEntry" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AllowSearchFromDevices" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AllowSharedAlerts" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkAutoDisplayDetailsForInvalidIDs" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkAutoSaveReportForInvalidIDs" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkAutoSaveReportForValidIDs" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkEnable" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkFaceMatch" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkRunMode" xmlns:q6="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q6:AsdkRunMode" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkStrictnessLevel" xmlns:q7="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q7:AsdkStrictnessLevel" /&gt;
+      &lt;xs:element minOccurs="0" name="AsdkThresholdAge" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="AssignedGroup" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AutoincrementTotalCounter" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="BlacklistApiKey" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="BlacklistTestMode" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CheckAlertEqualityType" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CheckAlertList" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CollectHistory" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="CollectableColumns" nillable="true" type="tns:ArrayOfHistoryLogColumnsItemResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="DataRetentionType" nillable="true" xmlns:q8="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q8:DataRetentionType" /&gt;
+      &lt;xs:element minOccurs="0" name="DefaultGroupId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DeleteAllData" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DeleteDataAfterDays" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DevicePinHash" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="DevicePinLength" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DevicePinPermissions" nillable="true" xmlns:q9="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q9:ArrayOfDevicePinPermission" /&gt;
+      &lt;xs:element minOccurs="0" name="DeviceUpdateSettings" nillable="true" type="tns:DeviceUpdateSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayWarningMessageAfterLimits" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayWarningMessageAfterTimes" nillable="true" type="xs:short" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayWarningMessageWithinDays" nillable="true" type="xs:short" /&gt;
+      &lt;xs:element minOccurs="0" name="EncryptIdNum" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="GreenTotalLevel" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupAgreement" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="InOutTrackingEnable" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Interests" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="IosSettings" nillable="true" type="tns:IosSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="IsCounterDisabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsGroupAgreementEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LogsStorageLimitDays" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="M500DisplayAlertEveryScansQuantity" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="M500ScannerMaintenance" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="MSHoursDoesNotIncreaseCounter" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="MembershipSubscribtion" xmlns:q10="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q10:SubscribtionEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="MinimumAge" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="MultiScanHours" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="NotificationsSubscribtion" xmlns:q11="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q11:SubscribtionEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="NumberOfDevices" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OfflineModeSubscribtion" xmlns:q12="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q12:SubscribtionEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="PicturesSubscribtion" xmlns:q13="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q13:SubscribtionEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="PrintedDocument" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="ProfilePhotoOption" xmlns:q14="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q14:ProfilePhotoOptions" /&gt;
+      &lt;xs:element minOccurs="0" name="ReSyncOfflineDays" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="RedTotalLevel" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="RetentionColumns" nillable="true" type="tns:ArrayOfHistoryLogColumnsItemResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowHistoryHours" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Surveys" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ThirdPartyChecksSettings" nillable="true" type="tns:ThirdPartyCheckSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="UsageDataPolicyType" xmlns:q15="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q15:UsageDataPolicyType" /&gt;
+      &lt;xs:element minOccurs="0" name="VehiclesSubscribtion" xmlns:q16="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q16:SubscribtionEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="VeriLocksDoNotAccessForUnderageVisitors" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="VeriLocksGroups" nillable="true" xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q17:ArrayOfint" /&gt;
+      &lt;xs:element minOccurs="0" name="VeriLocksVerifyGroups" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ViewsSettings" nillable="true" type="tns:ViewsSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="WebHooksSettings" nillable="true" type="tns:ClientSettingsWebHooksSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="YellowTotalLevel" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ClientSettingsResponseModel" nillable="true" type="tns:ClientSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertsSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AlertList" nillable="true" type="tns:ArrayOfAlertSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertTypesSettings" nillable="true" type="tns:AlertTypesSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="EnablePopUps" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="EnableSounds" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertsSettingsResponseModel" nillable="true" type="tns:AlertsSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfAlertSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="AlertSettingsResponseModel" nillable="true" type="tns:AlertSettingsResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfAlertSettingsResponseModel" nillable="true" type="tns:ArrayOfAlertSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AlertType" xmlns:q18="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q18:AlertEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="Enabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowPopUp" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="SoundId" nillable="true" type="ser:guid" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertSettingsResponseModel" nillable="true" type="tns:AlertSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertTypesSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Type105_UnderageTier1TypeSettings" nillable="true" type="tns:AlertUnderageTier1TypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type106_UnderageTier2TypeSettings" nillable="true" type="tns:AlertUnderageTier2TypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type117_M500CalibrationTypeSettings" nillable="true" type="tns:AlertM500MaintenanceTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type118_M500CleaningTypeSettings" nillable="true" type="tns:AlertM500MaintenanceTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type15_UnacceptableIdTypeSettings" nillable="true" type="tns:AlertUnacceptableIdTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type1_AlertListTypeSettings" nillable="true" type="tns:AlertListTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type6_AddressListTypeSettings" nillable="true" type="tns:AddressListTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type7_VisitFrequencyTypeSettings" nillable="true" type="tns:AlertVisitFrequencyTypeSettingsResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Type8_MultiScanTypeSettings" nillable="true" type="tns:AlertMultiScanTypeSettingsResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertTypesSettingsResponseModel" nillable="true" type="tns:AlertTypesSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertUnderageTier1TypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AgeOK" type="xs:unsignedByte" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertUnderageTier1TypeSettingsResponseModel" nillable="true" type="tns:AlertUnderageTier1TypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertUnderageTier2TypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AgeOK" type="xs:unsignedByte" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertUnderageTier2TypeSettingsResponseModel" nillable="true" type="tns:AlertUnderageTier2TypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertM500MaintenanceTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="DisplayAlertEveryScansQuantity" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertM500MaintenanceTypeSettingsResponseModel" nillable="true" type="tns:AlertM500MaintenanceTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertUnacceptableIdTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AcceptableIdTypes" nillable="true" type="tns:ArrayOfAcceptableIdTypeResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AlertTitle" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CreateHistoryRecord" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertUnacceptableIdTypeSettingsResponseModel" nillable="true" type="tns:AlertUnacceptableIdTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfAcceptableIdTypeResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="AcceptableIdTypeResponseModel" nillable="true" type="tns:AcceptableIdTypeResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfAcceptableIdTypeResponseModel" nillable="true" type="tns:ArrayOfAcceptableIdTypeResponseModel" /&gt;
+  &lt;xs:complexType name="AcceptableIdTypeResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IDParserDocumentTypes" nillable="true" xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q19:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="IdType" xmlns:q20="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q20:AcceptableIdType" /&gt;
+      &lt;xs:element minOccurs="0" name="IssuedByUS" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Selected" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AcceptableIdTypeResponseModel" nillable="true" type="tns:AcceptableIdTypeResponseModel" /&gt;
+  &lt;xs:complexType name="AlertListTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CheckEqualityType" xmlns:q21="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q21:CheckAlertEqualityType" /&gt;
+      &lt;xs:element minOccurs="0" name="CheckEqualityTypes" nillable="true" xmlns:q22="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q22:ArrayOfCheckAlertEqualityType" /&gt;
+      &lt;xs:element minOccurs="0" name="ExemptGroups" nillable="true" xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q23:ArrayOfint" /&gt;
+      &lt;xs:element minOccurs="0" name="LogicType" nillable="true" xmlns:q24="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q24:AlertListLogicType" /&gt;
+      &lt;xs:element minOccurs="0" name="SharingType" nillable="true" type="xs:unsignedByte" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertListTypeSettingsResponseModel" nillable="true" type="tns:AlertListTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AddressListTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AddressPointAlertType" xmlns:q25="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q25:AddressPointAlertType" /&gt;
+      &lt;xs:element minOccurs="0" name="AddressPointsComparableColumns" nillable="true" xmlns:q26="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" type="q26:ArrayOfNameValueOfboolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AddressListTypeSettingsResponseModel" nillable="true" type="tns:AddressListTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertVisitFrequencyTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AfterTimes" type="xs:short" /&gt;
+      &lt;xs:element minOccurs="0" name="WithinDays" type="xs:short" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertVisitFrequencyTypeSettingsResponseModel" nillable="true" type="tns:AlertVisitFrequencyTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="AlertMultiScanTypeSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="MultiScanHours" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertMultiScanTypeSettingsResponseModel" nillable="true" type="tns:AlertMultiScanTypeSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfHistoryLogColumnsItemResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryLogColumnsItemResponseModel" nillable="true" type="tns:HistoryLogColumnsItemResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfHistoryLogColumnsItemResponseModel" nillable="true" type="tns:ArrayOfHistoryLogColumnsItemResponseModel" /&gt;
+  &lt;xs:complexType name="HistoryLogColumnsItemResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Checked" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="HistoryLogColumnsItemResponseModel" nillable="true" type="tns:HistoryLogColumnsItemResponseModel" /&gt;
+  &lt;xs:complexType name="DeviceUpdateSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AllowUsersToDelayRelaunch" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DelayRelaunchForHours" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="ManuallyDeviceUpdate" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ManuallyDownloadDeviceUpdates" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="DeviceUpdateSettingsResponseModel" nillable="true" type="tns:DeviceUpdateSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="IosSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AgeSoundAlert" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AgreementScreen" xmlns:q27="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q27:DeviceAgreementScreenType" /&gt;
+      &lt;xs:element minOccurs="0" name="AutoDimLock" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CameraScanButton" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CantScanIdButton" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DefaultCamera" xmlns:q28="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q28:DeviceCameraType" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayAddress" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayAge" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayIdNum" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DisplayPrintButton" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="HideManualEntryButton" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="HidePlusMinusButtons" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="HideSuccessfulLoginAlert" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IdExpirationPopup" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="PaymentsButton" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="PromptForGroupComment" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanRemainOnScreenSeconds" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="SkipPhotoDialog" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="IosSettingsResponseModel" nillable="true" type="tns:IosSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ThirdPartyCheckSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CriminalBackgroundCheckEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="CriminalBackgroundCheckMode" xmlns:q29="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q29:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="DmvVerificationEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DmvVerificationMode" xmlns:q30="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q30:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="EveryPoliticianEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="EveryPoliticianMode" xmlns:q31="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q31:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraudAutoOpenQuizUpon" nillable="true" xmlns:q32="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q32:ArrayOfIdentiFraudAutoOpenQuizType" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraudDmvCombination" xmlns:q33="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q33:IdentiFraudDmvCombination" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraudEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraudMode" xmlns:q34="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q34:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraudQuizQuestionNumbers" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OfacEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="OfacMode" xmlns:q35="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q35:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="PepEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="PepMode" xmlns:q36="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q36:ThirdPartyCheckMode" /&gt;
+      &lt;xs:element minOccurs="0" name="SexOffenderRegistryEnabled" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="SexOffenderRegistryMode" xmlns:q37="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q37:ThirdPartyCheckMode" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ThirdPartyCheckSettingsResponseModel" nillable="true" type="tns:ThirdPartyCheckSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ViewsSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AllowEndUsersToControlViewSettings" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="AlwaysOnTop" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="RestoreMinimizedAppAfterScan" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanOnScreenSeconds" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanOnScreenUntilNext" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowPhotos" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ShowRecentVisitors" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ViewOption" xmlns:q38="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q38:ViewOptions" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ViewsSettingsResponseModel" nillable="true" type="tns:ViewsSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="ClientSettingsWebHooksSettingsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Active" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="WebHooksTypes" nillable="true" xmlns:q39="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" type="q39:ArrayOfNameIdOfunsignedByte" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ClientSettingsWebHooksSettingsResponseModel" nillable="true" type="tns:ClientSettingsWebHooksSettingsResponseModel" /&gt;
+  &lt;xs:complexType name="TagsChecksumDataResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:ChecksumDataResponseModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Data" nillable="true" xmlns:q40="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags" type="q40:ArrayOfTagResponseModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TagsChecksumDataResponseModel" nillable="true" type="tns:TagsChecksumDataResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResult" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseModel" nillable="true" type="tns:ResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfResponseValidationResultItem" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+  &lt;xs:complexType name="ResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Errors" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+  &lt;xs:complexType name="ArrayOfint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Devices" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="DeviceResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Authentication" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DeviceId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DeviceName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="DeviceReadOnly" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LiveUpdates" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LocationID" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="RemoteCommand" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RemoteParams" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RequireUserLogin" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdateChannelFullName" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="DeviceResponseModel" nillable="true" type="tns:DeviceResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Alerts" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:complexType name="ArrayOfAlertNotificationStateResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="AlertNotificationStateResponseModel" nillable="true" type="tns:AlertNotificationStateResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfAlertNotificationStateResponseModel" nillable="true" type="tns:ArrayOfAlertNotificationStateResponseModel" /&gt;
+  &lt;xs:complexType name="AlertNotificationStateResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="SoundId" nillable="true" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="Type" xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q1:AlertEnum" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="AlertNotificationStateResponseModel" nillable="true" type="tns:AlertNotificationStateResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:simpleType name="AlertEnum"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="PersonInAlertList"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AgeUnder21"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ForeignId"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="FailedBarcodeSecurityCheck"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="iTrak"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;5&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddressPoint"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;6&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="VisitFrequency"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;7&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MultiScan"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;8&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="SharedInfo"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;9&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Birthday"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;10&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="GoldZipCode"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;11&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AccessListDeny"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;12&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AlertListGroup"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;13&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="CardGroup"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;14&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UnacceptableIdType"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;15&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ProfileMerged"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;20&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyIdentiFraud"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;50&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyCriminalBackgroundCheck"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;53&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyDmvVerification"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;56&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyEveryPolitician"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;59&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyOFAC"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;62&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartyPEP"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;65&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ThirdPartySexOffenderRegistry"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;68&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Dive"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;69&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InterlockRestriction"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;70&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="BirthdateMismatch"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;71&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AlcoholRestricted"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;72&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Group"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;100&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ExpiredId"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;103&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UnderageTier1"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;105&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UnderageTier2"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;106&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="M500Calibration"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;117&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="M500Cleaning"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;118&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DamagedID"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;122&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AuthenticationFailed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;101&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ScreeningServices"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;102&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Void"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;104&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MembershipExpired"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;107&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="PoorImageQuality"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;108&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="PoorDataQuality"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;109&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InterruptedScanning"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;110&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UnsupportedId"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;111&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Warning"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;112&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AsdkUnlicensed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;113&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Offline"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;114&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DrivingPrivilegeOnly"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;115&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="SideDuplicated"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;116&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UsbPoweringIssue"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;119&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="BarcodeReadability"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;120&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="StickerDetected"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;121&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AlertEnum" nillable="true" type="tns:AlertEnum" /&gt;
+  &lt;xs:simpleType name="AlertListLogicType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Standard"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Inverted"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AlertListLogicType" nillable="true" type="tns:AlertListLogicType" /&gt;
+  &lt;xs:simpleType name="AcceptableIdType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="UsStateIssuedDriversLicenses"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="UsStateIssuedIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DomesticPassports"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DomesticPassportCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalPassports"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;5&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalDriversLicenses"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;6&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;7&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="NexusCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;8&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MilitaryIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;9&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MatriculaConsularIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;10&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MunicipalIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;11&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="GlobalEntryCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;12&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="TravelVisas"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;13&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MedicalIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;14&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="EmploymentResidentAuthorizationCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;15&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="TransportationWorkersIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;16&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalMilitaryIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;17&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RealIdStateIssuedDriversLicenses"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;18&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RealIdStateIssuedIdCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;19&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalEmploymentResidentAuthorizationCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;20&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="InternationalPassportCards"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;21&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AcceptableIdType" nillable="true" type="tns:AcceptableIdType" /&gt;
+  &lt;xs:simpleType name="CheckAlertEqualityType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="FirstNameLastName"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="LastName"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="IDAndState"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ID"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="FirstNameLastNameDob"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;5&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="IDAndCountryAndState"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;6&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="CheckAlertEqualityType" nillable="true" type="tns:CheckAlertEqualityType" /&gt;
+  &lt;xs:complexType name="ArrayOfCheckAlertEqualityType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CheckAlertEqualityType" type="tns:CheckAlertEqualityType" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCheckAlertEqualityType" nillable="true" type="tns:ArrayOfCheckAlertEqualityType" /&gt;
+  &lt;xs:simpleType name="AddressPointAlertType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Unknown" /&gt;
+      &lt;xs:enumeration value="DisplayAlertIfAddressHasNotBeenLocatedInTheAddressList" /&gt;
+      &lt;xs:enumeration value="DisplayAlertIfAddressHasBeenLocatedInTheAddressList" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AddressPointAlertType" nillable="true" type="tns:AddressPointAlertType" /&gt;
+  &lt;xs:simpleType name="AsdkRunMode"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="EveryId" /&gt;
+      &lt;xs:enumeration value="BasedOnAgeAndDemand" /&gt;
+      &lt;xs:enumeration value="OnDemand" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AsdkRunMode" nillable="true" type="tns:AsdkRunMode" /&gt;
+  &lt;xs:simpleType name="AsdkStrictnessLevel"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Friendly" /&gt;
+      &lt;xs:enumeration value="Balanced" /&gt;
+      &lt;xs:enumeration value="Strict" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AsdkStrictnessLevel" nillable="true" type="tns:AsdkStrictnessLevel" /&gt;
+  &lt;xs:simpleType name="DataRetentionType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="DemographicDataOnly"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="CustomSelection"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="DataRetentionType" nillable="true" type="tns:DataRetentionType" /&gt;
+  &lt;xs:complexType name="ArrayOfDevicePinPermission"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="DevicePinPermission" type="tns:DevicePinPermission" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfDevicePinPermission" nillable="true" type="tns:ArrayOfDevicePinPermission" /&gt;
+  &lt;xs:simpleType name="DevicePinPermission"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="AddPhone"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddEmail"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddVisitComments"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ViewVisitorProfiles"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddVisitTags"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;5&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddVisitorToGroup"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;6&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeSounds"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;7&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddDevices"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;8&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AddImages"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;9&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangePhone"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;11&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeEmail"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;12&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeVisitComments"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;13&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeVisitorProfiles"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;14&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeVisitTags"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;15&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeGroupAssignment"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;16&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="TurnPopUpsOnOff"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;17&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RemoveDevices"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;18&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="PrintBadgesAndAgreements"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;19&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeLocalSettings"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;21&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ExportReports"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;22&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ConfigureColumns"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;23&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeScanResultsView"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;24&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ShowHideRecentVisitors"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;25&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeBadgesAndAgreements"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;29&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ChangeUpdateSettings"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;30&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="LogOut"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;31&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DragAndDropImagesFromVeriScan"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;32&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ManuallyEnterVisitorsWithoutScanning"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;33&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="SetVisitorsAsOut"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;34&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="M500CalibrationComplete"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;35&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="M500CleaningComplete"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;36&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RunThirdPartyChecks"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;37&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="DevicePinPermission" nillable="true" type="tns:DevicePinPermission" /&gt;
+  &lt;xs:simpleType name="DeviceAgreementScreenType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="NoPopup"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ShowAfterEachScan"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="ShowIfIdHasNoGroup"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="DeviceAgreementScreenType" nillable="true" type="tns:DeviceAgreementScreenType" /&gt;
+  &lt;xs:simpleType name="DeviceCameraType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Front"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Back"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="DeviceCameraType" nillable="true" type="tns:DeviceCameraType" /&gt;
+  &lt;xs:simpleType name="SubscribtionEnum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="NoAccess" /&gt;
+      &lt;xs:enumeration value="FullSubscribtion" /&gt;
+      &lt;xs:enumeration value="Trial" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="SubscribtionEnum" nillable="true" type="tns:SubscribtionEnum" /&gt;
+  &lt;xs:simpleType name="ProfilePhotoOptions"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="CroppedIdPhoto"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="LivePhoto"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="IdFront"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="DoNotAssign"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ProfilePhotoOptions" nillable="true" type="tns:ProfilePhotoOptions" /&gt;
+  &lt;xs:simpleType name="ThirdPartyCheckMode"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="ForEveryId"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="IdFailsAuthOrUnsupported"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="IdPassesAuth"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="OnDemand"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ThirdPartyCheckMode" nillable="true" type="tns:ThirdPartyCheckMode" /&gt;
+  &lt;xs:complexType name="ArrayOfIdentiFraudAutoOpenQuizType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="IdentiFraudAutoOpenQuizType" type="tns:IdentiFraudAutoOpenQuizType" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfIdentiFraudAutoOpenQuizType" nillable="true" type="tns:ArrayOfIdentiFraudAutoOpenQuizType" /&gt;
+  &lt;xs:simpleType name="IdentiFraudAutoOpenQuizType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Passed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Flagged"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="IdentiFraudAutoOpenQuizType" nillable="true" type="tns:IdentiFraudAutoOpenQuizType" /&gt;
+  &lt;xs:simpleType name="IdentiFraudDmvCombination"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="DoNotRunCombination"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RunDmvIfUnavailableRunIdentiFraud"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="RunDmvAndIdentiFraud"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="IdentiFraudDmvCombination" nillable="true" type="tns:IdentiFraudDmvCombination" /&gt;
+  &lt;xs:simpleType name="UsageDataPolicyType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="EnabledAutoUpload" /&gt;
+      &lt;xs:enumeration value="PromptUpload" /&gt;
+      &lt;xs:enumeration value="DoNotUpload" /&gt;
+      &lt;xs:enumeration value="DoNotShare" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="UsageDataPolicyType" nillable="true" type="tns:UsageDataPolicyType" /&gt;
+  &lt;xs:simpleType name="ViewOptions"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="DetailedScanResults"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="AgeRestrictedCompact"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="MinimalPersonalData"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="CompactView"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ViewOptions" nillable="true" type="tns:ViewOptions" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Groups" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfGroupResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="GroupResponseModel" nillable="true" type="tns:GroupResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfGroupResponseModel" nillable="true" type="tns:ArrayOfGroupResponseModel" /&gt;
+  &lt;xs:complexType name="GroupResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AppOrder" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ColorId" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="ColorName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="IsDefault" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsDevHide" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsIntegrated" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLocked" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsShared" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="SemanticGroupId" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="SemanticGroupName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="SendAlert" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="SoundId" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="SoundName" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="GroupResponseModel" nillable="true" type="tns:GroupResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfNameValueOfboolean"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="NameValueOfboolean" nillable="true" type="tns:NameValueOfboolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfNameValueOfboolean" nillable="true" type="tns:ArrayOfNameValueOfboolean" /&gt;
+  &lt;xs:complexType name="NameValueOfboolean"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;GenericType Name="NameValueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;
+          &lt;GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" /&gt;
+        &lt;/GenericType&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Value" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="NameValueOfboolean" nillable="true" type="tns:NameValueOfboolean" /&gt;
+  &lt;xs:complexType name="ArrayOfNameIdOfunsignedByte"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="NameIdOfunsignedByte" nillable="true" type="tns:NameIdOfunsignedByte" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfNameIdOfunsignedByte" nillable="true" type="tns:ArrayOfNameIdOfunsignedByte" /&gt;
+  &lt;xs:complexType name="NameIdOfunsignedByte"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;GenericType Name="NameIdOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/VSWebService.Abstractions" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;
+          &lt;GenericParameter Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" /&gt;
+        &lt;/GenericType&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="NameIdOfunsignedByte" nillable="true" type="tns:NameIdOfunsignedByte" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Tags" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfTagResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="TagResponseModel" nillable="true" type="tns:TagResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfTagResponseModel" nillable="true" type="tns:ArrayOfTagResponseModel" /&gt;
+  &lt;xs:complexType name="TagResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Created" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TagResponseModel" nillable="true" type="tns:TagResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>

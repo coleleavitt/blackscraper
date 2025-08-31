@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Update a 2-level dictionary</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Update a 2-level dictionary</h1>
+
+<h2>Definitions</h2>
+
+A <i>two-level dictionary</i> is analogous to a list-of-lists (aka "2D-list"), except that
+it involves dictionaries rather than lists:
+<p/>
+<ul>
+  <li>
+    A list-of-lists <tt>L</tt>  is a list where each element <tt>L[someidx]</tt> is itself a list;
+    and <tt>L[someidx][anotheridx]</tt> gives us a value stored in <tt>L</tt>.
+  </li>
+  <li>
+    Analogously, a two-level dictionary <tt>D</tt> is a dictionary-of-dictionaries:
+    <tt>D[somekey]</tt> is itself a dictionary, and <tt>D[somekey][anotherkey]</tt> gives us
+    a value stored in the two-level dictionary <tt>D</tt>.  In this example,
+    <tt>somekey</tt> is called the <i>first-level key</i> and
+    <tt>anotherkey</tt> is called the <i>second-level key</i>.
+    <p/>
+  </li>
+</ul>
+<p/>
+In the examples below, <b><tt>DD</tt></b> is assumed to be the following two-level dictionary:
+<blockquote>
+    <pre>{ 'aaa' : { 'bbb' : 'string1', 'ccc' : 'string2', 'ddd' : 'string3' },
+  'bbb' : { 'ccc' : 'string4', 'ddd' : 'string5', 'eee' : 'string6', 'fff' : 'string7' },
+  'ccc' : { 'aaa' : 'string8', 'bbb' : 'string9' }
+}</pre>
+</blockquote>
+Thus, we have: <b><tt>DD['bbb']['ccc']</tt></b> is the value <b><tt>'string4'</tt></b>, while
+<b><tt>DD['ccc']['bbb']</tt></b> is <b><tt>'string9'</tt></b>.
+
+<h2>Expected Behavior</h2>
+Write a function <tt><b>update_dict2</b>(dict2, key1, key2, value)</tt>, where
+<tt>dict2</tt> is a two-level dictionary; 
+<tt>key1</tt> is the first-level key;
+<tt>key2</tt> is the second-level key; and
+<tt>value</tt> is a value to be stored at <tt>dict2[key1][key2]</tt>.  
+This function should return a dictionary obtained by updating <tt>dict2</tt> such that in the
+resulting dictionary, which we refer to as <tt>newdict2</tt>, the following holds:
+<blockquote>
+  <tt>newdict2[key1][key2] == value</tt>.
+</blockquote>
+
+<h2>Restrictions</h2>
+You may NOT use the built-in dictionary method <tt><b>update()</b>.
+
+<h2>Examples</h2>
+<tt>DD</tt> is the two-level dictionary shown above (under <b>Definitions</b>).
+<p/>
+<ol>
+  <li>
+    <b><tt>update_dict2(DD,'aaa','ccc',12)</tt></b><br/>
+    return value:
+    <blockquote>
+      <pre>{ 'aaa' : { 'bbb' : 'string1', 'ccc' : 12, 'ddd' : 'string3' },
+  'bbb' : { 'ccc' : 'string4', 'ddd' : 'string5', 'eee' : 'string6', 'fff' : 'string7' },
+  'ccc' : { 'aaa' : 'string8', 'bbb' : 'string9' }
+}</pre>
+    </blockquote>
+    <p/>
+  </li>
+  <li>
+    <b><tt>update_dict2(DD,'aaa','ggg','string17')</tt></b><br/>
+    return value: 
+    <blockquote>
+      <pre>{ 'aaa' : { 'bbb' : 'string1', 'ccc' : 'string2', 'ddd' : 'string3', 'ggg' : 'string17' },
+  'bbb' : { 'ccc' : 'string4', 'ddd' : 'string5', 'eee' : 'string6', 'fff' : 'string7' },
+  'ccc' : { 'aaa' : 'string8', 'bbb' : 'string9' }
+}</pre>
+    </blockquote>
+    <p/>
+  </li>
+
+  <li>
+    <b><tt>update_dict2(DD,'ggg','aaa','string17')</tt></b><br/>
+    return value: 
+    <blockquote>
+      <pre>{ 'aaa' : { 'bbb' : 'string1', 'ccc' : 'string2', 'ddd' : 'string3' },
+  'bbb' : { 'ccc' : 'string4', 'ddd' : 'string5', 'eee' : 'string6', 'fff' : 'string7' },
+  'ccc' : { 'aaa' : 'string8', 'bbb' : 'string9' },
+  'ggg' : { 'aaa' : 'string17' }
+}</pre>
+    </blockquote>
+    <p/>
+  </li>
+</ol>
+<p/>
+<hr/>
+</body>
+</html>
+

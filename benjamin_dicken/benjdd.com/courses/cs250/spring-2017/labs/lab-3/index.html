@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Lab 3</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lab-3">CSc 250: Lab 3</h1>
+
+<p><img src="/assets/memes/choco-lab.jpg" width="250" /></p>
+
+<p>This lab was written and designed to be completed during lab-time for cs250.
+This lab is not graded and does not need to be turned in.
+However, you should work through all of the problems, as it will help you on assignments and exams.
+If you cannot complete the lab in the alloted time, feel free to continue at home.</p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<p>Write a script named <code class="language-plaintext highlighter-rouge">line-len.sh</code>.
+This script will take as input a string and a name of a file.
+For each line in the input file, the script will determine if the string appears within it.
+This script will take two positional arguments.
+The first is the string which will be searched for in each line of the input file.
+The second is the file, which the script will read.</p>
+
+<p>Recall that in class, we talked about how to iterate through the <em>lines</em> of a file.
+The general for is to do something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while read VAR_TO_STORE_LINE ; do
+    # Commands in here!
+done &lt; some-file.txt
+</code></pre></div></div>
+
+<p>To iterate through each line of the input file in <code class="language-plaintext highlighter-rouge">line-len.sh</code>, you will want to do something similar.
+For each line, You need to do a search to determine if the string given on the command line appears within it.
+Thus, within this <code class="language-plaintext highlighter-rouge">while</code> loop, you will need to do a search operations, store the result, and then determine what to do with an <code class="language-plaintext highlighter-rouge">if</code> statement.
+If the string does appear in the line, print <code class="language-plaintext highlighter-rouge">Found string!</code>.
+If not, print <code class="language-plaintext highlighter-rouge">Missing string!</code></p>
+
+<p>Say we have the text file <code class="language-plaintext highlighter-rouge">recipie.txt</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat recipie.txt 
+30 pounds of sugar
+2 gallons of water
+2 pints of lime juice
+4 ounces of citrate of caffeine
+2 ounces of citric acid
+1 ounce of extract of vanilla
+6 drams (3/4 ounce) of fluid extract of cola
+6 drams of fluid extract of coca
+</code></pre></div></div>
+
+<p>Below are a few example runs of <code class="language-plaintext highlighter-rouge">line-len.sh</code> using <code class="language-plaintext highlighter-rouge">recipie.txt</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./line-len.sh "ounce" recipie.txt 
+Missing string!
+Missing string!
+Missing string!
+Found string!
+Found string!
+Found string!
+Found string!
+Missing string!
+$ ./line-len.sh "ounces" recipie.txt 
+Missing string!
+Missing string!
+Missing string!
+Found string!
+Found string!
+Missing string!
+Missing string!
+Missing string!
+$ ./line-len.sh "of cit" recipie.txt 
+Missing string!
+Missing string!
+Missing string!
+Found string!
+Found string!
+Missing string!
+Missing string!
+Missing string!
+$ ./line-len.sh "does not match" recipie.txt 
+Missing string!
+Missing string!
+Missing string!
+Missing string!
+Missing string!
+Missing string!
+Missing string!
+Missing string!
+$
+</code></pre></div></div>
+
+<h3 id="click-here-for-the-solution-to-problem-1"><a href="./solutions/line-len.sh">Click here for the solution to problem 1</a></h3>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<p>Below are several python statements/expressions.
+For each one, figure out what the python console will return/print on <em>paper</em>, <em>before</em> running it in the python console.
+Once you’ve come up with your answer, run the command in the python console to check your answer.
+If you get it right, great!
+If you get it wrong, make sure you understand <em>why</em> (if you don’t understand, ask or Google).
+Note that some of the below may produce an error.
+If you think it will, let that be your answer.
+To start up the python console, open up the terminal app and run <code class="language-plaintext highlighter-rouge">python3</code>.</p>
+
+<p><br /></p>
+
+<p><strong>(A)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; 5 + (2 * 3 + (7 - 1)) / 2
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(B)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; 100 // (5 ** 2 + 10) - 20
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(C)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; 40 - 4 * 4 / 2 + 18 - 10 / 2
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(D)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; im_on_the_7th_floor = False
+&gt;&gt;&gt; im_on_the_8th_floor = False
+&gt;&gt;&gt; im_on_the_9th_floor = True
+&gt;&gt;&gt; im_on_the_7th_floor and im_on_the_8th_floor
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(E)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; im_on_the_7th_floor and im_on_the_8th_floor or im_on_the_9th_floor
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(F)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; (not im_on_the_8th_floor) or im_on_the_7th_floor
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(G)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; im_on_the_9th_floor and ( not not im_on_the_8th_floor ) or im_on_the_7th_floor
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(H)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; line = "The critics said "The movie is great" after leaving the theater."
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(I)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; name = "Sherlock Holmes"
+&gt;&gt;&gt; type(name)
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(J)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; number = 1 + 2 + 3
+&gt;&gt;&gt; type(number)
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(K)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; number = 1 + 2 + 3 + 4 + 5.5
+&gt;&gt;&gt; type(number)
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(L)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; age = 35
+&gt;&gt;&gt; description = "He is " + age + " years old."
+&gt;&gt;&gt; print(description)
+</code></pre></div></div>
+<p><br /></p>
+
+<p><strong>(M)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; name = "John Watson"
+&gt;&gt;&gt; age = 47
+&gt;&gt;&gt; print( name + " is " + str(age) + " years old." )
+</code></pre></div></div>
+<p><br /></p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<p>In this problem, you will write a python script.
+We have not officially covered this topic in lecture yet, but it is not too different from how it is done with bash scripts.
+Go ahead and read through and follow along with the “Scripts” section of <a href="./lectures/lecture-notes-7.html">lecture notes 7</a>.
+Once you are comfortable writing a python script, you can continue with this problem.</p>
+
+<p>Write a script named <code class="language-plaintext highlighter-rouge">two-towers.py</code>.
+This script will print out the following snippet of the Lord of the Rings, Two Towers movie script:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LEGOLAS
+Come, Gimli! We are gaining on them!
+
+
+GIMLI
+[Panting] I am wasted on cross-country! 
+We dwarves are natural sprinters! Very 
+dangerous over short distances!
+
+[The trackers come over a hill and pause 
+as they gaze across the plains below.]
+
+
+
+ARAGORN
+Rohan. Home of the horse-lords. There 
+is something strange at work here. Some 
+evil gives speed to these creatures, 
+sets its will against us.
+
+[Legolas runs ahead and looks out to 
+the horizon.]
+
+ARAGORN
+Legolas, what do your Elf eyes see?
+
+
+LEGOLAS
+The Uruks turn northeast. They’re taking 
+the hobbits to Isengard!
+</code></pre></div></div>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<p>Write a python script named <code class="language-plaintext highlighter-rouge">move-info.py</code>.
+This script should start by declaring the following few variables:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>title           = "Star Wars"
+year_released   = 1977
+lead_actor      = "Mark Hamill"
+secondary_actor = "Harrison Ford"
+description     = "Planets, Space-ships, Lightsabers, Oh My!"
+</code></pre></div></div>
+
+<p>Feel free to change these variables to whatever values you want.</p>
+
+<p>After declaring these variables in your script, should write some code that prints out a movie summary that looks like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Star Wars" was released in 1977.
+The lead actor was Mark Hamill and the secondary actor was Harrison Ford.
+The movie is about: Planets, Space-ships, Lightsabers, Oh My!
+</code></pre></div></div>
+
+<p>You should not hard-code the values into the string(s) that you are printing.
+The calls to <code class="language-plaintext highlighter-rouge">print()</code> should use the variables in the printout, and covert the variables to strings where necessary.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

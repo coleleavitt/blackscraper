@@ -1,0 +1,10 @@
+/* CSS code for the Google Fonts module */
+h1,
+body {
+  font-family: 'Roboto Slab', Arial, sans-serif;
+  font-weight: regular;
+}
+h2 {
+  font-family: 'Roboto Slab', Arial, sans-serif;
+  font-weight: bold;
+}

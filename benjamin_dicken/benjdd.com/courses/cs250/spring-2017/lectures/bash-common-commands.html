@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-bash-commands">CSc 250: Lecture Notes: bash commands</h1>
+
+<h2 id="review">Review</h2>
+
+<p>Last time, we learned some basics of the UNIX system, and the basics of how to use the UNIX shell. We also covered a few basic bash commands that can be used for browsing and makding changes the the files and directories on the file system. Specifically, we learned about:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pwd</code> Displays the “current working directory” of the shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">ls</code> Lists all of the files and folders (directories) in the current shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> Allows us to change to a new directory in ths shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">mkdir</code> Create new directorie(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">touch</code> Create new file(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">rm</code> Remove file(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">rmdir</code> Remove directorie(s)</li>
+</ul>
+
+<p>In today’s lecture, we will add several other shell commands to our arsenal. Here we go…</p>
+
+<h2 id="echo">echo</h2>
+
+<p>Back to the <code class="language-plaintext highlighter-rouge">echo</code> command for a bit. As mentioned above, the <code class="language-plaintext highlighter-rouge">echo</code> command prints out whatever text comes after the command. A very simple example is <code class="language-plaintext highlighter-rouge">echo Hello World</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo Hello World
+Hello World
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">echo</code> reads in all of the text that follows it, which in this case is <code class="language-plaintext highlighter-rouge">Hello World</code>. All that is does is print this out to the command-line. Pretty nifty! This command has some more complex functionality, but for now, this is all we need to know about it.</p>
+
+<h2 id="cat">cat</h2>
+
+<p>No, we’re not talking about animals here. <code class="language-plaintext highlighter-rouge">cat</code> is a command that prints out the contents of files. Let’s say we have a file in the current working directory called <code class="language-plaintext highlighter-rouge">names.txt</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pwd
+/Users/bddicken/Desktop/test
+$ ls
+names.txt    image.jpg
+</code></pre></div></div>
+
+<p>We can discover the contents of the <code class="language-plaintext highlighter-rouge">names.txt</code> file by running <code class="language-plaintext highlighter-rouge">cat names.txt</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat names.txt 
+Anne Berkley
+Donna King
+Bill Jimmer
+Cam Smith
+</code></pre></div></div>
+
+<p>This files has four names in it, one per line of the file. Cool! Above we saw that the current working directory also contained an image file called <code class="language-plaintext highlighter-rouge">image.jpg</code>. Can <code class="language-plaintext highlighter-rouge">cat</code> display an image? Let’s find out. If we try running <code class="language-plaintext highlighter-rouge">cat image.jpg</code>, something like this will be diplayed by bash</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat image.jpg 
+????JFIFHH??ExifMM*    z    ??(1
+?2??i?SAMSUNGSCH-I535HHI535VRUCML12014:03:21 16:28:00???????"?'d?0220?֑??
+???
+?0100????????q2014:03:21 16:28:002014:03:21 16:28:00)d)d
+?
+http://ns.adobe.com/xap/1.0/&lt;?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?&gt; &lt;x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 5.4.0"&gt; &lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt; &lt;rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/" xmp:ModifyDate="2014-03-21T16:28:00" xmp:CreatorTool="I535VRUCML1" xmp:CreateDate="2014-03-21T16:28:00" photoshop:DateCreated="2014-03-21T16:28:00"/&gt; &lt;/rdf:RDF&gt; &lt;/x:xmpmeta&gt;
+&lt;?xpacket end="w"?&gt;??xPhotoshop 3.08BIM?ZG?1628002014032120140321&lt;1628008BIM%?S??n??j?Q?7????????
+???}!1AQa"q2??#B??R??$3br?  
+%&amp;'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz???????????????????????????????????????????????????????????????????????????
+???w!1AQaq"2B????   #3R?br?
+$4?%?&amp;'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz??????????????????????????????????????????????????????????????????????????C 
+?? ??
+</code></pre></div></div>
+
+<p>Ew! What is this? Well, it makes sense that <code class="language-plaintext highlighter-rouge">cat</code> would have trouble displaying an image. <code class="language-plaintext highlighter-rouge">cat</code> prints the contents of the file to the text output of the shell. Obviously, a <code class="language-plaintext highlighter-rouge">.jpg</code> file is not a text file, so it cannot display the image in a reasonable way. Thus, <code class="language-plaintext highlighter-rouge">cat</code> should only be used for printing out files whose contents are text. You will have the opportunity to use <code class="language-plaintext highlighter-rouge">cat</code> in the upcoming homework assignments.</p>
+
+<h2 id="sort">sort</h2>
+
+<p>As the name suggests, the <code class="language-plaintext highlighter-rouge">sort</code> command can be used to sort text content. We can re-use the <code class="language-plaintext highlighter-rouge">names.txt</code> file from the <code class="language-plaintext highlighter-rouge">cat</code> exable above. As we already saw, the names in <code class="language-plaintext highlighter-rouge">names.txt</code> are not sorted alphabetically. What should we do if we want to sort them?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sort names.txt 
+Anne Berkley
+Bill Jimmer
+Cam Smith
+Donna King
+</code></pre></div></div>
+
+<p>Look at that, the names get printed similarly to how they were printed with cat, but now they are in alphabetical order. One important thing to note is that running <code class="language-plaintext highlighter-rouge">sort names.txt</code> does not change the contents of the actual file, it just reads the contents of the file, and sorts the output. After running this <code class="language-plaintext highlighter-rouge">sort</code> command, we can again <code class="language-plaintext highlighter-rouge">cat</code> the file to see that the order has not changed:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat names.txt 
+Anne Berkley
+Donna King
+Bill Jimmer
+Cam Smith
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">sort</code> comes in very handy when doing data processing on large text files. It is often very useful to sort the contents of a file either alphabetically or numerically.</p>
+
+<h2 id="grep">grep</h2>
+
+<p>Grep can be used to search for text in text files. <code class="language-plaintext highlighter-rouge">grep</code> is a very powerful tool with many features, but in this lecture we are just going to cover some basics. Again, we shall use the example file <code class="language-plaintext highlighter-rouge">names.txt</code> from above.</p>
+
+<p>Perhaps we want to check if someone with the name “Bill” exists in our file. We would run the following</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grep Bill names.txt 
+Bill Jimmer
+</code></pre></div></div>
+
+<p>We found a Bill! Now, what if we want to search of all names that have an “nn” in it. The command is very similar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ grep nn names.txt 
+Anne Berkley
+Donna King
+</code></pre></div></div>
+
+<p>We found two!
+Now, what if we want to search for all names that have an “a” in it.
+However, we want to ignore case, so that we check the first (capitalized) letter, and all letters in the rest of the name.
+To ignore case, we can add the <code class="language-plaintext highlighter-rouge">-i</code> option to the command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ grep -i A names.txt
+Anne Berkley
+Donna King
+Cam Smith
+</code></pre></div></div>
+
+<p>Three names!</p>
+
+<p>Another capability grep has it to return only an exact <em>word</em> match, rather than matching anything on one of the lines of text.
+This can be acheived with the <code class="language-plaintext highlighter-rouge">-w</code> option.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ grep -w anne names.txt 
+$
+</code></pre></div></div>
+
+<p>This matches no word exactly, so nothing is returned.
+As with most options, the <code class="language-plaintext highlighter-rouge">-w</code> option can be used in conjunction with other options, such as <code class="language-plaintext highlighter-rouge">-i</code>.
+If we add <code class="language-plaintext highlighter-rouge">-i</code> to the previous command, we <em>will</em> get a match, because we will be doing an exact word search <em>and</em> case will be ignored.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ grep -w -i anne names.txt 
+Anne Berkley
+$
+</code></pre></div></div>
+
+<p>And obviously, it works even with <code class="language-plaintext highlighter-rouge">-i</code> as long as the correct capitalization is used:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ grep -w Bill names.txt 
+Bill Jimmer
+</code></pre></div></div>
+
+<h2 id="head-and-tail">head and tail</h2>
+
+<p>These two commands are tightly related, so I will introduce them together. <code class="language-plaintext highlighter-rouge">head</code> and <code class="language-plaintext highlighter-rouge">tail</code> are to be used for printing the beginning (<code class="language-plaintext highlighter-rouge">head</code>) and end (<code class="language-plaintext highlighter-rouge">tail</code>) lines of a text file. Obviously, this is very usefule when you have large file(s) and dont want to look at the whole file at once. For example, you might have a tet file with student grades that is sorted by grade. If you want to see the students with the best scores, you could use <code class="language-plaintext highlighter-rouge">head</code> to find these.</p>
+
+<p>Say we have a file named <code class="language-plaintext highlighter-rouge">grades.txt</code> with the following text contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>99 Jimmy Smith
+97 Sally Talbot
+90 Donna Sloan
+89 John Cooper
+87 Jared Ganzales
+87 Mary West
+83 Sherlock Holmes
+77 Bob Thorton
+76 David Abraham
+62 Fred Francis
+</code></pre></div></div>
+
+<p>The first column is the grade, the second is the first name, and the last is the last name. To look at only the top three grades, we can run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ head -n 3 grades.txt 
+99 Jimmy Smith
+97 Sally Talbot
+90 Donna Sloan
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-n 3</code> allows the user to specify the number of lines to show at the beginning of the file. Similarly, to see the lowest grades, we can run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ tail -n 3 grades.txt 
+77 Bob Thorton
+76 David Abraham
+62 Fred Francis
+</code></pre></div></div>
+
+<h2 id="cut">Cut</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">cut</code> command is used to cut out specific regions of each line of a file or input stream.
+This command is very useful if we don’t want to do a specific operation (such as sorting or searching) on an entire file, but rather a particular “column” of the file.</p>
+
+<p>Generally speaking, when using cut we typically need to specify two command-line arguments.
+We need to specify the character that we want to use as the delimiter to separate columns of the input file.
+This is specified with the <code class="language-plaintext highlighter-rouge">-d</code> option.
+We also need to specify <em>which</em> column we want to extract, once the separator has been specified.
+This is specified with the <code class="language-plaintext highlighter-rouge">-f</code> option (“f” is for “field”).</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">grades.txt</code>, the columns of data are separated with spaces, so do operate on this file we should use <code class="language-plaintext highlighter-rouge">-d " "</code>.
+We can grab just the first column (the grades) with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$  cut -d " " -f 1 grades.sh 
+99
+97
+90
+89
+87
+87
+83
+77
+76
+62
+</code></pre></div></div>
+
+<p>Or the second column (first-name) with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$  cut -d " " -f 2 grades.sh 
+Jimmy
+Sally
+Donna
+John
+Jared
+Mary
+Sherlock
+Bob
+David
+Fred
+</code></pre></div></div>
+
+<p>Or the third column (last-name) with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$  cut -d " " -f 3 grades.sh 
+Smith
+Talbot
+Sloan
+Cooper
+Ganzales
+West
+Holmes
+Thorton
+Abraham
+Francis
+</code></pre></div></div>
+
+<p>What if the “columns” in <code class="language-plaintext highlighter-rouge">grades.txt</code> were separated with a character other than spaces?
+For example, commas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>99,Jimmy,Smith
+97,Sally,Talbot
+90,Donna,Sloan
+89,John,Cooper
+87,Jared,Ganzales
+87,Mary,West
+83,Sherlock,Holmes
+77,Bob,Thorton
+76,David,Abraham
+62,Fred,Francis
+</code></pre></div></div>
+
+<p>To do this, just replace <code class="language-plaintext highlighter-rouge">-d " "</code> with <code class="language-plaintext highlighter-rouge">-d ","</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$  cut -d "," -f 2 grades.sh 
+Jimmy
+Sally
+Donna
+John
+Jared
+Mary
+Sherlock
+Bob
+David
+Fred
+</code></pre></div></div>
+
+<h2 id="man-pages">Man pages</h2>
+
+<p><img src="/assets/memes/manual.jpg" width="200" /></p>
+
+<p>A man page (short for manual page) is a form of software documentation usually found on a Unix or Unix-like operating system.
+Most common tools and commands in bash have ther own man page.
+To read a manual page for a Unix command, a user can type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>man &lt;command_name&gt;
+</code></pre></div></div>
+
+<p>So, to read the man page for <code class="language-plaintext highlighter-rouge">cat</code>, one would simply type <code class="language-plaintext highlighter-rouge">man cat</code>, and the following would show up in bash:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+CAT(1)                    BSD General Commands Manual                   CAT(1)
+
+NAME
+    cat -- concatenate and print files
+
+SYNOPSIS
+    cat [-benstuv] [file ...]
+
+DESCRIPTION
+    The cat utility reads files sequentially, writing them to the standard output.  The file oper-
+    ands are processed in command-line order.  If file is a single dash (`-') or absent, cat reads
+    from the standard input.  If file is a UNIX domain socket, cat connects to it and then reads it
+    until EOF.  This complements the UNIX domain binding capability available in inetd(8).
+
+    The options are as follows:
+
+    -b      Number the non-blank output lines, starting at 1.
+
+    -e      Display non-printing characters (see the -v option), and display a dollar sign (`$') at
+            the end of each line.
+
+    -n      Number the output lines, starting at 1.
+...
+</code></pre></div></div>
+
+<p>The man page can be browsed with the up and down arrows.
+Man pages, as well as other tutorials and documentations, can also be found online (just Google for it).
+When looking for documentation on various bash commands, look to either the man pages or Google.</p>
+
+<h2 id="command-line-arguments">Command-line arguments</h2>
+
+<p>In a few of the examples in these notes, we have seen the concept of passing “command line argument” to bash programs.
+Ultimately, command-line argument(s) are token(s) (strings of characters) that come after the command name.
+Shell commands have the ability to read the text that comes “after” the command name, and use this text to change the behavior of the program.
+Even in the sime example of <code class="language-plaintext highlighter-rouge">grep Bill names.txt</code>, <code class="language-plaintext highlighter-rouge">Bill</code> and <code class="language-plaintext highlighter-rouge">names.txt</code> is a command line argument.
+<code class="language-plaintext highlighter-rouge">grep</code> reads in these strings and interprets them as necessary.
+It uses the first token/string it encounters (<code class="language-plaintext highlighter-rouge">Bill</code>) to determine what to search for.
+It uses the second token/string (<code class="language-plaintext highlighter-rouge">names.txt</code>) as the name of the file search in.
+These kinds of arguments are called <em>positional</em> arguments, because the command interprets them based on their <em>position</em> (order) that they are listed in.
+<code class="language-plaintext highlighter-rouge">grep</code> assumes that the search term comes first, and the file nam comes second.</p>
+
+<p>Many shell programs also have non-positional arguments and options.
+These are typically specified in the form of <code class="language-plaintext highlighter-rouge">command -CHAR specification</code>.
+In the <code class="language-plaintext highlighter-rouge">head</code> example earlier, we ran the command <code class="language-plaintext highlighter-rouge">head -n 3 grades.txt</code>.
+<code class="language-plaintext highlighter-rouge">-n 3</code> tells <code class="language-plaintext highlighter-rouge">head</code> to only print hte first three lines of <code class="language-plaintext highlighter-rouge">grades.txt</code>.
+The <code class="language-plaintext highlighter-rouge">-n</code> specifies what option is about to be specified, and then it is specified with <code class="language-plaintext highlighter-rouge">3</code>.
+This is a non-positional argument, because the <code class="language-plaintext highlighter-rouge">-n 3</code> could be put in (nearly) any place in the command.
+Both <code class="language-plaintext highlighter-rouge">head -n 3 grades.txt</code> and <code class="language-plaintext highlighter-rouge">head grades.txt -n 3</code> would work fine.</p>
+
+<p>Some non-positional arguments are boolean (specifiying a particular feature to be either enabled or disabled).
+The command <code class="language-plaintext highlighter-rouge">grep -i A names.txt</code> is an example of this. 
+<code class="language-plaintext highlighter-rouge">-i</code> tells <code class="language-plaintext highlighter-rouge">grep</code> to ignore case when doing the search.
+Both <code class="language-plaintext highlighter-rouge">grep -i A names.txt</code> and <code class="language-plaintext highlighter-rouge">grep A names.txt -i</code> are valid.</p>
+
+<h2 id="multiple-commands-one-line">Multiple commands, one line</h2>
+
+<p>It is sometimes useful to run multiple bash commands with just a single line of bash.
+If you want to do this, you can separate multiple separate bash commands with <code class="language-plaintext highlighter-rouge">;</code>.
+Let’s run through a few examples.</p>
+
+<p>Perhaps one wants to list all of the files on the <code class="language-plaintext highlighter-rouge">Desktop</code> directory and the <code class="language-plaintext highlighter-rouge">Documents</code> directory simultaneously:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "--- DESKTOP FILES ---" ; ls /Users/bddicken/Desktop ; echo "--- DOCUMENT FILES ---" ;  ls /Users/bddicken/Documents ; 
+--- DESKTOP FILES ---
+ben-small.jpg               hagura.zip              ubuntu-14.04.5-desktop-amd64.iso
+create-dirs-and-files.sh        test                    unetbootin-mac-625.dmg
+--- DOCUMENT FILES ---
+Untitled.txt    peers       pw
+</code></pre></div></div>
+
+<p>In this single line of bash, 4 separate bash commands were executed:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">echo "--- DESKTOP FILES ---"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ls /Users/bddicken/Desktop</code></li>
+  <li><code class="language-plaintext highlighter-rouge">echo "--- DOCUMENT FILES ---"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ls /Users/bddicken/Documents</code></li>
+</ul>
+
+<p>These are run in the order they are placed in on the command-line, separated by <code class="language-plaintext highlighter-rouge">;</code>.</p>
+
+<p>Another example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "--- The first two lines of grades.txt ---" ; head -n 2 grades.sh ; echo "--- The last two lines of grades.txt ---" ; tail -n 2 grades.sh
+--- The first two lines of grades.txt ---
+99,Jimmy,Smith
+97,Sally,Talbot
+--- The last two lines of grades.txt ---
+76,David,Abraham
+62,Fred,Francis
+</code></pre></div></div>
+
+<p>In a single line of bash, we ran the following four commands in the order provided:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">echo "--- The first two lines of grades.txt ---"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">head -n 2 grades.sh</code></li>
+  <li><code class="language-plaintext highlighter-rouge">echo "--- The last two lines of grades.txt ---"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">tail -n 2 grades.sh</code></li>
+</ul>
+
+<h2 id="other-commands">Other commands</h2>
+
+<p>Future homework assignments and exams may require you to know more bash commands than the ones specifically covered in class.
+In such cases, use google, man pages or office hours to get help on learning new commands.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>All of the commands we have learned about so far:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pwd</code> Displays the “current working directory” of the shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">ls</code> Lists all of the files and folders (directories) in the current shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> Allows us to change to a new directory in ths shell session</li>
+  <li><code class="language-plaintext highlighter-rouge">mkdir</code> Create new directorie(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">touch</code> Create new file(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">rm</code> Remove file(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">rmdir</code> Remove directorie(s)</li>
+  <li><code class="language-plaintext highlighter-rouge">echo</code> Prints the text passed to it</li>
+  <li><code class="language-plaintext highlighter-rouge">cat</code> Prints the contents of files. Works best for text-based files</li>
+  <li><code class="language-plaintext highlighter-rouge">sort</code> Sorts text input</li>
+  <li><code class="language-plaintext highlighter-rouge">grep</code> Searches for strings in files and input</li>
+  <li><code class="language-plaintext highlighter-rouge">head</code> Prints the beginning of files</li>
+  <li><code class="language-plaintext highlighter-rouge">tail</code> Prints the end of files</li>
+  <li><code class="language-plaintext highlighter-rouge">cut</code> Extract regions of each line from a file or input stream</li>
+</ul>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

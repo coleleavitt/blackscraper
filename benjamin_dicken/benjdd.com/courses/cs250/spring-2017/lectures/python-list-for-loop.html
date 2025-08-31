@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-lists-and-for-loops">CSc 250: Lecture Notes: lists and for loops</h1>
+
+<p><img src="/assets/comics/bucket-list.gif" width="550" /></p>
+
+<p>In this section we are going to discuss the list data type along with <code class="language-plaintext highlighter-rouge">for</code> loops, which are two topics that go hand-in-hand.
+The official python tutorial has <a href="https://docs.python.org/3/tutorial/introduction.html#lists">a brief introduction to lists</a>, which may serve as a helpful reference for this section.</p>
+
+<h2 id="lists">Lists</h2>
+
+<p>The description of lists from the official python 3 tutorial goes as follows:</p>
+
+<blockquote>
+  <p>Python knows a number of compound data types, used to group together other values. The most versatile is the list, which can be written as a list of comma-separated values (items) between square brackets. Lists might contain items of different types, but usually the items all have the same type.</p>
+</blockquote>
+
+<p>The list type is actually pretty self-documenting.
+A list is a sequence of values of a particular type.
+Lists are declared by putting a comma-separated list of values in between square-brackets.
+For example, the following declares a new list of 5 integers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers = [5, 10, 20, 50, 100]
+</code></pre></div></div>
+
+<p>Similarly, we can declare lists of other types (for example, strings and floats)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Billy', 'Jane', 'Rachel', 'Robert']
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; more_numbers = [3.14, 1.11, 77.77778]
+</code></pre></div></div>
+
+<p>Lists an even have multiple different types in the same list (though, this is not recommended as “good programming style”):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stuff = [5, 77.7, 'Sherlock']
+</code></pre></div></div>
+
+<p>All of these new variables have the type <code class="language-plaintext highlighter-rouge">list</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; type(numbers)
+&lt;class 'list'&gt;
+&gt;&gt;&gt; type(names)
+&lt;class 'list'&gt;
+&gt;&gt;&gt; type(more_numbers)
+&lt;class 'list'&gt;
+&gt;&gt;&gt; type(stuff)
+&lt;class 'list'&gt;
+</code></pre></div></div>
+
+<p>Regardless of what type(s) the list contains, the type of the list itself is the same.</p>
+
+<p>Lists are not much use to use if we cannot access the elements within the list.
+Do do so, use the list indexing syntax, which <em>also</em> uses square brackets.
+List indexing is “zero-based.”
+This means that the first element in the list is at index 0, the second at index 1, the third at index 2, and so on.</p>
+
+<p>To get the first element in the <code class="language-plaintext highlighter-rouge">numbers</code> list:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[0]
+5
+</code></pre></div></div>
+
+<p>To get the last element:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[4]
+100
+</code></pre></div></div>
+
+<p>As with strings, we can also get a <em>range</em> of elements from a list, using the same range syntax.
+To get the first, second, and third element, do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[0:3]
+[5, 10, 20]
+</code></pre></div></div>
+
+<p>To get all elements except for the first one, do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[1:]
+[10, 20, 50, 100]
+</code></pre></div></div>
+
+<p>To get just the first element:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers[:1]
+[5]
+</code></pre></div></div>
+
+<p>And so on.</p>
+
+<h2 id="list-length">List length</h2>
+
+<p>There is a built-in function in python named <code class="language-plaintext highlighter-rouge">len</code>.
+This function can be used to compute the length of lists and strings.
+To compute the length of all of the lists from the last example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; len(numbers)
+5
+&gt;&gt;&gt; len(names)
+4
+&gt;&gt;&gt; len(more_numbers)
+3
+&gt;&gt;&gt; len(stuff)
+3
+</code></pre></div></div>
+
+<p>Getting the length of the function is useful for many reasons.
+One particular use case it in selecting portions of a list dynamically.</p>
+
+<p>Say we have this list of numbers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; square_numbers = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
+</code></pre></div></div>
+
+<p>To get the last element in this list, we could do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; square_numbers[11]
+121
+</code></pre></div></div>
+
+<p>Because we know the list has 12 elements in it.
+But perhaps we want to get the last element of this list without hard-coding the length.
+How can we do this.
+In this case, <code class="language-plaintext highlighter-rouge">len</code> comes in handy.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; last = len(square_numbers) - 1
+&gt;&gt;&gt; square_numbers[last]
+121
+</code></pre></div></div>
+
+<p>Notice that one must be subtracted from the result of <code class="language-plaintext highlighter-rouge">len</code> because indexing lists is <em>zero</em>-based.</p>
+
+<p>We can extend this example to get other sections of the list.
+For example, to get the second-half of the list:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; last = len(square_numbers) - 1
+&gt;&gt;&gt; middle = int(last / 2)
+&gt;&gt;&gt; square_numbers[middle+1:]
+[36, 49, 64, 81, 100, 121]
+</code></pre></div></div>
+
+<p>And to get the first half:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; square_numbers[0:middle+1]
+[0, 1, 4, 9, 16, 25]
+</code></pre></div></div>
+
+<h2 id="in-list">“in” List</h2>
+
+<p>It is often useful to quickly check if a particular value exists inside of a list.
+In python you can use the <code class="language-plaintext highlighter-rouge">in</code> keyword to do this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; movies = ['Batman', 'StarWars', 'StarTrek', 'JohnWick']
+&gt;&gt;&gt; 'StarTrek' in movies
+True
+&gt;&gt;&gt; 'JohnWick' in movies
+True
+&gt;&gt;&gt; 'JohnWick Chapter 2' in movies
+False
+&gt;&gt;&gt;
+</code></pre></div></div>
+
+<p>Note that the <code class="language-plaintext highlighter-rouge">in</code> keywords also works for strings:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title = 'John Wick Chapter 2'
+&gt;&gt;&gt; 'John' in title
+True
+&gt;&gt;&gt; 'Johnny' in title
+False
+&gt;&gt;&gt;
+</code></pre></div></div>
+
+<h2 id="generating-lists">Generating Lists</h2>
+
+<p>It is sometimes useful to quickly generate a list of numbers (especially when used with <code class="language-plaintext highlighter-rouge">for</code> loops, which we will get to shortly).
+To do this, we create a new <code class="language-plaintext highlighter-rouge">range</code> of numbers and then convert it to a <code class="language-plaintext highlighter-rouge">list</code> with casting.
+To generate a list of numbers 1-10, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list(range(1,11))
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</code></pre></div></div>
+
+<p>50-100:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list(range(50,101))
+[50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+</code></pre></div></div>
+
+<p>You can specify an optional third argument to <code class="language-plaintext highlighter-rouge">range</code>, which is a “step” count.
+The generated list will skip this many numbers in-between each element of the list.
+The following generates a sequence from 50 to 100, but only includes every-other number:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list(range(50,101,2))
+[50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100]
+</code></pre></div></div>
+
+<p>In this example, we get all the multiples of ten between 0 and 100:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list(range(0,101,10))
+[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+</code></pre></div></div>
+
+<h2 id="modifying-lists">Modifying lists</h2>
+
+<p>As with strings, there are several functions that can be used to search/modify/probe the elements in a list.
+Below is basic documentation on many (but not all) of the commonly-used list functions.</p>
+
+<h3 id="listappend">list.append</h3>
+
+<p>This function will add a single element to the end of a list.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Lebron', 'Kyrie', 'Steph']
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kyrie', 'Steph']
+&gt;&gt;&gt; names.append('Russ')
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kyrie', 'Steph', 'Russ']
+&gt;&gt;&gt; names.append('Devin')
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kyrie', 'Steph', 'Russ', 'Devin']
+</code></pre></div></div>
+
+<h3 id="listextend">list.extend</h3>
+
+<p>This function will add the elements from one list to the end of another list.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Lebron', 'Kyrie', 'Steph']
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kyrie', 'Steph']
+&gt;&gt;&gt; names.extend( ['Russ', 'Devin', 'Klay'] )
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kyrie', 'Steph', 'Russ', 'Devin', 'Klay']
+</code></pre></div></div>
+
+<h3 id="listinsert">list.insert</h3>
+
+<p>Insert an elements into the list at a particular index, and shift the rest of the list to make room for it.
+This function takes two arguments.
+The first is the index to insert at, and the second is the element to insert.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Lebron', 'Kyrie', 'Steph']
+&gt;&gt;&gt; names.insert(1, 'Kevin')
+&gt;&gt;&gt; print(names)
+['Lebron', 'Kevin', 'Kyrie', 'Steph']
+&gt;&gt;&gt; names.insert(0, 'Russ')
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph']
+&gt;&gt;&gt; names.insert(3, 'Steph')
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Steph', 'Kyrie', 'Steph']
+</code></pre></div></div>
+
+<h3 id="listremove">list.remove</h3>
+
+<p>This function removes the first element in the list with the given value:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Steph', 'Kevin', 'Steph', 'Kyrie', 'Steph', 'Steph']
+&gt;&gt;&gt; names.remove('Steph')
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Steph', 'Kyrie', 'Steph', 'Steph']
+&gt;&gt;&gt; names.remove('Steph')
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph', 'Steph']
+&gt;&gt;&gt; names.remove('Kyrie')
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Steph', 'Steph']
+</code></pre></div></div>
+
+<h3 id="listpop">list.pop</h3>
+
+<p>Removes and returns the element from the list at the given index.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; names.pop(1)
+'Lebron'
+&gt;&gt;&gt; print(names)
+['Russ', 'Kevin', 'Kyrie', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; names.pop(3)
+'Steph'
+&gt;&gt;&gt; print(names)
+['Russ', 'Kevin', 'Kyrie', 'Klay', 'Eric']
+&gt;&gt;&gt; names.pop(0)
+'Russ'
+&gt;&gt;&gt; print(names)
+['Kevin', 'Kyrie', 'Klay', 'Eric']
+</code></pre></div></div>
+
+<h3 id="listsort">list.sort</h3>
+
+<p>Sorts the list.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; names.sort()
+&gt;&gt;&gt; print(names)
+['Eric', 'Kevin', 'Klay', 'Kyrie', 'Lebron', 'Russ', 'Steph']
+</code></pre></div></div>
+
+<h3 id="listreverse">list.reverse</h3>
+
+<p>Reverses the elements in the list</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; print(names)
+['Russ', 'Lebron', 'Kevin', 'Kyrie', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; names.reverse()
+&gt;&gt;&gt; print(names)
+['Eric', 'Klay', 'Steph', 'Kyrie', 'Kevin', 'Lebron', 'Russ']
+&gt;&gt;&gt; 
+&gt;&gt;&gt; names.sort()
+&gt;&gt;&gt; print(names)
+['Eric', 'Kevin', 'Klay', 'Kyrie', 'Lebron', 'Russ', 'Steph']
+&gt;&gt;&gt; names.reverse()
+&gt;&gt;&gt; print(names)
+['Steph', 'Russ', 'Lebron', 'Kyrie', 'Klay', 'Kevin', 'Eric']
+</code></pre></div></div>
+
+<h2 id="for-loops">for loops</h2>
+
+<p>Now that we have a solid understanding of lists, we can discuss for loops, which are tightly coupled with lists.
+There is also some coverage of for loops in <a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements">the python tutorial</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">while</code> loops continue to loop while the specified condition is <code class="language-plaintext highlighter-rouge">True</code>.
+<code class="language-plaintext highlighter-rouge">for</code> loops differ, and are rather similar to <code class="language-plaintext highlighter-rouge">for</code> loops in bash.
+A <code class="language-plaintext highlighter-rouge">for</code> loop executes the body of the loop for each element in a given list.</p>
+
+<p>The general <code class="language-plaintext highlighter-rouge">for</code> loop syntax is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for some_var_name in some_list :
+    statement A
+    statement B
+    ...
+</code></pre></div></div>
+
+<p>In plain English, this is interpreted as “For each element in the list <code class="language-plaintext highlighter-rouge">some_list</code>, assign the element to the <code class="language-plaintext highlighter-rouge">some_var_name</code> variable and execute all of the python statements in the body sequentially.”</p>
+
+<p>A very simple <em>actual</em> example is a follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; names = ['Russ', 'Lebron', 'Steph', 'Klay', 'Eric']
+&gt;&gt;&gt; for name in names:
+...     print('Player: ' + name)
+... 
+Player: Russ
+Player: Lebron
+Player: Steph
+Player: Klay
+Player: Eric
+</code></pre></div></div>
+
+<p>For each element in <code class="language-plaintext highlighter-rouge">names</code>, the value is assigned to <code class="language-plaintext highlighter-rouge">name</code> and the loop body executes.</p>
+
+<p>If we wanted to iterate over a series of numbers using while loops, we would do something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; i = 1
+&gt;&gt;&gt; while i &lt;= 10:
+...     print('i=' + str(i))
+...     i += 1
+... 
+i=1
+i=2
+i=3
+i=4
+i=5
+i=6
+i=7
+i=8
+i=9
+i=10
+</code></pre></div></div>
+
+<p>To do a similar thing with <code class="language-plaintext highlighter-rouge">for</code> loops, we can generate a list of numbers and iterate over them:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; for i in list(range(1,11)):
+...     print('i=' + str(i))
+... 
+i=1
+i=2
+i=3
+i=4
+i=5
+i=6
+i=7
+i=8
+i=9
+i=10
+</code></pre></div></div>
+
+<p><br />
+<img style="float:left; margin-right:15px; margin-bottom:15px;" src="/assets/in-class-assignment.png" width="50" /></p>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">is_length</code>.
+This function will take two arguments.
+The first is named <code class="language-plaintext highlighter-rouge">words</code>, which will be a list of strings.
+The second is a number, called <code class="language-plaintext highlighter-rouge">length</code>.</p>
+
+<p>For each word X in the <code class="language-plaintext highlighter-rouge">words</code> list, this function will print out will check if the word’s length is longer than <code class="language-plaintext highlighter-rouge">length</code>.
+If it is, it will print out <code class="language-plaintext highlighter-rouge">"X" is long enough!</code>.
+If not, it will print out <code class="language-plaintext highlighter-rouge">"X" is too short!</code>.</p>
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

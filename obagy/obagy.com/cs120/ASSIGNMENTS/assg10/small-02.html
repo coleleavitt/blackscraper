@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Linked List w/Tail 02</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Linked Lists </h1>
+
+<h2>Expected Behavior</h2>
+The code for the <b><tt>LinkedList</tt></b> and <b><tt>Node</tt></b> classes is provided
+here in the starter code for this problem. Note that this version of the
+linked list maintains a tail reference. That is, <b><tt>self._tail</tt></b> is an attribute of the
+linked list class and
+refers to the last node in the linked list.
+<p>
+Your task is to 
+implement the method <b><tt>remove_last(self)</tt></b>
+for the <b><tt>LinkedList</tt></b> class with a tail reference. 
+</p>
+<p>
+Given a <b><tt>LinkedList</tt></b> object <b><tt>llist</tt></b>, 
+the execution of the code
+<blockquote>
+<b><tt>llist.remove_last()</tt></b>
+</blockquote>
+returns the last element of <b><tt>llist</tt></b> and adjusts the 
+tail reference to the second to the last element of the list, or <b><tt>None</tt></b>
+if the element removed was the last element of the list. If the
+list is empty, the method returns <b><tt>None</tt></b>.
+<p>Note: Normally you would expect CloudCoder to check that the element
+returned is the correct last element of the list. The last test case does check
+the value returned. However, for the other test cases,
+CloudCoder will verify that after the removal of the last element,
+the tail reference has been correctly adjusted.
+</p>
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    Call: <b><tt>remove_last(LList ->  |6|:-> |4|:-> |2|:None; tail ->  |2|:None)</tt></b><br/>
+    Result: <b><tt>"LList ->  |6|:-> |4|:None; tail ->  |4|:None"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>remove_last(LList ->  |6|:-> |4|:None; tail ->  |4|:None)</tt></b><br/>
+    Result: <b><tt>"LList ->  |6|:None; tail ->  |6|:None"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>remove_last(LList ->  |6|:None; tail ->  |6|:None)</tt></b><br/>
+    Result: <b><tt>"LList -> ; tail -> None"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>remove_last(LList -> ; tail -> None)</tt></b><br/>
+    Result: <b><tt>None</tt></b>
+    <p/>
+  </li>
+
+</ol>
+
+<p/>
+<hr/>
+</body>
+</html>
+

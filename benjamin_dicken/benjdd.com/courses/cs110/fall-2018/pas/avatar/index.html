@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Avatar</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---avatar">CSc 110 - Avatar</h1>
+
+<p><img src="./res/avatar-pa.png" width="650px" /></p>
+
+<p>Many of you have probably selected or created an avatar, perhaps for a video-game or a profile image.
+There are also general-purpose avatar creators online, such as <a href="https://avatarmaker.com/">avatarmaker.com</a>.
+These tools can be used to create an avatar for use on various online accounts.</p>
+
+<p>In this assignment, you will be writing a console-based avatar creation tool.
+The program that you build will allow the user to build a custom avatar, or select from 3 pre-designed ones.
+The avatars that this program will create will not be of just a face, but rather, an avatar body.
+All of the interaction for this program will happen on the command-line.
+Part of the purpose of this PA is to get you to use and better understand functions, parameters, if-statements, and while-loops.
+Name your program <code class="language-plaintext highlighter-rouge">avatar.py</code>.</p>
+
+<p><em>Note: If you are attending the <a href="https://ghc.anitab.org">Grace Hopper Conference</a>, contact the instructor about getting an extension on this PA.</em></p>
+
+<h2 id="program-behavior">Program Behavior</h2>
+
+<p>The program will begin with a title and then a prompt to select / create an avatar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>----- AVATAR -----
+Select an Avatar or create your own:
+</code></pre></div></div>
+
+<p>This prompt will wait user input.
+At this point, the user can do one of several things:</p>
+
+<ul>
+  <li>Type <code class="language-plaintext highlighter-rouge">exit</code> to exit the program without printing out an avatar.</li>
+  <li>Type <code class="language-plaintext highlighter-rouge">custom</code> to begin the custom avatar creation interface.</li>
+  <li>Choose from one of three pre-defined avatars.
+The names of the three pre-defined avatars are <code class="language-plaintext highlighter-rouge">Jeff</code>, <code class="language-plaintext highlighter-rouge">Adam</code>, and <code class="language-plaintext highlighter-rouge">Chris</code>.</li>
+</ul>
+
+<p>If anything other than <code class="language-plaintext highlighter-rouge">exit</code>, <code class="language-plaintext highlighter-rouge">custom</code>, <code class="language-plaintext highlighter-rouge">Jeff</code>, <code class="language-plaintext highlighter-rouge">Adam</code>, or <code class="language-plaintext highlighter-rouge">Chris</code> is entered, the program will just repeat the question until a valid input is entered.
+After the name is entered, the avatar is printed and then the program exists.</p>
+
+<p>Jeff, Adam, and Chris are shown below.
+If one of these is selected, you should print out this exact character and then the program can end.</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>Jeff</b></td>
+  <td style="background-color:#ededed;"><b>Adam</b></td>
+  <td style="background-color:#ededed;"><b>Chris</b></td>
+</tr>
+
+<tr>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+ ___/_______\___ 
+    |"""""""|    
+    | 0   0 |    
+    |   V   |    
+    |  ~~~  |    
+     \_____/     
+ 0====|---|====0
+      |-X-|      
+      |-X-|      
+      HHHHH      
+     /// \\\
+    ///   \\\
+#HHH#       #HHH#</code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\___ 
+    |'''''''|    
+    | *   * |    
+    |   V   |    
+    |  ~~~  |    
+     \_____/     
+      |-X-|      
+ 0TTTT|---|TTTT0
+      |-X-|      
+      |-X-|      
+      |-X-|      
+      HHHHH      
+     /// \\\
+    ///   \\\
+   ///     \\\
+&lt;|||&gt;       &lt;|||&gt;</code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\    
+    |"""""""|    
+    | U   U |    
+    |   V   |    
+    |  ~~~  |    
+     \_____/     
+      |-X-|      
+ 0WWWW|---|WWWW0
+      |-X-|      
+      HHHHH      
+     /// \\\
+    ///   \\\
+   ///     \\\
+  ///       \\\
+&lt;&gt;-&lt;&gt;       &lt;&gt;-&lt;&gt;</code></pre>
+  </td>
+</tr>
+
+</table>
+
+<p>Take a close look at the above avatars.
+There are many similarities, but also some key differences.
+The differences of note are:</p>
+
+<ul>
+  <li>All of then have a similar cap on, but one is a top-hat, one is a cam to the right, and the other is facing forward.</li>
+  <li>They all have the same basic face structure, but with two types of hair (single-quotes and double-quotes) showing below the hat, and differing eyes.</li>
+  <li>Similar neck/torso style, but with varying height.</li>
+  <li>Similar arms, but with varying characters used.</li>
+  <li>Similar legs, but with varying lengths and shoes.</li>
+</ul>
+
+<p>If <code class="language-plaintext highlighter-rouge">custom</code> is selected, then the program should prompt the user for a number of look customization options.
+There are 7 total options to select, and the program should ask for the inputs one-by-one.
+The prompts should look as follows (example values shown after the question-marks).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Select an Avatar or create your own:
+custom
+Answer the following questions to create a custom avatar
+Hat style ?
+right
+Character for eyes ?
+^
+Shaggy hair (True/False) ?
+True
+Arm style ?
+P
+Torso length ?
+3
+Leg length (1-4) ?
+3
+Shoe look ?
+&lt;###&gt;
+</code></pre></div></div>
+
+<p>This sequence of inputs should produce this avatar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       ~-~
+     /-~-~-\
+    /_______\___
+    |"""""""|
+    | ^   ^ |
+    |   V   |
+    |  ~~~  |
+     \_____/
+ 0PPPP|---|PPPP0
+      |-X-|
+      |-X-|
+      |-X-|
+      HHHHH
+     /// \\\
+    ///   \\\
+   ///     \\\
+&lt;###&gt;       &lt;###&gt;
+</code></pre></div></div>
+
+<p>Each of the options control something about the look of the printed avatar.
+All of the inputs are collected, and then the avatar is printed using the values.
+More test cases of custom avatars will be provided via the gradescope tests.</p>
+
+<h2 id="custom-input-values">Custom Input Values</h2>
+
+<p>This section explains what each input values controls.
+Each of the inputs have an expected format.
+However, you do not need to validate all of these inputs.
+You may assume that the user will enter a value that follows the rules for all of them.</p>
+
+<h3 id="hat-style">Hat Style</h3>
+
+<p>Can be <code class="language-plaintext highlighter-rouge">left</code>, <code class="language-plaintext highlighter-rouge">right</code>, <code class="language-plaintext highlighter-rouge">both</code> or <code class="language-plaintext highlighter-rouge">front</code>.
+If an invalid value is entered, the default is <code class="language-plaintext highlighter-rouge">front</code>.
+These correspond to:</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>left</b></td>
+  <td style="background-color:#ededed;"><b>right</b></td>
+  <td style="background-color:#ededed;"><b>both</b></td>
+  <td style="background-color:#ededed;"><b>front</b></td>
+</tr>
+
+<tr>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+ ___/_______\    </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\___ </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+ ___/_______\___ </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\    </code></pre>
+  </td>
+</tr>
+
+</table>
+
+<h3 id="hair">Hair</h3>
+
+<p>The user should enter either <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code>.
+This determined the shagginess (or thickness) of the avatars hair.
+The table shows what True/False correspond to:</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>True</b></td>
+  <td style="background-color:#ededed;"><b>False</b></td>
+</tr>
+
+<tr>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\    
+    |"""""""|    </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>       ~-~       
+     /-~-~-\     
+    /_______\    
+    |'''''''|    </code></pre>
+  </td>
+</tr>
+
+</table>
+
+<h3 id="eye-character">Eye Character</h3>
+
+<p>Pretty simple - controls which character should be used for the eyes.
+The user should enter just one character, not a long string.</p>
+
+<h3 id="arm-style">Arm Style</h3>
+
+<p>This input should be a single character, as with the eyes.
+This character will be used for the arm of the avatar.
+<code class="language-plaintext highlighter-rouge">0</code> is always used for the hand, and <code class="language-plaintext highlighter-rouge">|---|</code> is always used for the body portion.
+The entered character should only change the actual arm component.</p>
+
+<h3 id="torso-length">Torso Length</h3>
+
+<p>Controls the length (height) of the torso.
+The value entered should be any positive integer.
+Below are examples of various torso lengths.</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>3</b></td>
+  <td style="background-color:#ededed;"><b>5</b></td>
+  <td style="background-color:#ededed;"><b>7</b></td>
+</tr>
+
+<tr>
+  <td class="topic-general">
+    <pre><code>      |-X-|      
+      |-X-|      
+      |-X-|      </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      
+      |-X-|      </code></pre>
+  </td>
+</tr>
+
+</table>
+
+<h3 id="leg-length">Leg Length</h3>
+
+<p>Controls the length (height) of the legs.
+The value entered should be a positive integer between 1 and 4.
+Below are examples of the various leg length possibilities.</p>
+
+<table>
+
+<tr>
+  <td style="background-color:#ededed;"><b>1</b></td>
+  <td style="background-color:#ededed;"><b>2</b></td>
+  <td style="background-color:#ededed;"><b>3</b></td>
+  <td style="background-color:#ededed;"><b>4</b></td>
+</tr>
+
+<tr>
+  <td class="topic-general">
+    <pre><code>      HHHHH      
+     /// \\\     </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>      HHHHH      
+     /// \\\     
+    ///   \\\    </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>      HHHHH      
+     /// \\\     
+    ///   \\\    
+   ///     \\\   </code></pre>
+  </td>
+  <td class="topic-general">
+    <pre><code>      HHHHH      
+     /// \\\     
+    ///   \\\    
+   ///     \\\   
+  ///       \\\  </code></pre>
+  </td>
+</tr>
+
+</table>
+
+<h3 id="shoes">Shoes</h3>
+
+<p>The input here should be a string that is exactly 5 characters long.
+That is the amount of space allocated for shoes.
+There can be empty-spaces in the string.
+The shoe style provided should be used for both the left and right shoe.</p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>Perhaps you’ve noticed by now, but there are a lot of “chunks” of predefined and custom avatars that are similar.
+For example, all of the avatars have torso sections, but the height of them varies.
+All of the avatars have the same face structure, but the eyes and hair can change.</p>
+
+<p>You should write a <em>function</em> that is responsible for printing each “chunk” of the avatar.
+Thus, your program must have at least six functions to receive full points: A main function, and functions for the hat, face, arms, torso, and legs.
+The parameters of each function should be the values that control the look.</p>
+
+<p>For example, you could write a function called <code class="language-plaintext highlighter-rouge">def hat(direction):</code>, where the <code class="language-plaintext highlighter-rouge">direction</code> is a string indicating which style to print.
+Within the function, you can have if-statements that allow different styles to be printed.
+For the face, you could create a function named <code class="language-plaintext highlighter-rouge">def face(hair, eyes):</code>.
+This function will have the standard face shape print out, but use the <code class="language-plaintext highlighter-rouge">hair</code> and <code class="language-plaintext highlighter-rouge">eyes</code> parameters to change those specific parts of the face.
+You should end up with a function for each part of the body.</p>
+
+<p>See the differ tool and/or Gradescope for examples of complete runs.</p>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<p>You are <em>not</em> allowed to use <em>any</em> string multiplication on this program.
+For the torso height and legs, you should try to use while-loops.
+Also, all of your code should be organized into functions.
+The only code that may not be in a function is a call to <code class="language-plaintext highlighter-rouge">main()</code>.
+You are not allowed to have any global variables.
+You also should not use the <code class="language-plaintext highlighter-rouge">exit</code> function for this PA.</p>
+
+<h2 id="due-date">Due Date</h2>
+
+<p>This PA is due Friday, September 28th at 5:00pm.
+Turn it in on Gradescope.
+You should try to make sure that all of the test cases pass before you turn it in.
+You can still submit without all of the cases passing, but that is not preferable.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Column to List (Recursive)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Column to List (Recursive)</h1>
+
+<h2>Expected Behavior</h2>
+Write a recursive function <b>column2list_rec</b>(<i>grid</i>, <i>n</i>), where
+<i>grid</i> is a list of lists and <i>n</i> is an integer, that returns
+a list consisting of the element at position <i>n</i> of each row of
+<i>grid</i>.
+<p/>
+You can assume that <b><tt>0</tt></b> &le; <i>n</i> &lt; <b><tt>len</tt></b>(<i>r</i>) 
+for each row <tt>r</tt> (i.e., element) of <i>grid</i>.
+<p/>
+
+<h2>Programming Requirements</h2>
+Solve this problem using recursion.  You are allowed to use <u>only</u>
+the following programming constructs:
+<p/>
+<ul>
+  <li>
+    <b>if</b> statements;
+  </li>
+  <li>
+    <b>return</b> statements;
+  </li>
+  <li>
+    assignment;
+  </li>
+  <li>
+    recursive function calls (but not to helper functions);
+  </li>
+  <li>
+    comparison operations (<b>==</b>, <b>!=</b>, etc.);
+  </li>
+  <li>
+    list indexing and slicing;
+  </li>
+  <li>
+    list concatenation/extension.
+  </li>
+</ul>
+<p/>
+Solutions that go outside these constructs, e.g., by
+using <b>for</b>/<b>while</b> loops or list comprehensions,
+will not get credit.
+
+<h2>Examples</h2>
+In the examples below, <b><tt>x</tt></b> is assumed to be the following list of lists:
+<blockquote>
+  <b><tt>
+[ [ 'aa', 'bb', 'cc', 'dd' ],<br/>
+&nbsp;&nbsp;[ 'ee', 'ff', 'gg', 'hh', 'ii', 'jj' ],<br/>
+&nbsp;&nbsp;[ 'kk', 'll', 'mm', 'nn' ] ]</tt></b>
+</blockquote>
+
+<ol>
+  <li>
+    <b><tt>column2list_rec(x,3)</tt></b><br/>
+    return value: <b><tt>['dd', 'hh', 'nn' ]</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>column2list_rec(x,0)</tt></b><br/>
+    return value: <b><tt>[ 'aa', 'ee', 'kk' ]</tt></b>
+    <p/>
+  </li>
+</ol>
+
+</body>
+</html>
+

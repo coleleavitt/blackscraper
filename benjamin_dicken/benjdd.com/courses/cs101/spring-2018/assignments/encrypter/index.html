@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSC 101 - Encrypter</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101---encrypter">CSC 101 - Encrypter</h1>
+
+<p>In class, we’ve talked about Caesar ciphers and rail ciphers.
+In this assignment, you’ll write a program that programmatically encrypts messages using a caesar cipher and a 2-rail cipher.
+Name your program <code class="language-plaintext highlighter-rouge">encrypter.pde</code>.
+As you type in a plaintex message, your program will immediately translate the text.
+Below is an example of the program running with several inputs:</p>
+
+<p><img src="./res/encrypter.gif" width="700px" alt="Encrypter" /></p>
+
+<p>Notice a few things:</p>
+
+<ul>
+  <li>The top-center of the canvas has the name of the program (“ENCRYPTER”).</li>
+  <li>The line below is the plaintext line.
+When the user types text, the text should show up here.</li>
+  <li>The next line displays the caesar-cipher encrypted text.
+The shift amount of the caesar cipher can be any value between 0-9.
+This is specified by the user pressing one of the digit keys on the keyboard.</li>
+  <li>The last line shows the encrypted 2-rail cipher text.
+<strong>The 2-rail cipher part is for extra credit!</strong>
+You are only required to do the caesar one.</li>
+  <li>Each of the lines of text is a different color.</li>
+  <li>The translations happen “live” as the user types in the plaintext.</li>
+  <li>This program <em>only</em> does encryption. 
+No need to handle decryption.</li>
+  <li>Whenever the enter/return key is pressed, the plaintext is cleared, as well as the two ciphertexts.</li>
+  <li>You can choose different colors than me, but you should give each line of text and the background a unique color.</li>
+</ul>
+
+<p>You might want to <a href="https://docs.google.com/presentation/d/1slmYtW5_Ln-CHga48iWNh2CbxxibmFxRhI9zXHTUPoY/edit?usp=sharing">review the lecture slides</a> before starting on this.</p>
+
+<h2 id="caesar-cipher">Caesar Cipher</h2>
+
+<p>Recall that we talked about Caesar ciphers in class.
+If you don’t understand how a Caesar cipher woks, refer to the lecture slides on Cryptography.</p>
+
+<p>I recommend that you create a string variable that has the entire alphabet in it to help with the encryption.
+For example, <code class="language-plaintext highlighter-rouge">String alph = "abcdefghijklmnopqrstuvwxyz";</code>.
+The next step will be to write a for-loop that loops through all of the characters in the input string that the user types (we did this in class, remember?).
+For each character, find the index of this character in the <code class="language-plaintext highlighter-rouge">alph</code> variable, and then fond the appropriate caesar cipher offset.</p>
+
+<h2 id="2-rail-cipher-extra-credit">2-Rail Cipher (extra-credit)</h2>
+
+<p>You only need to do a 2-rail cipher encryption.
+2-rail cipher encryption is actually rather simple.
+Think about the 2-rail cipher that is needed for the message “bibliographically”.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b   b   i   g   a   h   c   l   y
+  i   l   o   r   p   i   a   l
+</code></pre></div></div>
+
+<p>In essence, all that needed to be done was to put every-other letter in the message on the different levels of the rail.</p>
+
+<p>When getting this translation happenning in your program, I recommend starting with two variables, one to represent the top rail and the other the bottom.
+Then, loop through your string, putting the characters at even indexes in the top row string, and the chars at the odd indexes on the bottom rail string.
+Then, combine the strings!</p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>First, just get the canvas sized correctly, the labels in the right positions, and the colors.</p>
+
+<p><img src="./res/encrypter-labels.png" width="500px" alt="Encrypter Labels" /></p>
+
+<p>Then, get the user input working (you had to do something similar on the last assignment!)</p>
+
+<p><img src="./res/encrypter-input.gif" width="500px" alt="Encrypter Input" /></p>
+
+<p>Once you have all of this set up, work on the encryptions.
+Start with getting just the Caesar cipher to work.
+Once done, move on the the 2-rail.</p>
+
+<h2 id="shifts">Shifts</h2>
+
+<p>Below is a gif of a long interaction with the program.
+Three different messages are typed in.
+Notice that while each message is displaying, I change the shift amount.
+When the shift amount changes, the Caesar ciphertext changes.
+The 2-rail ciphertext does not change, because it does not use the shift.
+These are for your reference.
+Check that your results match these!</p>
+
+<p><img src="./res/encrypter-1-3-5.gif" width="500px" alt="Encrypter Input" /></p>
+
+<h2 id="submission">Submission</h2>
+
+<p>This is due Friday, April 6th, at 5:00pm.
+Submit <code class="language-plaintext highlighter-rouge">encrypter.pde</code> to the D2L dropbox before this date/time.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

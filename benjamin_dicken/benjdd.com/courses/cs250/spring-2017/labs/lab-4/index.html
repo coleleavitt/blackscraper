@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Lab 4</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lab-4">CSc 250: Lab 4</h1>
+
+<p><img src="/assets/memes/losing-leg-lab.jpg" width="300" /></p>
+
+<p>This lab was written and designed to be completed during lab-time for cs250.
+This lab is not graded and does not need to be turned in.
+However, you should work through all of the problems, as it will help you on assignments and exams.
+If you cannot complete the lab in the alloted time, feel free to continue at home.</p>
+
+<h2 id="precursor">Precursor</h2>
+
+<p>Throughout the problems in this lab, we will be writing several python functions in the same file.
+Create a new python script file named <code class="language-plaintext highlighter-rouge">shapes.py</code> and open it up in your editor of choice (atom).
+On the first line of this file, write a descriptive comment, for example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># A file with functions to print out various shapes
+</code></pre></div></div>
+
+<p>Put all of the functions from all problems in this file as you go along.</p>
+
+<h2 id="problem-1---line">Problem 1 - line</h2>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">line</code> in <code class="language-plaintext highlighter-rouge">shapes.py</code> that prints a line of <code class="language-plaintext highlighter-rouge">-</code> (dash) characters.
+This function will take one argument named <code class="language-plaintext highlighter-rouge">length</code>, which will specify the length of the line.
+Also make sure to put a descriptive comment immediately above the function, documenting what it does, what it returns, and the role of each argument.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ####### Print a line to stdout #######              
+# line is the length of the line to be printed
+# This function does not return a value 
+</code></pre></div></div>
+
+<p>Once you’ve written the function, we will want to test it out.
+A convenient way to do this is to try the function out in the interactive python shell.
+We <em>could</em> copy-paste the function into the shell directly, and then use it, but that isn’t very idiomatic!
+Instead, we will import the function into the interactive shell.</p>
+
+<p>Open up a <em>new</em> terminal window, and <code class="language-plaintext highlighter-rouge">cd</code> into the directory that contains <code class="language-plaintext highlighter-rouge">shapes.py</code>.
+Once in the right directory, start a python 3 shell (run <code class="language-plaintext highlighter-rouge">python3.X</code>).
+You should put your editor with <code class="language-plaintext highlighter-rouge">shapes.py</code> and this new terminal window side-by-side.
+Your screen should look like:</p>
+
+<p><img src="/assets/atom-terminal-1.png" width="750" /></p>
+
+<p>Now, we will import the functions from <code class="language-plaintext highlighter-rouge">shapes.py</code> as a <em>module</em> into the shell session.
+To do so, go ahead and run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import shapes
+</code></pre></div></div>
+
+<p>Running this will search for a file named <code class="language-plaintext highlighter-rouge">shapes.py</code> in the current working directory.
+If it finds one (it should, in this case), it will import all of the functions from it as a new module in the session.
+By default, the name of the module is the same as the name of the file (with the <code class="language-plaintext highlighter-rouge">.py</code> part dropped).
+To check if the module imported correctly, type the name of the module and hit enter.
+You should see something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes
+&lt;module 'shapes' from '&lt;redacted&gt;/cs250/labs/lab-4/solutions/shapes.py'&gt;
+</code></pre></div></div>
+
+<p>So far, we have only written one function in <code class="language-plaintext highlighter-rouge">shapes.py</code>.
+We can check which function(s) are in this module (or any module) by passing the name of the module to the built-in <code class="language-plaintext highlighter-rouge">help()</code> function.
+If we run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; help(shapes)
+</code></pre></div></div>
+
+<p>You should be presented with text that looks roughly like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Help on module shapes:
+
+NAME
+    shapes - # A file with functions to print out various shapes
+
+FUNCTIONS
+    line(length)
+        # ####### Print a line to stdout #######
+        # line is the length of the line to be printed
+
+FILE
+&lt;redacted&gt;/cs250/labs/lab-4/solutions/shapes.py
+</code></pre></div></div>
+
+<p>Only one function is listed in the <code class="language-plaintext highlighter-rouge">FUNCTIONS</code> section, which is expected.
+Also, notice how the <code class="language-plaintext highlighter-rouge">help()</code> info incorporates the comments that we wrote.
+By doing so, we can customize what is seem when we (or another use) tried to run <code class="language-plaintext highlighter-rouge">help()</code> on a module that we write.</p>
+
+<p>Finally, let’s try running <code class="language-plaintext highlighter-rouge">line()</code>.
+To run it, we cannot just type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; line(5)
+</code></pre></div></div>
+
+<p>This is because the function was imported as a component of the <code class="language-plaintext highlighter-rouge">shapes</code> module, not all by itself.
+Instead, we must run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.line(5)
+</code></pre></div></div>
+
+<p>This is telling the python shell “run the function <code class="language-plaintext highlighter-rouge">line</code> which exists in the module named <code class="language-plaintext highlighter-rouge">shapes</code>, and pass it the argument <code class="language-plaintext highlighter-rouge">5</code>”.</p>
+
+<p>Below are a few sample calls to this function.
+The result of running your function should look similar.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.line(3)
+---
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.line(7)
+-------
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.line(20)
+--------------------
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.line(70)
+----------------------------------------------------------------------
+</code></pre></div></div>
+
+<h2 id="problem-2---square">Problem 2 - Square</h2>
+
+<p>Next, write another function in <code class="language-plaintext highlighter-rouge">shapes.py</code> named <code class="language-plaintext highlighter-rouge">square</code> that prints a square of <code class="language-plaintext highlighter-rouge">X</code> characters.
+This function will take one argument named <code class="language-plaintext highlighter-rouge">width</code>, which will specify the width (and height) of the square.
+Write the function, put an informative comment above it, and then re-save <code class="language-plaintext highlighter-rouge">shapes.py</code>.</p>
+
+<p>You should test this function in the same python interactive shell you used for problem 1.
+However, if you try to run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.square(3)
+</code></pre></div></div>
+
+<p>This does not work!
+The problem is that when we <code class="language-plaintext highlighter-rouge">import</code>-ed <code class="language-plaintext highlighter-rouge">shapes</code> the first time, it was <em>before</em> the <code class="language-plaintext highlighter-rouge">square</code> function had been written.
+If a module is imported from a file, and then the file is modified, the modifications are <em>not</em> automatically updated in the module withing the python session.
+This can be seen if we run <code class="language-plaintext highlighter-rouge">help(shapes)</code> again.
+You’ll see something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Help on module shapes:
+
+NAME
+    shapes - # A file with functions to print out various shapes
+
+FUNCTIONS
+    line(length)
+        # ####### Print a line to stdout #######
+        # line is the length of the line to be printed
+
+FILE
+&lt;redacted&gt;/cs250/labs/lab-4/solutions/shapes.py
+</code></pre></div></div>
+
+<p>Which does not display anything about the <code class="language-plaintext highlighter-rouge">square</code> function.
+In order to get the updated contents of the module, we must reload the module.
+How does one reload a module?</p>
+
+<p><img src="/assets/memes/module-for-that.jpg" width="250" /></p>
+
+<p>In order to reload <code class="language-plaintext highlighter-rouge">shapes</code>, we first need to <code class="language-plaintext highlighter-rouge">import</code> <em>another</em> module called <code class="language-plaintext highlighter-rouge">importlib</code>.
+<code class="language-plaintext highlighter-rouge">importlib</code> is a module built in to python by default.
+Thus, when it is imported, we don’t need to have the <code class="language-plaintext highlighter-rouge">importlib.py</code> file in the current working directory.
+This module has a function called <code class="language-plaintext highlighter-rouge">reload</code> which can be used to reload modules that are already imported.
+Thus, to reload <code class="language-plaintext highlighter-rouge">shapes</code>, you will need to run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; import importlib
+&gt;&gt;&gt; importlib.reload(shapes)
+&lt;module 'shapes' from '&lt;redacted&gt;/cs250/labs/lab-4/solutions/shapes.py'&gt;
+</code></pre></div></div>
+
+<p>After doing this, running <code class="language-plaintext highlighter-rouge">help(shapes)</code> will show something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Help on module shapes:
+
+NAME
+    shapes - # A file with functions to print out various shapes
+
+FUNCTIONS
+    line(length)
+        # ####### Print a line to stdout #######
+        # line is the length of the line to be printed
+
+    square(width)
+        # ####### Print a square to stdout #######
+        # width is the width/height of the square
+
+FILE
+&lt;redacted&gt;/cs250/labs/lab-4/solutions/shapes.py
+</code></pre></div></div>
+
+<p>Now there is an entry for the <code class="language-plaintext highlighter-rouge">square</code> function.
+As with <code class="language-plaintext highlighter-rouge">line</code>, <code class="language-plaintext highlighter-rouge">square</code> can be called by running <code class="language-plaintext highlighter-rouge">shapes.square(5)</code>.
+Below are a few sample calls:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.square(3)
+XXX
+XXX
+XXX
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.square(7)
+XXXXXXX
+XXXXXXX
+XXXXXXX
+XXXXXXX
+XXXXXXX
+XXXXXXX
+XXXXXXX
+</code></pre></div></div>
+
+<h2 id="problem-3---rectangle">Problem 3 - Rectangle</h2>
+
+<p>Write another function in <code class="language-plaintext highlighter-rouge">shapes.py</code> named <code class="language-plaintext highlighter-rouge">rectangle</code> that prints a rectangle of characters.
+This function will take three arguments.
+The first is the <code class="language-plaintext highlighter-rouge">width</code> of the rectangle,
+The second is the <code class="language-plaintext highlighter-rouge">height</code> of the rectangle.
+The third is a character, which the rectangle will be made up of.
+Write the function, add a descriptive comment immediately above it, and re-save <code class="language-plaintext highlighter-rouge">shapes.py</code>.</p>
+
+<p>In order to use this function, follow the same steps for re-loading the <code class="language-plaintext highlighter-rouge">shapes</code> module described in problem 2.
+Also, make sure to check that the function description is added to the <code class="language-plaintext highlighter-rouge">help(shapes)</code> section.</p>
+
+<p>Below are a few sample calls:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.rectangle(5, 3, '+')
++++++
++++++
++++++
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.rectangle(38, 5, '#')
+######################################
+######################################
+######################################
+######################################
+######################################
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.rectangle(4, 15, 'O')
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+OOOO
+</code></pre></div></div>
+
+<h2 id="problem-4---checker-board">Problem 4 - Checker Board</h2>
+
+<p>Write another function in <code class="language-plaintext highlighter-rouge">shapes.py</code> named <code class="language-plaintext highlighter-rouge">checker_board</code>.
+This function will print a checker board with the dimensions given by the user.
+This function will take <em>four</em> arguments:</p>
+
+<p>The first is the width/height of each tile on the board.
+This number should be a multiple of two!
+The second is the number of tiles along each edge.
+This number should also be a multiple of two!
+The third is the character to use for the “dark” tiles of the board.
+The fourth is the character to use for the “light” tiles of the board.</p>
+
+<p>Write the function, add a descriptive comment immediately above it, and re-save <code class="language-plaintext highlighter-rouge">shapes.py</code>.</p>
+
+<p>In order to use this function, follow the same steps for re-loading the <code class="language-plaintext highlighter-rouge">shapes</code> module described in problem 2.
+Also, make sure to check that the function description is added to the <code class="language-plaintext highlighter-rouge">help(shapes)</code> section.</p>
+
+<p>Below are a few sample calls:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.checker_board(2, 4, '#', '-' )
+##--##--
+##--##--
+--##--##
+--##--##
+##--##--
+##--##--
+--##--##
+--##--##
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.checker_board(1, 16, 'X', ' ' )
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+X X X X X X X X 
+ X X X X X X X X
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.checker_board(4, 4, '#', ' ' )
+####    ####    
+####    ####    
+####    ####    
+####    ####    
+    ####    ####
+    ####    ####
+    ####    ####
+    ####    ####
+####    ####    
+####    ####    
+####    ####    
+####    ####    
+    ####    ####
+    ####    ####
+    ####    ####
+    ####    ####
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; shapes.checker_board(4, 4, '-', '+' )
+----++++----++++
+----++++----++++
+----++++----++++
+----++++----++++
+++++----++++----
+++++----++++----
+++++----++++----
+++++----++++----
+----++++----++++
+----++++----++++
+----++++----++++
+----++++----++++
+++++----++++----
+++++----++++----
+++++----++++----
+++++----++++----
+</code></pre></div></div>
+
+<h2 id="problem-5---custom-shapes">Problem 5 - Custom shapes</h2>
+
+<p>Add three additional functions to <code class="language-plaintext highlighter-rouge">shapes.py</code> that print some shape or text art to standard output.
+Each one of these function should take at least one argument that somehow manipulates the text that is printed.
+For example, you might write a function called <code class="language-plaintext highlighter-rouge">stick_figure</code> that takes a single numeric argument, which adjusts the height of the figure that is printed.
+The details of what you want these functions to do, what arguments they will take, and what exactly they print is up to you, so be creative!
+Make sure that you give each function a descriptive name, give each of the arguments a descriptive name, and add a descriptive comment above each one.</p>
+
+<p>Once you’ve written them:</p>
+
+<ul>
+  <li>Re-import the <code class="language-plaintext highlighter-rouge">shapes.py</code> module</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">help(shapes)</code> and make sure the new functions and the function comments are showing up in the module</li>
+  <li>Test out each function with various input values</li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>By the end of this lab, <code class="language-plaintext highlighter-rouge">shapes.py</code> should have 7 functions in it.
+You have now created your very own (simple) module to use in the python shell, or from other python programs!
+We will talk more about modules in future lectures, but this lab acts as a nice warm-up to functions and modules.</p>
+
+<h3 id="click-here-for-the-solution-to-problems-1-4"><a href="./solutions/shapes.py">Click here for the solution to problems 1-4</a></h3>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

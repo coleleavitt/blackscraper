@@ -1,0 +1,338 @@
+# Division I Women's Basketball: 2011-12 Season
+# School (Conference)	Wins	Losses
+Baylor (Big 12)	40	0
+Stanford (Pac-12)	35	2
+Delaware (Colonial)	31	2
+Green Bay (Horizon)	31	2
+FGCU (Atlantic Sun)	29	3
+Notre Dame (AAC)	35	4
+St. Bonaventure (Atlantic 10)	31	4
+UTEP (Conference USA)	29	4
+UConn (AAC)	33	5
+Maryland (Atlantic Coast)	31	5
+Hampton (Mid-Eastern)	26	5
+Princeton (Ivy League)	24	5
+Gonzaga (West Coast)	28	6
+Fresno St. (Western Athletic)	28	6
+Duke (Atlantic Coast)	27	6
+Miami (FL) (Atlantic Coast)	26	6
+Kentucky (Southeastern)	28	7
+Appalachian St. (Southern)	27	7
+Middle Tenn. (Sun Belt)	26	7
+Penn St. (Big Ten)	26	7
+BYU (West Coast)	26	7
+James Madison (Colonial)	29	8
+San Diego St. (Mountain West)	25	7
+Ohio St. (Big Ten)	25	7
+Bowling Green (Mid-American)	24	7
+Central Ark. (Southland)	24	7
+Dayton (Atlantic 10)	23	7
+Marist (Metro Atlantic)	26	8
+McNeese St. (Southland)	26	8
+Memphis (Conference USA)	25	8
+Sacred Heart (Northeast)	25	8
+Tennessee (Southeastern)	27	9
+Idaho St. (Big Sky)	24	8
+San Diego (West Coast)	26	9
+Georgia Tech (Atlantic Coast)	26	9
+American (Patriot)	23	8
+Purdue (Big Ten)	25	9
+Florida A&M (Mid-Eastern)	22	8
+South Dakota St. (Summit League)	24	9
+Missouri St. (Missouri Valley)	24	9
+Liberty (Big South)	24	9
+Howard (Mid-Eastern)	24	9
+Arkansas (Southeastern)	24	9
+Fairfield (Metro Atlantic)	24	9
+Nebraska (Big Ten)	24	9
+Boston U. (America East)	23	9
+Eastern Mich. (Mid-American)	23	9
+UT Martin (OVC)	23	9
+Richmond (Atlantic 10)	23	9
+Georgetown (AAC)	23	9
+California (Pac-12)	25	10
+South Carolina (Southeastern)	25	10
+Eastern Ill. (OVC)	22	9
+Georgia (Southeastern)	22	9
+West Virginia (AAC)	24	10
+Toledo (Mid-American)	24	10
+St. John's (NY) (AAC)	24	10
+SFA (Southland)	23	10
+Temple (Atlantic 10)	23	10
+Albany (NY) (America East)	23	10
+Vanderbilt (Southeastern)	23	10
+Louisville (AAC)	23	10
+Virginia (Atlantic Coast)	25	11
+Chattanooga (Southern)	22	10
+UNLV (Mountain West)	22	10
+Davidson (Southern)	22	10
+Quinnipiac (Northeast)	22	10
+Rutgers (AAC)	22	10
+Texas A&M (Big 12)	24	11
+LIU Brooklyn (Northeast)	21	10
+Miami (OH) (Mid-American)	21	10
+Utah St. (Western Athletic)	21	10
+FIU (Sun Belt)	23	11
+LSU (Southeastern)	23	11
+DePaul (AAC)	23	11
+Tulane (Conference USA)	23	11
+Stetson (Atlantic Sun)	23	11
+St. Mary's (CA) (West Coast)	22	11
+Saint Joseph's (Atlantic 10)	22	11
+UMKC (Summit League)	22	12
+Oklahoma St. (Big 12)	22	12
+Oral Roberts (Summit League)	20	11
+North Carolina (Atlantic Coast)	20	11
+UAB (Conference USA)	19	11
+Montana St. (Big Sky)	19	11
+Michigan St. (Big Ten)	20	12
+Michigan (Big Ten)	20	12
+Duquesne (Atlantic 10)	20	12
+Arizona St. (Pac-12)	20	12
+Coppin St. (Mid-Eastern)	20	12
+Northern Colo. (Big Sky)	20	12
+Oklahoma (Big 12)	21	13
+Wright St. (Horizon)	21	13
+Kansas (Big 12)	21	13
+Iowa (Big Ten)	19	12
+Hofstra (Colonial)	19	12
+Denver (Sun Belt)	19	12
+Florida (Southeastern)	20	13
+Creighton (Missouri Valley)	20	13
+High Point (Big South)	20	13
+Samford (Southern)	20	13
+Wichita St. (Missouri Valley)	20	13
+Little Rock (Sun Belt)	20	13
+UNCW (Colonial)	20	13
+Oregon St. (Pac-12)	20	13
+Texas Tech (Big 12)	21	14
+Colorado (Pac-12)	21	14
+Campbell (Big South)	18	12
+Sam Houston St. (Southland)	18	12
+Harvard (Ivy League)	18	12
+Southern California (Pac-12)	18	12
+Syracuse (AAC)	22	15
+Hartford (America East)	19	13
+Illinois St. (Missouri Valley)	19	13
+Monmouth (Northeast)	19	13
+Wake Forest (Atlantic Coast)	20	14
+Washington (Pac-12)	20	14
+Detroit (Horizon)	20	14
+Kansas St. (Big 12)	20	14
+Alabama A&M (Southwestern)	17	12
+Ill.-Chicago (Horizon)	18	13
+Iowa St. (Big 12)	18	13
+Winthrop (Big South)	18	13
+Drexel (Colonial)	19	14
+Yale (Ivy League)	16	12
+Brown (Ivy League)	16	12
+UC Davis (Big West)	17	13
+South Ala. (Sun Belt)	17	13
+Lehigh (Patriot)	17	13
+Fla. Atlantic (Sun Belt)	17	13
+Robert Morris (Northeast)	18	14
+Mississippi Val. (Southwestern)	18	14
+Navy (Patriot)	18	14
+Texas (Big 12)	18	14
+Pacific (Big West)	18	14
+Villanova (AAC)	19	15
+VCU (Colonial)	19	15
+Holy Cross (Patriot)	19	15
+UNI (Missouri Valley)	19	15
+Central Mich. (Mid-American)	20	16
+Texas St. (Southland)	17	14
+CSUN (Big West)	17	14
+North Carolina St. (Atlantic Coast)	19	16
+South Fla. (AAC)	19	16
+Elon (Southern)	16	14
+Towson (Colonial)	16	14
+New Hampshire (America East)	16	14
+TCU (Mountain West)	16	14
+Marshall (Conference USA)	16	14
+Eastern Wash. (Big Sky)	16	14
+Montana (Big Sky)	16	14
+Charlotte (Atlantic 10)	16	14
+Cal Poly (Big West)	17	15
+Charleston So. (Big South)	17	15
+Louisiana Tech (Western Athletic)	17	15
+UMBC (America East)	17	15
+Manhattan (Metro Atlantic)	18	16
+Drake (Missouri Valley)	18	16
+Bradley (Missouri Valley)	18	16
+Minnesota (Big Ten)	19	17
+Portland St. (Big Sky)	15	14
+Nicholls St. (Southland)	16	15
+Radford (Big South)	16	15
+Lamar (Southland)	16	15
+UC Santa Barbara (Big West)	17	16
+Prairie View (Southwestern)	17	16
+Tennessee Tech (OVC)	17	17
+Rice (Conference USA)	16	16
+Cincinnati (AAC)	16	16
+Utah (Pac-12)	16	16
+Grambling (Southwestern)	15	15
+Utah Valley (GWC)	15	15
+Alabama St. (Southwestern)	14	14
+Southern U. (Southwestern)	13	13
+Boise St. (Mountain West)	15	16
+Indiana St. (Missouri Valley)	15	16
+Oregon (Pac-12)	15	16
+North Texas (Sun Belt)	15	16
+Furman (Southern)	15	16
+George Mason (Colonial)	15	16
+N.C. A&T (Mid-Eastern)	15	16
+Pepperdine (West Coast)	14	15
+Arizona (Pac-12)	15	17
+UCLA (Pac-12)	14	16
+Mt. St. Mary's (Northeast)	14	16
+Saint Francis (PA) (Northeast)	14	16
+Northwestern (Big Ten)	14	16
+Mississippi St. (Southeastern)	14	16
+Army West Point (Patriot)	14	16
+Penn (Ivy League)	13	15
+Tulsa (Conference USA)	13	15
+Coastal Caro. (Big South)	13	15
+Florida St. (Atlantic Coast)	14	17
+La Salle (Atlantic 10)	14	17
+Marquette (AAC)	14	17
+Kennesaw St. (Atlantic Sun)	14	17
+SMU (Conference USA)	14	17
+Western Caro. (Southern)	14	17
+Northern Ill. (Mid-American)	14	17
+Central Conn. St. (Northeast)	13	16
+South Carolina St. (Mid-Eastern)	13	16
+Eastern Ky. (OVC)	13	16
+Akron (Mid-American)	14	18
+Long Beach St. (Big West)	14	18
+Ohio (Mid-American)	14	18
+Colorado St. (Mountain West)	13	17
+North Florida (Atlantic Sun)	13	17
+Loyola Chicago (Horizon)	13	17
+NJIT (GWC)	13	17
+UTRGV (GWC)	13	17
+Providence (AAC)	13	17
+UC Irvine (Big West)	13	17
+Butler (Horizon)	13	17
+Auburn (Southeastern)	13	17
+Loyola Maryland (Metro Atlantic)	13	17
+Cornell (Ivy League)	12	16
+Missouri (Big 12)	13	18
+Southern Miss. (Conference USA)	13	18
+Murray St. (OVC)	13	18
+Wofford (Southern)	13	18
+Iona (Metro Atlantic)	13	18
+Binghamton (America East)	13	18
+Sacramento St. (Big Sky)	13	18
+Fairleigh Dickinson (Northeast)	13	18
+Wyoming (Mountain West)	12	17
+UCF (Conference USA)	12	17
+Siena (Metro Atlantic)	12	17
+Norfolk St. (Mid-Eastern)	12	17
+Alcorn (Southwestern)	14	20
+IUPUI (Summit League)	13	19
+Niagara (Metro Atlantic)	13	19
+Fordham (Atlantic 10)	12	18
+UMES (Mid-Eastern)	12	18
+Belmont (Atlantic Sun)	12	18
+Santa Clara (West Coast)	12	18
+Southeastern La. (Southland)	12	18
+Canisius (Metro Atlantic)	12	18
+Arkansas St. (Sun Belt)	12	18
+Ole Miss (Southeastern)	12	18
+Washington St. (Pac-12)	13	20
+Jackson St. (Southwestern)	11	17
+Oakland (Summit League)	11	17
+Alabama (Southeastern)	12	19
+Western Ill. (Summit League)	12	19
+East Carolina (Conference USA)	12	19
+Cleveland St. (Horizon)	12	19
+George Washington (Atlantic 10)	11	18
+Portland (West Coast)	12	20
+Idaho (Western Athletic)	12	20
+Cal St. Fullerton (Big West)	11	19
+Hawaii (Western Athletic)	11	19
+San Jose St. (Western Athletic)	11	19
+Rider (Metro Atlantic)	11	19
+Illinois (Big Ten)	11	19
+Jacksonville (Atlantic Sun)	11	20
+Saint Louis (Atlantic 10)	11	20
+North Dakota St. (North Dakota St.)	11	20
+New Mexico (Mountain West)	11	20
+Bethune-Cookman (Mid-Eastern)	10	19
+Morehead St. (OVC)	10	19
+Old Dominion (Colonial)	11	21
+Savannah St. (Mid-Eastern)	10	20
+Youngstown St. (Horizon)	10	20
+William & Mary (Colonial)	10	20
+Vermont (America East)	10	20
+Valparaiso (Horizon)	10	21
+Northern Ariz. (Big Sky)	9	20
+A&M-Corpus Chris (Southland)	9	20
+Wisconsin (Big Ten)	9	20
+Tennessee St. (OVC)	9	20
+Ball St. (Mid-American)	9	21
+IPFW (Summit League)	9	21
+USC Upstate (Atlantic Sun)	9	21
+Western Ky. (Sun Belt)	9	21
+Milwaukee (Horizon)	9	21
+La.-Monroe (Sun Belt)	9	21
+Buffalo (Mid-American)	9	22
+Austin Peay (OVC)	9	22
+Xavier (Atlantic 10)	8	20
+UTSA (Southland)	8	21
+Massachusetts (Atlantic 10)	8	21
+Colgate (Patriot)	8	22
+ETSU (Atlantic Sun)	8	22
+Ga. Southern (Southern)	8	22
+Georgia St. (Colonial)	8	22
+Western Mich. (Mid-American)	8	22
+Loyola Marymount (West Coast)	8	22
+Northeastern (Colonial)	8	22
+Pittsburgh (AAC)	8	22
+Southern Ill. (Missouri Valley)	8	22
+Lafayette (Patriot)	8	22
+Seton Hall (AAC)	8	23
+Maine (America East)	8	23
+CSU Bakersfield (Independent)	7	22
+Southeast Mo. St. (OVC)	7	22
+Longwood (Independent)	7	22
+Boston College (Atlantic Coast)	7	23
+Delaware St. (Mid-Eastern)	7	23
+UNC Asheville (Big South)	7	23
+Col. of Charleston (Southern)	7	23
+La.-Lafayette (Sun Belt)	7	23
+Virginia Tech (Atlantic Coast)	7	23
+Nevada (Western Athletic)	7	23
+Kent St. (Mid-American)	6	21
+Clemson (Atlantic Coast)	6	22
+UT Arlington (Southland)	6	22
+Dartmouth (Ivy League)	6	22
+Mercer (Atlantic Sun)	6	23
+Southern Utah (Summit League)	6	23
+Northwestern St. (Southland)	6	23
+Lipscomb (Atlantic Sun)	6	23
+Air Force (Mountain West)	6	24
+Morgan St. (Mid-Eastern)	6	24
+Indiana (Big Ten)	6	24
+Chicago St. (GWC)	6	24
+New Mexico St. (Western Athletic)	6	24
+UC Riverside (Big West)	5	24
+San Francisco (West Coast)	5	25
+Evansville (Missouri Valley)	5	25
+Bucknell (Patriot)	5	25
+Texas Southern (Southwestern)	5	26
+Saint Peter's (Metro Atlantic)	5	26
+Jacksonville St. (OVC)	4	25
+UNCG (Southern)	4	25
+Gardner-Webb (Big South)	4	25
+St. Francis Brooklyn (Northeast)	4	25
+Stony Brook (America East)	4	26
+Columbia (Ivy League)	3	25
+Houston (Conference USA)	3	26
+N.C. Central (Mid-Eastern)	3	27
+Troy (Sun Belt)	2	26
+Weber St. (Big Sky)	2	27
+Wagner (Northeast)	2	27
+Houston Baptist (GWC)	1	27
+Rhode Island (Atlantic 10)	1	28
+Ark.-Pine Bluff (Southwestern)	1	29

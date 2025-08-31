@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Section 9</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-section-9--program-style-plus-combining-if-and-for">CSc 101: Section 9 – Program Style, plus combining if and for</h1>
+
+<p>About half of today’s questions are style-related.
+In the rest of them, you’ll need to exercise combining if-statements and for-loops to do useful programing things.</p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section_9_1.png" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Start by just creating a simpel 300x300 pixel canvas that resembles the one pictured.
+      You can easily accomplish this with a few shapes.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section_9_2.gif" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Using if-statements, modify the program from the last problem so that the rectangle
+      becomes darker when the mouse os over-top of it.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section_9_3.gif" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      In this problem, you'll draw a 5x5 grid of creen squares, using a nested for-loop.
+      Once you have the grid drawing on its own, modify the code so that the column that the
+      mouse is currently in turns teal instead of green, as is shown below.
+      You'll need to use if-statements inside of your for loops to do this.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section_9_4.gif" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      In this problem, you'll build off of the last one.
+      In addition to highlighting the column that the mouse is currently in with a teal color,
+      You will also highlight the current row with red.
+      Notice how the red and teal columns move along with the mouse.
+      Also note that the tile at which the row and column intersect is red, not teal.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section_9_5.gif" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      In this problem, you will draw a 5x5 grid of small circles *using nested for-loops*.
+      However, you should make the grid follow the mouse around the screen.
+      You can do this by using the `mouseX` and `mouseY` variables (plus some simple math) to
+      initialize the loop variable, and set the loop limit.
+      See the animation to the left.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-6">Problem 6</h2>
+
+<p><strong>(A)</strong> First, take a look at the below code.
+Without running it, modifying it, or re-formatting it in any way, try to figure out what it does.
+Take a few minutes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void
+setup () 
+  {
+  size(500, 200); }
+int faceX = 0;
+int faceY = 100;
+boolean moveRight = true;
+void draw()   { background(100, 150, 100);
+  if (moveRight) {
+faceX += 3; }else{
+    faceX -= 3;  }
+  if (faceX &gt; 500) { moveRight = ! moveRight; }
+  if (faceX    &lt;    0) { moveRight = ! moveRight; }
+  
+  fill( 100  ,  100, 100); ellipse(faceX, faceY, 100, 100);
+  fill(50, 255, 50); ellipse(faceX-20, faceY-20, 20, 20);
+  ellipse(faceX+20, faceY-20, 20, 20); }
+</code></pre></div></div>
+
+<p><strong>(B)</strong> Now, copy the code into processing.
+<em>Without running it</em>, spend some time working on the formatting.
+Don’t just use the Processing auto-formatter.
+Manually attempt to format this code according to all of the techniques we’ve discussed in class.
+Now, is it easier to figure out what it will do?</p>
+
+<p><strong>(C)</strong> Run it!
+Does it do what you predicted at step (A) or (B) ?</p>
+
+<h2 id="problem-7">Problem 7</h2>
+
+<p>Repeat steps (A), (B), and (C) from problem one, but start with this code instead:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int PPW = 500;
+    int __yh = 300;
+  
+void setup  ( )  { background(   200,     100,50);
+ size(500,  500 ) ; }
+int r23 =  500  ;
+
+void draw()  {
+    strokeWeight(PPW - 495);
+  int bh3 = 40;
+ for(int XKh = 20; XKh &lt; r23; XKh += 40)
+ {      int ay1 = 30;
+     ellipse(XKh, ay1, 
+ay1, bh3);}
+ for(   int AB__5 = 100; 
+     AB__5 &lt; 400;
+     AB__5 += 40) {
+    float A77_ = AB__5 + 1;
+  ellipse(AB__5, A77_, 30, 30);
+  }
+  int hhh$ = 450;
+   for(int XKh = 20;  XKh &lt; r23; XKh += 40) {      
+         int ay1 = 30;
+ellipse(XKh, hhh$, ay1, bh3); }
+   }
+</code></pre></div></div>
+
+<h2 id="download-solutions"><a href="./solutions.zip">Download Solutions</a></h2>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

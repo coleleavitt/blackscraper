@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Identifying perfect rhymes</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Identifying perfect rhymes</h1>
+
+This document describes when two pronunciations (i.e., lists of phonemes) form a perfect rhyme.
+For your convenience, the definition of &quot;perfect rhyme&quot; is repeated here:
+<p/>
+<ol>
+  <li>
+    The stressed vowel sound (i.e., the primary stress) in both words must be identical,
+    as well as any subsequent sounds. For example, &quot;sky&quot; and 
+    &quot;high&quot;; &quot;skylight&quot; and &quot;highlight&quot;.
+  </li>
+  <li>
+    The sound that precedes the stressed vowel in the words must not be the same. 
+    For example, &quot;bean&quot; and &quot;green&quot; is a perfect rhyme,
+    while &quot;leave&quot; and &quot;believe&quot; is not.
+  </li>
+</ol>
+<p/>
+In the examples below, we will use pronunciations obtained from
+<a href="PronunciationDictionary.txt" target="_blank">this pronunciation dictionary</a>.
+<p/>
+When comparing the pronunciations of two words to see whether they rhyme, 
+we will line  up the phonemes of their pronunciations, aligning the primary stress.  Phonemes that
+match will be <font color="blue">shown in blue</font> while the phonemes that do not match
+will be <font color="red">shown in red</font>.  Phonemes that don't matter to the decision about
+rhyming will be shown in black.
+<p/>
+
+
+<h2>Example 1: SOUR and POWER</h2>
+
+According to our pronunciation dictionary, <i>sour</i> has two pronunciations while
+<i>power</i> has one pronunciation, as shown below:
+<blockquote>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <th>Word&nbsp;</th><th>Pronunciation</th>
+    </tr>
+    <tr>
+      <td><i>sour&nbsp;</i></td><td><tt>S AW1 ER0</tt></td>
+    </tr>
+    <tr>
+      <td><tt>&nbsp;</tt></td><td><tt>S AW1 R</tt></td>
+    </tr>
+    <tr>
+      <td><i>power&nbsp;</i></td><td><tt>P AW1 ER0</tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+On the first pronunciation of <tt>SOUR</tt> we get:
+<blockquote>
+  <table>
+    <tr>
+      <td>
+	<tt><font color= "red">S</font> <font color= "blue">AW1 ER0</font><br/>
+	<tt><font color= "red">P</font> <font color= "blue">AW1 ER0</font>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+The phonemes shown in blue satisfy the first requirement of the definition above, while the
+phonemes shown in red satisfy the second requirement.  Therefore this pronunciation of <tt>SOUR</tt>
+forms a perfect rhyme with <tt>POWER</tt>.
+<p/>
+<p/>
+On the second pronunciation of <tt>SOUR</tt> we get:
+<blockquote>
+  <table>
+    <tr>
+      <td>
+	<tt>S <font color= "blue">AW1</font> <font color= "red">R</font><br/>
+	<tt>P <font color= "blue">AW1</font> <font color= "red">ER0</font>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+In this case, although the primary stress phonemes of the two pronunciations match,
+there is a mismatch on the last phoneme of each of the pronunciations.  As a result, the
+first requirement in the definition above is not satisfied.  Thus, this pronunciation of <tt>SOUR</tt>
+does not rhyme with <tt>POWER</tt>.
+<p/>
+
+<h2>Example 2: PRIZE and COMPUTERIZE</h2>
+
+As in the previous example, we extract the phoneme sequences giving the pronunciation of
+each of these words:
+<blockquote>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <th>Word&nbsp;</th><th>Pronunciation</th>
+    </tr>
+    <tr>
+      <td><i>prize&nbsp;</i></td><td><tt>P R AY1 Z</tt></td>
+    </tr>
+     <tr>
+      <td><i>computerize&nbsp;</i></td><td><tt>K AH0 M P Y UW1 T ER0 AY2 Z</tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+When we match these pronunciations against each other, we get:
+<blockquote>
+  <table>
+    <tr>
+      <td align="right"><tt>P R&nbsp;</tt></td> <td><tt><font color="red">AY1</font> Z</tt></td>
+    </tr>
+    <tr>
+      <td align="right"><tt>K AH0 M P Y&nbsp;</tt></td><td><tt><font color="red">UW1</font> T ER0 AY2 Z</tt></td>
+    </tr>
+  </table>
+</blockquote>
+In other words, the primary stress phoneme in these two words do not match.  This violates the
+first requirement of the definition above, so these two words to not form a perfect rhyme.
+
+<h2>Example 3: MAKE and ACHE</h2>
+
+As before, we extract the phoneme sequences giving the pronunciation of
+each of these words:
+<blockquote>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <th>Word&nbsp;</th><th>Pronunciation</th>
+    </tr>
+    <tr>
+      <td><i>make&nbsp;</i></td><td><tt>M EY1 K</tt></td>
+    </tr>
+     <tr>
+      <td><i>ache&nbsp;</i></td><td><tt>EY1 K</tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+When we match these pronunciations against each other, we get:
+<blockquote>
+  <table>
+    <tr>
+      <td align="right"><tt><font color="red">M</font>&nbsp;</tt></td> <td><tt><font color="blue">EY1 K</font></tt></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td><td><tt><font color="blue">EY1 K</font></tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+Requirement 1 of the definition is satisfied because the primary stress positions and everything
+after it are the same in both words.  Requirement 2 of the definition is satisfied because the
+two words do not have the same phoneme before the primary stress phoneme.  Therefore these two
+words form a perfect rhyme.
+
+<h2>Example 4: BRAIN and DRAIN</h2>
+
+The phoneme sequences giving the pronunciation of each of these words are:
+<blockquote>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <th>Word&nbsp;</th><th>Pronunciation</th>
+    </tr>
+    <tr>
+      <td><i>brain&nbsp;</i></td><td><tt>B R EY1 N</tt></td>
+    </tr>
+     <tr>
+      <td><i>drain&nbsp;</i></td><td><tt>D R EY1 N</tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+When we match these pronunciations against each other, we get:
+<blockquote>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <th>Word&nbsp;</th><th>Pronunciation</th>
+    </tr>
+    <tr>
+      <td><i>brain&nbsp;</i></td><td><tt>B <font color="blue">R</font> EY1 N</tt></td>
+    </tr>
+     <tr>
+      <td><i>drain&nbsp;</i></td><td><tt>D <font color="blue">R</font> EY1 N</tt></td>
+    </tr>
+  </table>
+</blockquote>
+<p/>
+Both words have the same phoneme (shown above in blue) before the primary-stress phoneme,
+This violates the second requirement of the definition given above.  So these two words
+do not form a perfect rhyme.
+
+<p/>
+<hr/>
+</body>
+</html>
+

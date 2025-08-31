@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 File Functions</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110-file-functions">CSc 110: File Functions</h1>
+
+<p>This assignment should be written in the python programming language.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!
+You may use any python version 3.0 or newer.</p>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+Each program file should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program does!
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="for-all-problems">For all problems</h2>
+
+<p>In this assignment, you will write multiple functions in a single python file named <code class="language-plaintext highlighter-rouge">file-functions.py</code>.
+Each function will do  simple task related to files.
+The description of each function can be found below.</p>
+
+<h3 id="count_lines">count_lines</h3>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">count_lines</code>.
+This function takes one parameter which is the name of the file to read.
+This function will read the file with the provided name, count the number of lines in the file, and <em>return</em> the numeric count.</p>
+
+<p>Below are a few examples:</p>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orange
+apple
+orange
+apple
+orange
+apple
+grape
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; count_lines('lines.txt')
+7
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Star Wars
+Indiana Jones
+LOTR
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; count_lines('lines.txt')
+3
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A B C D
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; count_lines('lines.txt')
+1
+</code></pre></div></div>
+
+<h3 id="reverse_file">reverse_file</h3>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">reverse_file</code> which will take a single parameter.
+The parameter will be the name of the file to reverse.
+This function will open the file with the name stored in the parameter.
+It will print out all of the lines of the file in reversed order.</p>
+
+<p>Below are a few examples:</p>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>orange
+apple
+grape
+mango
+pear
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; reverse_file('lines.txt')
+pear
+mango
+grape
+apple
+orange
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Star Wars
+Indiana Jones
+LOTR
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; reverse_file('lines.txt')
+LOTR
+Indiana Jones
+Star Wars
+</code></pre></div></div>
+
+<hr />
+
+<p>If the file <code class="language-plaintext highlighter-rouge">lines.txt</code> looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A B C D
+</code></pre></div></div>
+
+<p>Then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; reverse_file('lines.txt')
+A B C D
+</code></pre></div></div>
+
+<p>Remember, the <code class="language-plaintext highlighter-rouge">list</code> data structure has a <code class="language-plaintext highlighter-rouge">reverse()</code> function!</p>
+
+<h3 id="search_file">search_file</h3>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">search_file</code>.
+This function will take two parameters.
+The <em>first</em> will specify the name of the file.
+The second will be a string.
+This function will <em>return</em> a number, indicating the number of lines in the file that the second parameter appears at least one time in.</p>
+
+<p>For example, say there is a file named <code class="language-plaintext highlighter-rouge">story.txt</code> in the current working directory with the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>My heart leaps up when I behold
+A rainbow in the sky:
+So was it when my life began,
+So is it now I am a man,
+So be it when I shall grow old
+Or let me die!
+The Child is father of the Man:
+And I could wish my days to be
+Bound each to each by natural piety.
+</code></pre></div></div>
+
+<p>Below are a few example calls to <code class="language-plaintext highlighter-rouge">search_file</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'rainbow')
+1
+</code></pre></div></div>
+
+<p>Clearly, “rainbow” only appears on 1 line in this file, so <code class="language-plaintext highlighter-rouge">1</code> is returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'each')
+1
+</code></pre></div></div>
+
+<p>Notice that the word “each” appears in the file twice, but both appearances are on the same line (line 9), so <code class="language-plaintext highlighter-rouge">1</code> is still returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'the')
+2
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">the</code> actually appears three times in this file (once on line 2, and twice on line 7), but <code class="language-plaintext highlighter-rouge">2</code> is returned because it appears in 2 lines total.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'it')
+3
+</code></pre></div></div>
+
+<p>Clearly, <code class="language-plaintext highlighter-rouge">it</code> appears on 3 unique lines so <code class="language-plaintext highlighter-rouge">3</code> is returned.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'o')
+8
+</code></pre></div></div>
+
+<p>The letter “o” appears on 8 lines (all but line 6).
+As this example suggests, this search should be case-sensitive, because it ignores the upper-case “O” at the beginning of line 6.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; search_file('story.txt', 'fellowship')
+0
+</code></pre></div></div>
+
+<p>The word “fellowship” never appears, so <code class="language-plaintext highlighter-rouge">0</code> is returned.</p>
+
+<h2 id="testing-for-correctness">Testing for correctness</h2>
+
+<p>This assignment requires printing out precise text messages and notifications.
+As already mentioned, it is important to test your programs carefully to make sure the output is correct.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem is due on 7/14/2017 at 7:00pm.</p>
+
+<p>You should submit a single python file named <code class="language-plaintext highlighter-rouge">file-functions.py</code>, with each of the functions in it.
+You should <em>not</em> include a <code class="language-plaintext highlighter-rouge">main</code> function, or calls to any of the functions.
+Submit these files to the associated D2L dropbox.
+Following these turn-in and naming instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

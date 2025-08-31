@@ -1,0 +1,6 @@
+1	UConn (AAC)	40	0
+5	Louisville (AAC)	33	5
+9	South Carolina (Southeastern)	29	5
+14	Tennessee (Southeastern)	29	6
+23	Nebraska (Big Ten)	26	7
+35	Iowa (Big Ten)	27	9

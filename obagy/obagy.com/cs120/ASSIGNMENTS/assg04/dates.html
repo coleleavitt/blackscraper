@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Dates</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Dates</h1>
+
+<h2>Background</h2>
+
+This problem involves managing a database of dates and events,
+for example, for a calendar app or history website. The purpose of this assignment is to use classes 
+and objects.
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problems, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class. The long problem specification details the commenting requirements for methods.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+ list (or dictionary) comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  <li>
+ nested functions (using def <i>within</i> a function to define another function)
+  </li>
+  <li>
+ recursion
+  </li>
+  <li>
+ exceptions and asssertions
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ generators and user defined iterators
+  </li>
+  <li>
+ importing libraries (unless a library is explicitly mentioned in the specification)
+  </li>
+</ul>
+  </li>
+</ol>
+
+
+<h2>Problem Description</h2>
+<p/>
+Suppose you wanted to offer a website or app to manage a database of dates
+and events.  Such a database might be used to look up dates in the past
+(&quot;on this date in history...&quot;, as in the sites mentioned above);
+or they might be used as a calendar service to provide reminders for future
+events.  In either case, you need a program that can record and look up
+strings (i.e., events) associated with dates.
+<p/>
+One catch here is that people use many <a href="https://en.wikipedia.org/wiki/Date_format_by_country"
+		   target="_blank">different formats</a>
+to write dates, e.g., &quot;December 25, 2021&quot;, &quot;2021-12-25&quot;,
+and &quot;12/25/2021&quot;, all of which represent the same date.  The
+format that was used to insert an event into the database may or may not be
+the same as the format that will be used to look up that date.  Your program therefore
+needs a way to process dates in different formats and recognize when dates in different 
+formats are equivalent. To that end, this programming assignment 
+involves writing a class to maintain information about dates and events
+and to recognize dates in different formats.  The program will read a file
+containing a series of operations, where each operation refers to a
+database of dates and events, and will process each operation in turn.
+
+<h2>Input Formats</h2>
+The input to the program is read from a file (see <b>Expected Behavior</b> below).
+Each line of the file is an operation, and is in one of the following two formats:
+<blockquote>
+<b><tt>I</tt></b> &nbsp; <i>Date</i><b> <tt>:</tt></b> &nbsp; <i>Event</i><br/>
+<b><tt>R</tt></b> &nbsp; <i>Date</i>
+</blockquote>
+<p/>
+The <i>Date</i> and <i>Event</i> fields in the operation line are as follows:
+<p/>
+<blockquote>
+<dl>
+  <dt><i>Date</i></dt>
+  <dd>
+    This specifies a date.  It can be in any of the following three formats.<p/>
+    <p/>
+    <ul>
+      <li>
+	<i>yyyy</i><b><tt>-</tt></b><i>mm</i><b><tt>-</tt></b><i>dd</i>, 
+	where <i>yyyy</i> is a 4-digit sequence
+        giving the year; <i>mm</i> is a 1- or 2-digit sequence giving the
+        month; and <i>dd</i> is a 1- or 2-digit sequence giving the date.
+        <p/>
+	<b>Example:</b> 2017-02-31
+      </li>
+      <li>
+	<i>mm</i><b><tt>/</tt></b><i>dd</i><b><tt>/</tt></b><i>yyyy</i>, 
+	where <i>yyyy</i> is a 4-digit sequence
+        giving the year; <i>mm</i> is a 1- or 2-digit sequence giving the
+        month; and <i>dd</i> is a 1- or 2-digit sequence giving the date.
+        <p/>
+	<b>Example:</b> 02/31/2017.
+      </li>
+      <li>
+	<i>MonthName &nbsp; dd &nbsp; yyyy</i>, where <i>MonthName</i> is
+	a three-letter sequence giving the name of a month
+	(one of: <b>Jan</b>, <b>Feb</b>, <b>Mar</b>, <b>Apr</b>, <b>May</b>, 
+	<b>Jun</b>, <b>Jul</b>, <b>Aug</b>, <b>Sep</b>, <b>Oct</b>, <b>Nov</b>, 
+	<b>Dec</b>); <i>dd</i> is a 1- or 2-digit sequence giving the date; and
+	<i>yyyy</i> is a 4-digit sequence giving the year.
+	<p/>
+	<b>Example:</b> Feb 31 2017
+      </li>
+    </ul>
+    <p/>
+    <b>NOTE:</b>
+    To simplify programming, we will assume that all months have 31 days.
+  </dd>
+  <dt><i>Event</i></dt>
+  <dd>
+    This is a string starting at the first non-whitespace character after
+    the colon &quot;<b><tt>:</tt></b>&quot; following the date and going as
+    far as the end of the line.  
+  </dd>
+</dl>
+</blockquote>
+<p/>
+Examples of operations are:
+<blockquote>
+  <b><tt>I &nbsp; 2017-01-16 :&nbsp; Martin Luther King Day<br/>
+      I &nbsp; Mar 31 1997:   Arizona Wildcats win National Basketball Title<br/>
+      R &nbsp; 03/31/1997</tt></b>
+</blockquote>
+<p/>
+The first of these inserts the event &quot;<b><tt>Martin Luther King
+    Day</tt></b>&quot; for the date <u>Jan 16, 2017</u> into the
+calendar.  The second adds the event &quot;<b><tt>Arizona Wildcats win
+    National Basketball Title</tt></b>&quot; for the date <u><tt>March 31,
+    1997</tt></u>. 
+The third item retrieves and prints out all events for the date <u>March 31, 1997</u>.
+
+<p>
+<b>NOTE:</b>
+The event may also contain the colon character ":", as shown in the <b>Examples</b> section (see Example 4 in that section). Be sure to consider that when you are parsing the input line.
+<h2>Expected Behavior</h2>
+<p/>
+Write a Python program, in a file <b><tt>dates.py</tt></b>, that maintains a
+collection of <b><tt>Date</tt></b> objects, each of which has associated with it
+a sequence of strings that refer to events for that date, processing these objects
+in accordance with operations
+read from an input file.  Your program should behave as follows:
+<p/>
+<ol>
+  <li>
+    Use <b><tt>input()</tt></b> (without any argument) to read the name of an
+    input file.
+  </li>
+  <li>
+    Read the file specified and process the 
+    operation given on each line as follows:
+    <p/>
+    <ul>
+      <li>
+	<i>OpType</i> = <b><tt>I</tt></b>.  Add the <i>Event</i> string to the collection
+	of events for the date specified (duplicates are OK).
+	If there is no existing <b><tt>Date</tt></b> object for that date,
+	create one and initialize its collection of events to the <i>Event</i>
+	string specified.
+      </li>
+      <li>
+	<i>OpType</i> = <b><tt>R</tt></b>.  Print out the event strings for that date
+	one per line (see <b>Output Format</b> below).
+	If there is no existing <b><tt>Date</tt></b> object for that date,
+	do not print anything.
+      </li>
+      <li>
+       If the <i>OpType</i> is not a valid operation, print an error message 
+       (see <b>Errors</b> below).
+      </li>
+    </ul>
+  </li>
+</ol>
+<p/>
+Dates are considered equal if their canonical representations (see below)
+are the same.  
+<p/>
+Some examples of input files and generated output are shown
+<a href="EXAMPLES-dates.html" target="_blank">here</a>.
+
+
+<h2>Canonical Representation of Dates</h2>
+A date with year <i>yyyy</i>, month <i>mm</i>, and day <i>dd</i>, where
+<i>yyyy</i>, <i>mm</i>, and <i>dd</i> are strings of digits,
+has a <i>canonical</i> (i.e., standard) representation given by
+<blockquote>
+<b><tt>&quot;{:d}-{:d}-{:d}&quot;.format( 
+    int(</tt></b><i>yyyy </i><b><tt>),</tt></b>
+    <b><tt>int(</tt></b><i>mm</i><b><tt>),</tt></b>
+    <b><tt>int(</tt></b><i>dd</i><b><tt>))</tt></b>
+</blockquote>
+<p/>
+The reason for converting <i>yyyy</i>, <i>mm</i>, and <i>dd</i> to 
+numbers using <b><tt>int()</tt></b> and then back to strings is to
+remove any leading zeros.
+<p/>
+<b>Example:</b>
+<blockquote>
+  <table border="1" cellpadding="10">
+    <tr>
+      <th>Input format</th><th>Canonical representation</th>
+    </tr>
+    <tr>
+      <td>
+	<tt>Mar 7 1997<br/>
+	  Mar 07 1997<br/>
+            03/07/1997<br/>
+	    3/7/1997<br/>
+	    1997-3-07<br/>
+	    1997-03-7</tt>
+      </td>
+      <td><b><tt>1997-3-7</tt></b></td>
+    </tr>
+
+  </table>
+</blockquote>
+<p/>
+
+<h2>Output Format</h2>
+
+Print out the events for a given date one event per line using the statement
+<blockquote>
+  <b><tt>print(&quot;{}: {}&quot;.format(date_canonical, event))</tt></b>
+</blockquote>
+where <b><tt>date_canonical</tt></b> is the canonical representation of
+the date, and <b><tt>event</tt></b> is an event for that date.
+If there are multiple events for a given date, they should be printed in alphabetical order.
+
+
+<h2>Programming Requirements</h2>
+
+Your program must implement the following classes:
+<p/>
+<blockquote>
+<dl>
+  <dt>
+    <b>class Date</b>
+  </dt>
+  <dd>
+    An instance of this class describes a date.
+    <p/>
+    <b>Attributes</b>: These should include:
+    <ul>
+      <li>
+	a string representing the canonical representation of the date 
+      </li>
+      <li>
+	the associated events (a collection of strings, e.g., a list or set).
+	<p/>
+      </li>
+    </ul>
+    <p/>
+    <b>Methods:</b> These should include:
+    <ul>
+      <li>
+	<b><tt>__init__(self, date_str, event)</tt></b>, where
+	<b><tt>date_str</tt></b> is a string of the date (in its canonical representation)
+	<b><tt>event</tt></b> is a string for an event
+      </li>
+      <li>
+	Getter methods for the attributes
+      </li>
+      <li>
+	<b><tt>add_event(self, event)</tt></b>, where 
+	<b><tt>event</tt></b> is a string for an event;
+	this method adds <b><tt>event</tt></b> to the collection of
+	events for a <b><tt>Date</tt></b> object 
+      </li>
+      <li>
+	<b><tt>__str__(self)</tt></b>, which returns a string representation of a <b><tt>Date</tt></b> object
+      </li>
+    </ul>
+    <p/>
+  </dd>
+
+  <dt>
+    <b>class DateSet</b>
+  </dt>
+  <dd>
+    An instance of this class describes a collection of dates.
+    
+    <p/>
+    <b>Attributes</b>: These should include:
+    <ul>
+      <li>
+	a dictionary of <b><tt>Date</tt></b> objects.
+	(Consider what might you use as keys.)
+      </li>
+    </ul>
+    <p/>
+    <b>Methods:</b> These should include:
+    <p/>
+    <ul>
+      <li>
+	<b><tt>__init__(self)</tt></b>, which creates an empty dictionary to hold <b><tt>Date</tt></b> objects 
+      </li>
+      <li>
+	<b><tt>add_date(self, date_str, event)</tt></b>, where 
+	<b><tt>date_str</tt></b> is a string and <b><tt>event</tt></b>is a string.
+        If the date is not in the collection, a new <b><tt>Date</tt></b> object is created and added to the collection.
+	If the date is already in the collection, the event is added to the <b><tt>Date</tt></b> object. 
+      </li>
+      </li>
+      <li>
+	<b><tt>__str__(self)</tt></b>, which returns a string representation of a <b><tt>DateSet</tt></b> object
+      </li>
+    </ul>
+  </dd>
+</dl>
+</blockquote>
+<p/>
+Additionally, you will need code for the following:
+<p/>
+<ul>
+  <li>
+    To read in an input file name (use <b><tt>input()</tt></b> without arguments),
+    read a series of operations from this file (see <b>Input Formats</b> above), and
+    process them as specified under <b>Expected Behavior</b> above.  You can
+put this code in a function that is not within any class (just like
+	  <b><tt>main()</tt></b>).
+  </li>
+  </li>
+  <li>
+    To convert a date string to canonical format. (You can use your solution to the short problem.)  You can put this code in a function
+    that is not within any class (just like <b><tt>main()</tt></b>).
+  </li>
+</ul>
+<p/>
+Your program should be appropriately modularized.  In particular, 
+other than the code mentioned above for processing input and converting
+dates to their canonical form, your code should
+be placed in methods in the appropriate class.
+
+<h2 id=errors>Error Output</h2>
+You need only check for the invalid operation error. Print the following error message on a single line and continue processing the input file:  
+<p/>
+     <pre>   “Error - Illegal operation.“  </pre>
+
+<p>
+<h2>Commenting</h2>
+Comment the class definitions and any functions that are outside of main with a doc string. 
+Comment all methods that are not getter or setter methods using a docstring.
+
+<h2>Examples</h2>
+
+Some examples are shown at this link: 
+<a href="EXAMPLES-dates.html" target="_blank">Input and Output Examples</a>.
+
+
+
+<p/>
+<hr/>
+
+</body>
+</html>

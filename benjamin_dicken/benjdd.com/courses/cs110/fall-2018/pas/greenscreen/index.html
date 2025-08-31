@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - PA 12 - Greenscreen</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---pa-12---greenscreen">CSc 110 - PA 12 - Greenscreen</h1>
+
+<!-- <img src="./res/matrix.jpg" width="280px" /> -->
+
+<p>A number of popular movies (including The Avengers, The Hobbit, Star Wars, etc) use greenscreens (or blue screens) during the process of film-making.
+Perhaps you’ve heard the term used before.
+But what is a greenscreen, and why is it needed when making movies?
+The video embedded below gives an overview of how green/blue screens are used in the film-making process.</p>
+
+<iframe width="500" height="300" src="https://www.youtube.com/embed/0GqIpOgBuxE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<p>The idea with a greenscreen is the following.
+At times in an image or a movie, the photographers or film-makers want to use a background scene that is different from the on-set location.
+However, in many cases, it is unrealistic to actually shoot a film in such a location.
+For example: Perhaps a film-maker wants to shoot a scene on the moon in a film.
+Clearly, it is unrealistic to travel all the way to the moon to shoot the scene there, and it also might be out-of-budget to build a large and detailed moon set to film on.
+Instead of doing either of those things, the film-makers can shoot footage of the actors and foreground objects with a green or blue background.
+Later, during the editing process, images or video footage of space and the moon can replace the solid-colored background image.</p>
+
+<p>Another example would be the Mustafar lightsaber scene from Star Wars episode III.
+If you’ve not seen it before, watch some of the clip embedded below.</p>
+
+<iframe width="500" height="300" src="https://www.youtube.com/embed/xbsBiyG1mnU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<p>It would be rather unrealistic to build a giant set on top of a volcano just to shoot this scene.
+Instead, the filmmakers filmed the actors fighting on a set, but with greenscreens in the background.
+Then, they added in other footage of lava and volcanic activity during the editing process.</p>
+
+<p>In this PA, you’ll be writing a program that can combine a still image with a green, blue, or red screen, with a background (or fill) image.</p>
+
+<h2 id="ppm-images">PPM Images</h2>
+
+<p>The program that you write will not operate in video footage.
+Instead, it will operate on PPM images.
+By this time, hopefully you are fimiliar with the PPM image format by now.
+The program that you write will need to open PPM files and determine the image’s width, height, and RGB pixel values.</p>
+
+<p>If you need a refresher on the file format, read <a href="https://docs.google.com/presentation/d/1aENjSL2Yh8vBYBPIlkNenkndXKpIJ1kKaJNv0oiccNI/edit">slides from class</a>.</p>
+
+<p>You can assume the following about the PPM files your program will have to process:</p>
+
+<ul>
+  <li>The first line of the ppm file will be the format (<code class="language-plaintext highlighter-rouge">P3</code>)</li>
+  <li>The second line will have the width and height</li>
+  <li>The third line will have the max brightness level (typically <code class="language-plaintext highlighter-rouge">255</code>)</li>
+  <li>The rest of the file will contain the RGB pixel values.
+Each row of the image will have its own row in the file.</li>
+</ul>
+
+<h2 id="the-program-interface">The program interface</h2>
+
+<p>This program will take 5 total input values.</p>
+
+<ul>
+  <li>The first is the color channel of the screen in the background.
+This should be <code class="language-plaintext highlighter-rouge">r</code>, <code class="language-plaintext highlighter-rouge">g</code>, or <code class="language-plaintext highlighter-rouge">b</code>.
+After getting this input value, the program should ensure that it is one of these three options.
+If not, the program should print an error message and exit.</li>
+  <li>The next input value should be a floating point number between 1.0 and 10.0.
+This will be referred to as the “channel difference”.
+How to use this will be explained later.
+If the number is not between 1.0 and 10.0, the program should print an error and then exit.</li>
+  <li>The third and fourth input values should be the two image files to combine.
+The third is the image with the red, green, or blue screen.
+The fourth is the background/fill image.
+After both of these are entered, your program should immediately check that the two images have matching widths and heights.
+If not, the program should print an error message and then exit.</li>
+  <li>The fifth input value is the name of the file to write the new image to.</li>
+</ul>
+
+<p>Below is an example of what the prompts for these input values should look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+g
+Enter color channel difference
+2.0
+Enter greenscreen image file name
+lion.ppm
+Enter fill image file name
+city.ppm
+Enter output file name
+lion_in_city.ppm
+</code></pre></div></div>
+
+<p>Once your program has all of the input values that they have been validated, then you should move on to the progress of running the greenscreen algorithm.</p>
+
+<h2 id="the-greenscreen-algorithm">The Greenscreen Algorithm</h2>
+
+<p>Before describing the algorithm, let’s define a few entities.
+We will refer to the image with the red, green, or blue screen image A.
+Let’s call the background/fill image image B.
+Also, recall the channel difference float.
+for this description, lets shorten it to just CD (for Channel Difference).</p>
+
+<p>You should use nested loops (either for loop or while loops) to iterate through the indexes of the rows and columns of the image.
+For each pixel, the program should determine if the pixel in the new image should be the one from image A or B.
+In order to do so, it should compare the value of the color of the screen (red, green, or blue) to the other two.
+If the channel of the screen is greater than CD <em>times</em> more bright than the other two channels at that particular pixel, then the pixel for the new image should be taken from image B.
+Otherwise, it should be taken from image A.</p>
+
+<p>For example, let’s say that you are working with a green(screen) background, and the CD value is 2.0.
+Now, say that you are faced with the below single pixel value from image A.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100 255 150
+</code></pre></div></div>
+
+<p>In this case the green value (255) is more than 2.0 times as bright as the red value (100 * 2.0 = 200.0).
+However, it is not 2.0 times as bright as the blue value (150 * 2.0 = 300.0).
+In this case, the pixel from image A should be used.</p>
+
+<p>Now, let’s say that you are working with a red(screen) background, and the CD value is 3.5, and you are evaluating this pixel from image A:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>230 40 50
+</code></pre></div></div>
+
+<p>In this case the red value (230) is more than 3.5 times as bright as the green value (140 * 3.5 = 140.0).
+It is also more than 3.5 times times as bright as the blue value (50 * 3.5 = 175.0).
+In this case, the pixel from image B should be used.</p>
+
+<h2 id="starter-code">Starter code</h2>
+
+<p>Rather than beginning the program from scratch, start from the provided starter code, linked below.
+This code contains a function that can read in the RGB data from a PPM file.</p>
+
+<h3 id="greenscreenpy"><a href="./greenscreen.py">greenscreen.py</a></h3>
+
+<h2 id="examples">Examples</h2>
+
+<p>Below I show examples of running this program with a red screen, green screen, and blue screen.
+For each of the examples the displayed images will be either JPG or PNG.
+However, you should download the ppm versions to run your program with.
+The links to the PPMs are provided.</p>
+
+<p>Test cases will not be provided on differ, at least initially.</p>
+
+<h2 id="small_1_a--small_1_b--result_1">small_1_a / small_1_b / result_1</h2>
+
+<p>The below run of <code class="language-plaintext highlighter-rouge">greenscreen.py</code> with the input images linked below, will produce the output shown at the end of the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+g
+Enter color channel difference
+2.0
+Enter greenscreen image file name
+small_1_a.ppm
+Enter fill image file name
+small_1_b.ppm
+Enter output file name
+result_1.ppm
+Output file written. Exiting.
+</code></pre></div></div>
+
+<table>
+
+<tr>
+  <td> <a href="./res/ppms/small_1_a.ppm">small_1_a.ppm</a> </td>
+  <td> <a href="./res/ppms/small_1_b.ppm">small_1_b.ppm</a> </td>
+  <td> result </td>
+</tr>
+
+<tr>
+  <td> <img src="./res/pngs/small_1_a.png" width="200px" /> </td>
+  <td> <img src="./res/pngs/small_1_b.png" width="200px" /> </td>
+  <td> <img src="./res/pngs/result_1.png" width="200px" /> </td>
+</tr>
+
+</table>
+
+<h2 id="a--b--result_2">a / b / result_2</h2>
+
+<p>The below run of <code class="language-plaintext highlighter-rouge">greenscreen.py</code> with the input images linked below, will produce the output shown at the end of the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+r
+Enter color channel difference
+1.5
+Enter greenscreen image file name
+a.ppm
+Enter fill image file name
+b.ppm
+Enter output file name
+result_2.ppm
+Output file written. Exiting.
+</code></pre></div></div>
+
+<table>
+
+<tr>
+  <td> <a href="./res/ppms/a.ppm">a.ppm</a> </td>
+  <td> <a href="./res/ppms/b.ppm">b.ppm</a> </td>
+  <td> result </td>
+</tr>
+
+<tr>
+  <td> <img src="./res/pngs/a.png" width="200px" /> </td>
+  <td> <img src="./res/pngs/b.png" width="200px" /> </td>
+  <td> <img src="./res/pngs/result_2.png" width="200px" /> </td>
+</tr>
+
+</table>
+
+<h2 id="lion--city--green">Lion / City / Green</h2>
+
+<p>The below run of <code class="language-plaintext highlighter-rouge">greenscreen.py</code> with the input images linked below, will produce the output shown at the end of the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+g
+Enter color channel difference
+1.5
+Enter greenscreen image file name
+lion.ppm
+Enter fill image file name
+city.ppm
+Enter output file name
+lion_in_city.ppm
+Output file written. Exiting.
+</code></pre></div></div>
+
+<table>
+
+<tr>
+  <td> <a href="./res/ppms/lion.ppm">lion.ppm</a> </td>
+  <td> <a href="./res/ppms/city.ppm">city.ppm</a> </td>
+  <td> result </td>
+</tr>
+
+<tr>
+  <td> <img src="./res/jpgs/lion.jpg" width="200px" /> </td>
+  <td> <img src="./res/jpgs/city.jpg" width="200px" /> </td>
+  <td> <img src="./res/pngs/lion_in_city.png" width="200px" /> </td>
+</tr>
+
+</table>
+
+<h2 id="dog--roller-coaster--blue">Dog / Roller Coaster / Blue</h2>
+
+<p>The below run of <code class="language-plaintext highlighter-rouge">greenscreen.py</code> with the input images linked below, will produce the output shown at the end of the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+b
+Enter color channel difference
+1.7
+Enter greenscreen image file name
+dog.ppm
+Enter fill image file name
+rc.ppm
+Enter output file name
+dog_on_rc.ppm
+Output file written. Exiting.
+</code></pre></div></div>
+
+<table>
+
+<tr>
+  <td> <a href="./res/ppms/dog.ppm">dog.ppm</a> </td>
+  <td> <a href="./res/ppms/rc.ppm">rc.ppm</a> </td>
+  <td> result </td>
+</tr>
+
+<tr>
+  <td> <img src="./res/jpgs/dog.jpg" width="200px" /> </td>
+  <td> <img src="./res/jpgs/rc.jpg" width="200px" /> </td>
+  <td> <img src="./res/pngs/dog_on_rc.png" width="200px" /> </td>
+</tr>
+
+</table>
+
+<h2 id="dog--bones--red">Dog / Bones / Red</h2>
+
+<p>The below run of <code class="language-plaintext highlighter-rouge">greenscreen.py</code> with the input images linked below, will produce the output shown at the end of the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter color channel
+r
+Enter color channel difference
+4.7
+Enter greenscreen image file name
+dog2.ppm
+Enter fill image file name
+bones.ppm
+Enter output file name
+dog_with_bones.ppm
+Output file written. Exiting.
+</code></pre></div></div>
+
+<table>
+
+<tr>
+  <td> <a href="./res/ppms/dog2.ppm">dog2.ppm</a> </td>
+  <td> <a href="./res/ppms/bones.ppm">bones.ppm</a> </td>
+  <td> result </td>
+</tr>
+
+<tr>
+  <td> <img src="./res/jpgs/dog2.jpg" width="200px" /> </td>
+  <td> <img src="./res/jpgs/bones.jpg" width="200px" /> </td>
+  <td> <img src="./res/pngs/dog_with_bones.png" width="200px" /> </td>
+</tr>
+
+</table>
+
+<h2 id="due-date">Due Date</h2>
+
+<p>This PA is due on Tuesday, Dec 4, 2018.
+You may use a late day if you have one available still.
+Turn in the program via Gradescope.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

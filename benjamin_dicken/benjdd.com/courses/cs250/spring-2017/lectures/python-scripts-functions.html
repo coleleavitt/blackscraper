@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-scripting-and-functions-in-python">CSc 250: Lecture Notes: scripting and functions in python</h1>
+
+<h2 id="review">Review</h2>
+
+<p>Last lecture we spent a lot of time talking about variables and variable types, and printing.
+We also we using python in interactive mode only.
+Today, we will learn how to write a python <em>script</em>, in which we can write more complex programs.</p>
+
+<h2 id="scripts">Scripts</h2>
+
+<p><img src="/assets/memes/script-froze.jpg" width="250" /></p>
+
+<p>Everything we have done so far with python has been in <em>interactive</em> mode, where we use python in a shell environment.
+Most of the python we will write in this course (and that is written in the “real world”) is written in python script files and then executed.</p>
+
+<p>A python script file is a text-based file with the extension <code class="language-plaintext highlighter-rouge">.py</code>.</p>
+
+<p>As a <em>super</em> simple example, we will re-write the “Hello World” example in a python script, rather than in interactive mode. 
+For starters, lets create a <code class="language-plaintext highlighter-rouge">.py</code> file to put the python code in.</p>
+
+<p>Before doing this, we need to chose an editor to write our python code in.
+There are <em>many</em> options available for editing code in various languages.
+Python comes bundled with a very simple python editor/debugger called IDLE.
+I recommend using this is you are a beginner in python.</p>
+
+<p>There are several ways to create an edit a new python file in idle, but I’ll show you how to do so directly from bash. First, <code class="language-plaintext highlighter-rouge">cd</code> into a directory that you want to keep your code in. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pwd
+/Users/username
+$ mkdir test
+$ cd test
+$ pwd
+/Users/username/test
+</code></pre></div></div>
+
+<p>Then run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ idle3 hello-world.py
+</code></pre></div></div>
+
+<p>Assuming idle is properly installed, this should open up a new window with a blank text file named <code class="language-plaintext highlighter-rouge">hello-world.py</code>.</p>
+
+<p>Once the file is open, type the following and save the file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print("Hello World")
+</code></pre></div></div>
+
+<p>Now open up a new terminal window, and <code class="language-plaintext highlighter-rouge">cd /Users/username/test</code>.
+If your run <code class="language-plaintext highlighter-rouge">ls</code>, you will see your file named <code class="language-plaintext highlighter-rouge">hello-world.py</code>.
+This python program can be <em>executed</em> by running <code class="language-plaintext highlighter-rouge">python3 hello-world.py</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hello-world.py 
+Hello World
+</code></pre></div></div>
+
+<p>We executed the program, and <code class="language-plaintext highlighter-rouge">Hello World</code> was printed to stdout of bash. Cool!
+Lets add a few more python statements to <code class="language-plaintext highlighter-rouge">hello-world.py</code> and try rerunning it.
+Go back to your IDLE window, and add some likes to it, like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age = 45                          
+DOB = "9.10.11"                   
+
+print("Hello World!")  
+print("How are you?") 
+print("I am " + str(age) + " years old")
+print("I was born on " + str(DOB))
+</code></pre></div></div>
+
+<p>Now when we run this program form bash, we will get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 hello-world.py 
+Hello World
+How are you?
+I am 45 years old
+I was born on 9.10.11
+</code></pre></div></div>
+
+<p>Perhaps you can start to see why python programmers typically do not use interactive mode.
+Interactive mode can be useful for doing some quick math, or testing a python feature, but if you want to write useful and re-usable software in python, you should be writing your code in files.</p>
+
+<h2 id="functions">Functions</h2>
+
+<p><img src="/assets/memes/teach-functions.jpg" width="250" /></p>
+
+<p>In python, we can write <strong>functions</strong> that execute a particular operation.
+A function in python is similar to the <a href="https://en.wikipedia.org/wiki/Function_(mathematics)">mathematical notion of a function</a>.
+Thus, before we start discussing python functions in detail, we should first review the concept of a function as a mathematical entity.</p>
+
+<p>A function is an entity that takes zero or more value as input, and produces a particular output.
+The following diagram (from Wikipedia) is helpful in visualizing how functions work:</p>
+
+<p><img src="/assets/python/function-diagram.svg" width="200" /></p>
+
+<p>The <strong>domain</strong> of a function is the set of possible inputs that the function can take as input.
+The <strong>range</strong> of a function is the set of possible outputs the function can produce.</p>
+
+<p>Let’s walk through a few examples.</p>
+
+<h3 id="addthree">ADDTHREE</h3>
+
+<p>Let’s create a function called ADDTHREE.
+As the name suggests, ADDTHREE will take a single number as input, and add 3 to it.
+The definition of ADDTHREE looks like:</p>
+
+<p><strong>ADDTHREE(x) = x + 3</strong></p>
+
+<p>Using this function:</p>
+
+<p><strong>ADDTHREE(3) = 3 + 3 = 6</strong></p>
+
+<p><strong>ADDTHREE(17) = 17 + 3 = 20</strong></p>
+
+<p>In the case of ADDTHREE, the domain is all real numbers, and the range is <em>also</em> all real numbers.</p>
+
+<p>How about another function?</p>
+
+<h3 id="muldiv">MULDIV</h3>
+
+<p>Let’s make a function called MULDIV that multiplies a number by 7 and then divides by 2.
+The Definition is:</p>
+
+<p><strong>MULDIV(x) = (x * 7) / 2</strong></p>
+
+<p>And using it:</p>
+
+<p><strong>MULDIV(2) = (2 * 7) / 2 = 14 / 2 = 7</strong></p>
+
+<p><strong>MULDIV(14) = (14 * 7) / 2 = 98 / 2 = 49</strong></p>
+
+<p>The domain and range are both all real numbers.</p>
+
+<h3 id="average">AVERAGE</h3>
+
+<p>Now we’ll make a function called AVERAGE that takes <em>two</em> arguments, and returns the average of the two.
+The Definition is:</p>
+
+<p><strong>AVERAGE(x, y) = (x + y) / 2</strong></p>
+
+<p>And using it:</p>
+
+<p><strong>AVERAGE(17, 19) = (17 + 19) / 2 = 36 / 2 = 18</strong></p>
+
+<p><strong>AVERAGE(1234, 5678) = (1234 + 5678) / 2 = 6912 / 2 = 3456</strong></p>
+
+<p>The domain of this function is all <em>pairs</em> of real numbers.
+The range is all real numbers.</p>
+
+<h2 id="combining-function">Combining Function</h2>
+
+<p>The results of functions can be combined with mathematical operators, like so:</p>
+
+<p><strong>AVERAGE(30, 50) + ADDTHREE(7) = ((30 + 50) / 2) + (7 + 3) = (80 / 2) + (10) = 40 + 10 = 50</strong></p>
+
+<p><strong>MULDIV(20) + AVERAGE(20, 24) = ((20 * 7) / 2) + ((20 + 24) / 2) = (140 / 2) + (44 / 2) = 70 + 22 = 92</strong></p>
+
+<h2 id="composing-function">Composing Function</h2>
+
+<p>We can also <em>compose</em> functions.
+By this we mean that the result of one function can be used as an argument to the next function.
+The following diagram (also from Wikipedia) helps visualize this process:</p>
+
+<p><img src="/assets/python/function-composition-diagram.svg" width="250" /></p>
+
+<p>Below are a few examples, using the functions we previously constructed:</p>
+
+<p><strong>MULDIV( ADDTHREE(17) ) = MULDIV( (17 + 3) ) = MULDIV(20) = (20 * 7) / 2 = 140 / 2 = 70</strong></p>
+
+<p><strong>AVERAGE( ADDTHREE(37), MULDIV(10) ) = AVERAGE( (37 + 3), ((10 * 7) / 2) ) = AVERAGE(40, 35) = (40 + 35) / 2 = 75 / 2 = 37.5</strong></p>
+
+<h2 id="functions-in-python">Functions… in Python!</h2>
+
+<p>Now that we’ve reviewed the concept of a function as a mathematical entity, let’s talk about functions in python.
+As mentioned before, functions in python (and most programming languages) behave similarly to mathematical functions, though there are exceptions.
+A python function takes zero or more input arguments, and returns a result.</p>
+
+<p>We can implement all three of the functions we discussed previously (ADDTHREE, MULDIV, and AVERAGE) in python.</p>
+
+<p>ADDTHREE:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def add_three(x):
+    return x + 3
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">def</code> indicated that we are beginning the “definition” of a new function.
+<code class="language-plaintext highlighter-rouge">add_three</code> is the <em>name</em> of the function.
+Immediately following the name should be parenthesis (<code class="language-plaintext highlighter-rouge">()</code>), and within these is a comma-separated list of the names of the arguments.
+A colon must always be placed after the parenthesis (this is just a peculiarity of python, dont worry about the details of this for now).</p>
+
+<p>The <em>body</em> of the function comes next.
+All functions bodies <em>must</em> be indented by four spaces.
+In bash, indentation was optional (though recommended for readability purposes).
+In python, indentation is <em>strictly</em> required in various scenarios, including when writing the body of a function.
+The function body contains the actual work that the function will accomplish.
+In this case, we just need to do a simple operation (add 3 to x).</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">return</code> keyword is used to specify the value that the function should return to who/what-ever invoked it.
+Thus, we put <code class="language-plaintext highlighter-rouge">return</code> immediately before <code class="language-plaintext highlighter-rouge">x + 3</code>, which is the value we need to return.</p>
+
+<p>Now let’s look at MULDIV:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def mul_div(x):
+    return (x * 7) / 2
+</code></pre></div></div>
+
+<p>And AVERAGE:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average(x, y):
+    return (x + y) / 2
+</code></pre></div></div>
+
+<p>Though all of the above examples are, functions are not limited to one python line/statement.
+Multiple statements can be put in the body of a function.
+This includes statements that declare variables, print to stdout, return values, and more!
+For example, <code class="language-plaintext highlighter-rouge">average</code> can be implemented more verbosely, using multiple lines of code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average(x, y):
+    sum = x + y
+    average = sum / 2
+    return average
+</code></pre></div></div>
+
+<p>We can do a lot more with functions than just simple math.
+For example, we can write a function that prints strings stdout:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_person_info(name, address, email):
+    print("Name:    " + str(name))
+    print("Address: " + str(address))
+    print("Email:   " + str(email))
+</code></pre></div></div>
+
+<p>This functions prints a summary of a person using the three input values.</p>
+
+<p>Notice that in this function there is no <code class="language-plaintext highlighter-rouge">return</code> statement.
+In python, not <em>all</em> functions need to return a value.
+This is where a function in python differs from a typical mathematical function.
+These, by definition, must return a value.
+In “mathematical” words, a function not returning a value means that the function does not have a <strong>range</strong>.</p>
+
+<p>However, this function still does something useful by printing some strings to stdout.</p>
+
+<p>We will see, use, and write many functions throughout the remainder of the course, so you should get used to the syntax of writing a function.
+However, a function is not much use unless we can actually <em>use</em> it.
+So, how odes one <em>use</em> a function once it has been written?
+Here is a script called <code class="language-plaintext highlighter-rouge">people-info.sh</code> that defines and uses a function:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_person_info(name, employeeID, email):
+    print('----------')
+    print('Name:  ' + str(name))
+    print('ID:    ' + str(employeeID)) 
+    print('Email: ' + str(email))
+
+print_person_info('Dan Drake', 123, 'dd@gmail.com')
+print_person_info('Stan Clark', 578, 'clark@gmail.com')
+print_person_info('Janet Alford', 777, 'jal@gmail.com')
+</code></pre></div></div>
+
+<p>In this script, we define a function similar to the one shown previously named <code class="language-plaintext highlighter-rouge">print_person_info</code>.
+This function takes three values as input (<code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">employeeID</code>, and <code class="language-plaintext highlighter-rouge">email</code>), and prints a summary of them.</p>
+
+<p>The last three lines of this script demonstrate how to <em>call</em> this function.
+Each of these lines represent an invocation of <code class="language-plaintext highlighter-rouge">print_person_info</code>.
+Calling a function is rather simple.
+Simply write the name of the function, and insert the values you want to pass to it, separated by comments.
+When this script is run, the following is the result:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 people-info.py 
+----------
+Name:  Dan Drake
+ID:    123
+Email: dd@gmail.com
+----------
+Name:  Stan Clark
+ID:    578
+Email: clark@gmail.com
+----------
+Name:  Janet Alford
+ID:    777
+Email: jal@gmail.com
+$
+</code></pre></div></div>
+
+<p>You can also call one function from another function.
+This is demonstrated in the following modified version of <code class="language-plaintext highlighter-rouge">people-info.py</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def print_separator():
+    print('----------') 
+
+def print_person_info(name, employeeID, email):
+    print_separator()
+    print('Name:  ' + str(name))
+    print('ID:    ' + str(employeeID))
+    print('Email: ' + str(email))
+
+print_person_info('Dan Drake', 123, 'dd@gmail.com')
+print_person_info('Stan Clark', 578, 'clark@gmail.com')
+print_person_info('Janet Alford', 777, 'jal@gmail.com')
+</code></pre></div></div>
+
+<p>When run, this produces the same output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 people-info-2.py 
+----------
+Name:  Dan Drake
+ID:    123
+Email: dd@gmail.com
+----------
+Name:  Stan Clark
+ID:    578
+Email: clark@gmail.com
+----------
+Name:  Janet Alford
+ID:    777
+Email: jal@gmail.com
+$
+</code></pre></div></div>
+
+<p>Let’s write a function that computes the average of <em>four</em> numbers.
+This function will need to take four arguments (the four numbers).
+This number will <code class="language-plaintext highlighter-rouge">return</code> the average that we compute.</p>
+
+<p>One way to implement this is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average_of_four_numbers(n1, n2, n3, n4):
+    sum = n1 + n2 + n3 + n4
+    average = sum / 4
+    return average
+</code></pre></div></div>
+
+<p>We could also consolidate everything onto one line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average_of_four_numbers(n1, n2, n3, n4):
+    return (n1 + n2 + n3 + n4) / 4
+</code></pre></div></div>
+
+<p>Both of these function will return the same value!</p>
+
+<p>Let’s put this in a script called <code class="language-plaintext highlighter-rouge">avg.py</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average_of_four_numbers(n1, n2, n3, n4):
+    sum = n1 + n2 + n3 + n4
+    average = sum / 4 
+    return average
+
+avg = average_of_four_numbers(16, 32, 64, 128)
+
+print('The average is: ' + str(avg))
+</code></pre></div></div>
+
+<p>An then run it!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 avg.py 
+The average is: 60.0
+</code></pre></div></div>
+
+<p>We could also change the function to just print out the average directly, instead of returning the computed average to the caller.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def average_of_four_numbers(n1, n2, n3, n4):
+    sum = n1 + n2 + n3 + n4
+    average = sum / 4 
+    print('The average is: ' + str(average))
+
+average_of_four_numbers(16, 128, 256, 256)
+</code></pre></div></div>
+
+<p>When run, we will get:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 avg.py 
+The average is: 164.0
+</code></pre></div></div>
+
+<h2 id="side-effects">Side-Effects</h2>
+
+<p>Notice that how in some of the functions we wrote above, the functions are able to have an effect outside of the function.
+For example, when a function <code class="language-plaintext highlighter-rouge">print</code>s a string to stdout, it is making a change to the environment outside of the body of the function.
+This is what is called a <strong>side-effect</strong>.
+Notice that this is another way that functions in python differ from a mathematical function.
+Mathematical functions cannot have “side effects.”
+They take zero or more inputs, do some operation on those inputs, and evaluate to (return) a result.</p>
+
+<p>Printing text to stdout is one of several different types of side-effects that a function can cause.
+We will talk about other types of side-effects as we go along in the course.</p>
+
+<h2 id="naming-conventions">Naming Conventions</h2>
+
+<p>At this point we have been working with both variables and functions.
+When declaring a new variable or defining a new function, we should be careful about how we name them.
+For one, you should always make sure that the names of variables and functions are descriptive.
+The name of a variable should clearly yet succinctly describe what the variable stores.
+The name of a function should clearly and succinctly describe the action that the function accomplishes.</p>
+
+<p>There is also the issue of name formatting.
+So far in the lectures, we have stuck to naming variables and functions with all lower-case words.
+If a variable or function name contains multiple words, each is separated with an underscore.
+A few examples are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pi = 3.14</code></li>
+  <li><code class="language-plaintext highlighter-rouge">name = "Joe Smith"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cell_number = "123-4567"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">my_favorite_food = "Spetzle"</code></li>
+</ul>
+
+<p>This naming convention goes by several names:</p>
+
+<ul>
+  <li>“Underscore”</li>
+  <li>“Underscore_naming”</li>
+  <li>“Underscore_separated”</li>
+</ul>
+
+<p>These all basically mean the same thing, though.</p>
+
+<p>Another common naming convention is called <strong>camelCase</strong> (or <strong>CamelCase</strong>).
+In the camelCase convention, each word used in the variable/function name begins with an upper-case letter, and the rest of the word is lower-case.
+This applies to all words in the name <em>except</em> for the first one, which should be <em>all</em> lower-case.
+A few examples are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pi = 3.14</code></li>
+  <li><code class="language-plaintext highlighter-rouge">name = "Joe Smith"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cellNumber = "123-4567"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">myFavoriteFood = "Spetzle"</code></li>
+</ul>
+
+<p>There are other conventions that software developers use as well, but these are the two most common.
+The <a href="https://www.python.org/dev/peps/pep-0008/">official python style guide</a> suggests using the underscore_separated convention for variables and functions.
+That’s what we will stick to in this class.
+On each programming assignment, a small number of points will be alloted to making sure your program is well structured, well documented, and has good “style.”
+A big part of having good style is naming things well, and naming things with consistent conventions.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

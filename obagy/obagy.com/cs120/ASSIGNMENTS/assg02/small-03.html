@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Shuffle a Dictionary</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Shuffle a Dictionary</h1>
+
+<h2>Expected Behavior</h2>
+Write a function <tt><b>shuffle_dict</b>(somedict)</tt> that behaves as follows.
+Its argument <tt>somedict</tt> is a dictionary.  This function returns a new
+dictionary constructed as follows:
+<p/>
+<ol>
+  <li>
+    Let <tt>sorted_keys</tt> be the sorted list of the keys of <tt>somedict</tt>.  
+  </li>
+  <li>
+    Let <tt>sorted_vals</tt> be the sorted list of the values that these keys are mapped to in
+    <tt>somedict</tt>.
+  </li>
+  <li>
+    Construct a dictionary <tt>shuffled_dict</tt> that maps
+    <tt>sorted_keys[0]</tt> to <tt>sorted_vals[0]</tt>,
+    <tt>sorted_keys[1]</tt> to <tt>sorted_vals[1]</tt>,
+    <tt>sorted_keys[2]</tt> to <tt>sorted_vals[2]</tt>,
+    ...
+    <tt>sorted_keys[n]</tt> to <tt>sorted_vals[n]</tt>.
+  </li>
+  <li>
+    Return the dictionary <tt>shuffled_dict</tt> so constructed.
+  </li>
+</ol>
+<p/>
+<b>Note:</b> You can get the set of values in a dictionary <tt>somedict</tt> using
+<tt>somedict.values()</tt>.  This is analogous to the <tt>keys()</tt> method that
+gives the keys in a dictionary.  In each case, you then need to use <tt>list()</tt>
+to obtain a list.
+
+<h2>Examples</h2>
+
+<p/>
+<ol>
+  <li>
+    Suppose <tt>somedict = { 'a' : 12, 'b' : 93, 'c' : 47}</tt>.
+    Then, <tt>sorted_keys</tt> is the list of keys of this dictionary in sorted order, so
+    <blockquote>
+      <tt>sorted_keys = ['a', 'b', 'c'].</tt>
+    </blockquote>
+    <tt>sorted_vals</tt> is the sorted list of values that these keys are mapped to, i.e.,
+    <blockquote>
+      <tt>sorted_vals = [12, 47, 93].</tt>
+    </blockquote>
+    Then the value returned by the function <tt>shuffle_dict</tt> is the dictionary
+    <blockquote>
+      <tt>{ 'a' : 12, 'b' : 47, 'c' : 93 }</tt>
+    </blockquote>
+  </li>
+  <li>
+    Let <tt>somedict = { 345:'pqr', 456:'abc', 123:'wxy', 234:'ijk'}</tt>.  Then:
+    <blockquote>
+      <tt>sorted_keys = [123, 234, 345, 456]</tt><br/>
+      <tt>sorted_vals = ['abc', 'ijk', 'pqr', 'wxy']</tt>
+    </blockquote>
+    So the value returned by this function is the dictionary
+    <blockquote>
+      <tt>{123:'abc', 234:'ijk', 345:'pqr', 456:'wxy'}</tt>.
+    </blockquote>
+  </li>
+  <li>
+    Let <tt>somedict</tt> = <tt>{ (11,22,33):'uvw', (11,43,27):'abc', (22,11,19):'lmn' }</tt>.  Then:
+    <blockquote>
+      <tt>sorted_keys = [(11, 22, 33), (11, 43, 27), (22, 11, 19)]</tt><br/>
+      <tt>sorted_vals = ['abc', 'lmn', 'uvw']</tt>
+    </blockquote>
+    So the value returned by this function is the dictionary
+    <blockquote>
+      <tt>{(11,22,33):'abc', (11,43,27):'lmn', (22,11,19):'uvw'}</tt>.
+    </blockquote>
+  </li>
+
+</ol>
+<p/>
+<hr/>
+</body>
+</html>
+

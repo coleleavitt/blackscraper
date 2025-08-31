@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: List to Dictionary</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: List to Dictionary</h1>
+
+<h2>Expected Behavior</h2>
+Write a function <tt><b>list2dict</b>(list2d)</tt> that behaves as follows.
+Its argument <tt>list2d</tt> is a 2D list (i.e., list of lists) of strings.
+It returns a dictionary whose keys are the first elements of each row,
+and where each such key is mapped to the list consisting of the remaining elements of that row.
+<p/>
+
+<h2>Examples</h2>
+
+<p/>
+<ol>
+  <li>
+    Let <b><tt>x1</tt></b> be the following list of lists:
+    <blockquote>
+    <pre>
+[ [ 'aa', 'bb', 'cc', 'dd' ],
+  [ 'ee', 'ff', 'gg', 'hh', 'ii', 'jj' ],
+  [ 'kk', 'll', 'mm', 'nn' ] ]</pre>
+    </blockquote>
+    <p/>
+    Then <tt><b>list2dict</b>(x1)</tt> returns the dictionary
+    <blockquote>
+      <pre>
+{ 'aa' : [ 'bb', 'cc', 'dd' ],
+  'ee' : [ 'ff', 'gg', 'hh', 'ii', 'jj' ],
+  'kk' : [ 'll', 'mm', 'nn' ]
+}</pre>
+    <blockquote>
+    <p/>
+  </li>
+<!-- ----- -->
+  <li>
+    Let <b><tt>x2</tt></b> be the following list of lists:
+    <blockquote>
+    <pre>
+[ [ 'aa', 'bb' ],
+  [ 'cc', 'dd' ],
+  [ 'ee', 'ff' ],
+  [ 'gg', 'hh' ],
+  [ 'kk', 'll' ] ]</pre>
+    </blockquote>
+    <p/>
+    Then <tt><b>list2dict</b>(x2)</tt> returns the dictionary
+    <blockquote>
+      <pre>
+{ 'aa' : [ 'bb' ],
+  'cc' : [ 'dd' ],
+  'ee' : [ 'ff' ],
+  'gg' : [ 'hh' ],
+  'kk' : [ 'll' ]
+}</pre>
+    <blockquote>
+    <p/>
+  </li>
+<!-- ----- -->
+  <li>
+    Let <b><tt>x3</tt></b> be the following list of lists:
+    <blockquote>
+    <pre>
+[ [ 'aa', 'bb' ],
+  [ 'cc', 'dd', 'ee' ],
+  [ 'ff', 'gg' ],
+  [ 'hh', 'ii', jj' ],
+  [ 'kk' ] ]</pre>
+    </blockquote>
+    <p/>
+    Then <tt><b>list2dict</b>(x3)</tt> returns the dictionary
+    <blockquote>
+      <pre>
+{ 'aa' : [ 'bb' ],
+  'cc' : [ 'dd', 'ee' ],
+  'ff' : [ 'gg' ],
+  'hh' : [ 'ii', 'jj' ],
+  'kk' : []
+}</pre>
+    <blockquote>
+    <p/>
+  </li>
+</ol>
+<p/>
+<hr/>
+</body>
+</html>
+

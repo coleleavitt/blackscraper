@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - PA 4 - Bulls and Cows</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---pa-4---bulls-and-cows">CSc 110 - PA 4 - Bulls and Cows</h1>
+
+<p><img src="./res/bulls_and_cows.png" width="400px" /></p>
+
+<p>In this programming assignment, you will be implementing a 2-player code-breaking console game called Bulls and Cows.
+This game is related to the code breaking board game <a href="https://en.wikipedia.org/wiki/Mastermind_(board_game)">Mastermind</a>.
+Mastermind was inspired by Bulls and Cows.
+You can take a look at the <a href="https://en.wikipedia.org/wiki/Bulls_and_Cows">Bulls and Cows Wikipedia page</a> to get an idea of how the standard game works.
+The version that you should implement in this PA will have a some differences from the standard Bulls and Cows game.</p>
+
+<p>The game will be played on the console, and players will interact with the game by entering console input.
+You should call your program <code class="language-plaintext highlighter-rouge">bulls_and_cows.py</code>.</p>
+
+<p>Both Mastermind and Bulls and Cows have a similar core gameplay concept.
+One or both players chooses a particular sequence of numbers, or letters, or colors, which is referred to as the <em>code</em>.
+Then, the other player provides a sequence of guesses of the code.
+After each guess, the player who created the code provides a form of feedback to help the other player determine how close they are to guessing the correct code.</p>
+
+<h2 id="bulls-and-cows-rules-and-gameplay">Bulls and Cows Rules and Gameplay</h2>
+
+<p>Initially, each player will select a nickname to be used during the game.
+Programmatically, you can request the nicknames with the <code class="language-plaintext highlighter-rouge">input()</code> function.
+Once the nickname has been selected, each player is asked to select a code.
+The code must be:</p>
+
+<ul>
+  <li>Exactly 3 letters long</li>
+  <li>Only contain lower-case letters a-z</li>
+  <li>Each letter must be different than the two others</li>
+</ul>
+
+<p>You must check that the codes that the players enter meet these requirements.
+If any of them are not met, then your program must print out a message and then exit.
+If you forgot how to exit a program, check the slides.
+See the examples later to determine what the message should be.</p>
+
+<p>After all of these values have been entered, the turns of the game can begin.
+Each player will take turns guessing the other player’s code.
+The guesses will be entered on the command line.
+After each guess is made, the program will report two pieces of information related to the guess.</p>
+
+<ul>
+  <li>The number of letters in the guess that are the correct letter in the correct position (bulls)</li>
+  <li>The number of letters that <em>are</em> in the code, but <em>not</em> in the correct position (cows)</li>
+</ul>
+
+<p>For example, let’s say that player A provided the code <code class="language-plaintext highlighter-rouge">abc</code>.
+Then, player R gave the guess <code class="language-plaintext highlighter-rouge">acr</code>.
+In this guess, there is 1 letter in the correct position.
+There is also one letter that is in the code, but not in the correct position.
+Thus, player R should be told that their guess resulted in 1 bull and 1 cow.
+This information can be used to inform future guesses, to eventually arrive at the correct answer.</p>
+
+<p>The first player to guess the other player’s code is the winner.
+Once a player has won, this will be reported and the game will exit.</p>
+
+<h2 id="even--odd-turns">Even / Odd Turns</h2>
+
+<p>One player (player 1) has a guessing turn first.
+This could give player 2 a disadvantage.
+If player 1 guess player 2’s code, player 1 had one more guess than player 2 did.
+In this version of the game, you don’t need to do anything special to make this “fair”.
+If player 1 guesses the answer first, then player 1 wins.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>You should only use features that have been covered in class and in the readings.
+Particularly, you may not use lists or for-loops to implement this.
+We have not yet reached these topics, but we will later in the semester.</p>
+
+<p>You will probably need to use a number of if statements for checking the user inputs.
+You should use a <code class="language-plaintext highlighter-rouge">while</code> loop to handle the repetition of turns.
+You may also use a <code class="language-plaintext highlighter-rouge">while</code> loop to could the bulls and cows.</p>
+
+<h2 id="example-runs">Example Runs</h2>
+
+<p>Below are the outputs of several program runs.
+Player 1 selected the nickname “Art” and player 2 “Red”.
+Each player entered their code, and then one guessed two’s code correct on the very first turn, causing him to win and the game to end.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-----------------------------------------
+------- WELCOME TO BULLS AND COWS -------
+-----------------------------------------
+Player 1, enter your username:
+Art
+Player 2, enter your username:
+Red
+Art, enter your code:
+abc
+Red, enter your code:
+was
+Art, enter guess:
+was
+Art wins!
+</code></pre></div></div>
+
+<p>Let’s look at a longer game run.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-----------------------------------------
+------- WELCOME TO BULLS AND COWS -------
+-----------------------------------------
+Player 1, enter your username:
+Art
+Player 2, enter your username:
+Red
+Art, enter your code:
+and
+Red, enter your code:
+the
+Art, enter guess:
+tri
+  * bulls: 1
+  * cows:  0
+Red, enter guess:
+nda
+  * bulls: 0
+  * cows:  3
+Art, enter guess:
+thi
+  * bulls: 2
+  * cows:  0
+Red, enter guess:
+and
+Red wins!
+</code></pre></div></div>
+
+<p>In this example, each player got Red guesses before the game ended.
+Notice how after each incorrect guess, the game replied with the bulls and cows counts for the guess.</p>
+
+<p>After the first turn (Art), he could know that one of the three letters that he guessed was in the exact correct position.
+Thus, one bull and zero cows.
+On Art’s second guess, two out of three of the letters in the guess were correct and in the correct position.
+Thus, two bulls and zero cows.</p>
+
+<p>Red’s first guess was had the three letters in the code, but in the wrong positions.
+Thus, zero bulls and three cows.
+Red’s second guess was the correct code.
+After announcing that Red won, the program ended.</p>
+
+<p>Below are a few examples of the game rejecting a code entered by art of the players.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-----------------------------------------
+------- WELCOME TO BULLS AND COWS -------
+-----------------------------------------
+Player 1, enter your username:
+Art
+Player 2, enter your username:
+Red
+Art, enter your code:
+wonderful
+Art, that code is not valid. Exiting.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-----------------------------------------
+------- WELCOME TO BULLS AND COWS -------
+-----------------------------------------
+Player 1, enter your username:
+Art
+Player 2, enter your username:
+Red
+Art, enter your code:
+abc
+Red, enter your code:
+tr3
+Red, that code is not valid. Exiting.
+</code></pre></div></div>
+
+<p>There will be more test cases on Gradescope.</p>
+
+<h2 id="due-date">Due Date</h2>
+
+<p>This PA is due on Friday, September 14th at 5pm.
+Turn it in on Gradescope.
+You should make sure your program passes as many test cases as possible.
+You can submit it without all of the cases passing, but that is not preferable.
+Also, remember to follow the code style guidelines.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

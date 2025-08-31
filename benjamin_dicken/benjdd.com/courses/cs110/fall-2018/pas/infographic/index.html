@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Infographic</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="infographic">Infographic</h1>
+
+<p><img src="./res/infographic.png" alt="Infographic" width="300px" /></p>
+
+<p>In this PA, you will be writing a program that reads in a text file (perhaps containing the contents of a book, poem, article, etc) and produces an infographic based on the text.
+You will need to use one or more dictionaries to count words in the program.
+You may also use lists and / or sets.
+Below, you can see three example infographics that your program should be able to generate:</p>
+
+<p>The infographic should contain the following information about the text:</p>
+
+<ul>
+  <li>The name of the text file</li>
+  <li>The total number of unique words.</li>
+  <li>The most used small, medium, and large words in the file.
+Both the word and the count should be included, as shown in the image.
+For the purposes of this PA, the definitions of a small, medium, and large word is:
+    <ul>
+      <li>small: length 0-4, inclusive.</li>
+      <li>medium: length 5-7, inclusive.</li>
+      <li>large: length 8+, inclusive.</li>
+    </ul>
+  </li>
+  <li>A Bar-chart representing the proportion of unique small, medium, and large words.</li>
+  <li>A Bar-chart representing the proportion of capitalized and non-capitalized words.
+A capitalized word is any word that begins with an upper-case letter.
+All other words can be considered non-capitalized, even if they begin with a non-letter character like a digit or punctuation.</li>
+  <li><strong>Extra-Credit:</strong> A Bar-chart representing the proportion of punctuated and non-punctuated words.
+A Punctuated word is any word that ends in a period, comma, question-mark, or exclamation-point.
+All other words should be considered non-punctuated.</li>
+</ul>
+
+<p>You can take creative liberty with the colors, but the text and graphics displayed should be in roughly the same positions as what is show on this spec.
+The canvas size should be proportional to mine (650 pixels wide, 700 pixels tall), but it does not have to be exactly this.
+Name the file <code class="language-plaintext highlighter-rouge">infographic.py</code>.
+You should also re-download <a href="./res/graphics.py">graphics.py</a>, and use that for the graphical component.</p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<h3 id="1-reading-and-processing-the-file">(1) Reading and processing the file</h3>
+
+<p>The first step should be to ask the user for the input file that they would like to have an infographic created for.
+Once the file has been selected, you can read in all of the lines and strip the newlines off of the ends.
+To get the words, all you have to do is split each line on whitespace.
+To accomplish this, just call <code class="language-plaintext highlighter-rouge">split()</code> on each line string, with no argument.
+You can then append each individual word to a python list.
+You do not need to strip off punctuation from the words or normalize the cases.</p>
+
+<p>For example, if you input file had the following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>two forks.
+one knife.
+two glasses.
+one plate.
+one naptkin.
+his glasses.
+his knife.
+</code></pre></div></div>
+
+<p>The words list should have the following content after processing the file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>words = ['two', 'forks.', 'one', 'knife.', 'two', 'glasses.', \
+         'one', 'plate.', 'one', 'naptkin.', 'his,' 'glasses.', 'his', 'knife.']
+</code></pre></div></div>
+
+<h3 id="2-counting-words">(2) Counting words</h3>
+
+<p>Once you have a list of all of the words from the file, you can count the occurrences.
+You should use a dictionary for this.
+Continuing from the example of the last step, the dictionary should have the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>word_counts = {'two':2, 'one':3, 'forks.':1, 'knife.':2, \
+               'glasses.':2, 'plate.':1, 'naptkin.':1, 'his':2}
+</code></pre></div></div>
+
+<h3 id="3-finding-most-occurrences">(3) Finding most occurrences</h3>
+
+<p>Next, you can find the small, medium, and large words that occur the most.
+In the example, it would be <code class="language-plaintext highlighter-rouge">one</code> for small, <code class="language-plaintext highlighter-rouge">knife.</code> for medium, and <code class="language-plaintext highlighter-rouge">glasses.</code> for large.
+You can do this by iterating through the key and value pairs in the <code class="language-plaintext highlighter-rouge">word_counts</code> dictionary, and keeping track of which has the highest count.
+Then, display these on the canvas.</p>
+
+<h3 id="4-counting-capitalized">(4) Counting Capitalized</h3>
+
+<p>Next, compute how many unique capitalized and non-capitalized.
+You can do this by getting the keys of the <code class="language-plaintext highlighter-rouge">word_counts</code> dictionary as a list, and then looping through them all.</p>
+
+<h3 id="5-counting-punctuated-extra-credit">(5) Counting Punctuated (Extra Credit)</h3>
+
+<p>Compute how many unique punctuated and non-punctuated words there are.
+Use a similar process as you did for step (4).</p>
+
+<h3 id="6-building-the-bar-charts">(6) Building the bar charts</h3>
+
+<p>You need to display three different bar charts on the infographic.
+This section will walk though how to build it the Small, Medium, and Large word Bar Chart (SMLBC).
+You can apply similar steps to the other two.</p>
+
+<p>Let’s say you were trying to build the SMLBC for an input file with 10 unique short words, 3 unique medium words, and 5 unique large words.
+In total, this is 18 unique words.
+The small box should consume 10/18 of the whole bar, the medium bar should consume 3/18 of the whole bar, the large word bar should consume 5/18 of the whole bar.
+To calculate the height in pixels of each bar, use the formula:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(pixel_height / total_item_count) * category_item_count
+</code></pre></div></div>
+
+<p>For example, if the total height of the bar chart should be 450 pixels, then to get the height in pixels of the small word bar: <code class="language-plaintext highlighter-rouge">(450 / 18) * 10</code>.
+Take a look at the drawing below for reference.</p>
+
+<p><img src="./res/infographic_drawing.png" alt="Infographic" height="300px" /></p>
+
+<p>Use this information to draw the other one or two bar charts.</p>
+
+<h2 id="resource-files">Resource Files</h2>
+
+<p>Below are some resource files you might find interesting to run your program with.</p>
+
+<ul>
+  <li><a href="./res/files/poem.txt">poem.txt</a></li>
+  <li><a href="./res/files/The_Dark_Knight.txt">The_Dark_Knight.txt</a></li>
+  <li><a href="./res/files/Bible.txt">Bible.txt</a></li>
+  <li><a href="./res/files/Cat_in_the_Hat.txt">Cat_in_the_Hat.txt</a></li>
+</ul>
+
+<p>If you’d like to try the program on other books, you can visit <a href="http://www.gutenberg.org">www.gutenberg.org</a>.</p>
+
+<p>Most of the test cases on Gradescope will not be super large.
+They will be 1000 lines of text at most.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>Below are several examples, with the input files included.
+If you are not completing the extra credit, you only need to include the first two bar charts.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="./res/infographic_1.png" alt="Infographic" width="250px" /></td>
+      <td><a href="./res/files/words.txt">words.txt</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="./res/infographic_2.png" alt="Infographic" width="250px" /></td>
+      <td><a href="./res/files/Cat_in_the_Hat.txt">Cat_in_the_Hat.txt</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="./res/infographic_3.png" alt="Infographic" width="250px" /></td>
+      <td><a href="./res/files/Poetics.txt">Poetics.txt</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="submission">Submission</h2>
+
+<p>Submit this program to Gradescope by 5:00pm on 11/9/2018.</p>
+
+<p><br /></p>
+
+<p><em>Special thanks to Ping Hsu, whose programming assignment spec this was partially inspired by!</em></p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - PA 1 - Star Wars</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---pa-1---star-wars">CSc 110 - PA 1 - Star Wars</h1>
+
+<p>In this PA, you will be writing multiple programs that print out ascii art of star-wars vehicles.
+Each of these programs shoult accept multiple values from the user which are used to adjust the size of the printout.</p>
+
+<h2 id="atat">ATAT</h2>
+
+<p><img src="./res/atat.png" width="200px" /></p>
+
+<p>In this program program, you will print out a AT-AT (an example of this machine is shown above).
+Name your progam <code class="language-plaintext highlighter-rouge">atat.py</code>.
+Your program should ask the user for three numbers; the neck length, the body height, and the leg height.
+The neck length controls how long the neck of the AT-AT, made out of dashes.
+The body height will control how tall the top part of the AT-AT body, above the neck.
+The leg height controls the height of the legs.
+Below are serveral examples of this program running with different input values provided.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Neck Length:
+0
+Body Height:
+0
+Leg Height:
+0
+
+     _,.-Y  |  |  Y-._
+ .-~"   ||  |  |  |   "-.
+ |______________________|    _____
+ L______________________[---I" .-{"-.
+I____________________ [__L][I_/r(=}=-P
+L________________________j~ '-=c_]/=-^
+\________________________]
+  [___________________]
+     I--I"~~"""~~"I--I
+     ([])         ([])
+    /|..|\       /|..|\
+   |=}--{=|     |=}--{=|
+  .-^--e-^-.   .-^--e-^-.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Neck Length:
+2
+Body Height:
+1
+Leg Height:
+3
+
+     _,.-Y  |  |  Y-._
+ .-~"   ||  |  |  |   "-.
+ |______________________|
+ |______________________|      _____
+ L______________________[-----I" .-{"-.
+I____________________ [__L]__[I_/r(=}=-P
+L________________________j~   '-=c_]/=-^
+\________________________]
+  [___________________]
+     I--I"~~"""~~"I--I
+     |\n|         |\n|
+     |\n|         |\n|
+     |\n|         |\n|
+     ([])         ([])
+    /|..|\       /|..|\
+   |=}--{=|     |=}--{=|
+  .-^--e-^-.   .-^--e-^-.
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Neck Length:
+7
+Body Height:
+7
+Leg Height:
+5
+
+     _,.-Y  |  |  Y-._
+ .-~"   ||  |  |  |   "-.
+ |______________________|
+ |______________________|
+ |______________________|
+ |______________________|
+ |______________________|
+ |______________________|
+ |______________________|
+ |______________________|           _____
+ L______________________[----------I" .-{"-.
+I____________________ [__L]_______[I_/r(=}=-P
+L________________________j~        '-=c_]/=-^
+\________________________]
+  [___________________]
+     I--I"~~"""~~"I--I
+     |\n|         |\n|
+     |\n|         |\n|
+     |\n|         |\n|
+     |\n|         |\n|
+     |\n|         |\n|
+     ([])         ([])
+    /|..|\       /|..|\
+   |=}--{=|     |=}--{=|
+  .-^--e-^-.   .-^--e-^-.
+</code></pre></div></div>
+
+<h2 id="nebulon-8">Nebulon 8</h2>
+
+<p><img src="./res/nebulon.png" width="250px" /></p>
+
+<p>In this program, you will print out ascii art of the nebulon spaceship (an example of this machine is shown above).
+Name your progam <code class="language-plaintext highlighter-rouge">nebulon.py</code>.
+Your program should ask the user for six numbers; The number of small/meduim/large layers on the bottom-front of the ship, and the widths of the front, middle, and back of the ship.
+Below is a diagram showing what component of the ship each input value determines.</p>
+
+<p><img src="./res/nebulon-components.png" width="700px" /></p>
+
+<p>The Large, med, and bottom later inputs control the height of those three components.
+The front, middle, and back lengths control how long (wide) each of the upper components are.
+<em>(Don’t worry about trying to make your ship printout match the above image.
+Instead, use the test cases)</em></p>
+
+<p>Below are serveral examples of this program running with different input values provided.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Large Layers on bottom:
+1
+Medium Layers on bottom:
+1
+Small Layers on bottom:
+1
+Front length:
+10
+Middle length:
+10
+Back length:
+10
+
+  /=----------\                   /----------|
+ /==//////////==\\\              |===========|
+|==-\\\\\\\\\\======\--======================|
+ \==============-----------------------------|
+  \=----------=///               \===========/
+   /-------|
+   \=======|
+     /+++++|
+     \-----|
+      \&lt;&lt;&lt;|
+       &lt;&lt;&lt;|
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Large Layers on bottom:
+2
+Medium Layers on bottom:
+2
+Small Layers on bottom:
+2
+Front length:
+20
+Middle length:
+23
+Back length:
+10
+
+  /=--------------------\                                /----------|
+ /==////////////////////==\\\                           |===========|
+|==-\\\\\\\\\\\\\\\\\\\\======\--===================================|
+ \========================------------------------------------------|
+  \=--------------------=///                            \===========/
+   /-----------------|
+   \=================|
+   /-----------------|
+   \=================|
+          /++++++++++|
+          \----------|
+          /++++++++++|
+          \----------|
+             \&lt;&lt;&lt;&lt;&lt;&lt;|
+              &lt;&lt;&lt;&lt;&lt;&lt;|
+             \&lt;&lt;&lt;&lt;&lt;&lt;|
+              &lt;&lt;&lt;&lt;&lt;&lt;|
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Large Layers on bottom:
+1
+Medium Layers on bottom:
+3
+Small Layers on bottom:
+1
+Front length:
+15
+Middle length:
+15
+Back length:
+20
+
+  /=---------------\                        /--------------------|
+ /==///////////////==\\\                   |=====================|
+|==-\\\\\\\\\\\\\\\======\--=====================================|
+ \===================--------------------------------------------|
+  \=---------------=///                    \=====================/
+   /------------|
+   \============|
+        /+++++++|
+        \-------|
+        /+++++++|
+        \-------|
+        /+++++++|
+        \-------|
+         \&lt;&lt;&lt;&lt;&lt;|
+          &lt;&lt;&lt;&lt;&lt;|
+</code></pre></div></div>
+
+<p>Notice that the length of the front section of the ship also increases the length of the bottom layers.
+Thus, the bottom layers need to be able to grow in width and height, depending on the values entered.</p>
+
+<p>For the first three input values, you only need to support values greater than 0 and less than 10.
+For the three last input values, you only need to support values greater than 9 and less than 25.</p>
+
+<p>The formula to determine the lengths of the lower layers is as follows:</p>
+
+<ul>
+  <li>Large layer: the length of the front minus 3.</li>
+  <li>Medium layer: the length of the front divided by 2, rounded down.</li>
+  <li>Small layer: the length of the front divided by 3, rounded down.</li>
+</ul>
+
+<h2 id="commenting">Commenting</h2>
+
+<p>You should also include a comment at the top of the code file.
+The comment should include your name and a short description of what the program does.
+Below is a template you may use:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### 
+### Author: Your Name Here
+### Description: Describe your program with one
+###              or more sentences of text.
+###
+</code></pre></div></div>
+
+<h3 id="requirements-and-restrictions">Requirements and Restrictions</h3>
+
+<p>You should not use any python libraries or features that will not have been covered by the time this PA is due.
+You should be using string multiplication to get the sizing of the output correct.
+We will be checking that your code fulfills the requirements, has good style, etc.
+You are not allowed to use if-statements or for-loops.
+We will be checking that your code fulfills the requirements, has good style, etc.
+Receiving full points on all of the Gradescope test cases does not guarantee you an A.</p>
+
+<h2 id="due-date">Due Date</h2>
+
+<p>This PA is due on Friday, August 31st at 5pm.
+Turn both programs via on Gradescope.
+You should make sure that your final submission passes all of the test cases.
+Passing all test cases does not guarantee a perfect grade.
+Your code will also be graded on style and formatting.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

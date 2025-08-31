@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 11</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-11">CSc 250: Assignment 11</h1>
+
+<p>This assignment will be implemented in python.
+You should only use python features that we have discussed up to this point.
+If you have questions about whether or not a particular feature can/should be used, ask the instructors!</p>
+
+<p>When grading your assignments, each problem/script/function will be thoroughly tested with many types of input, so make sure you test your scripts/functions well!</p>
+
+<p>The python in this assignment will be graded using python 3.6, and tests will be run on a Mac machine.
+Python generally works well cross-platform, but if you want to be absolutely sure your program works as expected, test on a mac!
+Any python version 3.4 or newer should suffice though.</p>
+
+<p>All of your scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A short description of what this program / script / set of functions does!
+# 
+</code></pre></div></div>
+
+<p>Each function in your script(s) should have a descriptive comment above it.
+If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<h2 id="puter3">Puter3</h2>
+
+<p><img src="/assets/memes/puter-3.jpg" width="300" /></p>
+
+<p>This assignment is the third (and last) iteration of puter for the semester.
+In this assignment, you’ll be implementing a variant of puter2, and it will use the <code class="language-plaintext highlighter-rouge">sqlite3</code> python module to interact with a database.
+Call the script <code class="language-plaintext highlighter-rouge">puter3.py</code>.</p>
+
+<h3 id="the-database-schema">The Database Schema</h3>
+
+<p>The database that puter3 interacts with will have the following schema:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE question (question TEXT PRIMARY KEY, answer TEXT);
+CREATE TABLE favorite (category TEXT PRIMARY KEY, choice TEXT);
+CREATE TABLE contact  (name TEXT PRIMARY KEY, nickname TEXT, email TEXT);
+</code></pre></div></div>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">question</code> table stores questions and their corresponding answers.
+The <code class="language-plaintext highlighter-rouge">question</code> column is the exact text of a question (including the <code class="language-plaintext highlighter-rouge">?</code>), and <code class="language-plaintext highlighter-rouge">answer</code> is the exact answer.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">favorite</code> table stores the favorie preferences of a user.
+<code class="language-plaintext highlighter-rouge">category</code> is the category of the favorite thing, and <code class="language-plaintext highlighter-rouge">choice</code> is the user’s choice of favorite.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">contact</code> stores a list of the puter3 user’s contacts.</li>
+</ul>
+
+<p>The database should be called <code class="language-plaintext highlighter-rouge">puterdb</code>.
+Puter3 will be tested with a pre-populated database, so you do not have to support <em>adding</em> entries to this database in <code class="language-plaintext highlighter-rouge">puter3.py</code>.
+Thus, you’ll only need to execute <code class="language-plaintext highlighter-rouge">SELECT</code> SQTL statements from python.
+To create this database, create a new empty sqlite3 database file in the same directory as <code class="language-plaintext highlighter-rouge">puter3.py</code>.
+Create these three tables in the database.
+For now the tables are empty, but I’ll show examples of populating it later.</p>
+
+<h3 id="contacts">Contacts</h3>
+
+<p>As previously mentioned the puter3 database stores a list of contacts.</p>
+
+<p>When you tell puter to <code class="language-plaintext highlighter-rouge">show me my contacts</code>, puter will print out a list of all contacts with the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+show me my contacts
+PUTER: Here are your contacts:
+  Ben Dicken
+    nickname: Benito
+    email: ben@email.com
+  Jane Doe
+    nickname: Jayne
+    email: jd@gmail.com
+...
+</code></pre></div></div>
+
+<p>The contact information should be fetched from the <code class="language-plaintext highlighter-rouge">contact</code> table in <code class="language-plaintext highlighter-rouge">puterdb</code>.
+Use the <code class="language-plaintext highlighter-rouge">sqlite3</code> module to get it.</p>
+
+<h3 id="search-contact-by-name">Search Contact by Name</h3>
+
+<p>The user can also ask for an individual contact, by saying <code class="language-plaintext highlighter-rouge">show me contact X</code>, where <code class="language-plaintext highlighter-rouge">X</code> is the contact’s <code class="language-plaintext highlighter-rouge">name</code>.
+<code class="language-plaintext highlighter-rouge">X</code> may have spaces in it.</p>
+
+<p>Given the same example database previously show, here are some example sessions that demonstrate this feature.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+show me contact John Wick
+  John Wick
+    nickname: J-Wick
+    email: wick@gmail.com
+show me contact DC Morse
+PUTER: I do not know that contact.
+...
+</code></pre></div></div>
+
+<h3 id="favorite">Favorite</h3>
+
+<p>Like puter2, puter3 will accept statements of the form <code class="language-plaintext highlighter-rouge">what is my favorite A?</code>.
+In this case, puter3 will look for a row in <code class="language-plaintext highlighter-rouge">favorite</code> where <code class="language-plaintext highlighter-rouge">category</code> is equal to <code class="language-plaintext highlighter-rouge">A</code>.
+If one is found, puter will report the corresponding <code class="language-plaintext highlighter-rouge">choice</code>.
+Otherwise, it will indicate that it doesn’t know what the favorite choice is.
+For example…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+what is my favorite car?
+PUTER: Your favorite car is Ford F-250.
+what is my favorite food?
+PUTER: Your favorite food is orange chicken.
+what is my favorite pizza?
+PUTER: I do not know!
+...
+</code></pre></div></div>
+
+<h3 id="general-questions">General Questions</h3>
+
+<p>Any input that <strong>does not</strong> begin with <code class="language-plaintext highlighter-rouge">what is my favorite</code>, but <strong>does</strong> end with a <code class="language-plaintext highlighter-rouge">?</code> should be looked up in the <code class="language-plaintext highlighter-rouge">question</code> table.
+When such a question is asked, puter3 will search through the rows of the <code class="language-plaintext highlighter-rouge">question</code> table and see if the <code class="language-plaintext highlighter-rouge">question</code> columns matches.
+If it finds a match, the <code class="language-plaintext highlighter-rouge">answer</code> column will be printed.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+what is the diameter of the earth?
+PUTER: 7,917.5 miles
+how much does a gallon of milk weigh?
+PUTER: About 8.6 lbs
+what is the best place to get a tan?
+PUTER: I do not know!
+...
+</code></pre></div></div>
+
+<h3 id="examples">Examples</h3>
+
+<p>Say that <code class="language-plaintext highlighter-rouge">puterdb</code> is populated with the following rows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO question VALUES ('what is the largest city in the world?', 'Shanghai');
+INSERT INTO question VALUES ('how tall is the great wall of china?', 'around 7.5 meters');
+INSERT INTO question VALUES ('who is john wick?', 'a legendary assassin');
+
+INSERT INTO favorite VALUES ('food', 'orange chicken');
+INSERT INTO favorite VALUES ('NBA player', 'Eric Bledsoe');
+INSERT INTO favorite VALUES ('drink', 'COFFEEEEE');
+
+INSERT INTO contact VALUES ('John Wick', 'J-Wick', 'wick@gmail.com');
+INSERT INTO contact VALUES ('James Bond', '007', '007@gmail.com');
+INSERT INTO contact VALUES ('Sherlock Holmes', 'Lockey', 'sherlock@england.com');
+INSERT INTO contact VALUES ('Endeavour Morse', 'DC Morse', 'dcm@police.com');
+</code></pre></div></div>
+
+<p>Below are several example puter sessions, given this database.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+who is John Wick?
+PUTER: I do not know!
+who is john wick?
+PUTER: a legendary assassin
+show me my contacts
+PUTER: Here are your contacts:
+  John Wick
+    nickname: J-Wick
+    email: wick@gmail.com
+  James Bond
+    nickname: 007
+    email: 007@gmail.com
+  Sherlock Holmes
+    nickname: Lockey
+    email: sherlock@england.com
+  Endeavour Morse
+    nickname: DC Morse
+    email: dcm@police.com
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+what is the largest city in the world?
+PUTER: Shanghai
+what is my favorite drink?
+PUTER: Your favorite drink is COFFEEEEE.
+what is my favorite DRINK?
+PUTER: I do not know!
+who is john wick?
+PUTER: a legendary assassin
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+what is my favorite nba player?
+PUTER: I do not know!
+what is my favorite NBA player?
+PUTER: Your favorite NBA player is Eric Bledsoe.
+how tall is the empire state building?
+PUTER: I do not know!
+show me my contacts
+PUTER: Here are your contacts:
+  John Wick
+    nickname: J-Wick
+    email: wick@gmail.com
+  James Bond
+    nickname: 007
+    email: 007@gmail.com
+  Sherlock Holmes
+    nickname: Lockey
+    email: sherlock@england.com
+  Endeavour Morse
+    nickname: DC Morse
+    email: dcm@police.com
+how tall is the sears tower?
+PUTER: I do not know!
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+WHO IS JOHN WICK?
+PUTER: I do not know!
+What Is My Favorite food?
+PUTER: I do not know!
+what is my favorite FOOD?
+PUTER: I do not know!
+show ME my contacts
+PUTER: Huh?
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+show me contact john wick
+PUTER: I do not know that contact.
+show me contact John Wick
+  John Wick
+    nickname: J-Wick
+    email: wick@gmail.com
+show me contact DC Morse
+PUTER: I do not know that contact.
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+show me my contacts
+PUTER: Here are your contacts:
+  John Wick
+    nickname: J-Wick
+    email: wick@gmail.com
+  James Bond
+    nickname: 007
+    email: 007@gmail.com
+  Sherlock Holmes
+    nickname: Lockey
+    email: sherlock@england.com
+  Endeavour Morse
+    nickname: DC Morse
+    email: dcm@police.com
+show me contact James Bond
+  James Bond
+    nickname: 007
+    email: 007@gmail.com
+SHOW ME CONTACT Endeavour Morse
+PUTER: Huh?
+show me contact Endeavour Morse
+  Endeavour Morse
+    nickname: DC Morse
+    email: dcm@police.com
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<p>Notice that pretty much everything about puter3 is case-sensitive.
+You should not be normalizing everything to lower or upper case.</p>
+
+<h3 id="even-more-examples">Even More Examples</h3>
+
+<p>Say that <code class="language-plaintext highlighter-rouge">puterdb</code> is populated with the following rows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO question VALUES ('how many feet in a meter?', 'about 3.2 feet');
+INSERT INTO question VALUES ('what is my favorite soup?', 'red-bean');
+INSERT INTO question VALUES ('what is my favorite RESTAURANT?', 'PeiWei');
+
+INSERT INTO favorite VALUES ('soup', 'chicken-noodle');
+INSERT INTO favorite VALUES ('pizza', 'Hawaiian');
+INSERT INTO favorite VALUES ('restaurant', 'china phoenix');
+
+INSERT INTO contact VALUES ('JOHN MICHAEL', 'JM', 'john@gmail.com');
+INSERT INTO contact VALUES ('JOHN michael', 'Jm', 'michael@gmail.com');
+INSERT INTO contact VALUES ('john michael', 'jm', 'jm07@email.az.com');
+</code></pre></div></div>
+
+<p>Below are additional example puter sessions using this database.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+what is my favorite soup?
+PUTER: Your favorite soup is chicken-noodle.
+what is my favorite restaurant?
+PUTER: Your favorite restaurant is china phoenix.
+what is my favorite RESTAURANT?
+PUTER: I do not know!
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+show me contact JOHN MICHAEL
+  JOHN MICHAEL
+    nickname: JM
+    email: john@gmail.com
+show me contact JOHN michael
+  JOHN michael
+    nickname: Jm
+    email: michael@gmail.com
+show me contact john michael
+  john michael
+    nickname: jm
+    email: jm07@email.az.com
+show me contact john MICHAEL
+PUTER: I do not know that contact.
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python3 puter3.py
+PUTER: Hello and welcome! Let's talk...
+how many feet in a meter?
+PUTER: about 3.2 feet
+what is my favorite pizza?
+PUTER: Your favorite pizza is Hawaiian.
+show me my contacts
+PUTER: Here are your contacts:
+  JOHN MICHAEL
+    nickname: JM
+    email: john@gmail.com
+  JOHN michael
+    nickname: Jm
+    email: michael@gmail.com
+  john michael
+    nickname: jm
+    email: jm07@email.az.com
+exit
+PUTER: Bye!
+$
+</code></pre></div></div>
+
+<h3 id="testing-for-correctness">Testing for correctness</h3>
+
+<p>Some of the problems in this assignment requires printing out precise text.
+We will only take minimal points off for very minor differences (for example, minor character spacing issues).
+However, we will take points off for any non-trivial differences, so try to be as precise as you can!</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This problem will be graded out of 100 points.</p>
+
+<p>This was assigned on Friday, April 7, 2017.
+It is due Friday, April 14, 2017, at 6:00pm.</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place the <code class="language-plaintext highlighter-rouge">.py</code> file in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-11</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only the <code class="language-plaintext highlighter-rouge">.py</code> file(s) exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-11</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-11.zip</code>.
+There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>.
+Make sure to zip the directory, not the file(s) individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-11.zip</code> to the assignment-11 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

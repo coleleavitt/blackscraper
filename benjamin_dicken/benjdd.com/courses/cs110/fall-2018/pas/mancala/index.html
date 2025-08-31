@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Mancala</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---mancala">CSc 110 - Mancala</h1>
+
+<p><img src="./res/mancala.png" width="250px" /></p>
+
+<p>Ever seen a game board like this one?
+This is one variant of a <em>Mancala</em> board.
+According to <a href="https://en.wikipedia.org/wiki/Mancala">the Mancala Wikipedia page</a>, “Mancala is one of the oldest games played.”
+The game’s origins have been traced back to eastern Africa around the 6th century AD.
+In this PA, you will be implementing a variant of a Mancala game.</p>
+
+<p>Like I mentioned earlier, Mancala is actually a family of games, not a specific one.
+The Wikipedia page lists some of the games within this family, but not all versions of the game have the same rules.
+Generally, the variants of the game have a similar board and rules that resemble others.</p>
+
+<h2 id="rules">Rules</h2>
+
+<p>For our Mancala variant, we will use the board and rules described in this section.</p>
+
+<p>Mancala is played on a mancala board.
+The board is arranged like so:</p>
+
+<ul>
+  <li>There are two rows of 5 holes, each player owning one row.
+Each hole begins with three chips in it.</li>
+  <li>Each player has a mancala store, beginning with zero chips.
+The mancala stores are on either size of the rows of holes.</li>
+  <li>Player 1 owns the bottom row of holes and the mancala store on the left.</li>
+  <li>Player 2 owns the top row of holes and the mancala store on the right.</li>
+</ul>
+
+<p>The game is played as follows:</p>
+
+<ul>
+  <li>Players alternate turns, starting with player 1.</li>
+  <li>Each turn, the current player selects one hole from their row to sow from.</li>
+  <li>When you “sow” from a hole, the following takes place:
+    <ul>
+      <li>All chips from the selected hole are removed.</li>
+      <li>The removed chips should be dispersed to the other holes and the currentl player’s mancala store in a round-robin way, counter-clockwise.</li>
+      <li>The opponents mancala store is skipped</li>
+    </ul>
+  </li>
+  <li>The goal of the game is to get 3 chips into your own mancala store.
+The first player to get this wins.</li>
+  <li>Chips can be added to your mancala store in two ways:
+    <ul>
+      <li>By the usual sowing process.
+If you sow from a hole that has sufficient chips in it to make it all
+the way to your mancala store, then they will score a point.</li>
+      <li>If, when sowing, the last chip that it placed is to be placed
+in an empty hole, this chip is placed into the mancala store
+instead of the empty hole.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="gameplay">Gameplay</h2>
+
+<p>This interface for this program will be a combination of graphical (with the <code class="language-plaintext highlighter-rouge">graphics</code> module) and command-line.
+You will use graphics to display the board and the location of all of the chips.
+You will use the command-line to prompt the user for their move.
+When the game begins, the graphical component should look like this:</p>
+
+<p><img src="./res/mancala-1.png" width="450px" /></p>
+
+<p>The canvas should be 700 pixels wide and 300 pixels tall.
+You should display all of the same components that this screen-shot shows, such as the game label, holes, mancala stores, player labels, and chip counts.
+The numbers in each of the holes and mancala stores represents the number of chips in them.</p>
+
+<p>While this is displaying, the program will prompt the first player (player 1) for their move like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Player 1: Enter position to start moving chips at:
+</code></pre></div></div>
+
+<p>The program should continue to ask player 1 and player two for their moves until the game is over.
+An example will be shown later in this spec.
+Each player should enter a number between 1 and 5.
+If the player does not enter a valid input, the program will continue to ask the same player until a valid number is entered.
+The numbers 1-5 correspond to the various holes for each player, as shown in the diagram below.
+Also, the light-blue arrow represents the direction of play (counter-clockwise).</p>
+
+<p><img src="./res/mancala-pa-info.png" width="550px" /></p>
+
+<h2 id="game-play-demo">Game-play Demo</h2>
+
+<p>Below is a video showing an example of a game-play sequence.
+This shows a sequence of turns that leads to player 1 wining.
+You can use this as a check to ensure that your version of the program is working.
+You can pause the video at various points if you need to.
+NOTE: In the videos, the input is typed on the same line as the prompt.
+In your program, it should be read in on the next line.</p>
+
+<video controls="controls" width="450" height="400" name="Mancala run b" src="./res/mancala-run-a.mov"></video>
+
+<p>Notice how the chip counts update based on each move of that is entered into the command-line.</p>
+
+<p>Below is another video showing another sequence of turns that leads to player 2 winning.</p>
+
+<video controls="controls" width="450" height="400" name="Mancala run b" src="./res/mancala-run-b.mov"></video>
+
+<p>You should study the video closely, and pause if you need to, and make sure you understand what happens (and why) for each move that is made).</p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>I recommend that you tackle this program with the following steps:</p>
+
+<ul>
+  <li>Create a new folder for your project, and create a new <code class="language-plaintext highlighter-rouge">mancala.py</code> file.
+Also, download <code class="language-plaintext highlighter-rouge">graphics.py</code> from the class website and put it in the same directory.
+Finally, import the module as we talked about in class.</li>
+  <li>Next, create some variables / data-structures to represent the state of the Mancala board.
+You will want to use one (or more) lists to represent the rows of holes.
+You may use either a list or two separate variables to represent the values for the Mancala stores.</li>
+  <li>Next, work on getting the graphical display showing up.
+At this point, don’t worry about the user input, turns, game updates, etc.
+Just draw all of the rectangles and text labels with the appropriate values and in the correct places.
+All of the drawing should be based on the values in your variables and lists that you created in the previous step.
+This will help you get more familiar with the <code class="language-plaintext highlighter-rouge">graphics</code> module, too.</li>
+  <li>Now, work on getting the user input for the turns.
+Make sure to alternate asking players 1 and 2 for their moves.</li>
+  <li>Once you have the input values, write one or more functions to handle updating the board based on the moves.</li>
+  <li>Finally, get the winning logic implemented.</li>
+</ul>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<p>You must use lists to represent the pits.
+You may not use the <code class="language-plaintext highlighter-rouge">exit</code> function.</p>
+
+<h2 id="due-date">Due Date</h2>
+
+<p>This PA is due Friday, October 12, at 5:00pm.
+Turn in the program via Gradescope.
+You should try your best to get all of the test cases passing.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

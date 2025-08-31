@@ -1,0 +1,9 @@
+/*  print.css -- former stylesheet for printing web pages  */
+
+/*
+ * This stylesheet is no longer used.
+ * See the "@media print" section of "screen.css".
+ */
+
+@import url(screen.css);
+

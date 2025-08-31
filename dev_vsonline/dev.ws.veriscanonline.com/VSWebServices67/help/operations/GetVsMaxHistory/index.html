@@ -1,0 +1,1090 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/VsMaxHistory</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/VsMaxHistory</p>
+      <p>VsMax. Returns the processing history with pagination in descending order by time.</p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">http://dev.ws.veriscanonline.com/VSWebServices67/VsMaxHistory</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">POST</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Xml</td>
+          <td>
+            <a href="#request-xml">Example</a>,<a href="#request-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Json</td>
+          <td>
+            <a href="#request-json">Example</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="#response-xml">Example</a>,<a href="#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="request-xml">The following is an example request Xml body:</a>
+        <pre class="request-xml">&lt;HistoryWcfRequestModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards"&gt;
+  &lt;AppVersion xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/AppVersion&gt;
+  &lt;CompanyId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/CompanyId&gt;
+  &lt;ComputerName xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ComputerName&gt;
+  &lt;HardwareId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/HardwareId&gt;
+  &lt;IsLive xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;true&lt;/IsLive&gt;
+  &lt;TimeZoneId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/TimeZoneId&gt;
+  &lt;UserId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/UserId&gt;
+  &lt;Login xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Login&gt;
+  &lt;Password xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Password&gt;
+  &lt;From&gt;9223372036854775807&lt;/From&gt;
+  &lt;PageLength&gt;2147483647&lt;/PageLength&gt;
+  &lt;PageNumber&gt;2147483647&lt;/PageNumber&gt;
+  &lt;SearchWord&gt;String content&lt;/SearchWord&gt;
+  &lt;To&gt;9223372036854775807&lt;/To&gt;
+&lt;/HistoryWcfRequestModel&gt;</pre>
+      </p>
+      <p>
+        <a name="request-json">The following is an example request Json body:</a>
+        <pre class="request-json">{
+	"AppVersion":"String content",
+	"CompanyId":"String content",
+	"ComputerName":"String content",
+	"HardwareId":"String content",
+	"IsLive":true,
+	"TimeZoneId":"String content",
+	"UserId":2147483647,
+	"Login":"String content",
+	"Password":"String content",
+	"From":9223372036854775807,
+	"PageLength":2147483647,
+	"PageNumber":2147483647,
+	"SearchWord":"String content",
+	"To":9223372036854775807
+}</pre>
+      </p>
+      <p>
+        <a name="response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;HistoryWcfResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards"&gt;
+  &lt;ErrorCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ErrorCode&gt;
+  &lt;Status xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Status&gt;
+  &lt;StatusCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/StatusCode&gt;
+  &lt;ValidationResult xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+  &lt;/ValidationResult&gt;
+  &lt;Cards&gt;
+    &lt;HistoryWcfCardModel&gt;
+      &lt;AamvaVersion&gt;2147483647&lt;/AamvaVersion&gt;
+      &lt;AccessGranted&gt;true&lt;/AccessGranted&gt;
+      &lt;Address&gt;String content&lt;/Address&gt;
+      &lt;Address1&gt;String content&lt;/Address1&gt;
+      &lt;Address2&gt;String content&lt;/Address2&gt;
+      &lt;AddressSeverity&gt;true&lt;/AddressSeverity&gt;
+      &lt;Age&gt;32767&lt;/Age&gt;
+      &lt;Agreement&gt;String content&lt;/Agreement&gt;
+      &lt;BirthDate&gt;1999-05-31T11:20:00&lt;/BirthDate&gt;
+      &lt;CaptureMethod&gt;Upload&lt;/CaptureMethod&gt;
+      &lt;CardRevisionDate&gt;1999-05-31T11:20:00&lt;/CardRevisionDate&gt;
+      &lt;City&gt;String content&lt;/City&gt;
+      &lt;ClassificationCode&gt;String content&lt;/ClassificationCode&gt;
+      &lt;Comments&gt;String content&lt;/Comments&gt;
+      &lt;CompletedSurvey&gt;2147483647&lt;/CompletedSurvey&gt;
+      &lt;ComplianceType&gt;String content&lt;/ComplianceType&gt;
+      &lt;Country&gt;String content&lt;/Country&gt;
+      &lt;CountryCode&gt;String content&lt;/CountryCode&gt;
+      &lt;CustomFieldValues&gt;
+        &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+          &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+          &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+          &lt;OptionIds&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;/OptionIds&gt;
+          &lt;Value&gt;String content&lt;/Value&gt;
+        &lt;/CustomFieldValueRequestResponseModel&gt;
+        &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+          &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+          &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+          &lt;OptionIds&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;/OptionIds&gt;
+          &lt;Value&gt;String content&lt;/Value&gt;
+        &lt;/CustomFieldValueRequestResponseModel&gt;
+      &lt;/CustomFieldValues&gt;
+      &lt;DocumentType&gt;String content&lt;/DocumentType&gt;
+      &lt;Email&gt;String content&lt;/Email&gt;
+      &lt;EncryptLicenseNumber&gt;String content&lt;/EncryptLicenseNumber&gt;
+      &lt;EndorsementCodeDescription&gt;String content&lt;/EndorsementCodeDescription&gt;
+      &lt;EndorsementsCode&gt;String content&lt;/EndorsementsCode&gt;
+      &lt;ExpirationDate&gt;1999-05-31T11:20:00&lt;/ExpirationDate&gt;
+      &lt;EyeColor&gt;String content&lt;/EyeColor&gt;
+      &lt;FirstName&gt;String content&lt;/FirstName&gt;
+      &lt;FullName&gt;String content&lt;/FullName&gt;
+      &lt;Gender&gt;String content&lt;/Gender&gt;
+      &lt;Group&gt;
+        &lt;Active&gt;true&lt;/Active&gt;
+        &lt;ColorName&gt;String content&lt;/ColorName&gt;
+        &lt;DevHide&gt;true&lt;/DevHide&gt;
+        &lt;DevLock&gt;true&lt;/DevLock&gt;
+        &lt;GroupId&gt;2147483647&lt;/GroupId&gt;
+        &lt;GroupName&gt;String content&lt;/GroupName&gt;
+        &lt;SemanticGroupId&gt;255&lt;/SemanticGroupId&gt;
+        &lt;SendAlert&gt;true&lt;/SendAlert&gt;
+        &lt;Share&gt;true&lt;/Share&gt;
+      &lt;/Group&gt;
+      &lt;GroupColorName&gt;String content&lt;/GroupColorName&gt;
+      &lt;GroupComments&gt;String content&lt;/GroupComments&gt;
+      &lt;GroupId&gt;2147483647&lt;/GroupId&gt;
+      &lt;GroupName&gt;String content&lt;/GroupName&gt;
+      &lt;GroupRecordUpdated&gt;1999-05-31T11:20:00&lt;/GroupRecordUpdated&gt;
+      &lt;HAZMATExpDate&gt;1999-05-31T11:20:00&lt;/HAZMATExpDate&gt;
+      &lt;HairColor&gt;String content&lt;/HairColor&gt;
+      &lt;HardwareId&gt;String content&lt;/HardwareId&gt;
+      &lt;HashID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/HashID&gt;
+      &lt;HavePayments&gt;true&lt;/HavePayments&gt;
+      &lt;Height&gt;String content&lt;/Height&gt;
+      &lt;IIN&gt;String content&lt;/IIN&gt;
+      &lt;Id&gt;2147483647&lt;/Id&gt;
+      &lt;IdempotencyKey&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/IdempotencyKey&gt;
+      &lt;IdentiCheckStatus&gt;Undefined&lt;/IdentiCheckStatus&gt;
+      &lt;IsAgeOK&gt;true&lt;/IsAgeOK&gt;
+      &lt;IsExpired&gt;true&lt;/IsExpired&gt;
+      &lt;IsGroupLocked&gt;true&lt;/IsGroupLocked&gt;
+      &lt;IsGroupShared&gt;true&lt;/IsGroupShared&gt;
+      &lt;IsIn&gt;true&lt;/IsIn&gt;
+      &lt;IssueDate&gt;1999-05-31T11:20:00&lt;/IssueDate&gt;
+      &lt;IssuedBy&gt;String content&lt;/IssuedBy&gt;
+      &lt;JurisdictionCode&gt;String content&lt;/JurisdictionCode&gt;
+      &lt;LastName&gt;String content&lt;/LastName&gt;
+      &lt;LicenseNumber&gt;String content&lt;/LicenseNumber&gt;
+      &lt;LimitedDurationDocument&gt;true&lt;/LimitedDurationDocument&gt;
+      &lt;MiddleName&gt;String content&lt;/MiddleName&gt;
+      &lt;MmicLicenseType&gt;String content&lt;/MmicLicenseType&gt;
+      &lt;MmicPractitionerNumber&gt;String content&lt;/MmicPractitionerNumber&gt;
+      &lt;MobilePhoneModel&gt;String content&lt;/MobilePhoneModel&gt;
+      &lt;MobilePhoneOS&gt;String content&lt;/MobilePhoneOS&gt;
+      &lt;NamePrefix&gt;String content&lt;/NamePrefix&gt;
+      &lt;NameSuffix&gt;String content&lt;/NameSuffix&gt;
+      &lt;OnlineVerificationValid&gt;true&lt;/OnlineVerificationValid&gt;
+      &lt;OrganDonor&gt;true&lt;/OrganDonor&gt;
+      &lt;ParserType&gt;String content&lt;/ParserType&gt;
+      &lt;Phone&gt;String content&lt;/Phone&gt;
+      &lt;PhotoBase64&gt;String content&lt;/PhotoBase64&gt;
+      &lt;PhotoBlobId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PhotoBlobId&gt;
+      &lt;PhotoGeneratedName&gt;String content&lt;/PhotoGeneratedName&gt;
+      &lt;PhotoUrl&gt;String content&lt;/PhotoUrl&gt;
+      &lt;PoBox&gt;String content&lt;/PoBox&gt;
+      &lt;PostalCode&gt;String content&lt;/PostalCode&gt;
+      &lt;PreviousScannedLocal&gt;1999-05-31T11:20:00&lt;/PreviousScannedLocal&gt;
+      &lt;ProfileComments&gt;String content&lt;/ProfileComments&gt;
+      &lt;Race&gt;String content&lt;/Race&gt;
+      &lt;RealId&gt;true&lt;/RealId&gt;
+      &lt;RestrictionCode&gt;String content&lt;/RestrictionCode&gt;
+      &lt;RestrictionCodeDescription&gt;String content&lt;/RestrictionCodeDescription&gt;
+      &lt;ScanLatitude&gt;1.26743237E+15&lt;/ScanLatitude&gt;
+      &lt;ScanLongitude&gt;1.26743237E+15&lt;/ScanLongitude&gt;
+      &lt;ScanStatus&gt;Scanning&lt;/ScanStatus&gt;
+      &lt;ScanTime&gt;1999-05-31T11:20:00&lt;/ScanTime&gt;
+      &lt;ScanType&gt;2147483647&lt;/ScanType&gt;
+      &lt;ScannedLocal&gt;1999-05-31T11:20:00&lt;/ScannedLocal&gt;
+      &lt;ScannerModel&gt;String content&lt;/ScannerModel&gt;
+      &lt;ScannerSerialNumber&gt;String content&lt;/ScannerSerialNumber&gt;
+      &lt;Severity&gt;12678967.543233&lt;/Severity&gt;
+      &lt;SharedInfo&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/SharedInfo&gt;
+      &lt;SignatureBase64&gt;String content&lt;/SignatureBase64&gt;
+      &lt;Specification&gt;String content&lt;/Specification&gt;
+      &lt;Tags&gt;String content&lt;/Tags&gt;
+      &lt;ThirdPartyChecks&gt;
+        &lt;CriminalBackgroundCheck xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/CriminalBackgroundCheck&gt;
+        &lt;DmvVerification xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/DmvVerification&gt;
+        &lt;EveryPolitician xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/EveryPolitician&gt;
+        &lt;IdentiFraud xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/IdentiFraud&gt;
+        &lt;Ofac xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/Ofac&gt;
+        &lt;Pep xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/Pep&gt;
+        &lt;SexOffenderRegistry xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/SexOffenderRegistry&gt;
+      &lt;/ThirdPartyChecks&gt;
+      &lt;TimeZoneId&gt;String content&lt;/TimeZoneId&gt;
+      &lt;TrackString&gt;String content&lt;/TrackString&gt;
+      &lt;ValidationRequestId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ValidationRequestId&gt;
+      &lt;ValidationResponseId&gt;2147483647&lt;/ValidationResponseId&gt;
+      &lt;ValidationStatus&gt;2147483647&lt;/ValidationStatus&gt;
+      &lt;VehicleClassCode&gt;String content&lt;/VehicleClassCode&gt;
+      &lt;VehicleClassCodeDescription&gt;String content&lt;/VehicleClassCodeDescription&gt;
+      &lt;Veteran&gt;true&lt;/Veteran&gt;
+      &lt;WeightKG&gt;String content&lt;/WeightKG&gt;
+      &lt;WeightLBS&gt;String content&lt;/WeightLBS&gt;
+    &lt;/HistoryWcfCardModel&gt;
+    &lt;HistoryWcfCardModel&gt;
+      &lt;AamvaVersion&gt;2147483647&lt;/AamvaVersion&gt;
+      &lt;AccessGranted&gt;true&lt;/AccessGranted&gt;
+      &lt;Address&gt;String content&lt;/Address&gt;
+      &lt;Address1&gt;String content&lt;/Address1&gt;
+      &lt;Address2&gt;String content&lt;/Address2&gt;
+      &lt;AddressSeverity&gt;true&lt;/AddressSeverity&gt;
+      &lt;Age&gt;32767&lt;/Age&gt;
+      &lt;Agreement&gt;String content&lt;/Agreement&gt;
+      &lt;BirthDate&gt;1999-05-31T11:20:00&lt;/BirthDate&gt;
+      &lt;CaptureMethod&gt;Upload&lt;/CaptureMethod&gt;
+      &lt;CardRevisionDate&gt;1999-05-31T11:20:00&lt;/CardRevisionDate&gt;
+      &lt;City&gt;String content&lt;/City&gt;
+      &lt;ClassificationCode&gt;String content&lt;/ClassificationCode&gt;
+      &lt;Comments&gt;String content&lt;/Comments&gt;
+      &lt;CompletedSurvey&gt;2147483647&lt;/CompletedSurvey&gt;
+      &lt;ComplianceType&gt;String content&lt;/ComplianceType&gt;
+      &lt;Country&gt;String content&lt;/Country&gt;
+      &lt;CountryCode&gt;String content&lt;/CountryCode&gt;
+      &lt;CustomFieldValues&gt;
+        &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+          &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+          &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+          &lt;OptionIds&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;/OptionIds&gt;
+          &lt;Value&gt;String content&lt;/Value&gt;
+        &lt;/CustomFieldValueRequestResponseModel&gt;
+        &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+          &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+          &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+          &lt;OptionIds&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+            &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;/OptionIds&gt;
+          &lt;Value&gt;String content&lt;/Value&gt;
+        &lt;/CustomFieldValueRequestResponseModel&gt;
+      &lt;/CustomFieldValues&gt;
+      &lt;DocumentType&gt;String content&lt;/DocumentType&gt;
+      &lt;Email&gt;String content&lt;/Email&gt;
+      &lt;EncryptLicenseNumber&gt;String content&lt;/EncryptLicenseNumber&gt;
+      &lt;EndorsementCodeDescription&gt;String content&lt;/EndorsementCodeDescription&gt;
+      &lt;EndorsementsCode&gt;String content&lt;/EndorsementsCode&gt;
+      &lt;ExpirationDate&gt;1999-05-31T11:20:00&lt;/ExpirationDate&gt;
+      &lt;EyeColor&gt;String content&lt;/EyeColor&gt;
+      &lt;FirstName&gt;String content&lt;/FirstName&gt;
+      &lt;FullName&gt;String content&lt;/FullName&gt;
+      &lt;Gender&gt;String content&lt;/Gender&gt;
+      &lt;Group&gt;
+        &lt;Active&gt;true&lt;/Active&gt;
+        &lt;ColorName&gt;String content&lt;/ColorName&gt;
+        &lt;DevHide&gt;true&lt;/DevHide&gt;
+        &lt;DevLock&gt;true&lt;/DevLock&gt;
+        &lt;GroupId&gt;2147483647&lt;/GroupId&gt;
+        &lt;GroupName&gt;String content&lt;/GroupName&gt;
+        &lt;SemanticGroupId&gt;255&lt;/SemanticGroupId&gt;
+        &lt;SendAlert&gt;true&lt;/SendAlert&gt;
+        &lt;Share&gt;true&lt;/Share&gt;
+      &lt;/Group&gt;
+      &lt;GroupColorName&gt;String content&lt;/GroupColorName&gt;
+      &lt;GroupComments&gt;String content&lt;/GroupComments&gt;
+      &lt;GroupId&gt;2147483647&lt;/GroupId&gt;
+      &lt;GroupName&gt;String content&lt;/GroupName&gt;
+      &lt;GroupRecordUpdated&gt;1999-05-31T11:20:00&lt;/GroupRecordUpdated&gt;
+      &lt;HAZMATExpDate&gt;1999-05-31T11:20:00&lt;/HAZMATExpDate&gt;
+      &lt;HairColor&gt;String content&lt;/HairColor&gt;
+      &lt;HardwareId&gt;String content&lt;/HardwareId&gt;
+      &lt;HashID&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/HashID&gt;
+      &lt;HavePayments&gt;true&lt;/HavePayments&gt;
+      &lt;Height&gt;String content&lt;/Height&gt;
+      &lt;IIN&gt;String content&lt;/IIN&gt;
+      &lt;Id&gt;2147483647&lt;/Id&gt;
+      &lt;IdempotencyKey&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/IdempotencyKey&gt;
+      &lt;IdentiCheckStatus&gt;Undefined&lt;/IdentiCheckStatus&gt;
+      &lt;IsAgeOK&gt;true&lt;/IsAgeOK&gt;
+      &lt;IsExpired&gt;true&lt;/IsExpired&gt;
+      &lt;IsGroupLocked&gt;true&lt;/IsGroupLocked&gt;
+      &lt;IsGroupShared&gt;true&lt;/IsGroupShared&gt;
+      &lt;IsIn&gt;true&lt;/IsIn&gt;
+      &lt;IssueDate&gt;1999-05-31T11:20:00&lt;/IssueDate&gt;
+      &lt;IssuedBy&gt;String content&lt;/IssuedBy&gt;
+      &lt;JurisdictionCode&gt;String content&lt;/JurisdictionCode&gt;
+      &lt;LastName&gt;String content&lt;/LastName&gt;
+      &lt;LicenseNumber&gt;String content&lt;/LicenseNumber&gt;
+      &lt;LimitedDurationDocument&gt;true&lt;/LimitedDurationDocument&gt;
+      &lt;MiddleName&gt;String content&lt;/MiddleName&gt;
+      &lt;MmicLicenseType&gt;String content&lt;/MmicLicenseType&gt;
+      &lt;MmicPractitionerNumber&gt;String content&lt;/MmicPractitionerNumber&gt;
+      &lt;MobilePhoneModel&gt;String content&lt;/MobilePhoneModel&gt;
+      &lt;MobilePhoneOS&gt;String content&lt;/MobilePhoneOS&gt;
+      &lt;NamePrefix&gt;String content&lt;/NamePrefix&gt;
+      &lt;NameSuffix&gt;String content&lt;/NameSuffix&gt;
+      &lt;OnlineVerificationValid&gt;true&lt;/OnlineVerificationValid&gt;
+      &lt;OrganDonor&gt;true&lt;/OrganDonor&gt;
+      &lt;ParserType&gt;String content&lt;/ParserType&gt;
+      &lt;Phone&gt;String content&lt;/Phone&gt;
+      &lt;PhotoBase64&gt;String content&lt;/PhotoBase64&gt;
+      &lt;PhotoBlobId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PhotoBlobId&gt;
+      &lt;PhotoGeneratedName&gt;String content&lt;/PhotoGeneratedName&gt;
+      &lt;PhotoUrl&gt;String content&lt;/PhotoUrl&gt;
+      &lt;PoBox&gt;String content&lt;/PoBox&gt;
+      &lt;PostalCode&gt;String content&lt;/PostalCode&gt;
+      &lt;PreviousScannedLocal&gt;1999-05-31T11:20:00&lt;/PreviousScannedLocal&gt;
+      &lt;ProfileComments&gt;String content&lt;/ProfileComments&gt;
+      &lt;Race&gt;String content&lt;/Race&gt;
+      &lt;RealId&gt;true&lt;/RealId&gt;
+      &lt;RestrictionCode&gt;String content&lt;/RestrictionCode&gt;
+      &lt;RestrictionCodeDescription&gt;String content&lt;/RestrictionCodeDescription&gt;
+      &lt;ScanLatitude&gt;1.26743237E+15&lt;/ScanLatitude&gt;
+      &lt;ScanLongitude&gt;1.26743237E+15&lt;/ScanLongitude&gt;
+      &lt;ScanStatus&gt;Scanning&lt;/ScanStatus&gt;
+      &lt;ScanTime&gt;1999-05-31T11:20:00&lt;/ScanTime&gt;
+      &lt;ScanType&gt;2147483647&lt;/ScanType&gt;
+      &lt;ScannedLocal&gt;1999-05-31T11:20:00&lt;/ScannedLocal&gt;
+      &lt;ScannerModel&gt;String content&lt;/ScannerModel&gt;
+      &lt;ScannerSerialNumber&gt;String content&lt;/ScannerSerialNumber&gt;
+      &lt;Severity&gt;12678967.543233&lt;/Severity&gt;
+      &lt;SharedInfo&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/SharedInfo&gt;
+      &lt;SignatureBase64&gt;String content&lt;/SignatureBase64&gt;
+      &lt;Specification&gt;String content&lt;/Specification&gt;
+      &lt;Tags&gt;String content&lt;/Tags&gt;
+      &lt;ThirdPartyChecks&gt;
+        &lt;CriminalBackgroundCheck xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/CriminalBackgroundCheck&gt;
+        &lt;DmvVerification xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/DmvVerification&gt;
+        &lt;EveryPolitician xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/EveryPolitician&gt;
+        &lt;IdentiFraud xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/IdentiFraud&gt;
+        &lt;Ofac xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/Ofac&gt;
+        &lt;Pep xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/Pep&gt;
+        &lt;SexOffenderRegistry xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck"&gt;
+          &lt;Error&gt;String content&lt;/Error&gt;
+          &lt;RequestId&gt;2147483647&lt;/RequestId&gt;
+          &lt;Status&gt;Failed&lt;/Status&gt;
+        &lt;/SexOffenderRegistry&gt;
+      &lt;/ThirdPartyChecks&gt;
+      &lt;TimeZoneId&gt;String content&lt;/TimeZoneId&gt;
+      &lt;TrackString&gt;String content&lt;/TrackString&gt;
+      &lt;ValidationRequestId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ValidationRequestId&gt;
+      &lt;ValidationResponseId&gt;2147483647&lt;/ValidationResponseId&gt;
+      &lt;ValidationStatus&gt;2147483647&lt;/ValidationStatus&gt;
+      &lt;VehicleClassCode&gt;String content&lt;/VehicleClassCode&gt;
+      &lt;VehicleClassCodeDescription&gt;String content&lt;/VehicleClassCodeDescription&gt;
+      &lt;Veteran&gt;true&lt;/Veteran&gt;
+      &lt;WeightKG&gt;String content&lt;/WeightKG&gt;
+      &lt;WeightLBS&gt;String content&lt;/WeightLBS&gt;
+    &lt;/HistoryWcfCardModel&gt;
+  &lt;/Cards&gt;
+  &lt;TotalPages&gt;2147483647&lt;/TotalPages&gt;
+&lt;/HistoryWcfResponseModel&gt;</pre>
+      </p>
+      <p>
+        <a name="response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"ErrorCode":"String content",
+	"Status":"String content",
+	"StatusCode":2147483647,
+	"ValidationResult":[{
+		"Errors":["String content"],
+		"Field":"String content"
+	}],
+	"Cards":[{
+		"AamvaVersion":2147483647,
+		"AccessGranted":true,
+		"Address":"String content",
+		"Address1":"String content",
+		"Address2":"String content",
+		"AddressSeverity":true,
+		"Age":32767,
+		"Agreement":"String content",
+		"BirthDate":"\/Date(928149600000+0000)\/",
+		"CaptureMethod":0,
+		"CardRevisionDate":"\/Date(928149600000+0000)\/",
+		"City":"String content",
+		"ClassificationCode":"String content",
+		"Comments":"String content",
+		"CompletedSurvey":2147483647,
+		"ComplianceType":"String content",
+		"Country":"String content",
+		"CountryCode":"String content",
+		"CustomFieldValues":[{
+			"FieldId":2147483647,
+			"OptionId":2147483647,
+			"OptionIds":[2147483647],
+			"Value":"String content"
+		}],
+		"DocumentType":"String content",
+		"Email":"String content",
+		"EncryptLicenseNumber":"String content",
+		"EndorsementCodeDescription":"String content",
+		"EndorsementsCode":"String content",
+		"ExpirationDate":"\/Date(928149600000+0000)\/",
+		"EyeColor":"String content",
+		"FirstName":"String content",
+		"FullName":"String content",
+		"Gender":"String content",
+		"Group":{
+			"Active":true,
+			"ColorName":"String content",
+			"DevHide":true,
+			"DevLock":true,
+			"GroupId":2147483647,
+			"GroupName":"String content",
+			"SemanticGroupId":255,
+			"SendAlert":true,
+			"Share":true
+		},
+		"GroupColorName":"String content",
+		"GroupComments":"String content",
+		"GroupId":2147483647,
+		"GroupName":"String content",
+		"GroupRecordUpdated":"\/Date(928149600000+0000)\/",
+		"HAZMATExpDate":"\/Date(928149600000+0000)\/",
+		"HairColor":"String content",
+		"HardwareId":"String content",
+		"HashID":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"HavePayments":true,
+		"Height":"String content",
+		"IIN":"String content",
+		"Id":2147483647,
+		"IdempotencyKey":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"IdentiCheckStatus":0,
+		"IsAgeOK":true,
+		"IsExpired":true,
+		"IsGroupLocked":true,
+		"IsGroupShared":true,
+		"IsIn":true,
+		"IssueDate":"\/Date(928149600000+0000)\/",
+		"IssuedBy":"String content",
+		"JurisdictionCode":"String content",
+		"LastName":"String content",
+		"LicenseNumber":"String content",
+		"LimitedDurationDocument":true,
+		"MiddleName":"String content",
+		"MmicLicenseType":"String content",
+		"MmicPractitionerNumber":"String content",
+		"MobilePhoneModel":"String content",
+		"MobilePhoneOS":"String content",
+		"NamePrefix":"String content",
+		"NameSuffix":"String content",
+		"OnlineVerificationValid":true,
+		"OrganDonor":true,
+		"ParserType":"String content",
+		"Phone":"String content",
+		"PhotoBase64":"String content",
+		"PhotoBlobId":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"PhotoGeneratedName":"String content",
+		"PhotoUrl":"String content",
+		"PoBox":"String content",
+		"PostalCode":"String content",
+		"PreviousScannedLocal":"\/Date(928149600000+0000)\/",
+		"ProfileComments":"String content",
+		"Race":"String content",
+		"RealId":true,
+		"RestrictionCode":"String content",
+		"RestrictionCodeDescription":"String content",
+		"ScanLatitude":1.26743237E+15,
+		"ScanLongitude":1.26743237E+15,
+		"ScanStatus":0,
+		"ScanTime":"\/Date(928149600000+0000)\/",
+		"ScanType":2147483647,
+		"ScannedLocal":"\/Date(928149600000+0000)\/",
+		"ScannerModel":"String content",
+		"ScannerSerialNumber":"String content",
+		"Severity":12678967.543233,
+		"SharedInfo":["String content"],
+		"SignatureBase64":"String content",
+		"Specification":"String content",
+		"Tags":"String content",
+		"ThirdPartyChecks":{
+			"CriminalBackgroundCheck":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"DmvVerification":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"EveryPolitician":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"IdentiFraud":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"Ofac":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"Pep":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			},
+			"SexOffenderRegistry":{
+				"Error":"String content",
+				"RequestId":2147483647,
+				"Status":0
+			}
+		},
+		"TimeZoneId":"String content",
+		"TrackString":"String content",
+		"ValidationRequestId":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"ValidationResponseId":2147483647,
+		"ValidationStatus":2147483647,
+		"VehicleClassCode":"String content",
+		"VehicleClassCodeDescription":"String content",
+		"Veteran":true,
+		"WeightKG":"String content",
+		"WeightLBS":"String content"
+	}],
+	"TotalPages":2147483647
+}</pre>
+      </p>
+      <p>
+        <a name="request-schema">The following is the request Xml Schema:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:complexType name="HistoryWcfRequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:RequestModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="From" nillable="true" type="xs:long" /&gt;
+          &lt;xs:element minOccurs="0" name="PageLength" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="PageNumber" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="SearchWord" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="To" nillable="true" type="xs:long" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="HistoryWcfRequestModel" nillable="true" type="tns:HistoryWcfRequestModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="request-schema">Additional request Xml Schemas:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="RequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:RequestModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModel" nillable="true" type="tns:RequestModel" /&gt;
+  &lt;xs:complexType name="RequestModelBase"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AppVersion" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLive" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeZoneId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModelBase" nillable="true" type="tns:RequestModelBase" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck" /&gt;
+  &lt;xs:complexType name="HistoryWcfResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:ResponseModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfHistoryWcfCardModel" /&gt;
+          &lt;xs:element minOccurs="0" name="TotalPages" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="HistoryWcfResponseModel" nillable="true" type="tns:HistoryWcfResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfHistoryWcfCardModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryWcfCardModel" nillable="true" type="tns:HistoryWcfCardModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfHistoryWcfCardModel" nillable="true" type="tns:ArrayOfHistoryWcfCardModel" /&gt;
+  &lt;xs:complexType name="HistoryWcfCardModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AamvaVersion" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="AccessGranted" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AddressSeverity" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Age" nillable="true" type="xs:short" /&gt;
+      &lt;xs:element minOccurs="0" name="Agreement" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="CaptureMethod" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q2:CaptureMethod" /&gt;
+      &lt;xs:element minOccurs="0" name="CardRevisionDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="City" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ClassificationCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompletedSurvey" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ComplianceType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CustomFieldValues" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" type="q3:ArrayOfCustomFieldValueRequestResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="EncryptLicenseNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="EndorsementCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="EndorsementsCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ExpirationDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="EyeColor" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Group" nillable="true" type="tns:CardGroupResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupColorName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupComments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupRecordUpdated" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="HAZMATExpDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="HairColor" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HashID" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="HavePayments" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IIN" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="IdempotencyKey" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiCheckStatus" xmlns:q4="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q4:IdentiCheckValidationEnum" /&gt;
+      &lt;xs:element minOccurs="0" name="IsAgeOK" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsExpired" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsGroupLocked" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsGroupShared" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsIn" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="IssuedBy" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="JurisdictionCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LicenseNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LimitedDurationDocument" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MmicLicenseType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MmicPractitionerNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MobilePhoneModel" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MobilePhoneOS" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="NamePrefix" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="NameSuffix" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="OnlineVerificationValid" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="OrganDonor" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ParserType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PhotoBase64" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PhotoBlobId" nillable="true" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="PhotoGeneratedName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PhotoUrl" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PoBox" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PreviousScannedLocal" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="ProfileComments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Race" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RealId" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="RestrictionCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RestrictionCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanLatitude" nillable="true" type="xs:float" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanLongitude" nillable="true" type="xs:float" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanStatus" nillable="true" xmlns:q5="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q5:ScanStatus" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanTime" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanType" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ScannedLocal" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="ScannerModel" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ScannerSerialNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Severity" nillable="true" type="xs:decimal" /&gt;
+      &lt;xs:element minOccurs="0" name="SharedInfo" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="SignatureBase64" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Specification" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Tags" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ThirdPartyChecks" nillable="true" xmlns:q7="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck" type="q7:ThirdPartyChecksShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeZoneId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="TrackString" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationRequestId" nillable="true" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResponseId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationStatus" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="VehicleClassCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="VehicleClassCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Veteran" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="WeightKG" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="WeightLBS" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="HistoryWcfCardModel" nillable="true" type="tns:HistoryWcfCardModel" /&gt;
+  &lt;xs:complexType name="CardGroupResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Active" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ColorName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="DevHide" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="DevLock" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="SemanticGroupId" nillable="true" type="xs:unsignedByte" /&gt;
+      &lt;xs:element minOccurs="0" name="SendAlert" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="Share" type="xs:boolean" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CardGroupResponseModel" nillable="true" type="tns:CardGroupResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResult" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseModel" nillable="true" type="tns:ResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfResponseValidationResultItem" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+  &lt;xs:complexType name="ResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Errors" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+  &lt;xs:complexType name="ArrayOfint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:simpleType name="CaptureMethod"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Upload"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Autocapturing"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Other"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;99&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="CaptureMethod" nillable="true" type="tns:CaptureMethod" /&gt;
+  &lt;xs:simpleType name="IdentiCheckValidationEnum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Undefined" /&gt;
+      &lt;xs:enumeration value="Pass" /&gt;
+      &lt;xs:enumeration value="Banned" /&gt;
+      &lt;xs:enumeration value="DMVValid" /&gt;
+      &lt;xs:enumeration value="DMVInvalid" /&gt;
+      &lt;xs:enumeration value="Suspicious" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="IdentiCheckValidationEnum" nillable="true" type="tns:IdentiCheckValidationEnum" /&gt;
+  &lt;xs:simpleType name="ScanStatus"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Scanning" /&gt;
+      &lt;xs:enumeration value="InProcess" /&gt;
+      &lt;xs:enumeration value="Passed" /&gt;
+      &lt;xs:enumeration value="Warning" /&gt;
+      &lt;xs:enumeration value="NotComplete" /&gt;
+      &lt;xs:enumeration value="Flagged" /&gt;
+      &lt;xs:enumeration value="Failed" /&gt;
+      &lt;xs:enumeration value="Skipped" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ScanStatus" nillable="true" type="tns:ScanStatus" /&gt;
+  &lt;xs:simpleType name="ThirdPartyCheckStatus"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Failed" /&gt;
+      &lt;xs:enumeration value="Passed" /&gt;
+      &lt;xs:enumeration value="Flagged" /&gt;
+      &lt;xs:enumeration value="Skipped" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ThirdPartyCheckStatus" nillable="true" type="tns:ThirdPartyCheckStatus" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ArrayOfCustomFieldValueRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldValueRequestResponseModel" nillable="true" type="tns:CustomFieldValueRequestResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCustomFieldValueRequestResponseModel" nillable="true" type="tns:ArrayOfCustomFieldValueRequestResponseModel" /&gt;
+  &lt;xs:complexType name="CustomFieldValueRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="FieldId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OptionId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OptionIds" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfint" /&gt;
+      &lt;xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomFieldValueRequestResponseModel" nillable="true" type="tns:CustomFieldValueRequestResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.ThirdPartyCheck" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:complexType name="ThirdPartyChecksShortResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CriminalBackgroundCheck" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="DmvVerification" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="EveryPolitician" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="IdentiFraud" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Ofac" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Pep" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="SexOffenderRegistry" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ThirdPartyChecksShortResponseModel" nillable="true" type="tns:ThirdPartyChecksShortResponseModel" /&gt;
+  &lt;xs:complexType name="ThirdPartyCheckShortResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Error" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RequestId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q1:ThirdPartyCheckStatus" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ThirdPartyCheckShortResponseModel" nillable="true" type="tns:ThirdPartyCheckShortResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Section 12</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-section-12--more-strings">CSc 101: Section 12 – More Strings!</h1>
+
+<p>In this section, you are going to work using string methods and
+displaying various strings and numbers to the canvas and various string methods.</p>
+
+<p><br /></p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/1.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_12_1</code>.
+      The starter code is provided below.
+      Modify the starter code by implementing the <code>splitAndShow</code> function so that when this sketch is run, it displays a canvas like the one pictured.
+      <code>splitAndShow</code> accepts one parameter, a string representing a name.
+      The function should split the first name and last name and display them on the canvas separately, with two different colors.
+<div><pre><code>void setup () {
+  size(300, 200);
+  textSize(40);
+}
+
+// Write splitAndShow here
+
+void draw () {
+  background(100);
+  String name = "James Carlson";
+  splitAndShowName(name);
+}
+</code></pre></div>
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/2.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_12_2</code>.
+      The starter code is provided below.
+      Modify the starter code by implementing the <code>drawLastThree</code> function so that when this sketch is run, it displays a canvas like the one pictured.
+      <code>drawLastThree</code> has three parameters: a string, an x-coordinate, and a y-coordinate.
+      This function should display the last three characters of the string at the x and y coordinates.
+<div><pre><code>void setup () {
+  size(300, 300);
+  textSize(50);
+}
+
+// Write drawLastThree here
+
+void draw () {
+  background(100);
+  String a = "ABCDEFG";
+  drawLastThree(a, 20, 75);
+  String b = "one-two-three";
+  drawLastThree(b, 20, 150);
+  String c = "one-two-three-four-five";
+  drawLastThree(c, 20, 225);
+}
+</code></pre></div>
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/3.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_12_3</code>.
+      The starter code is provided below.
+      Modify the starter code by implementing the <code>drawMidThree</code> function so that when this sketch is run, it displays a canvas like the one pictured.
+      <code>drawMidThree</code> has three parameters: a string, an x-coordinate, and a y-coordinate.
+      This function should display the middle three characters of the string at the x and y coordinates.
+<div><pre><code>void setup () {
+  size(300, 300);
+  textSize(50);
+}
+
+// Write drawMidThree here
+
+void draw () {
+  background(100);
+  String a = "ABCDEFG";
+  drawMidThree(a, 20, 75);
+  String b = "one-two-three";
+  drawMidThree(b, 20, 150);
+  String c = "one-two-three-four-five";
+  drawMidThree(c, 20, 225);
+}
+</code></pre></div>
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/4.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_12_4</code>.
+      The starter code is provided below.
+      Modify the starter code by implementing the <code>drawEveryOther</code> function so that when this sketch is run, it displays a canvas like the one pictured.
+      <code>drawEveryThree</code> has three parameters: a string, an x-coordinate, and a y-coordinate.
+      This function should display every-other character in the parameter string at the x and y coordinates.
+<div><pre><code>void setup () {
+  size(300, 300);
+  textSize(50);
+}
+
+// Write drawEveryOther here
+
+void draw () {
+  background(100);
+  String a = "ABCDEFG";
+  drawEveryOther(a, 20, 75);
+  String b = "one-two-three";
+  drawEveryOther(b, 20, 150);
+  String c = "severalWordsTogether";
+  drawEveryOther(c, 20, 225);
+}
+</code></pre></div>
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="250px">
+      <img src="./res/5.png" width="250px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Write a sketch named <code>section_12_5</code>.
+      The starter code is provided below.
+      Modify the starter code by implementing the <code>drawViwelCount</code> function so that when this sketch is run, it displays a canvas like the one pictured.
+      <code>drawVowelCount</code> has three parameters: a string, an x-coordinate, and a y-coordinate.
+      This function should count the number of vowels in the input string, and display the count at the x and y coordinates.
+<div><pre><code>void setup () {
+  size(300, 300);
+  textSize(50);
+}
+
+// Write drawVowelCount here
+
+void draw () {
+  background(100);
+  String a = "one two three";
+  drawVowelCount(a, 20, 75);
+  String b = "these are words";
+  drawVowelCount(b, 20, 150);
+  String c = "love alone is worth the fight";
+  drawVowelCount(c, 20, 225);
+}
+</code></pre></div>
+    </td>
+  </tr>
+</table>
+
+<p><br />
+<br /></p>
+
+<h3 id="submit-at-least-2-solutions-to-the-d2l-dropbox">Submit at least 2 solutions to the D2L dropbox</h3>
+
+<p><br /></p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

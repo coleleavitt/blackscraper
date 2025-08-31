@@ -1,0 +1,203 @@
+/* 
+ *   syllabus.css  (L. McCann, June 2005)
+ *
+ *   Defines CSS defaults for class syllabi.
+ */
+
+body
+{
+    background-color:#fffaf0;
+}
+
+h1,h2,h3,h4,h5,h6
+{
+    font-family: "lucida calligraphy", arial, 'sans serif'; color:#483d8b;
+}
+
+u.section
+{
+    font-size: 120%;
+}
+
+p.center
+{
+    text-align: center;
+}
+
+p.centerTitle
+{
+    text-align: center;
+    font-size: 200%;
+}
+
+p.catalog
+{
+    font-style: italic;
+}
+
+p.footer
+{
+    font-size: 75%;
+}
+
+p.majorsection
+{
+    font-size: 120%;
+    text-decoration: underline;
+}
+
+table
+{
+    margin-left:3em;
+    margin-right:2em;
+    border-style:none;
+    border-top-width:0px;
+    border-bottom-width:0px;
+}
+
+table.catalog, table.information, table.reference
+{
+    margin-left:1em;
+    margin-right:2em;
+    border-style:none;
+    border-top-width:0px;
+    border-bottom-width:0px;
+}
+
+table.instructor
+{
+    margin-left:1em;
+    margin-right:2em;
+    border-style:none;
+    border-top-width:0px;
+    border-bottom-width:0px;
+}
+
+table.outline
+{
+    margin-left:3em;
+    margin-right:2em;
+    border-style:none;
+    border-top-width:0px;
+    border-bottom-width:0px;
+}
+
+table.quote
+{
+    margin-left:3em;
+    margin-right:2em;
+    padding-left:1em;
+    padding-right:1em;
+    border-top-width:thin;
+    border-bottom-width:thin;
+    border-left-width:thin;
+    border-right-width:thin;
+    border-style:solid;
+}
+
+table.weights
+{
+    margin-left:3em;
+}
+
+td
+{
+    /* position:static; */
+    vertical-align:top;
+    border-style:none;
+    padding-right:0.25em;
+    /* border-top-width:0px;
+    border-bottom-width:0px;
+    border-right-width:2em;  */
+}
+
+td.label
+{
+    text-align:center;
+    vertical-align:bottom;
+}
+
+td.label2
+{
+    width:7em;
+    text-align:right;
+    vertical-align:top;
+}
+
+td.label3
+{
+    width:5em;
+    text-align:right;
+    vertical-align:top;
+    font-style: oblique;
+    font-variant:small-caps;
+}
+
+td.data
+{
+    text-align:center;
+    background-color:#FAEBD7;
+}
+
+td.topic
+{
+    text-align:left;
+    background-color:#EADBC7;
+}
+
+td.subtopic
+{
+    text-align:left;
+    text-indent:1em;
+    background-color:#FAEBD7;
+}
+
+td.objective
+{
+    text-align:left;
+    background-color:#FAEBD7;
+}
+
+td.txt
+{
+    text-align:left;
+}
+
+ul
+{
+    list-style: square;
+}
+
+ul.sublist
+{
+    list-style: circle;
+}
+
+li.sublist
+{
+    line-height: 1.5cm;
+}
+
+ul.subsublist
+{
+    list-style: disc;
+}
+
+ul.bulletless
+{
+    list-style-type: none;
+}
+
+/*
+p,table,li,
+{
+    font-family: "lucida calligraphy", arial, 'sans serif'; margin-left: 10pt;
+}
+*/
+
+/*
+p,li,th,td
+{
+    font-size: 75%;
+}
+*/

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-python-string-manipulation">CSc 250: Python String Manipulation</h1>
+
+<p><img src="/assets/memes/print-a-string.jpg" width="300" /></p>
+
+<p>The python <code class="language-plaintext highlighter-rouge">str</code> type has many, many functions built into it for manipulating the string.
+Today we will cover many, but even what we cover today is only a subset.
+You can see <a href="https://docs.python.org/3/library/stdtypes.html">this official python page</a> for a more complete list.
+Some of the descriptions on this page are taken directly from this site.</p>
+
+<p>In this lesson I will demonstrate many of these concepts in the python interactive shell.</p>
+
+<h2 id="string-subsequences">String Subsequences</h2>
+
+<p>As we know by now, strings are just sequences of individual characters.
+Using the square-bracket syntax, we can grab sub-sequences of the characters in a string.</p>
+
+<p>Below are examples of grabbing subsequence of a string (substring) starting from a particular character and going to the end of the string.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title = "The LEGO Batman Movie"
+&gt;&gt;&gt; title[0:]
+'The LEGO Batman Movie'
+&gt;&gt;&gt; title[4:]
+'LEGO Batman Movie'
+&gt;&gt;&gt; title[6:]
+'GO Batman Movie'
+&gt;&gt;&gt;
+</code></pre></div></div>
+
+<p>Below are examples of grabbing a substring starting from the beginning and ending at a particular index.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title[:0]
+''
+&gt;&gt;&gt; title[:4]
+'The '
+&gt;&gt;&gt; title[:6]
+'The LE'
+</code></pre></div></div>
+
+<p>Below are examples of grabbing a substring starting and ending at a specified index.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title[4:10]
+'LEGO B'
+&gt;&gt;&gt; title[5:15]
+'EGO Batman'
+&gt;&gt;&gt;
+</code></pre></div></div>
+
+<h2 id="functions">Functions</h2>
+
+<p>str also has several built-in functions that can manipulate and do operations on strings.</p>
+
+<p>Some of these function do string alterations.
+However, these functions to not alter the contents of the string that is being operated on, but rather return a copy of the string with the described modifications.</p>
+
+<p>Some of the functions do not modify the string, but check that the string has certain properties, search the string, etc.
+For these, the function returns booleans or integers.</p>
+
+<p>Below, we will take a look at several functions, and also study how the functions can be combined.</p>
+
+<h2 id="strlower-and-strupper">str.lower and str.upper</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">lower</code> and <code class="language-plaintext highlighter-rouge">upper</code> functions will return a <em>copy</em> of the string that it converted to all lower case and all upper case respectively.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title.upper()
+'THE LEGO BATMAN MOVIE'
+&gt;&gt;&gt; title
+'The LEGO Batman Movie'
+&gt;&gt;&gt; title.lower()
+'the lego batman movie'
+&gt;&gt;&gt; title
+'The LEGO Batman Movie'
+</code></pre></div></div>
+
+<p>This function does <em>not</em> change the value of the initial variable, unless you assign the result of the call to the variable.</p>
+
+<h2 id="strislower-and-strisupper">str.islower and str.isupper</h2>
+
+<p>These two functions are similar to the above, but rather than returning a modified string, they check if the string is already upper or lower case.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title = "The LEGO Batman Movie"
+&gt;&gt;&gt; upp = "UPPER CASE TEXT"
+&gt;&gt;&gt; low = "lower case text"
+&gt;&gt;&gt; 
+&gt;&gt;&gt; title.isupper()
+False
+&gt;&gt;&gt; title.islower()
+False
+&gt;&gt;&gt; upp.isupper()
+True
+&gt;&gt;&gt; upp.islower()
+False
+&gt;&gt;&gt; low.isupper()
+False
+&gt;&gt;&gt; low.islower()
+True
+</code></pre></div></div>
+
+<p>We can “chain” multiple functions together.</p>
+
+<p>Below is an example of first getting an upper-case copy of a string and then checking if it is upper case, which will be true:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title.upper().isupper()
+True
+</code></pre></div></div>
+
+<p>And a similar example, using lower case:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; title.lower().islower()
+True
+</code></pre></div></div>
+
+<h2 id="strstrip-strlstrip-and-strrstrip">str.strip, str.lstrip and str.rstrip</h2>
+
+<p>These function will remove characters on the left side of the string (<code class="language-plaintext highlighter-rouge">lstrip</code>) and the right side of the string (<code class="language-plaintext highlighter-rouge">rstrip</code>), and both sides of the string (<code class="language-plaintext highlighter-rouge">strip</code>).
+The functions take one argument, which is a string containing all of the characters to remove at the beginning or end (or both) of the string.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; numbers = 'one two three four'
+&gt;&gt;&gt; numbers.lstrip('otwne')
+' two three four'
+&gt;&gt;&gt; numbers.lstrip('otwne ')
+'hree four'
+&gt;&gt;&gt; numbers.rstrip('rfoue ')
+'one two th'
+&gt;&gt;&gt; numbers.rstrip('rfoue')
+'one two three '
+&gt;&gt;&gt; numbers.strip('rfoue ')
+'ne two th'
+</code></pre></div></div>
+
+<p>If no argument is passed to the <code class="language-plaintext highlighter-rouge">lstrip</code> and <code class="language-plaintext highlighter-rouge">rstrip</code> functions, it defaults to removing leading/trailing whitespace, which includes spaces, tabs, and newlines.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; spacing = '    LEGOOOOO               '
+&gt;&gt;&gt; spacing
+'    LEGOOOOO               '
+&gt;&gt;&gt; spacing.lstrip()
+'LEGOOOOO               '
+&gt;&gt;&gt; spacing.rstrip()
+'    LEGOOOOO'
+&gt;&gt;&gt; spacing.strip()
+'LEGOOOOO'
+</code></pre></div></div>
+
+<h2 id="strisnumeric">str.isnumeric</h2>
+
+<p>This function returns true if the string has only numeric characters in it.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; thing_one = '123'
+&gt;&gt;&gt; thing_two = 'This is not a number'
+&gt;&gt;&gt; thing_one.isnumeric()
+True
+&gt;&gt;&gt; thing_two.isnumeric()
+False
+</code></pre></div></div>
+
+<h2 id="strisalnum">str.isalnum</h2>
+
+<p>This function returns true if the string has only alpha-numeric characters.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; thing_one = '123'
+&gt;&gt;&gt; thing_two = 'This is not a number'
+&gt;&gt;&gt; thing_three = 'This string has s0me numbers 77'
+&gt;&gt;&gt; thing_four = 'numbersAndLetters77'
+&gt;&gt;&gt; thing_one.isalnum()
+True
+&gt;&gt;&gt; thing_two.isalnum()
+False
+&gt;&gt;&gt; thing_three.isalnum()
+False
+&gt;&gt;&gt; thing_four.isalnum()
+True
+</code></pre></div></div>
+
+<h2 id="strisalpha">str.isalpha</h2>
+
+<p>This function returns true if the string has only alphabetical characters.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; thing_one = '123'
+&gt;&gt;&gt; thing_two = 'These are some letters'
+&gt;&gt;&gt; thing_three = 'TheseAreSomeLetters'
+&gt;&gt;&gt; thing_one.isalpha()
+False
+&gt;&gt;&gt; thing_two.isalpha()
+False
+&gt;&gt;&gt; thing_three.isalpha()
+True
+</code></pre></div></div>
+
+<h2 id="strstartswith-and-strendswith">str.startswith and str.endswith</h2>
+
+<p>Returns <code class="language-plaintext highlighter-rouge">True</code> is the string starts or ends with the designated string.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; thing_one = '123'
+&gt;&gt;&gt; thing_two = 'These are some letters'
+&gt;&gt;&gt; thing_one.startswith('123')
+True
+&gt;&gt;&gt; thing_one.startswith('12')
+True
+&gt;&gt;&gt; thing_two.startswith('These are')
+True
+&gt;&gt;&gt; thing_two.startswith('The')
+True
+&gt;&gt;&gt; thing_two.endswith('ers')
+True
+&gt;&gt;&gt; thing_two.endswith('lettERS')
+False
+&gt;&gt;&gt; thing_two.startswith('teese')
+False
+</code></pre></div></div>
+
+<h2 id="strfind">str.find</h2>
+
+<p>This function is responsible for searching for substrings within a string.
+It takes a single argument, which is a string to search for within the string this function is being called on.
+This function is useful for determining if a string contains a particular substring.
+It returns the index of the <em>first</em> occurrence of the string being searched for.
+If the string being searched for cannot be found, it will return <code class="language-plaintext highlighter-rouge">-1</code>.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; beginning = 'It was the best of times, it was the worst of times'
+&gt;&gt;&gt; beginning.find('was')
+3
+</code></pre></div></div>
+
+<p>Notice that the string <code class="language-plaintext highlighter-rouge">'was'</code> appears multiple times in <code class="language-plaintext highlighter-rouge">beginning</code>.
+However, the index of the <em>first</em> occurrence of the word is what the function returns.
+A few more examples:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; beginning.find('of times')
+16
+&gt;&gt;&gt; beginning.find('It')
+0
+</code></pre></div></div>
+
+<p>And here are some examples showing how the function behaves when the searched-for substring cannot be found:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; beginning.find('sail')
+-1
+&gt;&gt;&gt; beginning.find('WORST')
+-1
+</code></pre></div></div>
+
+<h2 id="strcount">str.count</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">count</code> functions will compute the number of times that a particular substring appears within the string (not including overlaps).
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; beginning = 'It was the best of times, it was the worst of times'
+&gt;&gt;&gt; beginning.count('was')
+2
+&gt;&gt;&gt; beginning.count(' was ')
+2
+&gt;&gt;&gt; beginning.count('best')
+1
+&gt;&gt;&gt; beginning.count('es')
+3
+&gt;&gt;&gt; beginning.count('warp')
+0
+</code></pre></div></div>
+
+<p>It is important to realize that <code class="language-plaintext highlighter-rouge">count</code> only counts non-overlapping regions of the strings for matches of a particular string.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; pattern = 'atatatat'
+&gt;&gt;&gt; pattern.count('at')
+4
+</code></pre></div></div>
+
+<p>It is obvious that <code class="language-plaintext highlighter-rouge">at</code> appears 4 times in <code class="language-plaintext highlighter-rouge">pattern</code>.
+However:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; pattern.count('atat')
+2
+</code></pre></div></div>
+
+<p>The string <code class="language-plaintext highlighter-rouge">'atat'</code> pattern actually appears three times, but since <code class="language-plaintext highlighter-rouge">count</code> does not include overlapping patterns, it returns a count of 2.
+Similarly:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; pattern.count('atatat')
+1
+</code></pre></div></div>
+
+<h2 id="strreplace">str.replace</h2>
+
+<p>This functions returns a copy of the string with all occurrences of substring old (the first argument) replaced by new (the second argument).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; beginning = 'It was the best of times, it was the worst of times'
+&gt;&gt;&gt; beginning.replace('was', 'could be')
+'It could be the best of times, it could be the worst of times'
+&gt;&gt;&gt; beginning.replace('times', 'classes')
+'It was the best of classes, it was the worst of classes'
+&gt;&gt;&gt; beginning.replace('was the ', '')
+'It best of times, it worst of times'
+</code></pre></div></div>
+
+<h2 id="strsplit">str.split</h2>
+
+<p>This function will split a string into multiple separate strings based on the split character specified as the first argument.
+This function returns a <em>list</em> of strings, each string being one substring of the original string.
+We have not talked about lists in detail yet, but we will soon, at which point this function will be a little easier to understand.
+Let’s walk through a few examples.</p>
+
+<p>Given this string:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; questions = 'Are you OK? Are you feeling well? How have you been?'
+</code></pre></div></div>
+
+<p>Let’s try splitting this based on the question-mark character:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; questions.split('?')
+['Are you OK', ' Are you feeling well', ' How have you been', '']
+</code></pre></div></div>
+
+<p>The result is a list of four strings.
+As you can see, each of the strings are the substrings that appeared on either side of the three <code class="language-plaintext highlighter-rouge">?</code> characters in the original string.
+This is the result of “splitting” <code class="language-plaintext highlighter-rouge">questions</code> on the <code class="language-plaintext highlighter-rouge">?</code> character.</p>
+
+<p>Using the same string, let’s split on the word <code class="language-plaintext highlighter-rouge">Are</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; questions.split('Are')
+['', ' you OK? ', ' you feeling well? How have you been?']
+</code></pre></div></div>
+
+<p>Again, the return value is a list of all of the substrings that appeared before/after the word <code class="language-plaintext highlighter-rouge">Are</code>.</p>
+
+<p>Another example, in which we split a sentence by spaces, and get each individual word in the resulting string list:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; statement = 'My favorite color is green'
+&gt;&gt;&gt; statement.split(' ')
+['My', 'favorite', 'color', 'is', 'green']
+</code></pre></div></div>
+
+<p>Splitting a string is not much use if we cannot access the individual strings returned in the list.
+First, we should save the results into a variable.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; statement = 'My favorite color is green'
+&gt;&gt;&gt; words = statement.split(' ')
+&gt;&gt;&gt; print(words)
+['My', 'favorite', 'color', 'is', 'green']
+</code></pre></div></div>
+
+<p>To access each individual word, we can use list index syntax to pick out a particular index of the list of words.
+Accessing each word uses a zero-based count.
+This means that the first words is at index “0”, the second word is at index “1”, the third word is at index “2”, etc.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; words[0]
+'My'
+&gt;&gt;&gt; words[1]
+'favorite'
+&gt;&gt;&gt; words[2]
+'color'
+&gt;&gt;&gt; words[3]
+'is'
+&gt;&gt;&gt; words[4]
+'green'
+</code></pre></div></div>
+<p>If we try to access a word at an invalid index, python will generate an error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; words[5]
+Traceback (most recent call last):
+File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+IndexError: list index out of range
+</code></pre></div></div>
+
+<p><br />
+<img style="float:left; margin-right:15px; margin-bottom:15px;" src="/assets/in-class-assignment.png" width="50" /></p>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">first_mid_last</code> that takes one argument, which is expected to be a complete english sentence.
+This function should print out the first word, middle word, and last word of the sentence.</p>
+
+<p><br />
+<img style="float:left; margin-right:15px; margin-bottom:15px;" src="/assets/in-class-assignment.png" width="50" /></p>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">replace_and_summarize</code>.
+This function will take two arguments.
+The first is a word to search for (call this <code class="language-plaintext highlighter-rouge">word</code>), and the second is a string to search for the word in (call this <code class="language-plaintext highlighter-rouge">sentence</code>).
+The function will print out how many times the word appeared in the second arguments.
+It will also print out the original <code class="language-plaintext highlighter-rouge">sentence</code> will all instances of <code class="language-plaintext highlighter-rouge">word</code> surrounded by astericks (<code class="language-plaintext highlighter-rouge">*</code>).</p>
+
+<p>Write a function named <code class="language-plaintext highlighter-rouge">first_mid_last</code> that takes one argument, which is expected to be a complete english sentence.
+This function should print out the first word, middle word, and last word of the sentence.</p>
+
+<p>Below are some example runs of this function:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; replace_and_summarize("test", "That test was a hard test to take")
+"test" was found 2 times.
+UPDATED SENTENCE: That *test* was a hard *test* to take
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; replace_and_summarize("it", "It was the best of times, it was the worst of times")
+"it" was found 1 times.
+UPDATED SENTENCE: It was the best of times, *it* was the worst of times
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; replace_and_summarize("was", "It was the best of times, it was the worst of times")
+"was" was found 2 times.
+UPDATED SENTENCE: It *was* the best of times, it *was* the worst of times
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; replace_and_summarize("zoo", "It was the best of times, it was the worst of times")
+"zoo" was found 0 times.
+UPDATED SENTENCE: It was the best of times, it was the worst of times
+</code></pre></div></div>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

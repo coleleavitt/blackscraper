@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Section 8</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-section-8--more-if-statements-links-and-buttons">CSc 101: Section 8 – More if-statements, links, and buttons</h1>
+
+<p>In today’s section, we’ll see some other ways in which we can use if statements.
+We’ll also get a chance to use some new functions, such as <code class="language-plaintext highlighter-rouge">link();</code>.</p>
+
+<p>Recall that the <code class="language-plaintext highlighter-rouge">link();</code> function will take a user to whatever webpage is specified.
+To use it, put the exact URL that you want it to go to, surrounded by double-quotes.
+For example, to take a user to amazon.com, You would write <code class="language-plaintext highlighter-rouge">link("http://www.amazon.com");</code>.</p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./section-8-1.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      First, you will write a simple program that takes will take the user to
+      google.com whenever the user clicks anywhere on the screen.
+      Use an if-statement and the link(); function to do this.
+      HINT: I recommend you set the frameRate(); to a low number, like 5, 
+      so that it does not open too many windows/tabs in a single click.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./section-8-2.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Building off of the first problem, in this one you are going to write a program that opens up three
+      different web URLs depending on which section of the screen is clicked.
+      Your canvas should be a square with three sections - one orange, one yellow, and one teal.
+      Clicking in orange will take you to amazon.com, yellow will take you to google.gom, and teal will
+      take you to espn.com.
+      You must use if statements to check if the mouse is clicked, and to check which section of the screen it is in.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<p>Congratulations, you just built your first click-able “button” in processing!
+In essence, you split the screen up in to 3 large buttons (with no text labels) and made each do a different action when clicked-on.
+Typically, buttons do not fill such a large part of the screen.
+Next, let’s modify the size of the buttons, and even try adding some text-labels.</p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./section-8-3.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      In this problem, modify the size of each of the buttons to reflect the anmiation.
+      Notice how the buttons still span the entire width of the screen, but there are now gabs between each button.
+      The websites should only be opened when the mouse is clicked within the colorful button areas.
+      If the mouse is clicked in the gray area, nothing should happen.
+      You can do this by adding some extra if statements.
+      The idea is that you need to check both the lower and upper Y-coordinate limits for each button.
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<p>You might recall that in class, we very briefly talked about how to display text in a processing canvas.
+The function to use is called <code class="language-plaintext highlighter-rouge">text();</code>
+This function takes three arguments.
+The first is the text that you want to display, surrounded by double-quotes.
+The second and third are the X/Y coordinates of the bottom-left of the text, which you can use to position the text correctly.
+You’ll need to use this function in the next problem.
+Also, you probably want to add the line <code class="language-plaintext highlighter-rouge">textSize(24);</code> to the setup function.
+This will make the text larger (size 24) so that it’s easier to see on-screen.</p>
+
+<p><br /></p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="200px">
+      <img src="./section-8-4.png" width="200px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Use the text(); function to add labels to each of the buttons.
+      Other than the labels, you program should just do the same thing it did in problem 3.
+      Remember to reset the fill to a dark color before drawing the words on the canvas!
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./section-8-5.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Now, change the bottons so that they have a 50-pixel buffer from the edge of the canvas on either side.
+      The buttons should only be clickable when the mouse is in the colorful region.
+      How to accomplish this? - More if-statements!
+    </td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h2 id="problem-6">Problem 6</h2>
+
+<table class="itable" cellspacing="0" cellpadding="0" style="border:none;" border="0">
+  <tr>
+    <td class="itd" width="300px">
+      <img src="./section-8-6.gif" width="300px" style="margin:0px;padding:0px;" />
+    </td>
+    <td class="itd">
+      Last, change the code so that whenever a button is clicked, the color becomes temporarily darker.
+      This can be acheived by drawing a semi-trnsparent dark triangle over the original
+      colorful triangle, only when the mouse is clicking on it.
+    </td>
+  </tr>
+</table>
+
+<h2 id="download-solutions"><a href="./solutions.zip">Download Solutions</a></h2>
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

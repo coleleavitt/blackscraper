@@ -1,0 +1,42 @@
+def person_one():
+    print(" /-----\ ")
+    print("| o   o |")
+    print("\  ___  /")
+    print(" \-----/ ")
+    print("<__|||__>")
+    print("   |||   ")
+    print("   / \   ")
+    print("  /   \  ")
+    print(" /     \ ")
+    print()
+    
+def person_two():
+    print(" /-----\ ")
+    print("| o   o |")
+    print("\  ___  /")
+    print(" \-----/ ")
+    print("    X    ")
+    print(" __/ \__ ")
+    print("   [+]   ")
+    print("   |_|   ")
+    print("   / \   ")
+    print("  /   \  ")
+    print(" /     \ ")
+    print()
+    
+def person_three():
+    print(" /-----\ ")
+    print("| o   o |")
+    print("\  ___  /")
+    print(" \-----/ ")
+    print(" <<XXX>> ")
+    print("   XXX   ")
+    print("   / \   ")
+    print("  /   \  ")
+    print(" /     \ ")
+    print()
+
+
+person_one()
+person_two()
+person_three()

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Queue 04</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Queue</h1>
+
+<h2>Expected Behavior</h2>
+Implement the Queue ADT by using the built-in Python string type.
+<p>
+Note: Items added to this Queue ADT will consist only of strings of length one.
+</p>
+
+<h3>Attributes</h3>
+The class has only one attribute, <b><tt>self.items</tt></b>, which will be a string representing
+the items currently in the queue.
+
+<h3>Methods</h3>
+
+Your class should implement the following methods:
+<p/>
+<blockquote>
+<dl>
+  <dt><b><tt>__init__(self)</tt></b></dt>
+  <dd>
+    Initializes a new Queue object
+    <p/>
+  </dd>
+  
+  <dt><b><tt>enqueue(self,item)</tt></b></dt>
+  <dd>
+    Adds <b><tt>item</tt></b> to the back of the queue and returns <b><tt>None</tt></b>.
+    <p/>
+  </dd>
+
+<dt><b><tt>dequeue(self)</tt></b></dt>
+  <dd>
+    Removes the character at the front of the queue and returns it.
+    Returns <b><tt>None</tt></b> if the queue is empty.
+    <p/>
+  </dd>
+
+<dt><b><tt>is_empty(self)</tt></b></dt>
+  <dd>
+    Returns <b><tt>True</tt></b> if the queue is empty and <b><tt>False</tt></b> otherwise.
+    <p/>
+  </dd>
+  <dt><b><tt>__str__(self)</tt></b></dt>
+  <dd>
+    Returns a string representation of the queue. 
+  </dd>
+
+</dl>
+</blockquote>
+
+
+<h2>Examples</h2>
+Here are examples of making a queue, using it various ways, and printing the resulting queue:
+<ol>
+<li>
+    Test code 1:
+<p/>
+<blockquote>
+<pre>
+    q = Queue()
+    for c in "abcd":
+        q.enqueue(c)
+    print(q)
+</pre>
+</blockquote>
+Output: <b><tt>abcd</tt></b>
+<p/>
+</li>
+
+<li>
+    Test code 2:
+<p/>
+<blockquote>
+<pre>
+    q = Queue()
+    for c in "abcd":
+        q.enqueue(c)
+    q.dequeue()
+    print(q.dequeue())
+</pre>
+</blockquote>
+Output: <b><tt>b</tt></b>
+<p/>
+</li>
+
+<li>
+    Test code 3:
+<p/>
+<blockquote>
+<pre>
+    q = Queue()
+    for c in "abcd":
+        q.enqueue(c)
+    q.dequeue()
+    q.dequeue()
+    print(q.is_empty())
+</pre>
+</blockquote>
+Output: <b><tt> False</tt></b>
+<p/>
+</li>
+
+<li>
+    Test code 4:
+<p/>
+<blockquote>
+<pre>
+
+    q = Queue()
+    for c in "hide":
+        q.enqueue(c)
+    q.dequeue()
+    q.dequeue()
+    q.enqueue("e")
+    q.enqueue("p")
+    print(str(q))
+
+</pre>
+</blockquote>
+Output: <b><tt>deep</tt></b>
+<p/>
+</li>
+
+<p/>
+<hr/>
+</body>
+</html>
+

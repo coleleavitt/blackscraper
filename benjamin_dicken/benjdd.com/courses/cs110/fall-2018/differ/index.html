@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Output Comparison Tool</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="diff.css" />
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/scriptaculous.js"></script>
+		<script type="text/javascript" src="diff.js"></script>
+	</head>
+
+	<body>
+		<h1>
+			Output Comparison Tool
+		</h1>
+
+		<noscript>
+			<p class="error">
+				It appears that you don't have JavaScript enabled in your web browser.
+        This page requires JavaScript to work.
+        Please check your browser settings.
+        (In Internet Explorer you may need to tell it to allow this page's &quot;Active Content&quot;.)
+			</p>
+		</noscript>
+
+		<table class="maindifftable">
+			<tr>
+				<td>
+					Expected text: <span id="expectedchars">(0 characters selected)</span> <br />
+
+					<select id="homework">
+						<option value="">(choose an assignment)</option>
+            
+<optgroup label="avatar">
+<option value="./outputs/avatar/a-b-c-exit.txt">a-b-c-exit.txt</option>
+<option value="./outputs/avatar/adam.txt">adam.txt</option>
+<option value="./outputs/avatar/chris.txt">chris.txt</option>
+<option value="./outputs/avatar/custom-1.txt">custom-1.txt</option>
+<option value="./outputs/avatar/custom-2.txt">custom-2.txt</option>
+<option value="./outputs/avatar/custom-3.txt">custom-3.txt</option>
+<option value="./outputs/avatar/custom-4.txt">custom-4.txt</option>
+<option value="./outputs/avatar/exit.txt">exit.txt</option>
+<option value="./outputs/avatar/jeff.txt">jeff.txt</option>
+</optgroup>
+<optgroup label="bulls_and_cows">
+<option value="./outputs/bulls_and_cows/p1-invalid-code-with-numbers.txt">p1-invalid-code-with-numbers.txt</option>
+<option value="./outputs/bulls_and_cows/p1-invalid-code.txt">p1-invalid-code.txt</option>
+<option value="./outputs/bulls_and_cows/p1-win-1.txt">p1-win-1.txt</option>
+<option value="./outputs/bulls_and_cows/p1-win-2.txt">p1-win-2.txt</option>
+<option value="./outputs/bulls_and_cows/p2-invalid-code.txt">p2-invalid-code.txt</option>
+<option value="./outputs/bulls_and_cows/p2-win-1.txt">p2-win-1.txt</option>
+<option value="./outputs/bulls_and_cows/p2-win-2.txt">p2-win-2.txt</option>
+</optgroup>
+<optgroup label="contact_manager">
+<option value="./outputs/contact_manager/0-add-ask.txt">0-add-ask.txt</option>
+<option value="./outputs/contact_manager/2-add-ask.txt">2-add-ask.txt</option>
+<option value="./outputs/contact_manager/4-add-ask.txt">4-add-ask.txt</option>
+<option value="./outputs/contact_manager/5-add-ask.txt">5-add-ask.txt</option>
+<option value="./outputs/contact_manager/duplicates-1.txt">duplicates-1.txt</option>
+<option value="./outputs/contact_manager/duplicates-2.txt">duplicates-2.txt</option>
+<option value="./outputs/contact_manager/read-from-file-1.txt">read-from-file-1.txt</option>
+<option value="./outputs/contact_manager/read-from-file-2.txt">read-from-file-2.txt</option>
+<option value="./outputs/contact_manager/write-to-file-1.txt">write-to-file-1.txt</option>
+<option value="./outputs/contact_manager/write-to-file-2.txt">write-to-file-2.txt</option>
+</optgroup>
+<optgroup label="digital_assistant">
+<option value="./outputs/digital_assistant/file-1.txt">file-1.txt</option>
+<option value="./outputs/digital_assistant/from-spec-1.txt">from-spec-1.txt</option>
+<option value="./outputs/digital_assistant/from-spec-2.txt">from-spec-2.txt</option>
+<option value="./outputs/digital_assistant/unknown-1.txt">unknown-1.txt</option>
+<option value="./outputs/digital_assistant/your-my-future.txt">your-my-future.txt</option>
+<option value="./outputs/digital_assistant/your-my-past-present-future.txt">your-my-past-present-future.txt</option>
+<option value="./outputs/digital_assistant/your-my-past.txt">your-my-past.txt</option>
+<option value="./outputs/digital_assistant/your-my-present.txt">your-my-present.txt</option>
+<option value="./outputs/digital_assistant/your-my-update.txt">your-my-update.txt</option>
+</optgroup>
+<optgroup label="encrypter_decrypter">
+<option value="./outputs/encrypter_decrypter/few-steps-decryption.txt">few-steps-decryption.txt</option>
+<option value="./outputs/encrypter_decrypter/few-steps-encryption.txt">few-steps-encryption.txt</option>
+<option value="./outputs/encrypter_decrypter/many-steps-decryption.txt">many-steps-decryption.txt</option>
+<option value="./outputs/encrypter_decrypter/many-steps-encryption.txt">many-steps-encryption.txt</option>
+<option value="./outputs/encrypter_decrypter/poem-decryption.txt">poem-decryption.txt</option>
+<option value="./outputs/encrypter_decrypter/poem-encryption.txt">poem-encryption.txt</option>
+<option value="./outputs/encrypter_decrypter/sample-decryption.txt">sample-decryption.txt</option>
+<option value="./outputs/encrypter_decrypter/sample-encryption.txt">sample-encryption.txt</option>
+</optgroup>
+<optgroup label="guess_the_number">
+<option value="./outputs/guess_the_number/bad-input-1.txt">bad-input-1.txt</option>
+<option value="./outputs/guess_the_number/bad-input-2.txt">bad-input-2.txt</option>
+<option value="./outputs/guess_the_number/bad-input-3.txt">bad-input-3.txt</option>
+<option value="./outputs/guess_the_number/bad-input-4.txt">bad-input-4.txt</option>
+<option value="./outputs/guess_the_number/bad-input-5.txt">bad-input-5.txt</option>
+<option value="./outputs/guess_the_number/first-guess-correct-1.txt">first-guess-correct-1.txt</option>
+<option value="./outputs/guess_the_number/first-guess-correct-2.txt">first-guess-correct-2.txt</option>
+<option value="./outputs/guess_the_number/second-guess-correct-1.txt">second-guess-correct-1.txt</option>
+<option value="./outputs/guess_the_number/second-guess-correct-2.txt">second-guess-correct-2.txt</option>
+<option value="./outputs/guess_the_number/wrong-guesses-1.txt">wrong-guesses-1.txt</option>
+<option value="./outputs/guess_the_number/wrong-guesses-2.txt">wrong-guesses-2.txt</option>
+<option value="./outputs/guess_the_number/wrong-guesses-3.txt">wrong-guesses-3.txt</option>
+</optgroup>
+<optgroup label="guess_the_number_v2">
+<option value="./outputs/guess_the_number_v2/bad-input-1.txt">bad-input-1.txt</option>
+<option value="./outputs/guess_the_number_v2/bad-input-2.txt">bad-input-2.txt</option>
+<option value="./outputs/guess_the_number_v2/bad-input-3.txt">bad-input-3.txt</option>
+<option value="./outputs/guess_the_number_v2/guess-1-correct.txt">guess-1-correct.txt</option>
+<option value="./outputs/guess_the_number_v2/guess-10-correct.txt">guess-10-correct.txt</option>
+<option value="./outputs/guess_the_number_v2/guess-2-correct.txt">guess-2-correct.txt</option>
+<option value="./outputs/guess_the_number_v2/guess-5-correct.txt">guess-5-correct.txt</option>
+</optgroup>
+<optgroup label="movies">
+<option value="./outputs/movies/batman.output.txt">batman.output.txt</option>
+<option value="./outputs/movies/gladiator.output.txt">gladiator.output.txt</option>
+<option value="./outputs/movies/kingdom.output.txt">kingdom.output.txt</option>
+</optgroup>
+<optgroup label="shaper">
+<option value="./outputs/shaper/hourglass-R-1.txt">hourglass-R-1.txt</option>
+<option value="./outputs/shaper/hourglass-T-3.txt">hourglass-T-3.txt</option>
+<option value="./outputs/shaper/house-A-7.txt">house-A-7.txt</option>
+<option value="./outputs/shaper/house-B-5.txt">house-B-5.txt</option>
+<option value="./outputs/shaper/invalid-house-E-2.txt">invalid-house-E-2.txt</option>
+<option value="./outputs/shaper/invalid-plumbbob-O-2.txt">invalid-plumbbob-O-2.txt</option>
+<option value="./outputs/shaper/plumbbob-M-10.txt">plumbbob-M-10.txt</option>
+<option value="./outputs/shaper/plumbbob-m-3.txt">plumbbob-m-3.txt</option>
+</optgroup>
+<optgroup label="starwars">
+<option value="./outputs/starwars/atat-0-0-0.txt">atat-0-0-0.txt</option>
+<option value="./outputs/starwars/atat-1-2-3.txt">atat-1-2-3.txt</option>
+<option value="./outputs/starwars/atat-4-1-4.txt">atat-4-1-4.txt</option>
+<option value="./outputs/starwars/atat-7-7-5.txt">atat-7-7-5.txt</option>
+<option value="./outputs/starwars/nebulon-1-1-1-10-10-10.txt">nebulon-1-1-1-10-10-10.txt</option>
+<option value="./outputs/starwars/nebulon-2-3-2-17-17-25.txt">nebulon-2-3-2-17-17-25.txt</option>
+<option value="./outputs/starwars/nebulon-3-4-1-15-17-17.txt">nebulon-3-4-1-15-17-17.txt</option>
+<option value="./outputs/starwars/nebulon-5-4-3-15-20-15.txt">nebulon-5-4-3-15-20-15.txt</option>
+<option value="./outputs/starwars/tie-0.txt">tie-0.txt</option>
+<option value="./outputs/starwars/tie-1.txt">tie-1.txt</option>
+<option value="./outputs/starwars/tie-15.txt">tie-15.txt</option>
+<option value="./outputs/starwars/tie-5.txt">tie-5.txt</option>
+<option value="./outputs/starwars/tie-7.txt">tie-7.txt</option>
+</optgroup>
+<optgroup label="summarizer">
+<option value="./outputs/summarizer/Atletico-Bayern.txt">Atletico-Bayern.txt</option>
+<option value="./outputs/summarizer/Broncos-Cardinals.txt">Broncos-Cardinals.txt</option>
+<option value="./outputs/summarizer/GSW-HOU.txt">GSW-HOU.txt</option>
+<option value="./outputs/summarizer/PHX-DEN.txt">PHX-DEN.txt</option>
+</optgroup>
+<optgroup label="wheres_the_money">
+<option value="./outputs/wheres_the_money/deficit-30000-700-300-200-4000-32.txt">deficit-30000-700-300-200-4000-32.txt</option>
+<option value="./outputs/wheres_the_money/deficit-50000-2200-300-100-4000-32.txt">deficit-50000-2200-300-100-4000-32.txt</option>
+<option value="./outputs/wheres_the_money/invalid-tax-rate-50000-100-100-100-100--10.txt">invalid-tax-rate-50000-100-100-100-100--10.txt</option>
+<option value="./outputs/wheres_the_money/invalid-tax-rate-50000-100-100-100-100-110.txt">invalid-tax-rate-50000-100-100-100-100-110.txt</option>
+<option value="./outputs/wheres_the_money/negative--50000.txt">negative--50000.txt</option>
+<option value="./outputs/wheres_the_money/negative-50000--100.txt">negative-50000--100.txt</option>
+<option value="./outputs/wheres_the_money/negative-50000-100--100.txt">negative-50000-100--100.txt</option>
+<option value="./outputs/wheres_the_money/negative-50000-100-100--100.txt">negative-50000-100-100--100.txt</option>
+<option value="./outputs/wheres_the_money/negative-50000-100-100-100--100.txt">negative-50000-100-100-100--100.txt</option>
+<option value="./outputs/wheres_the_money/scenario-100000-2000-400-200-7000-37.txt">scenario-100000-2000-400-200-7000-37.txt</option>
+<option value="./outputs/wheres_the_money/scenario-37000-700-300-200-2000-20.txt">scenario-37000-700-300-200-2000-20.txt</option>
+<option value="./outputs/wheres_the_money/scenario-40000-750-400-100-3500-25.txt">scenario-40000-750-400-100-3500-25.txt</option>
+<option value="./outputs/wheres_the_money/scenario-50000-1200-300-200-5000-15.txt">scenario-50000-1200-300-200-5000-15.txt</option>
+</optgroup>
+
+					</select>
+
+					<span id="loading" style="display: none">
+						<img src="images/progress.gif" alt="loading..." />
+						Downloading...
+					</span>
+				</td>
+
+				<td>
+					Actual text: <span id="actualchars">(0 characters selected)</span><br />
+					<em>(paste your program's output below)</em>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<textarea class="expected" id="expectedtext" cols="50" rows="20" wrap="off"></textarea>
+				</td>
+				<td>
+					<textarea class="actual" id="actualtext" cols="50" rows="20" wrap="off"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2" style="text-align: center">
+					<div id="linenumbersarea">
+
+						Line numbers:
+						<button id="add">Add</button>
+						<button id="remove">Remove</button>
+					</div>
+
+					<div id="stripwhitespacearea">
+
+<!--
+						Creative output?
+						<label>
+							<input type="checkbox" id="creativestart" />
+							at start
+						</label>
+						<label>
+							<input type="checkbox" id="creativeend" />
+							at end
+						</label> <br />
+-->
+
+						<label>
+							<input type="checkbox" id="stripwhitespace" />
+							Ignore spaces at start of lines
+						</label>
+					</div>
+
+					<div id="comparearea">
+						<button id="compare">Compare</button>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2">
+					<div id="diffarea" style="display: none">
+						<h2 id="differencesheader">Differences:</h2>
+						<div id="warnings"></div>
+						<pre id="result"></pre>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+
+		<div id="instructions">
+			<h2>
+				Instructions and Disclaimer:
+			</h2>
+
+			<ul>
+				<li>Choose the assignment from the drop-down box on the left.  (Its expected output should appear.)</li>
+				<li>Run your program and paste its output on the right.</li>
+				<li>Press Compare.  Any differences will be shown.</li>
+			</ul>
+
+			<p>
+				Any comparison lines that begin with a <code>&lt;</code> are those that occur in the expected output but are not found in the same place in your output.
+        Lines that begin with a <code>&gt;</code> are those that occur in your output but are not found in the same place in the expected output.
+			</p>
+
+			<p>
+				Some assignments have creative output (output that is customizable, on a per-student basis).
+        In the expected output, this will be signified by text such as, <strong><code>&lt;&lt; your custom text goes here &gt;&gt;</code></strong>.
+        You are not supposed to literally print this output from your program; you are supposed to print your own custom message in its place.
+        If this tool shows your custom message as being unmatched, this is expected.
+			</p>
+
+			<p>
+				Assignments that use random numbers may be impossible to match exactly in output unless you use a "seed" to your random number generator.
+        See the assignment's FAQ page for more details about how to do this.
+			</p>
+
+			<p>
+				Achieving &quot;No differences found&quot; on this page does not guarantee that you will earn any particular grade (good or bad) on an assignment.
+			</p>
+
+      <i>*** Much of the implementation of this site based on code written by Marty Stepp, formerly at University of Washington ***</i>
+      
+      <br>
+      <br>
+		
+    </div>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/scriptaculous.js"></script>
+		<script type="text/javascript" src="diff.js"></script>
+
+	</body>
+</html>

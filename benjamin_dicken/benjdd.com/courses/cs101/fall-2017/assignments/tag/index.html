@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Tag</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-tag">CSc 101: Tag</h1>
+
+<p>In this assignment, you will be writing a very simple implementation of tag!
+The rules of the game are simple:</p>
+
+<ul>
+  <li>There is a “board” or “playing field” in which all players must stay within</li>
+  <li>There are two players.
+At any given time, one of them is the “tagger” and the other is the “hider”.
+The goal of the tagger is to tag the other player.
+The goal of the hider is to run away!</li>
+  <li>When the tagger touches the hider, the players swap roles.</li>
+</ul>
+
+<p>Who the hider and the tagger is does not need to be represented in the code.
+The roles are up to the two players to determine.</p>
+
+<p>When the sketch is first run, a window will pop up and display the following:</p>
+
+<p><img src="./img/tag-begin.png" width="250" /></p>
+
+<p>Notice a few things:</p>
+
+<ul>
+  <li>The window is 640x640 pixels</li>
+  <li>There is an 10x10 line grid overlaid on the background (use for-loops to draw this)</li>
+  <li>There are two distinct-looking players, roughly the same size as each tile of the board</li>
+  <li>You may take creative liberty with how each of the players is drawn, but each must fit in a single tile.</li>
+</ul>
+
+<p>Both players can be moved with the keyboard.
+The player that begins at the top-left is controlled with the W A S D characters.
+W moves it up, S moves it down, A moves it left, and D moves it right.
+The move happens on the KeyReleased event.
+Here’s what the movement should look like:</p>
+
+<p><img src="./img/tag-tl-moving.gif" width="250" /></p>
+
+<p>The hider is 
+The player starting in the bottom-right is controlled with the I/J/K/L characters.
+Again, the move happens on the KeyReleased event.
+Here’s what the movement should look like:</p>
+
+<p><img src="./img/tag-br-moving.gif" width="250" /></p>
+
+<p>One human controls the finder with W/A/S/D, and another the hider with I/J/K/L.
+Both can move at the same time:</p>
+
+<p><img src="./img/tag-both-moving.gif" width="250" /></p>
+
+<p>When the finder and hider land on the same tile, the game detects that the hider has been found.
+While they are on the same tile, the text “Tag, you are it!” appears on the screen.
+Once they are no longer on the same tile, the text disappears.</p>
+
+<p><img src="./img/tag-hit.gif" width="250" /></p>
+
+<p>You should use the <code class="language-plaintext highlighter-rouge">KeyReleased</code> event function to process the key presses.
+Also, the players should mot be able to move off-screen.
+You must use some if-statements to ensure that players are not allowed to do so.</p>
+
+<p>Lastly, you should create a “menu bar” underneath the game board.
+The menu bar will have a number that keeps track of how many times the players have toughed one-another.
+You can see an example of this in the animation below.</p>
+
+<p><img src="./img/tag_count.gif" width="250" /></p>
+
+<p>You can add a little bit to the height of your canvas to display the bar, so that it doesnt cover over the game board.</p>
+
+<h2 id="programming-strategy">Programming Strategy</h2>
+
+<p>As with any complex program, it is important to break up the work into various steps.
+I recommend working on this assignment in the following way.</p>
+
+<p>First, just get the grid drawn onto the screen, like so:</p>
+
+<p><img src="./img/tag-grid.png" width="200" /></p>
+
+<p>Once you have the grid, get each player to draw in the appropriate positions in the top-left and bottom-right corners.
+Initially, don’t worry about player movement - just get the drawing down.
+Once you’ve got them drawn, implement the player movement.
+Initially, just make sure the appropriate key-presses are making the player move, and ignore keeping the player in-bounds, and the tagging logic.
+Then, add in some additional if-statements to ensure that the players always stay on the screen.
+Last, add an if-statement to check if the two players are on the same tile.
+If so, display the “tag” text.
+Save the menu-bar and touch-count for last.
+This can be a tricky feature!</p>
+
+<p>If you cannot implement all of the features, you should still submit your code!
+You will get credit for each working feature.</p>
+
+<h2 id="style">Style</h2>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+You should follow the style guidelines that we have discussed in class.
+Each program file should have a header comment at the top that has roughly the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//
+// Author: Student Name
+// Description:
+//    A short description of what this program does!
+// 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.
+Name your program <code class="language-plaintext highlighter-rouge">netid_tag.pde</code> (where <code class="language-plaintext highlighter-rouge">netid</code> is your UA username).</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>This was assigned on 10/20/2017.
+It is due on 10/27/2017 at 5:00pm.</p>
+
+<p>Turn in each of the files described in the spec (just 1) the assignment drop-box in D2L before the due date.
+Make sure to name the files <strong>exactly</strong> as this document specifies.
+In general, make sure to follow these instructions precisely.
+If you don’t, we will deduct points!!!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

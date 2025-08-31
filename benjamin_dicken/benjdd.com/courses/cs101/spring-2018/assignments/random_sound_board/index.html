@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 101 Random Sound Board</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-101-random-sound-board">CSc 101: Random Sound Board</h1>
+
+<p>In this (extra-credit) assignment, you’ll be implementing a sound-board application that incorporates randomness.
+You will need to both play sounds and display images.
+Below is a video-recording showing the behavior of a solution to this assignment:</p>
+
+<video controls="controls" width="800" height="350" name="sound board" src="./res/random.mov"></video>
+
+<p>The high-level requirements for this program are as follows:</p>
+
+<ul>
+  <li>There should be a title at the top of the canvas.</li>
+  <li>You should use an image for the background.
+You can use the same image that I did (linked later on in this spec) or choose one of your own.</li>
+  <li>Below the title will be the sound-board.
+The sound board will consist of 3 total buttons.
+Each button should have an image related to the category of the sound.
+When each button is pressed a <em>random</em> sound in that sound category should be played.
+When pressed, each button should play one of three random sounds.</li>
+  <li>You must have 3 different sound-buttons.</li>
+  <li>Sound should be able to play “on-top” of each-other.
+If you click on a button, then immediately click on another, both can be playing at the same time.</li>
+</ul>
+
+<p>Each button should represent a particular theme.
+For the example, I chose Indiana Jones, Star Wars, and Star Trek.
+You can re-use these themes if you want, or you can choose your own.
+The images on each button should properly represent the theme.</p>
+
+<p>You should find three sound files for each theme.
+When a particular button is pressed, the program should randomly choose one of the three sound files to play, and then play it.
+You should use the <code class="language-plaintext highlighter-rouge">random()</code> function to help with this!</p>
+
+<p>You can choose whatever theme that you want for this assignment (it doesn’t have to be movie-themed like the example).
+To find sounds for the theme of your choice, just Google for sound files.
+You can also use <a href="https://freesound.org/">https://freesound.org/</a>.</p>
+
+<h2 id="files">Files</h2>
+
+<p>If you choose to create a program with the same theme as mine, that is OK.
+If so, I am providing all of the images and sound files.
+The sound files beginning with <code class="language-plaintext highlighter-rouge">ij</code> are for Indiana Jones, the <code class="language-plaintext highlighter-rouge">sw</code> ones are for Star Wars, and the <code class="language-plaintext highlighter-rouge">st</code> ones are for Star Trek.
+Click on the links to the files to access and then download them to your computers.
+Remember: the sound files go in the <code class="language-plaintext highlighter-rouge">data</code> directory.</p>
+
+<h3 id="indiana-jones-mp3s-ij1mp3-ij2mp3-ij3mp3">Indiana Jones mp3s: <a href="./res/ij1.mp3">ij1.mp3</a> <a href="./res/ij2.mp3">ij2.mp3</a> <a href="./res/ij3.mp3">ij3.mp3</a></h3>
+<h3 id="star-wars-mp3s-sw1mp3-sw2mp3-sw3mp3">Star Wars mp3s: <a href="./res/sw1.mp3">sw1.mp3</a> <a href="./res/sw2.mp3">sw2.mp3</a> <a href="./res/sw3.mp3">sw3.mp3</a></h3>
+<h3 id="star-trek-mp3s-st1mp3-st2mp3-st3mp3">Star Trek mp3s: <a href="./res/st1.mp3">st1.mp3</a> <a href="./res/st2.mp3">st2.mp3</a> <a href="./res/st3.mp3">st3.mp3</a></h3>
+<h3 id="stagejpg"><a href="./res/stage.jpg">stage.jpg</a></h3>
+<h3 id="indianajonespng"><a href="./res/indianaJones.png">indianaJones.png</a></h3>
+<h3 id="starwarsjpg"><a href="./res/starWars.jpg">starWars.jpg</a></h3>
+<h3 id="startrekjpg"><a href="./res/starTrek.jpg">starTrek.jpg</a></h3>
+
+<p>You can also use websites like <a href="https://freesound.org/">https://freesound.org/</a></p>
+
+<h2 id="development-strategy">Development Strategy</h2>
+
+<p>If you break the problem down into smaller “chunks” it becomes much more manageable to tackle.
+I recommend you use the following strategy to complete:</p>
+
+<h3 id="1-choose-and-display-a-background">(1) Choose and display a background</h3>
+
+<p>Select a good background image and then set it as the background of your canvas.
+Make sure the image size fits will with the canvas size.</p>
+
+<p><img src="./res/1.png" height="220" /></p>
+
+<h3 id="2-display-a-title">(2) Display a title</h3>
+
+<p>Choose a appropriate title for your program, and display it at the top.
+Make sure you choose a font color that doesn’t blend in with the background image too much.</p>
+
+<p><img src="./res/2.png" height="220" /></p>
+
+<h3 id="3-display-the-image-buttons">(3) Display the image buttons</h3>
+
+<p>Next, place all of the image buttons on the canvas, like you see pictured.
+Don’t worry about playing the sounds for now.</p>
+
+<p><img src="./res/3.png" height="220" /></p>
+
+<h3 id="4-playing-non-random-sounds">(4) Playing Non-random Sounds</h3>
+
+<p>Now, add in the logic to play a sound with each image click.
+In this step, don’t worry about choosing a random sound.
+Instead, just play one particular sound for each button.
+Get your program so that each button press plays a unique sound, but not a randomly-chosen one.
+We have done button-pressing in several of the past sections and assignments, so refer to those if you can’t remember how to set-up a button!</p>
+
+<h3 id="5-playing-random-sounds">(5) Playing Random Sounds</h3>
+
+<p>Now, add in the randomness!
+When each button is pressed, you should have it randomly choose between the three sounds and play one of them.
+You should use the <code class="language-plaintext highlighter-rouge">random()</code> function for this.
+You can generate a random integer between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">3</code>.
+Once you have this number, use it to select/load one of the sounds and then play it!</p>
+
+<h2 id="comments">Comments</h2>
+
+<p>All of your programming should be well-formatted and easy for the graders to read and comprehend.
+You should follow the style guidelines that we have discussed in class.
+Each program file should have a header comment at the top that has roughly the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*
+ * Author: Student Name
+ * Description:
+ *    A short description of what this program does!
+ */ 
+</code></pre></div></div>
+
+<p>Each function should have a descriptive block-comment above it, and other helpful comments.
+If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.
+Name your program <code class="language-plaintext highlighter-rouge">random_sound_board.pde</code>.</p>
+
+<h2 id="this-assignment-is-extra-credit">This assignment is Extra Credit!</h2>
+
+<p>This assignment is purely for extra credit, and is not required.
+Assignments are worth 48% of your total class grade.
+This assignment may be used to earn-back points lost on previous assignments.
+Doing this assignment can improve your overall class grade up to 3.5% total.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>It is due on 5/2/2018 at 5:00pm (but you may not use a late day).</p>
+
+<p>Turn in each of the files described in the spec to the assignment drop-box in D2L before the due date.
+Make sure to name the file <strong>exactly</strong> as this document specifies.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

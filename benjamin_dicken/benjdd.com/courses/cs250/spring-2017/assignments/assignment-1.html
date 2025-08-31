@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Assignment 1</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-assignment-1">CSc 250: Assignment 1</h1>
+
+<p>This first assignment focusses on helping you get familiar with the command-line interface and learning how to use some common command line tools. For all problems in this assignment, students are limited to using the following command line tools:</p>
+
+<p><code class="language-plaintext highlighter-rouge">pwd</code> <code class="language-plaintext highlighter-rouge">ls</code> <code class="language-plaintext highlighter-rouge">cd</code> <code class="language-plaintext highlighter-rouge">touch</code> <code class="language-plaintext highlighter-rouge">rm</code> <code class="language-plaintext highlighter-rouge">rmdir</code> <code class="language-plaintext highlighter-rouge">find</code> <code class="language-plaintext highlighter-rouge">echo</code> <code class="language-plaintext highlighter-rouge">cat</code> <code class="language-plaintext highlighter-rouge">sort</code> <code class="language-plaintext highlighter-rouge">grep</code> <code class="language-plaintext highlighter-rouge">head</code> <code class="language-plaintext highlighter-rouge">tail</code> <code class="language-plaintext highlighter-rouge">uniq</code> <code class="language-plaintext highlighter-rouge">rev</code> <code class="language-plaintext highlighter-rouge">cut</code> <code class="language-plaintext highlighter-rouge">sed</code> <code class="language-plaintext highlighter-rouge">if</code>/<code class="language-plaintext highlighter-rouge">else</code></p>
+
+<p>You can also use bash variables however you please. Notice that a few of these commands we have not learned about in lecture. Use the <code class="language-plaintext highlighter-rouge">man</code> pages, Google or office-hours to figure out how to use these commands. When grading your assignments, each problem will be thoroughly tested with many types of input, so make sure you test your scripts well!</p>
+
+<p>Obviously, this homework requires the use of the bash shell. If you do not have a Mac, Unix, or Linux computer that can run bash, do this assignment in one of the CS computer labs in Gould-Simpson.</p>
+
+<p>Your bash scripts should be well-formatted and easy for the graders to read.
+Each script should have a header comment at the top (under the Sha-Bang) that has the following format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
+# Author: Student Name
+# Description:
+#    A description of what this program/script does!
+#    In this section, you can document how the script works, and what the
+#    command-line options are.
+# 
+</code></pre></div></div>
+
+<p>If any part of your scripts are particularly complex, you should put documentation comments above those lines of code.</p>
+
+<p>Many of the script that you are to write require the user to specify an input file.
+Each script should check to ensure that the files passed to them exist.
+If the file does not exist, and error should be printed with the form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File X does not exist
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">X</code> is the name of the file that the user specified.
+We will test your scripts with invalid file names, and points will be deducted if this feature doesn’t work properly.</p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<p>This problem requires writing a bash script that creates a directory structure using several of the bash command we have learned about so far.
+First, open up a new bash session with the terminal application.
+Navigate to the Desktop directory (<code class="language-plaintext highlighter-rouge">cd ~/Desktop</code>), and then create an empty directory that you can test the script with (for example, <code class="language-plaintext highlighter-rouge">mkdir a1test</code>).
+<code class="language-plaintext highlighter-rouge">cd</code> into this directory.
+In this dir, write a script named <code class="language-plaintext highlighter-rouge">create-dirs-and-files.sh</code> that creates a file/directory structure that looks exactly like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a1
+└── documents
+    ├── courses
+    │   ├── cs250
+    │   │   ├── assignment-0.txt
+    │   │   ├── assignment-1.txt
+    │   |   └── study-guide.txt
+    │   └── gen-ed
+    │       ├── essay1.txt
+    │       └── essay2.txt
+    └── personal
+        └── todo-list.txt
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">a1</code> directory will have one sub-directory named <code class="language-plaintext highlighter-rouge">documents</code>.
+<code class="language-plaintext highlighter-rouge">documents</code> will have two subdirectories named <code class="language-plaintext highlighter-rouge">courses</code> and <code class="language-plaintext highlighter-rouge">personal</code>.
+<code class="language-plaintext highlighter-rouge">courses</code> will have two subdirectories named <code class="language-plaintext highlighter-rouge">cs250</code> and <code class="language-plaintext highlighter-rouge">gen-ed</code>.
+You will also create all of the shown <code class="language-plaintext highlighter-rouge">.txt</code> files in their respective directories.</p>
+
+<p>All of the <code class="language-plaintext highlighter-rouge">.txt</code> files must be empty, except for <code class="language-plaintext highlighter-rouge">todo-list.txt</code> and <code class="language-plaintext highlighter-rouge">study-guide.txt</code>.
+<code class="language-plaintext highlighter-rouge">todo-list.txt</code> must have the following contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Wake up
+* Go to class
+* Learn all the things
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">study-guide.txt</code> must look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unix: A family of operating systems
+Bash: A shell interpreter for Unix systems
+Python: A programming language
+SQL: A language used to write queries for relational DBMSs
+Postgres: A relational DBMS
+</code></pre></div></div>
+
+<p>We will be testing this script by executing it and then checking that the directory structure and file contents are what is specified in this assignment.
+Before executing it, there should be no directory named <code class="language-plaintext highlighter-rouge">a1</code> in the directory you are currently at in bash.
+When running <code class="language-plaintext highlighter-rouge">find a1</code> you should see something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find a1
+find: a1: No such file or directory
+</code></pre></div></div>
+
+<p>After executing it (<code class="language-plaintext highlighter-rouge">./create-dirs-and-files.sh</code>), you should now see the following when running <code class="language-plaintext highlighter-rouge">find a1</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find a1
+a1
+a1/documents
+a1/documents/courses
+a1/documents/courses/cs250
+a1/documents/courses/cs250/assignment-0.txt
+a1/documents/courses/cs250/assignment-1.txt
+a1/documents/courses/cs250/study-guide.txt
+a1/documents/courses/gen-ed
+a1/documents/courses/gen-ed/essay1.txt
+a1/documents/courses/gen-ed/essay2.txt
+a1/documents/personal
+a1/documents/personal/todo-list.txt
+</code></pre></div></div>
+
+<p>For this problem, use only the commands: <code class="language-plaintext highlighter-rouge">cd</code> <code class="language-plaintext highlighter-rouge">mkdir</code> <code class="language-plaintext highlighter-rouge">touch</code> <code class="language-plaintext highlighter-rouge">echo</code> <code class="language-plaintext highlighter-rouge">cat</code> <code class="language-plaintext highlighter-rouge">find</code>.</p>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<p>Write a bash script called <code class="language-plaintext highlighter-rouge">num-sort.sh</code>.
+This script processes a file that contains a list of numbers, one per line.
+This script takes one positional argument, which is the name of the file to process.
+An example input file might be named <code class="language-plaintext highlighter-rouge">numbers.txt</code> and look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>456
+345
+687
+345
+567
+923
+455
+345
+890
+345
+438
+284
+345
+887
+438
+890
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">num-sort.sh</code> should output the three numbers that occur the <em>most</em> in <code class="language-plaintext highlighter-rouge">numbers.txt</code> in descending order, along with the count of each number, to standard output.
+For the example given above, the output should look like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./num-sort.sh numbers.txt
+5 345
+2 890
+2 438
+</code></pre></div></div>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">find-name.sh</code>.
+This script will search through a list of one-word names and determine if a given name exists in the list.
+This script takes two positional arguments.
+The first is the name (string) to search for.
+The second is the name of the file to search in.
+Invoking this script in bash should look something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh Sally names.txt
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh BillyBob names.txt
+</code></pre></div></div>
+
+<p>An example input file might be named <code class="language-plaintext highlighter-rouge">names.txt</code> and look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sally
+Bill 
+Donna
+Rachel
+Benito
+Paris
+Perris
+Zento
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">find-name.sh</code> will print the results to standard output.
+If the name being searched for is found, <code class="language-plaintext highlighter-rouge">find-name.sh</code> will print <code class="language-plaintext highlighter-rouge">YES</code>.
+If it is not found, it will print <code class="language-plaintext highlighter-rouge">NO</code>.
+Assuming that <code class="language-plaintext highlighter-rouge">names.txt</code> has the contents of the example given above, here are a few examples of running <code class="language-plaintext highlighter-rouge">find-name.sh</code> and what the output looks like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh Donna names.txt
+YES
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh Zachary names.txt
+NO
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh Ben names.txt
+NO
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./find-name.sh benito names.txt
+NO
+</code></pre></div></div>
+
+<p>Notice that when <code class="language-plaintext highlighter-rouge">Ben</code> is searched for, the result is <code class="language-plaintext highlighter-rouge">NO</code>.
+<code class="language-plaintext highlighter-rouge">Benito</code> exists in the list of names, which has the word <code class="language-plaintext highlighter-rouge">Ben</code> as a substring, but <code class="language-plaintext highlighter-rouge">Ben</code> does not exist in the list, so returning <code class="language-plaintext highlighter-rouge">NO</code> is correct.
+Also notice that searching for <code class="language-plaintext highlighter-rouge">benito</code> returns <code class="language-plaintext highlighter-rouge">NO</code>, because the search is case-sensitive.</p>
+
+<p>Remember to thoroughly test your script!</p>
+
+<h2 id="problem-4">Problem 4</h2>
+
+<p>Write a bash script named <code class="language-plaintext highlighter-rouge">sort-column.sh</code>.
+This script will take as input a CSV file with zero or more pieces of information per line (columns).
+The user will specify a column number, and the script will output all of the contents of that column in sorted order.</p>
+
+<p>This script takes two positional arguments.
+The first will be the one-based column number to extract and sort.
+The second will be the name of the input file.</p>
+
+<p>The following is an example of what an input file (say, <code class="language-plaintext highlighter-rouge">people.txt</code>) might look like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dylan,Smith,sd@gmail.com
+Jan,Yellow,yeljan@yahoo.com
+Anne,Cho,anne145@gmail.com
+James,Kemp,jkemp@apple.com
+Daniel,Talbot,td56@gmail.com
+</code></pre></div></div>
+
+<p>Running <code class="language-plaintext highlighter-rouge">sort-column.sh</code> on this file would look like:</p>
+
+<p>Here are a few examples of what running <code class="language-plaintext highlighter-rouge">sort-column.sh</code> would look like with various inputs.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sort-column.sh 1 people.txt 
+Anne
+Daniel
+Dylan
+James
+Jan
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sort-column.sh 2 people.txt 
+Cho
+Kemp
+Smith
+Talbot
+Yellow
+$
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./sort-column.sh 3 people.txt 
+anne145@gmail.com
+jkemp@apple.com
+sd@gmail.com
+td56@gmail.com
+yeljan@yahoo.com
+$
+</code></pre></div></div>
+
+<p>As can be seen, only the entries in the requested column are printed to stdout, and they are printed in descending sorted order.</p>
+
+<h2 id="problem-5">Problem 5</h2>
+
+<p>Write a script named <code class="language-plaintext highlighter-rouge">compare-first-last.sh</code>.
+This script will compare the beginning lines of one file with the end lines of another file, and determine if they are the same.</p>
+
+<p>This script will take three positional arguments.
+The first is the name of the file to check the beginning lines in.
+The second is the name of the file to check the ending lines in.
+The third is the number of lines to compare.</p>
+
+<p>Say we have two files.
+The first, named <code class="language-plaintext highlighter-rouge">one.txt</code> has the contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stephen Curry
+Eric Bledsoe
+Devin Booker
+Anthony Davis
+Isaiah Thomas
+DeMar DeRozan
+James Harden
+Russell Westbrook
+John Wall
+Chris Paul
+LeBron James
+</code></pre></div></div>
+
+<p>The second, named <code class="language-plaintext highlighter-rouge">two.txt</code> has the contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Russell Westbrook
+Isaiah Thomas
+DeMar DeRozan
+James Harden
+John Wall
+Chris Paul
+Anthony Davis
+LeBron James
+Stephen Curry
+Eric Bledsoe
+Devin Booker
+</code></pre></div></div>
+
+<p>Both of these files are lists of names of NBA players.
+Each file has the same names, but in a different order.
+Notice that the first three names in <code class="language-plaintext highlighter-rouge">one.txt</code> are the same as the last three names of <code class="language-plaintext highlighter-rouge">two.txt</code>.
+We can use this script to confirm this. Run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./compare-first-last.sh one.txt two.txt 3
+The first/last 3 lines are identical
+</code></pre></div></div>
+
+<p>However, if we only compare the first <em>two</em> lines, they are not the same:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./compare-first-last.sh one.txt two.txt 2
+The first/last 2 lines differ
+</code></pre></div></div>
+
+<p>If we check the first three lines of <code class="language-plaintext highlighter-rouge">two.txt</code> to the last three lines of <code class="language-plaintext highlighter-rouge">one.txt</code>, they are not the same.
+Thus, running the script should produce:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./compare-first-last.sh two.txt one.txt 3
+The first/last 3 lines differ
+</code></pre></div></div>
+
+<p>Also, if we try to compare the first/last 4 lines, there will be a difference:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./compare-first-last.sh one.txt two.txt 4
+The first/last 4 lines differ
+</code></pre></div></div>
+
+<p>If the beginning/end N lines match as expected, the script should print <code class="language-plaintext highlighter-rouge">The first/last N lines are identical</code> (where N is the number provided by the user as a command-line argument).
+If the beginning/end N lines do not match in any way, the script should print <code class="language-plaintext highlighter-rouge">The first/last N lines differ</code>.</p>
+
+<p>This script takes <em>two</em> files as input.
+It should check that <em>both</em> oth the files exist, in the order that they are specified on the command line.
+If both do not exist, then two <code class="language-plaintext highlighter-rouge">File X does not exist</code> messages should be displayed.
+If only one does not exists, then only display one for the missing file.</p>
+
+<h2 id="submission-and-grading">Submission and grading</h2>
+
+<p>Each problem is worth 20% of your grade.
+The solutions will be graded on a mac machine.
+You are free to use whatever platform you like while writing the homework (Linux, Mac, or even bash in Windows 10).
+However, if you want to be really sure your programs will run correctly when being graded, it is <em>your</em> responsibility to test them on a mac machine.
+If programs do not run correctly, crash, etc, you may be given a grade of 0.</p>
+
+<p>This was assigned on Thursday, January 19, 2017. It is due Thursday, January 26, 2017, at noon.</p>
+
+<p>Turn-in instructions:</p>
+
+<ul>
+  <li>Place each script file (<code class="language-plaintext highlighter-rouge">create-dirs-and-files.sh</code>, <code class="language-plaintext highlighter-rouge">num-sort.sh</code>, <code class="language-plaintext highlighter-rouge">find-name.sh</code>, <code class="language-plaintext highlighter-rouge">sort-column.sh</code>, and <code class="language-plaintext highlighter-rouge">compare-first-last.sh</code>) in a directory named <code class="language-plaintext highlighter-rouge">netid-assignment-1</code> where <code class="language-plaintext highlighter-rouge">netid</code> is <em>your</em> netid. Make sure only these 5 files exist in this directory, no others.</li>
+  <li>Create a zip file from the <code class="language-plaintext highlighter-rouge">netid-assignment-1</code> directory. The result should be named <code class="language-plaintext highlighter-rouge">netid-assignment-1.zip</code>. There are instructions online for how to <a href="https://support.apple.com/kb/PH22194?locale=en_US">do this with a Mac</a> and how to <a href="https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files">do this with a PC</a>. Make sure to zip the directory, not the files individually!</li>
+  <li>Submit <code class="language-plaintext highlighter-rouge">netid-assignment-1.zip</code> to the assignment-1 D2L dropbox.</li>
+</ul>
+
+<p>Following these turn-in instructions closely is very important, because our grading scripts will depend on some of the details.
+You may lose points if these instructions are not followed precisely!</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

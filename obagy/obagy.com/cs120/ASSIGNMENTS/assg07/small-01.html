@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: List to String (Recursive)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: List to String (Recursive)</h1>
+
+<h2>Expected Behavior</h2>
+Write a <u>recursive</u> function <b>list2string</b>(<i>arglist</i>), where
+<i>arglist</i> is a list of strings, that returns the string resulting from
+concatenating the elements of <i>arglist</i>.
+<p/>
+<h2>Programming Requirements</h2>
+Solve this problem using recursion.  You are allowed to use <u>only</u>
+the following programming constructs:
+<p/>
+<ul>
+  <li>
+    <b>if</b> statements;
+  </li>
+  <li>
+    <b>return</b> statements;
+  </li>
+  <li>
+    assignment;
+  </li>
+  <li>
+    recursive function calls (but not to helper functions);
+  </li>
+  <li>
+    comparison operations (<b>==</b>, <b>!=</b>, etc.);
+  </li>
+  <li>
+    list indexing and slicing;
+  </li>
+  <li>
+    list and string concatenation.
+  </li>
+</ul>
+<p/>
+Solutions that go outside these constructs, e.g., by
+using <b>for</b>/<b>while</b> loops or list comprehensions,
+will not get credit.
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    <b><tt>list2string(['aa','bb','cc','dd'])</tt></b><br/>
+    return value: <b><tt>'aabbccdd'</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>list2string(['aa','bb','','cc','','dd'])</tt></b><br/>
+    return value: <b><tt>'aabbccdd'</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>list2string(['aa'])</tt></b><br/>
+    return value: <b><tt>'aa'</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>list2string([])</tt></b><br/>
+    return value: <b><tt>''</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>list2string(['',''])</tt></b><br/>
+    return value: <b><tt>''</tt></b>
+    <p/>
+  </li>
+</ol>
+
+</body>
+</html>
+

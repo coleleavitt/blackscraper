@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+	<title>CSc 120: Design Approach</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link href="../../style.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<style>
+		pre { margin-left: 3em }
+		.filelink { font-family: monospace }
+		.input { color: blue }
+	</style>
+</head>
+<body>
+<h1>CSc 120: Street Class Design Approach</h1>
+<ol>
+<li>
+<p>
+Imagine a function <code>print_street_at_height(elements, height)</code> that produces a single line of output: the street at the specified height.  For example, again consider this street, with heights shown in a column on the right:
+<pre>
+                                  height
++-------------------------------+
+|                               |   7
+|                   xxxxx       |   6
+|                   xxxxx       |   5
+|         *         xxxxx       |   4
+|        ***        xxxxx       |   3
+|       *****       xxxxx       |   2
+|         |         xxxxx       |   1
+|         |         xxxxx  ~  ~ |   0
++-------------------------------+
+</pre>
+The call <code>print_street_at_height(..., 0)</code> would print this line:
+<pre>
+|         |         xxxxx  ~  ~ |
+</pre>
+The call <code>print_street_at_height(..., 2)</code> would print this line:
+<pre>
+|       *****       xxxxx       |
+</pre>
+Thus, calling <code>print_street_at_height</code> with a series of descending heights would produce the rendering, excluding the top and bottom borders.
+<li>
+<p>
+Now imagine that there are three classes that represent the bulding, park, and empty lot elements of a street. The classes are called <code>Building</code>, <code>Park</code>, and <code>EmptyLot</code>, respectively.  Each class has an <code>at_height</code> method that returns a string that is the text for that element at the specified height.  Example: (blank lines added for clarity)
+<pre>
+>>> b = Building(3,4,"x")  # NOTE: this is not the same building that's shown above!
+
+>>> b.at_height(0)
+'xxx'
+
+>>> b.at_height(4)
+'   '
+</pre>
+<p>
+Next, consider this:
+<pre>
+>>> s = [EmptyLot(5,"_"), Building(3,4,"x"), Park(7,"*")]
+
+>>> h = 0
+>>> s[0].at_height(h) + s[1].at_height(h) + s[2].at_height(h)
+'     xxx   |   '
+
+>>> h = 2
+>>> s[0].at_height(h) + s[1].at_height(h) + s[2].at_height(h)
+'     xxx ***** '
+</pre>
+<li>
+<p>
+Combining the ideas of (1) and (2) leads to this:
+<pre>
+>>> s = [EmptyLot(5,"_"), Building(3,4,"x"), Park(7,"*")]
+>>> print_street_at_height(s, 5)
+               
+>>> print_street_at_height(s, 4)
+           *   
+>>> print_street_at_height(s, 3)
+     xxx  ***  
+>>> print_street_at_height(s, 2)
+     xxx ***** 
+>>> print_street_at_height(s, 1)
+     xxx   |   
+>>> print_street_at_height(s, 0)
+     xxx   |   
+</pre>
+<p>
+<b><u>Note:</u></b> The version of <code>print_street_at_height</code> used above output a newline after the text to make for a clear example but in practice you may find that having <code>print_street_at_height</code> output a newline creates problems.

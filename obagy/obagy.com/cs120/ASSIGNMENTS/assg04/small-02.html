@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Classes: Temperatures</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Classes: Temperatures</h1>
+
+<h2>Expected Behavior</h2>
+
+Write a Python class <b>Temp</b> that meets the following requirements:
+<p/>
+<b>Attributes:</b>
+<p/>
+<ul>
+  <li>
+    <b><tt>_temp</tt></b>: the numerical value of the temperature the object
+    represents;
+  </li>
+  <li>
+    <b><tt>_unit</tt></b>: <b><tt>&quot;C&quot;</tt></b> if the object was 
+    created using a Celsius temperature; <b><tt>&quot;F&quot;</tt></b> if it
+    was created using a Fahrenheit temperature.
+  </li>
+</ul>
+<p/>
+<b>Methods:</b>
+<p/>
+<ul>
+  <li>
+    <b><tt>__init__(self, temp, unit)</tt></b>: where <b><tt>temp</tt></b>
+    is a number and <b><tt>unit</tt></b> is either <b><tt>&quot;C&quot;</tt></b>
+    or <b><tt>&quot;F&quot;</tt></b> depending on whether <b><tt>temp</tt></b>
+    represents a Celsius or Fahrenheit temperature.  This method initializes the 
+    <b><tt>_temp</tt></b> attribute of the object with the value of 
+    <b><tt>temp</tt></b> and the <b><tt>_unit</tt></b> attribute with the
+    value of <b><tt>unit</tt></b>.
+    <p/>
+  </li>
+  <li>
+    <b><tt>__str__(self)</tt></b>: returns a string consisting of
+    the value of the object's
+    <b><tt>_temp</tt></b> attribute together with the unit
+    (<b><tt>&quot;C&quot;</tt></b> or <b><tt>&quot;F&quot;</tt></b>) the
+    object was created with.
+    <p/>
+  </li>
+  <li>
+    Methods that take a second <b><tt>Temp</tt></b> object 
+    <b><tt>other</tt></b> as argument and compare the temperature represented
+    by the object is hotter, cooler, or the same as that represented by
+    <b><tt>other</tt></b>.
+    <p/>
+    Given two <b><tt>Temp</tt></b> objects <b><tt>t1</tt></b> and
+    <b><tt>t2</tt></b>, it should be possible to determine relationship between them,
+    i.e., whether they represent the same temperature, or whether one is
+    a bigger or smaller temperature when converted to the same unit, using
+    the comparison operations 
+    <b><tt>&lt;</tt></b>,
+    <b><tt>&le;</tt></b>,
+    <b><tt>&gt;</tt></b>,
+    <b><tt>&ge;</tt></b>,
+    <b><tt>==</tt></b>,
+    <b><tt>!=</tt></b>.
+  </li>
+</ul>
+
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    <b><tt>t1 = Temp(0, "C")<br/>
+	t2 = Temp(32, "F")<br/>
+	t1 == t2</tt></b><br/>
+	<br/>
+	Result: <b><tt>True</tt></b>
+	<p/>
+  </li>
+  <li>
+    <b><tt>t1 = Temp(0, "C")<br/>
+	t2 = Temp(0, "F")<br/>
+	t1 &gt; t2</tt></b><br/>
+	<br/>
+	Result: <b><tt>True</tt></b>
+	<p/>
+  </li>
+
+  <li>
+    <b><tt>t1 = Temp(100, "C")<br/>
+	t2 = Temp(212, "F")<br/>
+	t1 != t2</tt></b><br/>
+	<br/>
+	Result: <b><tt>False</tt></b>
+	<p/>
+  </li>
+  <li>
+    <b><tt>t1 = Temp(100, "C")<br/>
+	str(t1)</tt></b><br/>
+	<br/>
+	Result: <b><tt>'100C'</tt></b>
+	<p/>
+  </li>
+
+</ol>
+
+<p/>
+<hr/>
+</body>
+</html>
+

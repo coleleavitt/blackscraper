@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Bot Writer</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Writer Bot</h1>
+
+<h2>Restrictions</h2>
+<ol>
+  <li>
+    For the long problem, your code should follow the <a href="../../pgm-style.html" target="_blank">style guidelines</a>
+    for the class. You must follow the updated guidelines for commenting classes.
+  <li>
+You may not use concepts and/or short-hand syntax not yet covered in class. The restrictions include the following:
+<ul>
+  <li>
+ dictionary or list comprehensions, e.g., [n * 2 for i in range(10)]
+  </li>
+  <li>
+ with open (explicitly open and close the file instead)
+  </li>
+  <li>
+ the ternary operator (use an if instead)
+  </li>
+  <li>
+ recursion (not allowed for writer-bot)
+  </li>
+  <li>
+  nested functions (using def <i>within</i> a function to define another function)
+  </li>
+  <li>
+ exceptions (try/except)
+  </li>
+  <li>
+ type annotations
+  </li>
+  <li>
+ lambda expressions 
+  </li>
+  <li>
+ generators and user defined iterators
+  </li>
+  <li>
+ default arguments
+  </li>
+  <li>
+ importing libraries (unless a library is explicitly mentioned in the specification))
+  </li>
+</ul>
+  </li>
+</ol>
+
+<h2>Background</h2>
+<p>
+Suppose that you are  given the task of generating random English text that
+is&mdash;at least somewhat&mdash;coherent and readable. You certainly couldn't simply pick random words from a dictionary, since the choice of the parts of speech (nouns, verbs, adverbs, etc.) would be random and the result would be a nonsensical string of words.
+
+Likewise, if you randomly selected words from a book, you will have narrowed the choice of words to the vocabulary from the book, but if there is no information on how the words should be sequenced so that the generated text mimics the structure of the English language, the result would again be nonsense.
+</p>
+<p>
+However, if you could base the generated text on the characteristics of an original, known text, and compute statistics on the text such as the frequency of combinations of words, then the resulting text would replicate those characteristics.
+In other words, a statistical model of how words are used within a <i>known</i> text can be used to generate random text that will have similar statistics as the orginal text. The resulting text would be (potentially) readable and coherent.
+</p>
+<p>
+To accomplish this, we need a method to analyze text that produces statitics on how combinations of words are used within that text. Fortunately, a method called <i>Markov Chain Analysis</i> does precisely that. It determines the probability that certain words will follow combinations of other words in a text. 
+Using Markov chain analysis statistics to generate new text ensures that the new text will have similar statistical properties of the original. 
+(Think of this assignment as a begginer's ChatGPT.)
+<p>
+The theory of Markov chain analysis can be found 
+<a href="https://en.wikipedia.org/wiki/Markov_chain" 
+   target="_blank">here</a>.
+</p>
+
+
+<h2>Markov Chain Algorithm</h2>
+<p>
+The Markov chain analysis groups sequences of words into <i>prefixes</i> (of a specified size) and determines the set of words that will follow each prefix. A word that follows a prefix is a <i>suffix</i>.
+</p>
+<p>
+For example, consider the lyrics of the Monty Python song <i>Eric Half-a-Bee</i>:
+</p>
+<blockquote>
+Half a bee philosophically    
+<br>
+Must, ipso facto, half not be. 
+<br>
+But half the bee has got to be 
+<br>
+Vis a vis, its entity. Do you see? 
+<br>
+<p>
+
+But can a bee be said to be 
+<br>
+Or not to be an entire bee 
+<br>
+When half the bee is not a bee 
+<br>
+Due to some ancient injury?
+</p>
+</blockquote>
+<p>
+We can build a table of all of the possible two word prefixes and the suffixes that follow. Since the resulting table is quite large, we will only show the table for a few of the prefixes that help to illustrate the discussion:
+<p/>
+<table>
+     <tr>
+        <th>Prefix</th>
+        <th>Suffixes</th>
+     </tr>
+     <tr>
+     <tr>
+       <td>Half a</td>
+       <td>bee</td>
+     </tr>
+     <tr>
+        <td>a bee</td> 
+        <td>
+          philosophically
+          <br>
+          be
+          <br>
+          Due
+     </td>
+     </tr>
+     <tr>
+        <td>bee philosophically</td>
+        <td>Must </td>
+     </tr>
+     <tr>
+        <td>philosophically Must,</td>
+        <td>ipso</td>
+     </tr>
+     <tr>
+        <td>Must, ipso</td>
+        <td>facto</td>
+     </tr>
+</table>
+<p>
+
+We can see that the phrase "Half a" is always followed by "bee", but "a bee" can be followed by "philosophically", "be", or "Due".
+</p>
+<p>
+To generate the text, the Markov chain algorithm will construct phrases by randomly choosing one of the suffixes that follows a given prefix, according to the table that is generated from the text. 
+</p>
+<p>
+For prefixes of length two, the algorithm can be described in pseudocode as follows:
+<pre>
+create an empty list tlist for the generated text
+set w1 and w2 to the first two words in the text
+add w1 and w2 to tlist
+set the prefix to w1 w2
+while the prefix is in the table
+   randomly choose w3, one of the successors of prefix w1 w2 in the text
+   append w3 to tlist
+   set the prefix to w2 w3  
+</pre>
+</p>
+<p>
+
+To illustrate, the algorithm will start by adding "Half a" to <tt>tlist</tt>.
+The only option for a suffix is "bee", which is then appended to <tt>tlist</tt>. The current prefix changes to "a bee" and the loop repeats. 
+This time, there are three options for suffixes: "philosophically", "be", 
+or "Due". 
+If we suppose that "Due" is chosen, then "Due" is appended to <tt>tlist</tt> and the prefix changes to "bee Due". The generated text in <tt>tlist</tt> at this point is:
+</p>
+<pre>
+   [ 'Half', 'a', 'bee', 'Due' ]
+</pre>
+<p>
+The text generation continues until the last suffix is reached, or until a sufficient
+amount of text has been generated. 
+(This is explained further in the <b>Expected Behavior</b> section.)
+</p>
+<p>
+Your program will read a file from input, use the Markov chain analysis to create a table of prefixes and suffixes, and use the pseudocode above to generate new text based on the table of prefix and frequencies.
+</p>
+
+<h2>Definitions</h2>
+<h3>Word</h3>
+In this problem, we want to keep the punctuation. We want "hurried" to be distinct from "hurried!" so that the generated text will retain some of the 
+grammatical information of the original.
+A word is therefore defined as a sequence of characters surrounded by white space. 
+
+<h3>NONWORD</h3>
+Notice that the generated text must start with "Half a", since those are the first two words of the text. But
+to build the table, every word must have a prefix. The prefixes for "Half" and "a" at the beginning are 
+boundary cases that would need to be considered in the algorithm. However we can avoid complicating the
+algorithm to handle these boundaries cases by introducing an artificial word that will never be encountered
+in the text. We'll define this as NONWORD and we will prime the first two prefixes to be "NONWORD
+NONWORD" and "NONWORD Half " .  Our partial table from the example above would 
+become the following:
+</p>
+<table>
+     <tr>
+        <th>Prefix</th>
+        <th>Suffixes</th>
+     </tr>
+     <tr>
+       <td>
+         <tt> NONWORD</tt>
+         <tt> NONWORD</tt>
+       </td>
+       <td> Half </td>
+     <tr>
+       <td>
+         <tt> NONWORD</tt>
+             Half 
+       </td>
+       <td>a</td>
+     </tr>
+     <tr>
+       <td>Half a</td>
+       <td>bee</td>
+     </tr>
+     <tr>
+        <td>a bee</td> 
+        <td>
+          philosophically
+          <br>
+          be
+          <br>
+          Due
+     </td>
+     </tr>
+     <tr>
+        <td>bee philosophically</td>
+        <td>Must </td>
+     </tr>
+     <tr>
+        <td>philosophically Must,</td>
+        <td>ipso</td>
+     </tr>
+     <tr>
+        <td>Must, ipso</td>
+        <td>facto</td>
+     </tr>
+</table>
+<h3>Multiplicity</h3>
+The table shown above is only a portion of the full table that would be generated for the example text. In this portion of the table, each prefix/suffix pair occurs only once in the text.
+For these pairs, we say that the suffix has a multiplicity of 1. 
+
+However, in the complete table (not shown), a prefix/suffix pair may occur many times.
+For example, 'bee' is a suffix of 'half the' twice in the text. Since the prefix/suffix pair occurs twice, we say that the suffix has a multiplicity of 2.
+Likewise, if a pair occurs 4 times, we say that the suffix has a multiplcity of 4. 
+<p>
+During text generation, if a suffix has a higher multiplicity, it has a greater chance of being chosen. This means the statistical properties of the original text are maintained.
+</p>
+
+<h2>Expected Behavior</h2>
+Write a program, in a file <b>writer_bot.py</b>, that generates random text
+from a given source text.  Your program should behave as follows:
+<p/>
+<ol>
+  <li>
+    Use <b><tt>input()</tt></b> (without arguments) to read the name of the
+    the source file <i>sfile</i>.  Do <i><u>not</u></i>
+    prompt the user for input.  Do <i><u>not</u></i> hard-code the file name
+    into your program.
+    <p/>
+  </li>
+  <li>
+    Use <b><tt>input()</tt></b> (without arguments) to read in the prefix size <i>n</i>.
+    Do <i><u>not</u></i> prompt the user for input.
+    <p/>
+  </li>
+  <li>
+    Use <b><tt>input()</tt></b> (without arguments) to read in the number of words       to be generated for the random text.
+    Do <i><u>not</u></i> prompt the user for input.
+    <p/>
+  </li>
+  <li>
+    Read <i>sfile</i> and build the Markov chain table of prefixes to suffixes 
+    according to the description above.
+    <p/>
+  </li>
+  <li>
+    Construct the randomly generated text according to the Markov chain algorithm. Construct a list to hold the words of the generated text. 
+    <p/>
+  </li>
+  <li>
+    Print out the generated text list accoring to the <b>Output format</b> below.  
+  </li>
+</ol>
+</p>
+
+<h2>Input Format</h2>
+Each line of the input file is a sequence of characters separated by whitespace.
+The file may consists of any number of lines with any number of words on each line. 
+
+<h2>Output Format</h2>
+
+Print out the list of generated text <i>ten words per line</i>.
+Any extra words will be printed on the last line. For example, if the generated text has only nine words, the output will consist of one line of nine words.
+If the text has 109 words, the output will consist of eleven lines of output, the first ten lines having ten words and the last line having nine.
+
+<h2>Programming Requirements</h2>
+
+ <ol>
+ <li>
+  The example discussed above shows a table for prefixes of size two. <i>Your program must work for a prefix of arbitrary size n.</i>
+ <p>
+ </li>
+ <li>
+ Use a dictionary to build the table mapping prefixes to suffixes.  
+ Since the prefixes will be the keys in a dictionary, you must use an immutable type for the prefixes. <i>You are required to use tuples for the keys.</i>
+ <p>
+ </li>
+ <li>
+As shown in the example, a prefix may have one or more suffixes. You must use 
+a list to represent the possible suffixes. When a new suffix is encountered 
+for an existing prefix, you must append the new suffix to the end of the list.
+ This is important for matching the auto-graded output: the order in which suffixes 
+are stored in the list will affect the choices made during text generation and will impact the output.
+The following is a snippet of the dictionary corresponding to the Eric the Bee example:
+<p/>
+<blockquote>
+<pre>
+{
+    ('Half', 'a')  : [ 'bee' ],
+    ('a', 'bee')   : [ 'philosophically', 'be', 'Due' ],
+    ...
+    ('half', 'the'): [ 'bee', 'bee' ],
+    ('the', 'bee') : [ 'has', 'is' ]
+    ('bee', 'has') : [ 'got' ]
+    ...
+}
+</pre>
+</blockquote> 
+ Notice that "bee" occurs twice as a suffix to "half the". Make sure that you keep such
+ duplicates in the suffix list. This ensures that the statisical properties of the text will be correct. 
+ </li>
+ <p>
+ <li>
+ You must use the algorithm described in the <strong>Markov Chain Algorithm</strong> section above. If you simply iterate through
+ the keys of the dictionary, your generated text will be incorrect.
+ </li>
+ <p>
+ <li>
+ During text generation, when a prefix has more than one suffix, the suffix will be randomly
+ chosen from the list. You will use the Python random number generator as in Assignment 1 to do this.
+As in that assigment, in order for your output to match the tester and grading scripts, you must seed the random 
+number generator. To do this, define the following constant at the top of your program:
+<blockquote>
+<pre>
+   SEED = 8
+</pre>
+</blockquote>
+<p>
+<b>Note:</b> You must use <b><tt>randint()</tt></b> and not <b><tt>choice()</tt></b>. <i>Also, only call <b><tt>randint()</tt></b> when there is more than one suffix in the list.</i>
+</p>
+ </li>
+ <li>
+ You must define the constant <tt>NONWORD</tt>, which must be a word that cannot exist in the original text. Since a word cannot contain a space, define <tt>NONWORD</tt> as a string with a single space as follows:
+<blockquote>
+<pre>
+   NONWORD = " " 
+</pre>
+</blockquote>
+ </li>
+ <li>
+ As you can imagine, when generating the output for larger text, it is not useful to print out the random text
+one word at a time.  During the text generation phase, create a list to hold the words of the generated text.
+When the text generation is complete, print the output as specified in the <b>Output format</b> section.
+ </li>
+ </ol> 
+
+<p/>
+
+<h2>Errors</h2>
+<p/>
+No error checking is required for this assignment.
+<p/>
+
+<h2>Examples</h2>
+Some examples of generating random text from different source texts are shown 
+<a href="examples-writer-bot.html" target="_blank">here</a>.
+<p/>
+
+<h2>Reference</h2>
+The Markov chain algorithm is used to solve a variety of problems. Using it for random text generation has been described in many places, most notably in <i>The Practice of Programming</i>, by Kernighan and Pike,
+which can be found
+<a href="https://www.oreilly.com/library/view/the-practice-of/9780133133448/" target="_blank">here</a>.
+
+<hr/>
+
+</body>
+</html>
+

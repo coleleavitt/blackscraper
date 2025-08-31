@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: n-grams</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: n-grams</h1>
+
+<h2>Expected Behavior</h2>
+
+Write a function <b><tt>ngram(arglist, startpos, length)</tt></b> that returns 
+the n-gram from <b><tt>arglist</tt></b> of length <b><tt>length</tt></b>
+starting at position <b><tt>startpos</tt></b>, if one exists; and <b><tt>[]</tt></b>
+otherwise.  (The very first element of the list is at position 0.  Negative 
+positions refer to counting backwards from the end of the list.)
+
+<h2>Examples</h2>
+<p/>
+<ol>
+  <li>
+    Call: <b><tt>ngram([11,22,33,44,55], 0, 3)</tt></b><br/>
+    Return value: <b><tt>[11,22,33]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>ngram([11,22,33,44,55], 2, 3)</tt></b><br/>
+    Return value: <b><tt>[33,44,55]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>ngram([11,22,33,44,55], 3, 3)</tt></b><br/>
+    Return value: <b><tt>[]</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>ngram([11,22,33,44,55], -4, 3)</tt></b><br/>
+    Return value: <b><tt>[22,33,44]</tt></b>
+    <p/>
+  <li>
+    Call: <b><tt>ngram([11,22,33,44,55], 1, 1)</tt></b><br/>
+    Return value: <b><tt>[22]</tt></b>
+  </li>
+</ol>
+<p/>
+<hr/>
+</body>
+</html>
+

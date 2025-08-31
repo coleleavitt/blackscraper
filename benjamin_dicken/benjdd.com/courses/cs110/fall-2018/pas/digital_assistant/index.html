@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Digital Assistant</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---digital-assistant">CSc 110 - Digital Assistant</h1>
+
+<p><img src="./res/da.jpg" width="250px" alt="Digital Assistants" /></p>
+
+<p>Many of us have used a digital assistant before (ranging from Google Assistant, Apple’s Siri, Amazon’s Alexa, Microsoft’s Cortana, and perhaps more).
+In this assignment, you will be creating a very simplistic version of a digital assistant such as these.</p>
+
+<p>The digital assistant (DA) that you create will be MUCH simpler.
+The interface for using it will not be with your voice - rather, it will be with typed text on the python console.
+Also, it will only be able to recognize to main types of commands.
+You can either <em>tell</em> the DA something that you want it to remember, or you can <em>ask</em> the DA to recall something that you told it.</p>
+
+<h2 id="tell-the-da-something">Tell the DA something</h2>
+
+<p>The first type of command (telling) will be a single sentence with the following form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(entity) (category) (was / is / will be) (item)
+</code></pre></div></div>
+
+<p>There are four parts to this command.</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">entity</code> is the name or title of an individual or group.
+This would be words like <code class="language-plaintext highlighter-rouge">my</code>, <code class="language-plaintext highlighter-rouge">your</code>, <code class="language-plaintext highlighter-rouge">his</code>, <code class="language-plaintext highlighter-rouge">hers</code>, <code class="language-plaintext highlighter-rouge">steve's</code>, etc.
+You can assume this all always be one word.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">category</code> will be something like <code class="language-plaintext highlighter-rouge">favorite sports team</code>, <code class="language-plaintext highlighter-rouge">first pet</code>, or <code class="language-plaintext highlighter-rouge">last meal</code>.</li>
+  <li>The third chunk of the statement will always be one of three <em>tenses</em> : <code class="language-plaintext highlighter-rouge">was</code>, <code class="language-plaintext highlighter-rouge">is</code>, or <code class="language-plaintext highlighter-rouge">will be</code> (past, present, future).
+Notice that two of the tenses are just one-word long, and one of them is two!</li>
+  <li>The <code class="language-plaintext highlighter-rouge">item</code> component is what goes along with the <code class="language-plaintext highlighter-rouge">category</code>.
+It would be something like <code class="language-plaintext highlighter-rouge">Phoenix Suns</code>, <code class="language-plaintext highlighter-rouge">bird</code>, or <code class="language-plaintext highlighter-rouge">chinese orange chicken</code>.</li>
+</ul>
+
+<p>Below are a few examples of full commands:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">my favorite meal is orange chicken</code></li>
+  <li><code class="language-plaintext highlighter-rouge">your longest work shift was 14 hours</code></li>
+  <li><code class="language-plaintext highlighter-rouge">his exercise program will be done in 1 month</code></li>
+</ul>
+
+<p>You program should process each command that is entered, and save this information into one or more dictionaries.
+You MUST use dictionaries to store the command info.
+You may use lists only for file reading and when processing the input commands (for example, <code class="language-plaintext highlighter-rouge">string.split</code> returns a list).
+In order to process the commands, you may want to use the <code class="language-plaintext highlighter-rouge">split()</code> function, as well as other string features of python.</p>
+
+<p>Any time the DA requests a command / sentence from the user, the line should begin with <code class="language-plaintext highlighter-rouge">USER:
+</code>.</p>
+
+<h2 id="ask-the-da-something">Ask the DA something</h2>
+
+<p>You can also <em>ask</em> the DA for information that you have previously told it.
+These requests will take the following form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>what (tense) (entity) (category)?
+</code></pre></div></div>
+
+<p>These ask commands will <em>always</em> begin with the word <code class="language-plaintext highlighter-rouge">what</code>.
+The <code class="language-plaintext highlighter-rouge">tense</code>, <code class="language-plaintext highlighter-rouge">entity</code>, and <code class="language-plaintext highlighter-rouge">category</code> should match up with what you previously saved / remembered.
+Again, you’ll want to use the string <code class="language-plaintext highlighter-rouge">split()</code> function along with other string functionality to extract the components of the command.
+You should use the <code class="language-plaintext highlighter-rouge">strip()</code> function to ignore the question-mark.</p>
+
+<h2 id="da-replies">DA Replies</h2>
+
+<p>Any time the DA replies-to a command / sentence from the user, the line should begin with <code class="language-plaintext highlighter-rouge">DA: </code> followed by the message.
+When DA accepts new information, it should reply with <code class="language-plaintext highlighter-rouge">DA: OK!</code>.
+When the user asks the DA a question, the DA will reply with the expected information, or an error message.
+See the examples below for what the replies should look like.</p>
+
+<p>There is also a special-case for the DA replies.
+If the user refers to “my”, the DA will switch it to “your” in the reply.
+Also, “your” should be switched to “my”.
+This is shown in one of the examples below.</p>
+
+<h2 id="guided-examples">Guided Example(s)</h2>
+
+<p>Let’s say that the user entered</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USER:
+joe's favorite food is orange chicken
+</code></pre></div></div>
+
+<p>Your program should remember that the entity <code class="language-plaintext highlighter-rouge">joe's</code> <code class="language-plaintext highlighter-rouge">favorite food</code> <code class="language-plaintext highlighter-rouge">is</code> (present tense) <code class="language-plaintext highlighter-rouge">orange chicken</code>.
+Later, the user could say:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USER:
+what is joe's favorite food?
+</code></pre></div></div>
+
+<p>And the program should reply with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DA: joe's favorite food is orange chicken.
+</code></pre></div></div>
+
+<p>If in the same program session, we were to then enter:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USER:
+joe's favorite food was pizza
+DA: OK!
+USER:
+joe's favorite food is salad
+DA: OK!
+USER:
+joe's favorite food will be pasta
+DA: OK!
+</code></pre></div></div>
+
+<p>Then the following would be the program’s response:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USER:
+what is joe's favorite food?
+DA: joe's favorite food is salad
+USER:
+what was joe's favorite food?
+DA: joe's favorite food was pizza
+USER:
+what will be joe's favorite food?
+DA: joe's favorite food will be pasta
+</code></pre></div></div>
+
+<p>Notice in this example that: (A) the software remembers a different food for the same person, for each of the three tenses, and (B) the old “orange chicken” favorite was overwritten by the new “salad” preference for the present-tense (is) case.</p>
+
+<h2 id="unknown-request">Unknown Request</h2>
+
+<p>If the user requests information that has not been provided to the DA yet, The DA should reply with <code class="language-plaintext highlighter-rouge">DA: I don't know.</code>.</p>
+
+<h2 id="loading-from-a-file">Loading from a file</h2>
+
+<p>At the beginning of execution, your program should also open a file named <code class="language-plaintext highlighter-rouge">da.txt</code> and potentially load in existing DA information.
+The format of the file will be like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(entity) (category)|(tense)|(item)
+(entity) (category)|(tense)|(item)
+(entity) (category)|(tense)|(item)
+...
+</code></pre></div></div>
+
+<p>Notice the vertical bars separating the three components.
+Your program can read the lines of the file, split on the bars, and then put this information into the dictionarie(s) in the program.
+A sample file may look like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my favorite food|was|chicken
+his smallest car|is|camry
+America's current state count|is|50
+</code></pre></div></div>
+
+<h2 id="how-to-store-the-information">How to store the information</h2>
+
+<p>One way to tackle this problem is to store the information from the user commands (and/or the file) in one dictionary.
+Each command from the user should follow this format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(entity) (category) (was / is / will be) (item)
+</code></pre></div></div>
+
+<p>You can store this into one dictionary if you map the concatenation of the entity, category, and tense as the keys, and the items as values.
+For example, if the user provided this command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my favorite meal is orange chicken
+</code></pre></div></div>
+
+<p>The mapping in the dictionary could be:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'my favorite meal is' -&gt; 'orange chicken'
+</code></pre></div></div>
+
+<p>For each bit of information read in from a file or user, you can create a new mapping, or update an existing mapping.</p>
+
+<h2 id="complete-examples">Complete Examples</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DA: Hi there, let's talk. . .
+USER:
+my favorite food is orange chicken
+DA: OK!
+USER:
+what is my favorite food?
+DA: your favorite food is orange chicken
+USER:
+james's hardest course is CS 500
+DA: OK!
+USER:
+what is james's hardest course?
+DA: james's hardest course is CS 500
+USER:
+bye
+DA: bye!
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DA: Hi there, let's talk. . .
+USER:
+my first car was a dodge durango
+DA: OK!
+USER:
+your first car was nothing!
+DA: OK!
+USER:
+what was my first car?
+DA: your first car was a dodge durango!
+USER:
+what was your first car?
+DA: my first car was nothing!
+USER:
+bye
+DA: bye!
+</code></pre></div></div>
+
+<h2 id="submission">Submission</h2>
+
+<p>Submit this to Gradescope by Friday, November 2nd, by 5:00pm.
+Name the file <code class="language-plaintext highlighter-rouge">digital_assistant.py</code>.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

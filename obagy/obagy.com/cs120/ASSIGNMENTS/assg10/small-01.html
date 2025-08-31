@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: Create BST 01</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Trees</h1>
+
+<h2>Expected Behavior</h2>
+Write a recursive function <b>preorder_to_bst</b>(<i>preorder</i>), 
+where <i>preorder</i> is list of values representing the node values
+of the preorder traversal of a binary search tree, and creates and 
+returns the binary search containing those values.
+
+<p>
+Your function should work for empty trees, trees with one node, and trees
+with many nodes.
+</p>
+
+<h3>Implementation Notes</h3>
+This problem is very similar to the problem of constructing the
+decoding tree for the Huffman assignment. In that problem, you
+were given the preorder and inorder traversals of a tree and used those
+traversals to create 
+the new preorder and inorder lists of nodes for the left and right
+sides of the tree (recursively). 
+<p>
+In this case, you will be able to create a binary
+search tree from only the preorder traversal list that is given as an argument. 
+This is because you can use the property of a binary search tree 
+to determine which node values will be used for the left side of the tree and which
+will be used for the right side of the tree.
+</p>
+<h3>Requirements</h3>
+<ul>
+<li>You must write a function and not a method.</li>
+<li>Your function must be recursive.</li>
+<li>You may NOT use a list comprehension to make the new preorder lists for the left and right sides of the tree, however you MAY use a loop for this.</li>
+</ul>
+
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    Call: <b><tt>preorder_to_bst([3])</tt></b><br/>
+    Result: <b><tt>"(3 None None)"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>preorder_to_bst([3, 2, 5])</tt></b><br/>
+    Result: <b><tt>"(3 (2 None None) (5 None None))"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>preorder_to_bst([8, 5, 11, 9, 14])</tt></b><br/>
+    Result: <b><tt>"(8 (5 None None) (11 (9 None None) (14 None None)))"</tt></b>
+    <p/>
+  </li>
+  <li>
+    Call: <b><tt>preorder_to_bst([24, 11, 5, 7, 30, 28, 41])</tt></b><br/>
+    Result: <b><tt>"(24 (11 (5 None (7 None None)) None) (30 (28 None None) (41 None None)))"</tt></b>
+    <p/>
+  </li>
+</ol>
+
+<p/>
+<hr/>
+</body>
+</html>
+

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cs250</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lecture-notes-unix-file-systems-and-bash">CSc 250: Lecture Notes: UNIX, file systems, and bash</h1>
+
+<h2 id="unix-what-is-it">UNIX! What is it?</h2>
+
+<p><img src="/assets/memes/unix.jpg" width="200" /></p>
+
+<p>UNIX (unix) is a family of multitasking, multiuser computer operating systems that derive from the original AT&amp;T Unix, developed starting in the late 60s and early 1970s at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others.</p>
+
+<p>Many Unix-like operating systems have arisen over the years, of which GNU/Linux is the most popular.
+Below is a chart that maps the many flavors of UNIX operating systems:</p>
+
+<p><img src="/assets/1959px-Unix_history-simple.svg.png" alt="new shell" /></p>
+
+<p>There are many versions (often called “flavors”) of Unix (and Unix-like) operating systems, such as Linux, BSD, Solaris, and others. Even Mac OS is technically a UNIX system, because it was originally based on UNIX. As you will notice by looking at the graph, Windows is <em>not</em> a UNIX system, since it is based on the DOS kernel.</p>
+
+<p>The computer science department at the University of Arizona primarily uses two UNIX operating systems: MacOS and Ubuntu (which is linux based). Most of the computer labs (GS 228, 930) have primarily mac machines. The department also has a number of Ubuntu linux machines, All of the programming assignments in this course must be written to work on a UNIX system. If you do not already own one, you can use the Mac and Ubuntu computers in the labs. Altenrately, you can try installing Ubuntu on your laptop or desktop and using that (Ubuntu is free!). Though, if you’ve never tried installing a linux operating system before, be warned - it can take a lot of time and messing with to get it working.</p>
+
+<p>In this course, you are going to learn how to use a unix system via the “shell”. You’ve probably seen it before in the movies. A computer Nerd frantically typing away at a computer with a black screen with green text frantically flying down the monitor. In this class, you will become that person (OK, not quite, but you <em>will</em> learn how to use this interface). Using the shell might seem like a daunting idea. Isn’t that only for computer super geeks? Well no, actually.</p>
+
+<p>Most people are used to using computers with the “point and click” interface. To browse files on the computer, we drag the mouse over the Finder icon, click, and are presented with a graphical view of our files and folders. To browse through them, we click, scroll, and look at icons with fines and their names. To use the internet, we drag our mouse over the Chrome icon, click, and are presented with a graphical internet browser. To navigate to a site, we click on the url text box, type in an address, and hit <code class="language-plaintext highlighter-rouge">Enter</code>. This takes us to a graphical website, with buttons to click, videos to watch, etc. The “point and click” method of interfacing with our computers is the most common way of doing so. However, this is not the <em>only</em> way to interface with the operating system.</p>
+
+<p>As you probably guessed, another way to do so is using the shell.</p>
+
+<h2 id="the-unix-file-system">The UNIX file system</h2>
+
+<p>Most of us are probably familiar with the <em>file</em> <em>system</em> on our computers.
+Every windows, mac, and linux computer has some type of file system on it.
+A file system is a piece of software on your computer used to manage and organize the files and folders (directories) on your computer.
+Generally, file systems are hierarchical, meaning that their organization structure is a tree.</p>
+
+<p>A single hard drive can have one or more partitions, and each partition can have a different file system on it.
+On a UNIX machine “everything is a file”. Programs that you run are files. Documents are files. Even directories are just a special type of file.</p>
+
+<p>The below diagram given an example of an example UNIX file system.</p>
+
+<p><img src="/assets/UnixDirectoryTree.png" alt="new shell" /></p>
+
+<p>Each file system has a “root” (<code class="language-plaintext highlighter-rouge">/</code>) directory, which represents the top of the file system tree. All files on the computer are organized as directories and sub-directories in this root directory.</p>
+
+<p>Files and directories can be specified using paths.
+The absolute path of the root directory is <code class="language-plaintext highlighter-rouge">/</code>.
+The absolute path of <code class="language-plaintext highlighter-rouge">index.html</code> is <code class="language-plaintext highlighter-rouge">/home/jelkner/public_html/index.html</code>.
+The absolute path of the <code class="language-plaintext highlighter-rouge">network</code> directory is <code class="language-plaintext highlighter-rouge">/etc/network</code>.
+Try writing down some other absolute paths based on this diagram as a separate exercise.</p>
+
+<h2 id="finder-vs-terminal">Finder vs Terminal</h2>
+
+<p>Let’s walk through a comparison of browsing files in Finder vs browsing through files in the shell (using the Terminal app). On a mac, when you click on Finder to browse files, you will see a window that looks like this:</p>
+
+<p><img src="/assets/ln1-finder.png" alt="finder" /></p>
+
+<p>This is your “home” directory, which contains folders for your Documents, Photos, Videos, and more. If we double-click on the <code class="language-plaintext highlighter-rouge">Desktop</code> folder, we see something like this:</p>
+
+<p><img src="/assets/ln1-finder-Desktop.png" alt="finder" /></p>
+
+<p>We can take a similar set of actions using the shell. To open a shell on a mac, search for the application named <code class="language-plaintext highlighter-rouge">Terminal</code> and open it. This will open up a new window with a blank shell, ready for use. When you do so, you will see a window looking something like this:</p>
+
+<p><img src="/assets/ln1-terminal-new.png" alt="new shell" /></p>
+
+<p>This is a new shell session. Each shell session has a “current working directory” which is the directory that the shell currently “resides” at. To figure out what the current working directory is, type <code class="language-plaintext highlighter-rouge">pwd</code> and then hit enter:</p>
+
+<p><img src="/assets/ln1-terminal-pwd.png" alt="new shell" /></p>
+
+<p>a new session typically defaults to the current user’s home directory, which is why <code class="language-plaintext highlighter-rouge">pwd</code> shows <code class="language-plaintext highlighter-rouge">/Users/bddicken</code> (my home directory on my Mac). We can also take a look as the files and folders that currently exist in this directory by typing <code class="language-plaintext highlighter-rouge">ls</code> and then hitting enter:</p>
+
+<p><img src="/assets/ln1-terminal-ls.png" alt="new shell" /></p>
+
+<p>Look! All of the same files/directories that we saw when we first opened Finder are show here. Thus, we are currently in the same directory that the first finder window was displaying. In the finder example, we double-clicked on the <code class="language-plaintext highlighter-rouge">Desktop</code> icon to view the files in that directory. How do we do that in the shell? Type <code class="language-plaintext highlighter-rouge">cd</code> (stands for “change directory”) and hit Enter:</p>
+
+<p><img src="/assets/ln1-terminal-cd-Desktop.png" alt="new shell" /></p>
+
+<p>(BREAK: Taking a bazillion screenshots of the terminal window is hard. From here on out, most of my shell and code examples will just show the text in a code box)</p>
+
+<p>Now, run the <code class="language-plaintext highlighter-rouge">pwd</code> command again to make sure we changed directories:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Last login: Fri Dec 30 12:44:31 on ttys002
+$ pwd
+/Users/bddicken
+$ ls
+Applications    Downloads   Music       dev
+Desktop     Library     Pictures    rc
+Documents   Movies      Public      teaching
+$ cd Desktop/
+$ pwd
+/Users/bddicken/Desktop
+$ 
+</code></pre></div></div>
+
+<p>Looks like we are now on the desktop!</p>
+
+<p>Now, re-run <code class="language-plaintext highlighter-rouge">ls</code> to see what files are in the desktop directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+ben-small.jpg               ubuntu-14.04.5-desktop-amd64.iso
+hagura.zip              unetbootin-mac-625.dmg
+</code></pre></div></div>
+
+<p>Looks like it matches with the finder window!
+What if we want to create a <em>new</em> directory?
+Well, there is also a bash command for that, and it is <code class="language-plaintext highlighter-rouge">mkdir</code> (short for “make directory”).
+To make a new directory called <code class="language-plaintext highlighter-rouge">test</code> we can run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir test
+</code></pre></div></div>
+
+<p>And now, when we run <code class="language-plaintext highlighter-rouge">ls</code>, we will see:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+ben-small.jpg               test                    unetbootin-mac-625.dmg
+hagura.zip              ubuntu-14.04.5-desktop-amd64.iso
+</code></pre></div></div>
+
+<p>We can <code class="language-plaintext highlighter-rouge">cd</code> into this directory, and we will see nothing, because it is empty:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd test/
+$ ls
+$ 
+</code></pre></div></div>
+
+<p>To create a new <em>file</em> (not a directory), the command <code class="language-plaintext highlighter-rouge">touch</code> is used.
+Running <code class="language-plaintext highlighter-rouge">touch todo.txt</code> will create a new file named <code class="language-plaintext highlighter-rouge">todo.txt</code> with no contents.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ touch todo.txt
+$ ls
+todo.txt
+</code></pre></div></div>
+
+<p>We can create a few more:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ touch a.txt b.txt c.txt
+$ ls
+a.txt       b.txt       c.txt       todo.txt
+</code></pre></div></div>
+
+<p>We can also <em>move</em> files with the <code class="language-plaintext highlighter-rouge">mv</code> command.
+<code class="language-plaintext highlighter-rouge">mv</code> can be used to move files from one directory to another.
+A typical <code class="language-plaintext highlighter-rouge">mv</code> command takes two arguments.
+The first is the name of the file to move.
+The second is the location/name of the file to move the file to.
+It can also be used to change the name of a file.
+For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+a.txt       b.txt       c.txt       todo.txt
+$ mv a.txt AAA.txt
+$ ls
+AAA.txt     b.txt       c.txt       todo.txt
+$ mv b.txt another-file.csv
+$ ls
+AAA.txt         another-file.csv    c.txt           todo.txt
+$
+</code></pre></div></div>
+
+<p>Great, files!
+For now, we are not going to really do anything with these files.
+We will learn more about how to view and manipulate file contents within bash in a later lecture.
+However, we do want to clean up this little mess we have made.
+After all, we don’t need a bunch of empty files and useless directories lying around.
+The command <code class="language-plaintext highlighter-rouge">rm</code> can be used to <code class="language-plaintext highlighter-rouge">delete</code> files.
+To delete all of these files, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm AAA.txt another-file.csv c.txt todo.txt 
+$ ls
+$
+</code></pre></div></div>
+
+<p>All gone!
+We should also delete the test directory that we created.
+We are currently inside of it though, at the absolute path <code class="language-plaintext highlighter-rouge">/Users/bddicken/Desktop/test</code>.
+To go back up one directory level (to <code class="language-plaintext highlighter-rouge">/Users/bddicken/Desktop</code>), we can do <code class="language-plaintext highlighter-rouge">cd ..</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ..
+$ pwd
+/Users/bddicken/Desktop
+</code></pre></div></div>
+
+<p>We can delete the directory with the <code class="language-plaintext highlighter-rouge">rmdir</code> command (stands for “remove directory”).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls
+ben-small.jpg               test                    unetbootin-mac-625.dmg
+hagura.zip              ubuntu-14.04.5-desktop-amd64.iso
+$ rmdir test
+$ ls
+ben-small.jpg               ubuntu-14.04.5-desktop-amd64.iso
+hagura.zip              unetbootin-mac-625.dmg
+</code></pre></div></div>
+
+<p>Aaaaaand, it’s gone.</p>
+
+<p>We just learned about several shell commands: <code class="language-plaintext highlighter-rouge">pwd</code>, <code class="language-plaintext highlighter-rouge">ls</code>, <code class="language-plaintext highlighter-rouge">cd</code>, <code class="language-plaintext highlighter-rouge">mkdir</code>, <code class="language-plaintext highlighter-rouge">touch</code>, <code class="language-plaintext highlighter-rouge">rm</code>, and <code class="language-plaintext highlighter-rouge">rmdir</code>.
+Combining these few commands can be used to browse through and manipulate the files on your operating system, just like clicking with your mouse in Finder.
+Same task, different interface.
+We only scratched the surface of some of these commands, but we will use them more as the semester goes on.</p>
+
+<h2 id="bash-the-shell">Bash (the shell)</h2>
+
+<p>When we open terminal and get a new shell, what exactly is going on in the background? Terminal is just an application on our computer that opens up a window with text. Terminal starts up a new shell by running one of the shell programs on the operating system. Conceptually, a shell program is pretty simple. It takes user-typed text as input, processes that input, and executes the commands that the text represents.</p>
+
+<p>So, what shell program does terminal use?</p>
+
+<p>On most systems, including Macs, the default and built-in shell program is called <code class="language-plaintext highlighter-rouge">bash</code>. This stands for “Bourne-Again SHell”. There’s a long history as to why it is named this way, but we won’t go into it. Feel free to Google if interested. There are other shell programs available that do the same basic task (IE, take user-types text as input, interprets the text, and executes tasks accordingly), but have features that differ from each-other. Another popular one, which is my personal favorite, is called <code class="language-plaintext highlighter-rouge">zsh</code>. It works very similarly to <code class="language-plaintext highlighter-rouge">bash</code>, but has a few extra handy features. In this class, we will stick with <code class="language-plaintext highlighter-rouge">bash</code>.</p>
+
+<p>In the shell, we can check with shell program we are using by executing <code class="language-plaintext highlighter-rouge">echo $SHELL</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo $SHELL
+/bin/bash
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">echo</code> is a new shell command! <code class="language-plaintext highlighter-rouge">echo</code> simply prints out whatever text comes after the command. <code class="language-plaintext highlighter-rouge">$SHELL</code> is a variable that contains the path to the current shell program executable (don’t worry, we will learn more about bash variables later on). Thus, when <code class="language-plaintext highlighter-rouge">echo $SHELL</code> is run, it prints out the value of that variable, and <code class="language-plaintext highlighter-rouge">/bin/bash</code> is printed. Thus, we know that we are using the <code class="language-plaintext highlighter-rouge">bash</code> shell.</p>
+
+<p>From this point on, instead of talking about “the shell”, I will refer to it as <code class="language-plaintext highlighter-rouge">bash</code>, since that is what we will use for the remainder of this class.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 250 Lab 8</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-250-lab-8">CSc 250: Lab 8</h1>
+
+<p><img src="/assets/memes/dictionary-remix.png" width="250" /></p>
+
+<p>This lab was written and designed to be completed during lab-time for cs250.
+This lab is not graded for correctness.
+However, you should work through all of the problems, as it will help you on assignments and exams.
+If you cannot complete the lab in the alloted time, feel free to continue at home.</p>
+
+<p><strong>This particular lab was designed to be completed on-paper!</strong></p>
+
+<p style="page-break-after:always;"></p>
+
+<h3 id="problem-1---lists">Problem 1 - Lists</h3>
+
+<p>This problem has several sequences of python commands.
+Below each sequence of commands, write what will be printed to stdout.</p>
+
+<p><strong>(A)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = ['Russ', 'Kevin', 'Kyrie', 'Klay', 'Eric']
+print(names[0] + ' ' + names[2])
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(B)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = ['Russ', 'Kevin', 'Kyrie', 'Klay', 'Eric']
+print(names[0][0] + names[1][1] + names[2][2] + names[3][3])
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(C)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = ['Russ', 'Kevin', 'Kyrie', 'Klay', 'Eric', 'Bron', 'Devin']
+index = len(names) - 1
+for i in range(len(names)):
+    print( names[i] + ' | ' + names[index] )
+    index = index - 1
+</code></pre></div></div>
+<p><br /><br /><br /><br /></p>
+
+<p><strong>(D)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names_a = ['Russ', 'Kevin', 'Kyrie', 'Dray']
+names_b = ['Klay', 'Eric', 'Bron', 'Devin']
+index = 0
+len_a = len(names_a)
+while index &lt; len_a:
+    names_a.insert( index, names_b[index] )
+    index = index + 1
+print(names_a)
+</code></pre></div></div>
+<p><br /><br /><br /><br /></p>
+
+<p style="page-break-after:always;"></p>
+
+<h3 id="problem-2---dictionaries">Problem 2 - Dictionaries</h3>
+
+<p>This problem has several sequences of python commands.
+Below each sequence of commands, write what will be printed to stdout.</p>
+
+<p><strong>(A)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 0:'Russ', 1:'Lebron', 2:'Steph', 3:'Klay' }
+print( names )
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(B)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 0:'Russ', 1:'Lebron', 2:'Steph', 3:'Klay' }
+print( list( names.keys() ) )
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(C)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 0:'Russ', 1:'Lebron', 2:'Steph', 3:'Klay' }
+print( list( names.values() ) )
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(D)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 'UCLA':'Russ', 'UA':'Gordon', 'WSU':'Klay', 'UK':'Eric' }
+name_list = [ names['UCLA'] , names['UK'] ]
+print(name_list)
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p style="page-break-after:always;"></p>
+
+<p><strong>(E)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 'UCLA':'Russ', 'UA':'Gordon', 'WSU':'Klay', 'UK':'Eric' }
+val_list = list(names.values())
+val_list.sort()
+val_list.append('Durant')
+print(val_list)
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(F)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroes = { 'Batman':'Christian Bale', 'Cordell Walker':'Chuck Norris', 'Thor':'Chris Hemsworth', 'Chuck Norris':'Chuck Norris' }
+print( heroes[ 'Cordell Walker' ] )
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(G)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroes = { 'Batman':'Christian Bale', 'Cordell Walker':'Chuck Norris', 'Thor':'Chris Hemsworth', 'Chuck Norris':'Chuck Norris' }
+print( heroes[ heroes[ 'Cordell Walker' ] ] )
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(H)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroes = { 'Batman':'Christian Bale', 'Cordell Walker':'Chuck Norris', 'Thor':'Chris Hemsworth', 'Chuck Norris':'Chuck Norris' }
+chars = heroes['Batman'][5] + heroes[heroes['Cordell Walker']][7] + heroes['Thor'][8]
+print(chars)
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<p><strong>(I)</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>names = { 'UCLA':'Russ', 'UA':'Gordon', 'WSU':'Klay', 'UK':'Eric' }
+for key,val in names.items():
+    if key.isupper():
+        if val.find('r') != -1:
+            print(key + ' --&gt; ' + val)
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<h3 id="solutions-will-not-be-posted-to-the-site---you-can-check-them-yourself">Solutions will not be posted to the site - you can check them yourself!</h3>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

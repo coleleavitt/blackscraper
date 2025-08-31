@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSc 110 - Three</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:900|Work+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/lib/highlight/styles/default.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Roboto+Flex:opsz,wdth,wght,YTDE@8..144,110,400,-230;8..144,110,700,-230&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <style>
+  .lnp {
+    font-size: 1.5em;
+  }
+  </style>
+
+</head>
+<body style="background-color: rgb(255, 255, 255)">
+<script src="/js/theme.min.js"></script>
+
+  <h1 id="csc-110---three">CSc 110 - Three</h1>
+
+<p><img src="./res/three.gif" alt="three" width="400px" /></p>
+
+<p>In this programming assignment, you should create a program that behaves similarly to the gif shown in this spec.
+Follow the below requirements.</p>
+
+<ul>
+  <li>Name your program <code class="language-plaintext highlighter-rouge">three.py</code>.</li>
+  <li>The canvas that the landscape is on should be square.
+It should be between 500 x 500 and 800 x 800 pixels.</li>
+  <li>The frame rate should be no less than 30 and no more than 100.</li>
+  <li>The canvas should draw a rectangle, circle, and triangle.
+Requirements for the shapes include:
+    <ul>
+      <li>Each of these shapes should be a different color.</li>
+      <li>They should move across the screen at about the same rate as the example shows.</li>
+      <li>They should be aligned in a column.</li>
+      <li>They should wrap around the screen.
+They should begin off-canvas to the left, and go off-canvas to the right, and then wrap around.</li>
+      <li>The y position should be set randomly for each shape each time the shapes wrap.
+The random position should not cause the shape to go off-canvas on the top or bottom.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>All of the graphics should be displayed using the <code class="language-plaintext highlighter-rouge">graphics.py</code> module.
+Remember to put <code class="language-plaintext highlighter-rouge">graphics.py</code> in the same directory as <code class="language-plaintext highlighter-rouge">three.py</code> while working on the PA.
+You can refer to the slides from section if you forgot how to work with the <code class="language-plaintext highlighter-rouge">graphics</code> module.
+This program does not need to take any input values from the command-line, and does not need to print anything on the command-line either.</p>
+
+<p>Also, there will be not autograder tests on Gradescope for this.
+The SLs will grade submissions by trying to run your programs.
+Thus, you should be careful to make sure your program behaves very similar to the examples that are shown on this spec.</p>
+
+<h2 id="program-structure">Program Structure</h2>
+
+<p>This program must follow the style guidelines.
+You should structure all of the code into one or more functions.
+If within the style guidelines, you may put all of the code into <code class="language-plaintext highlighter-rouge">main</code>.
+The only code that is allowed to not be in a function are your <code class="language-plaintext highlighter-rouge">import</code> statements and a call to <code class="language-plaintext highlighter-rouge">main()</code>.</p>
+
+<h2 id="submission">Submission</h2>
+
+<p>This PA is due on Wednesday, October 3th, at 4pm.
+You should turn it in on Gradescope.
+You do not need to turn in <code class="language-plaintext highlighter-rouge">graphics.py</code>, only <code class="language-plaintext highlighter-rouge">three.py</code>.
+Remember: there are not going to be autograder test cases, so do the best you can to match the correct behavior described and shown in the spec.</p>
+
+
+
+<footer>
+    <div>&nbsp</div>
+    <div style="text-align:center;">	&copy; Benjamin Dicken 2016 - 2024 </div>
+    <div>&nbsp</div>
+</footer>
+
+</body>
+</html>

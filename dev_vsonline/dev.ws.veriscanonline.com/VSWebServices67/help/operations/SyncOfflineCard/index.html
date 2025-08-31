@@ -1,0 +1,1053 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/SyncOfflineCard</title>
+    <style>BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; } #content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; } A:link { color: #336699; font-weight: bold; text-decoration: underline; } A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; } A:active { color: #336699; font-weight: bold; text-decoration: underline; } .heading1 { background-color: #003366; border-bottom: #336699 6px solid; color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal;margin: 0em 0em 10px -20px; padding-bottom: 8px; padding-left: 30px;padding-top: 16px;} pre { font-size:small; background-color: #e5e5cc; padding: 5px; font-family: Courier New; margin-top: 0px; border: 1px #f0f0e0 solid; white-space: pre-wrap; white-space: -pre-wrap; word-wrap: break-word; } table { border-collapse: collapse; border-spacing: 0px; font-family: Verdana;} table th { border-right: 2px white solid; border-bottom: 2px white solid; font-weight: bold; background-color: #cecf9c;} table td { border-right: 2px white solid; border-bottom: 2px white solid; background-color: #e5e5cc;}</style>
+  </head>
+  <body>
+    <div id="content">
+      <p class="heading1">Reference for  http://dev.ws.veriscanonline.com/VSWebServices67/SyncOfflineCard</p>
+      <p>Sync card from local repository.</p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>Url: </b>
+        <span class="uri-template">http://dev.ws.veriscanonline.com/VSWebServices67/SyncOfflineCard</span>
+      </p>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+        <b>HTTP Method: </b>
+        <span class="method">POST</span>
+      </p>
+      <table>
+        <tr>
+          <th>Message direction</th>
+          <th>Format</th>
+          <th>Body</th>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Xml</td>
+          <td>
+            <a href="#request-xml">Example</a>,<a href="#request-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Request</td>
+          <td>Json</td>
+          <td>
+            <a href="#request-json">Example</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Xml</td>
+          <td>
+            <a href="#response-xml">Example</a>,<a href="#response-schema">Schema</a></td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>Json</td>
+          <td>
+            <a href="#response-json">Example</a>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a name="request-xml">The following is an example request Xml body:</a>
+        <pre class="request-xml">&lt;SyncOfflineCardRequestModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards"&gt;
+  &lt;AppVersion xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/AppVersion&gt;
+  &lt;CompanyId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/CompanyId&gt;
+  &lt;ComputerName xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ComputerName&gt;
+  &lt;HardwareId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/HardwareId&gt;
+  &lt;IsLive xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;true&lt;/IsLive&gt;
+  &lt;TimeZoneId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/TimeZoneId&gt;
+  &lt;UserId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/UserId&gt;
+  &lt;Login xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Login&gt;
+  &lt;Password xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Password&gt;
+  &lt;Card&gt;
+    &lt;AamvaVersion&gt;2147483647&lt;/AamvaVersion&gt;
+    &lt;Address1&gt;String content&lt;/Address1&gt;
+    &lt;Address2&gt;String content&lt;/Address2&gt;
+    &lt;Age&gt;2147483647&lt;/Age&gt;
+    &lt;Agreement&gt;String content&lt;/Agreement&gt;
+    &lt;AuthenticationResults&gt;
+      &lt;CommonStatus&gt;Disabled&lt;/CommonStatus&gt;
+      &lt;Source&gt;String content&lt;/Source&gt;
+      &lt;StrictnessLevel&gt;Friendly&lt;/StrictnessLevel&gt;
+      &lt;Template&gt;String content&lt;/Template&gt;
+      &lt;Validations&gt;
+        &lt;ValidatorModel&gt;
+          &lt;Code&gt;2147483647&lt;/Code&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Status&gt;Disabled&lt;/Status&gt;
+        &lt;/ValidatorModel&gt;
+        &lt;ValidatorModel&gt;
+          &lt;Code&gt;2147483647&lt;/Code&gt;
+          &lt;Name&gt;String content&lt;/Name&gt;
+          &lt;Status&gt;Disabled&lt;/Status&gt;
+        &lt;/ValidatorModel&gt;
+      &lt;/Validations&gt;
+    &lt;/AuthenticationResults&gt;
+    &lt;BarcodeParameters&gt;
+      &lt;Columns&gt;2147483647&lt;/Columns&gt;
+      &lt;Rows&gt;2147483647&lt;/Rows&gt;
+    &lt;/BarcodeParameters&gt;
+    &lt;Bedrooms&gt;2147483647&lt;/Bedrooms&gt;
+    &lt;CaptureMethod&gt;Upload&lt;/CaptureMethod&gt;
+    &lt;CardId&gt;2147483647&lt;/CardId&gt;
+    &lt;CardRevisionDate&gt;1999-05-31T11:20:00&lt;/CardRevisionDate&gt;
+    &lt;City&gt;String content&lt;/City&gt;
+    &lt;ClassificationCode&gt;String content&lt;/ClassificationCode&gt;
+    &lt;Comments&gt;String content&lt;/Comments&gt;
+    &lt;CompanyId&gt;String content&lt;/CompanyId&gt;
+    &lt;ComplianceType&gt;String content&lt;/ComplianceType&gt;
+    &lt;Country&gt;String content&lt;/Country&gt;
+    &lt;CountryCode&gt;String content&lt;/CountryCode&gt;
+    &lt;CustomFields&gt;
+      &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+        &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+        &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+        &lt;OptionIds&gt;
+          &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+        &lt;/OptionIds&gt;
+        &lt;Value&gt;String content&lt;/Value&gt;
+      &lt;/CustomFieldValueRequestResponseModel&gt;
+      &lt;CustomFieldValueRequestResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields"&gt;
+        &lt;FieldId&gt;2147483647&lt;/FieldId&gt;
+        &lt;OptionId&gt;2147483647&lt;/OptionId&gt;
+        &lt;OptionIds&gt;
+          &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+          &lt;int xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;2147483647&lt;/int&gt;
+        &lt;/OptionIds&gt;
+        &lt;Value&gt;String content&lt;/Value&gt;
+      &lt;/CustomFieldValueRequestResponseModel&gt;
+    &lt;/CustomFields&gt;
+    &lt;DOB1970Ticks&gt;9223372036854775807&lt;/DOB1970Ticks&gt;
+    &lt;DiveStatus&gt;Success&lt;/DiveStatus&gt;
+    &lt;DocumentId&gt;2147483647&lt;/DocumentId&gt;
+    &lt;DocumentType&gt;String content&lt;/DocumentType&gt;
+    &lt;Email&gt;String content&lt;/Email&gt;
+    &lt;EndorsementCodeDescription&gt;String content&lt;/EndorsementCodeDescription&gt;
+    &lt;EndorsementsCode&gt;String content&lt;/EndorsementsCode&gt;
+    &lt;ExpirationDate1970Ticks&gt;9223372036854775807&lt;/ExpirationDate1970Ticks&gt;
+    &lt;EyeColor&gt;String content&lt;/EyeColor&gt;
+    &lt;FirstName&gt;String content&lt;/FirstName&gt;
+    &lt;FullName&gt;String content&lt;/FullName&gt;
+    &lt;Gender&gt;String content&lt;/Gender&gt;
+    &lt;GroupComments&gt;String content&lt;/GroupComments&gt;
+    &lt;GroupId&gt;2147483647&lt;/GroupId&gt;
+    &lt;HAZMATExpDate&gt;1999-05-31T11:20:00&lt;/HAZMATExpDate&gt;
+    &lt;HairColor&gt;String content&lt;/HairColor&gt;
+    &lt;HardwareId&gt;String content&lt;/HardwareId&gt;
+    &lt;Height&gt;String content&lt;/Height&gt;
+    &lt;IIN&gt;String content&lt;/IIN&gt;
+    &lt;IdempotencyKey&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/IdempotencyKey&gt;
+    &lt;In&gt;true&lt;/In&gt;
+    &lt;IssueDate&gt;1999-05-31T11:20:00&lt;/IssueDate&gt;
+    &lt;IssuedBy&gt;String content&lt;/IssuedBy&gt;
+    &lt;JurisdictionCode&gt;String content&lt;/JurisdictionCode&gt;
+    &lt;LastName&gt;String content&lt;/LastName&gt;
+    &lt;LicenseNumber&gt;String content&lt;/LicenseNumber&gt;
+    &lt;LimitedDurationDocument&gt;true&lt;/LimitedDurationDocument&gt;
+    &lt;LocalId&gt;2147483647&lt;/LocalId&gt;
+    &lt;MiddleName&gt;String content&lt;/MiddleName&gt;
+    &lt;MmicLicenseType&gt;String content&lt;/MmicLicenseType&gt;
+    &lt;MmicPractitionerNumber&gt;String content&lt;/MmicPractitionerNumber&gt;
+    &lt;MobilePhoneModel&gt;String content&lt;/MobilePhoneModel&gt;
+    &lt;MobilePhoneOS&gt;String content&lt;/MobilePhoneOS&gt;
+    &lt;NamePrefix&gt;String content&lt;/NamePrefix&gt;
+    &lt;NameSuffix&gt;String content&lt;/NameSuffix&gt;
+    &lt;NamesMatch&gt;true&lt;/NamesMatch&gt;
+    &lt;OnlineVerificationValid&gt;true&lt;/OnlineVerificationValid&gt;
+    &lt;OrganDonor&gt;true&lt;/OrganDonor&gt;
+    &lt;PersonId&gt;2147483647&lt;/PersonId&gt;
+    &lt;Phone&gt;String content&lt;/Phone&gt;
+    &lt;PhotoBase64&gt;String content&lt;/PhotoBase64&gt;
+    &lt;PostalCode&gt;String content&lt;/PostalCode&gt;
+    &lt;ProfileComments&gt;String content&lt;/ProfileComments&gt;
+    &lt;Race&gt;String content&lt;/Race&gt;
+    &lt;RealId&gt;true&lt;/RealId&gt;
+    &lt;RestrictionCode&gt;String content&lt;/RestrictionCode&gt;
+    &lt;RestrictionCodeDescription&gt;String content&lt;/RestrictionCodeDescription&gt;
+    &lt;ScanLatitude&gt;1.26743237E+15&lt;/ScanLatitude&gt;
+    &lt;ScanLongitude&gt;1.26743237E+15&lt;/ScanLongitude&gt;
+    &lt;ScanType&gt;2147483647&lt;/ScanType&gt;
+    &lt;ScannerModel&gt;String content&lt;/ScannerModel&gt;
+    &lt;ScannerSerialNumber&gt;String content&lt;/ScannerSerialNumber&gt;
+    &lt;SignatureBase64&gt;String content&lt;/SignatureBase64&gt;
+    &lt;Tags&gt;String content&lt;/Tags&gt;
+    &lt;TimeStamp1970Ticks&gt;9223372036854775807&lt;/TimeStamp1970Ticks&gt;
+    &lt;TracksString&gt;String content&lt;/TracksString&gt;
+    &lt;UpdateAddress&gt;true&lt;/UpdateAddress&gt;
+    &lt;UpdatePerson&gt;true&lt;/UpdatePerson&gt;
+    &lt;UpdatePhoto&gt;true&lt;/UpdatePhoto&gt;
+    &lt;ValidationRequestId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/ValidationRequestId&gt;
+    &lt;ValidationResponseId&gt;2147483647&lt;/ValidationResponseId&gt;
+    &lt;VehicleClassCode&gt;String content&lt;/VehicleClassCode&gt;
+    &lt;VehicleClassCodeDescription&gt;String content&lt;/VehicleClassCodeDescription&gt;
+    &lt;Veteran&gt;true&lt;/Veteran&gt;
+    &lt;WeightKG&gt;String content&lt;/WeightKG&gt;
+    &lt;WeightLBS&gt;String content&lt;/WeightLBS&gt;
+  &lt;/Card&gt;
+  &lt;Payment&gt;
+    &lt;Amount xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;2147483647&lt;/Amount&gt;
+    &lt;AmountCurrency xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/AmountCurrency&gt;
+    &lt;CardCVC xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/CardCVC&gt;
+    &lt;CardCurrency xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/CardCurrency&gt;
+    &lt;CardExpirationMonth xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;2147483647&lt;/CardExpirationMonth&gt;
+    &lt;CardExpirationYear xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;2147483647&lt;/CardExpirationYear&gt;
+    &lt;CardNumber xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/CardNumber&gt;
+    &lt;CardToken xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/CardToken&gt;
+    &lt;ClientEmail xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/ClientEmail&gt;
+    &lt;ClientPhone xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/ClientPhone&gt;
+    &lt;CouponId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;2147483647&lt;/CouponId&gt;
+    &lt;ExternalPayment xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;
+      &lt;ErrorMessage&gt;String content&lt;/ErrorMessage&gt;
+      &lt;IsSuccess&gt;true&lt;/IsSuccess&gt;
+      &lt;TransactionDetail&gt;
+        &lt;ApplicationId&gt;String content&lt;/ApplicationId&gt;
+        &lt;ApplicationLabel&gt;String content&lt;/ApplicationLabel&gt;
+        &lt;ApplicationPreferredName&gt;String content&lt;/ApplicationPreferredName&gt;
+        &lt;AuthCode&gt;String content&lt;/AuthCode&gt;
+        &lt;CustomerVerificationMethod&gt;String content&lt;/CustomerVerificationMethod&gt;
+        &lt;Id&gt;18446744073709551615&lt;/Id&gt;
+        &lt;TransactionStatusInfo&gt;String content&lt;/TransactionStatusInfo&gt;
+      &lt;/TransactionDetail&gt;
+    &lt;/ExternalPayment&gt;
+    &lt;IdempotencyKey xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/IdempotencyKey&gt;
+    &lt;IsLive xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;true&lt;/IsLive&gt;
+    &lt;IsManual xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;true&lt;/IsManual&gt;
+    &lt;IsOrder xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;true&lt;/IsOrder&gt;
+    &lt;OrderItems xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;
+      &lt;OrderItemRequestResponseModel&gt;
+        &lt;Price&gt;2147483647&lt;/Price&gt;
+        &lt;ProductId&gt;2147483647&lt;/ProductId&gt;
+        &lt;Quantity&gt;2147483647&lt;/Quantity&gt;
+      &lt;/OrderItemRequestResponseModel&gt;
+      &lt;OrderItemRequestResponseModel&gt;
+        &lt;Price&gt;2147483647&lt;/Price&gt;
+        &lt;ProductId&gt;2147483647&lt;/ProductId&gt;
+        &lt;Quantity&gt;2147483647&lt;/Quantity&gt;
+      &lt;/OrderItemRequestResponseModel&gt;
+    &lt;/OrderItems&gt;
+    &lt;Tip xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;2147483647&lt;/Tip&gt;
+  &lt;/Payment&gt;
+  &lt;SignPayment&gt;
+    &lt;SignatureBase64 xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments"&gt;String content&lt;/SignatureBase64&gt;
+  &lt;/SignPayment&gt;
+&lt;/SyncOfflineCardRequestModel&gt;</pre>
+      </p>
+      <p>
+        <a name="request-json">The following is an example request Json body:</a>
+        <pre class="request-json">{
+	"AppVersion":"String content",
+	"CompanyId":"String content",
+	"ComputerName":"String content",
+	"HardwareId":"String content",
+	"IsLive":true,
+	"TimeZoneId":"String content",
+	"UserId":2147483647,
+	"Login":"String content",
+	"Password":"String content",
+	"Card":{
+		"AamvaVersion":2147483647,
+		"Address1":"String content",
+		"Address2":"String content",
+		"Age":2147483647,
+		"Agreement":"String content",
+		"AuthenticationResults":{
+			"CommonStatus":0,
+			"Source":"String content",
+			"StrictnessLevel":0,
+			"Template":"String content",
+			"Validations":[{
+				"Code":2147483647,
+				"Name":"String content",
+				"Status":0
+			}]
+		},
+		"BarcodeParameters":{
+			"Columns":2147483647,
+			"Rows":2147483647
+		},
+		"Bedrooms":2147483647,
+		"CaptureMethod":0,
+		"CardId":2147483647,
+		"CardRevisionDate":"\/Date(928149600000+0000)\/",
+		"City":"String content",
+		"ClassificationCode":"String content",
+		"Comments":"String content",
+		"CompanyId":"String content",
+		"ComplianceType":"String content",
+		"Country":"String content",
+		"CountryCode":"String content",
+		"CustomFields":[{
+			"FieldId":2147483647,
+			"OptionId":2147483647,
+			"OptionIds":[2147483647],
+			"Value":"String content"
+		}],
+		"DOB1970Ticks":9223372036854775807,
+		"DiveStatus":0,
+		"DocumentId":2147483647,
+		"DocumentType":"String content",
+		"Email":"String content",
+		"EndorsementCodeDescription":"String content",
+		"EndorsementsCode":"String content",
+		"ExpirationDate1970Ticks":9223372036854775807,
+		"EyeColor":"String content",
+		"FirstName":"String content",
+		"FullName":"String content",
+		"Gender":"String content",
+		"GroupComments":"String content",
+		"GroupId":2147483647,
+		"HAZMATExpDate":"\/Date(928149600000+0000)\/",
+		"HairColor":"String content",
+		"HardwareId":"String content",
+		"Height":"String content",
+		"IIN":"String content",
+		"IdempotencyKey":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"In":true,
+		"IssueDate":"\/Date(928149600000+0000)\/",
+		"IssuedBy":"String content",
+		"JurisdictionCode":"String content",
+		"LastName":"String content",
+		"LicenseNumber":"String content",
+		"LimitedDurationDocument":true,
+		"LocalId":2147483647,
+		"MiddleName":"String content",
+		"MmicLicenseType":"String content",
+		"MmicPractitionerNumber":"String content",
+		"MobilePhoneModel":"String content",
+		"MobilePhoneOS":"String content",
+		"NamePrefix":"String content",
+		"NameSuffix":"String content",
+		"NamesMatch":true,
+		"OnlineVerificationValid":true,
+		"OrganDonor":true,
+		"PersonId":2147483647,
+		"Phone":"String content",
+		"PhotoBase64":"String content",
+		"PostalCode":"String content",
+		"ProfileComments":"String content",
+		"Race":"String content",
+		"RealId":true,
+		"RestrictionCode":"String content",
+		"RestrictionCodeDescription":"String content",
+		"ScanLatitude":1.26743237E+15,
+		"ScanLongitude":1.26743237E+15,
+		"ScanType":2147483647,
+		"ScannerModel":"String content",
+		"ScannerSerialNumber":"String content",
+		"SignatureBase64":"String content",
+		"Tags":"String content",
+		"TimeStamp1970Ticks":9223372036854775807,
+		"TracksString":"String content",
+		"UpdateAddress":true,
+		"UpdatePerson":true,
+		"UpdatePhoto":true,
+		"ValidationRequestId":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"ValidationResponseId":2147483647,
+		"VehicleClassCode":"String content",
+		"VehicleClassCodeDescription":"String content",
+		"Veteran":true,
+		"WeightKG":"String content",
+		"WeightLBS":"String content"
+	},
+	"Payment":{
+		"Amount":2147483647,
+		"AmountCurrency":"String content",
+		"CardCVC":"String content",
+		"CardCurrency":"String content",
+		"CardExpirationMonth":2147483647,
+		"CardExpirationYear":2147483647,
+		"CardNumber":"String content",
+		"CardToken":"String content",
+		"ClientEmail":"String content",
+		"ClientPhone":"String content",
+		"CouponId":2147483647,
+		"ExternalPayment":{
+			"ErrorMessage":"String content",
+			"IsSuccess":true,
+			"TransactionDetail":{
+				"ApplicationId":"String content",
+				"ApplicationLabel":"String content",
+				"ApplicationPreferredName":"String content",
+				"AuthCode":"String content",
+				"CustomerVerificationMethod":"String content",
+				"Id":18446744073709551615,
+				"TransactionStatusInfo":"String content"
+			}
+		},
+		"IdempotencyKey":"1627aea5-8e0a-4371-9022-9b504344e724",
+		"IsLive":true,
+		"IsManual":true,
+		"IsOrder":true,
+		"OrderItems":[{
+			"Price":2147483647,
+			"ProductId":2147483647,
+			"Quantity":2147483647
+		}],
+		"Tip":2147483647
+	},
+	"SignPayment":{
+		"SignatureBase64":"String content"
+	}
+}</pre>
+      </p>
+      <p>
+        <a name="response-xml">The following is an example response Xml body:</a>
+        <pre class="response-xml">&lt;SyncOfflineCardResponseModel xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards"&gt;
+  &lt;ErrorCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/ErrorCode&gt;
+  &lt;Status xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;String content&lt;/Status&gt;
+  &lt;StatusCode xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;2147483647&lt;/StatusCode&gt;
+  &lt;ValidationResult xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common"&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+    &lt;ResponseValidationResultItem&gt;
+      &lt;Errors&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+        &lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;String content&lt;/string&gt;
+      &lt;/Errors&gt;
+      &lt;Field&gt;String content&lt;/Field&gt;
+    &lt;/ResponseValidationResultItem&gt;
+  &lt;/ValidationResult&gt;
+  &lt;Amount&gt;2147483647&lt;/Amount&gt;
+  &lt;CardId&gt;2147483647&lt;/CardId&gt;
+  &lt;DocumentId&gt;2147483647&lt;/DocumentId&gt;
+  &lt;IsNew&gt;true&lt;/IsNew&gt;
+  &lt;LastVisit&gt;1999-05-31T11:20:00&lt;/LastVisit&gt;
+  &lt;PaymentSourceId&gt;2147483647&lt;/PaymentSourceId&gt;
+  &lt;PersonId&gt;2147483647&lt;/PersonId&gt;
+  &lt;PersonStatistics&gt;
+    &lt;FirstScannedLocal xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;1999-05-31T11:20:00&lt;/FirstScannedLocal&gt;
+    &lt;LastCardId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;2147483647&lt;/LastCardId&gt;
+    &lt;LastOutLocal xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;1999-05-31T11:20:00&lt;/LastOutLocal&gt;
+    &lt;LastScannedLocal xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;1999-05-31T11:20:00&lt;/LastScannedLocal&gt;
+    &lt;TotalScans xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;2147483647&lt;/TotalScans&gt;
+    &lt;LastScannedUtc xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;1999-05-31T11:20:00&lt;/LastScannedUtc&gt;
+    &lt;PersonId xmlns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person"&gt;2147483647&lt;/PersonId&gt;
+  &lt;/PersonStatistics&gt;
+  &lt;PhotoBlobId&gt;1627aea5-8e0a-4371-9022-9b504344e724&lt;/PhotoBlobId&gt;
+  &lt;PhotoUrl&gt;String content&lt;/PhotoUrl&gt;
+  &lt;ResultMessage&gt;String content&lt;/ResultMessage&gt;
+  &lt;TotalVisits&gt;2147483647&lt;/TotalVisits&gt;
+  &lt;idStripeBillingLog&gt;9223372036854775807&lt;/idStripeBillingLog&gt;
+  &lt;idVisitor&gt;2147483647&lt;/idVisitor&gt;
+&lt;/SyncOfflineCardResponseModel&gt;</pre>
+      </p>
+      <p>
+        <a name="response-json">The following is an example response Json body:</a>
+        <pre class="response-json">{
+	"ErrorCode":"String content",
+	"Status":"String content",
+	"StatusCode":2147483647,
+	"ValidationResult":[{
+		"Errors":["String content"],
+		"Field":"String content"
+	}],
+	"Amount":2147483647,
+	"CardId":2147483647,
+	"DocumentId":2147483647,
+	"IsNew":true,
+	"LastVisit":"\/Date(928149600000+0000)\/",
+	"PaymentSourceId":2147483647,
+	"PersonId":2147483647,
+	"PersonStatistics":{
+		"FirstScannedLocal":"\/Date(928149600000+0000)\/",
+		"LastCardId":2147483647,
+		"LastOutLocal":"\/Date(928149600000+0000)\/",
+		"LastScannedLocal":"\/Date(928149600000+0000)\/",
+		"TotalScans":2147483647,
+		"LastScannedUtc":"\/Date(928149600000+0000)\/",
+		"PersonId":2147483647
+	},
+	"PhotoBlobId":"1627aea5-8e0a-4371-9022-9b504344e724",
+	"PhotoUrl":"String content",
+	"ResultMessage":"String content",
+	"TotalVisits":2147483647,
+	"idStripeBillingLog":9223372036854775807,
+	"idVisitor":2147483647
+}</pre>
+      </p>
+      <p>
+        <a name="request-schema">The following is the request Xml Schema:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:complexType name="SyncOfflineCardRequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:RequestModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Card" nillable="true" type="tns:UploadCard" /&gt;
+          &lt;xs:element minOccurs="0" name="Payment" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments" type="q2:PaymentSyncOfflineRequestModel" /&gt;
+          &lt;xs:element minOccurs="0" name="SignPayment" nillable="true" xmlns:q3="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments" type="q3:SignPaymentSyncOfflineRequestModel" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="SyncOfflineCardRequestModel" nillable="true" type="tns:SyncOfflineCardRequestModel" /&gt;
+  &lt;xs:complexType name="UploadCard"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AamvaVersion" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Age" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Agreement" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AuthenticationResults" nillable="true" type="tns:ValidationResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="BarcodeParameters" nillable="true" type="tns:BarcodeParametersRequestModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Bedrooms" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CaptureMethod" nillable="true" xmlns:q4="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q4:CaptureMethod" /&gt;
+      &lt;xs:element minOccurs="0" name="CardId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CardRevisionDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="City" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ClassificationCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ComplianceType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CustomFields" nillable="true" xmlns:q5="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" type="q5:ArrayOfCustomFieldValueRequestResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="DOB1970Ticks" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="DiveStatus" nillable="true" xmlns:q6="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q6:DiveStatus" /&gt;
+      &lt;xs:element minOccurs="0" name="DocumentId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="EndorsementCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="EndorsementsCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ExpirationDate1970Ticks" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="EyeColor" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupComments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="GroupId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="HAZMATExpDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="HairColor" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IIN" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IdempotencyKey" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="In" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="IssuedBy" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="JurisdictionCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LicenseNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="LimitedDurationDocument" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="LocalId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MmicLicenseType" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MmicPractitionerNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MobilePhoneModel" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="MobilePhoneOS" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="NamePrefix" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="NameSuffix" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="NamesMatch" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="OnlineVerificationValid" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="OrganDonor" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="PersonId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PhotoBase64" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ProfileComments" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Race" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RealId" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="RestrictionCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="RestrictionCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanLatitude" nillable="true" type="xs:float" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanLongitude" nillable="true" type="xs:float" /&gt;
+      &lt;xs:element minOccurs="0" name="ScanType" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ScannerModel" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ScannerSerialNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="SignatureBase64" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Tags" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeStamp1970Ticks" type="xs:long" /&gt;
+      &lt;xs:element minOccurs="0" name="TracksString" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdateAddress" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatePerson" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="UpdatePhoto" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationRequestId" nillable="true" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResponseId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="VehicleClassCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="VehicleClassCodeDescription" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Veteran" nillable="true" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="WeightKG" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="WeightLBS" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="UploadCard" nillable="true" type="tns:UploadCard" /&gt;
+  &lt;xs:complexType name="ValidationResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="CommonStatus" xmlns:q7="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q7:ValidationStatusType" /&gt;
+      &lt;xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StrictnessLevel" nillable="true" xmlns:q8="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q8:AsdkStrictnessLevel" /&gt;
+      &lt;xs:element minOccurs="0" name="Template" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Validations" nillable="true" type="tns:ArrayOfValidatorModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ValidationResponseModel" nillable="true" type="tns:ValidationResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfValidatorModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ValidatorModel" nillable="true" type="tns:ValidatorModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfValidatorModel" nillable="true" type="tns:ArrayOfValidatorModel" /&gt;
+  &lt;xs:complexType name="ValidatorModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Code" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" xmlns:q9="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" type="q9:ValidationStatusType" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ValidatorModel" nillable="true" type="tns:ValidatorModel" /&gt;
+  &lt;xs:complexType name="BarcodeParametersRequestModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Columns" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Rows" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="BarcodeParametersRequestModel" nillable="true" type="tns:BarcodeParametersRequestModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="request-schema">Additional request Xml Schemas:</a>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="RequestModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:RequestModelBase"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModel" nillable="true" type="tns:RequestModel" /&gt;
+  &lt;xs:complexType name="RequestModelBase"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="AppVersion" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="HardwareId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLive" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TimeZoneId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="RequestModelBase" nillable="true" type="tns:RequestModelBase" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:simpleType name="ValidationStatusType"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="short" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Disabled"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;-1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Failed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;0&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Passed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Skipped"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Warning"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;3&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Error"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;4&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Unlicensed"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;5&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="ValidationStatusType" nillable="true" type="tns:ValidationStatusType" /&gt;
+  &lt;xs:simpleType name="AsdkStrictnessLevel"&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:appinfo&gt;
+        &lt;ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+      &lt;/xs:appinfo&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Friendly" /&gt;
+      &lt;xs:enumeration value="Balanced" /&gt;
+      &lt;xs:enumeration value="Strict" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="AsdkStrictnessLevel" nillable="true" type="tns:AsdkStrictnessLevel" /&gt;
+  &lt;xs:simpleType name="CaptureMethod"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Upload"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;1&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Autocapturing"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;2&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+      &lt;xs:enumeration value="Other"&gt;
+        &lt;xs:annotation&gt;
+          &lt;xs:appinfo&gt;
+            &lt;EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/"&gt;99&lt;/EnumerationValue&gt;
+          &lt;/xs:appinfo&gt;
+        &lt;/xs:annotation&gt;
+      &lt;/xs:enumeration&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="CaptureMethod" nillable="true" type="tns:CaptureMethod" /&gt;
+  &lt;xs:simpleType name="DiveStatus"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Success" /&gt;
+      &lt;xs:enumeration value="Fail" /&gt;
+      &lt;xs:enumeration value="InvalidData" /&gt;
+      &lt;xs:enumeration value="Error" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="DiveStatus" nillable="true" type="tns:DiveStatus" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.CustomFields" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ArrayOfCustomFieldValueRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldValueRequestResponseModel" nillable="true" type="tns:CustomFieldValueRequestResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfCustomFieldValueRequestResponseModel" nillable="true" type="tns:ArrayOfCustomFieldValueRequestResponseModel" /&gt;
+  &lt;xs:complexType name="CustomFieldValueRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="FieldId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OptionId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="OptionIds" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfint" /&gt;
+      &lt;xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="CustomFieldValueRequestResponseModel" nillable="true" type="tns:CustomFieldValueRequestResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfint"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:complexType name="PaymentSyncOfflineRequestModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Amount" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="AmountCurrency" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CardCVC" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CardCurrency" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CardExpirationMonth" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CardExpirationYear" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="CardNumber" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CardToken" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ClientEmail" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ClientPhone" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CouponId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ExternalPayment" nillable="true" type="tns:ExternalPaymentRequestResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="IdempotencyKey" type="ser:guid" /&gt;
+      &lt;xs:element minOccurs="0" name="IsLive" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsManual" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="IsOrder" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="OrderItems" nillable="true" type="tns:ArrayOfOrderItemRequestResponseModel" /&gt;
+      &lt;xs:element minOccurs="0" name="Tip" nillable="true" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="PaymentSyncOfflineRequestModel" nillable="true" type="tns:PaymentSyncOfflineRequestModel" /&gt;
+  &lt;xs:complexType name="ExternalPaymentRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="IsSuccess" type="xs:boolean" /&gt;
+      &lt;xs:element minOccurs="0" name="TransactionDetail" nillable="true" type="tns:TransactionDetailsRequestResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ExternalPaymentRequestResponseModel" nillable="true" type="tns:ExternalPaymentRequestResponseModel" /&gt;
+  &lt;xs:complexType name="TransactionDetailsRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ApplicationId" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ApplicationLabel" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="ApplicationPreferredName" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="AuthCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="CustomerVerificationMethod" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Id" nillable="true" type="xs:unsignedLong" /&gt;
+      &lt;xs:element minOccurs="0" name="TransactionStatusInfo" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="TransactionDetailsRequestResponseModel" nillable="true" type="tns:TransactionDetailsRequestResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfOrderItemRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="OrderItemRequestResponseModel" nillable="true" type="tns:OrderItemRequestResponseModel" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfOrderItemRequestResponseModel" nillable="true" type="tns:ArrayOfOrderItemRequestResponseModel" /&gt;
+  &lt;xs:complexType name="OrderItemRequestResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Price" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ProductId" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="Quantity" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="OrderItemRequestResponseModel" nillable="true" type="tns:OrderItemRequestResponseModel" /&gt;
+  &lt;xs:complexType name="SignPaymentSyncOfflineRequestModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="SignatureBase64" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="SignPaymentSyncOfflineRequestModel" nillable="true" type="tns:SignPaymentSyncOfflineRequestModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="request-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">The following is the response Xml Schema:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Cards" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person" /&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" /&gt;
+  &lt;xs:import namespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" /&gt;
+  &lt;xs:complexType name="SyncOfflineCardResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" base="q1:ResponseModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="Amount" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="CardId" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="DocumentId" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="IsNew" type="xs:boolean" /&gt;
+          &lt;xs:element minOccurs="0" name="LastVisit" nillable="true" type="xs:dateTime" /&gt;
+          &lt;xs:element minOccurs="0" name="PaymentSourceId" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="PersonId" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="PersonStatistics" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person" type="q2:PersonStatisticsDetailedResponseModel" /&gt;
+          &lt;xs:element minOccurs="0" name="PhotoBlobId" nillable="true" type="ser:guid" /&gt;
+          &lt;xs:element minOccurs="0" name="PhotoUrl" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="ResultMessage" nillable="true" type="xs:string" /&gt;
+          &lt;xs:element minOccurs="0" name="TotalVisits" type="xs:int" /&gt;
+          &lt;xs:element minOccurs="0" name="idStripeBillingLog" type="xs:long" /&gt;
+          &lt;xs:element minOccurs="0" name="idVisitor" nillable="true" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="SyncOfflineCardResponseModel" nillable="true" type="tns:SyncOfflineCardResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <a name="response-schema">Additional response Xml Schemas:</a>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="anyType" nillable="true" type="xs:anyType" /&gt;
+  &lt;xs:element name="anyURI" nillable="true" type="xs:anyURI" /&gt;
+  &lt;xs:element name="base64Binary" nillable="true" type="xs:base64Binary" /&gt;
+  &lt;xs:element name="boolean" nillable="true" type="xs:boolean" /&gt;
+  &lt;xs:element name="byte" nillable="true" type="xs:byte" /&gt;
+  &lt;xs:element name="dateTime" nillable="true" type="xs:dateTime" /&gt;
+  &lt;xs:element name="decimal" nillable="true" type="xs:decimal" /&gt;
+  &lt;xs:element name="double" nillable="true" type="xs:double" /&gt;
+  &lt;xs:element name="float" nillable="true" type="xs:float" /&gt;
+  &lt;xs:element name="int" nillable="true" type="xs:int" /&gt;
+  &lt;xs:element name="long" nillable="true" type="xs:long" /&gt;
+  &lt;xs:element name="QName" nillable="true" type="xs:QName" /&gt;
+  &lt;xs:element name="short" nillable="true" type="xs:short" /&gt;
+  &lt;xs:element name="string" nillable="true" type="xs:string" /&gt;
+  &lt;xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" /&gt;
+  &lt;xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" /&gt;
+  &lt;xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" /&gt;
+  &lt;xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" /&gt;
+  &lt;xs:element name="char" nillable="true" type="tns:char" /&gt;
+  &lt;xs:simpleType name="char"&gt;
+    &lt;xs:restriction base="xs:int" /&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="duration" nillable="true" type="tns:duration" /&gt;
+  &lt;xs:simpleType name="duration"&gt;
+    &lt;xs:restriction base="xs:duration"&gt;
+      &lt;xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" /&gt;
+      &lt;xs:minInclusive value="-P10675199DT2H48M5.4775808S" /&gt;
+      &lt;xs:maxInclusive value="P10675199DT2H48M5.4775807S" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:element name="guid" nillable="true" type="tns:guid" /&gt;
+  &lt;xs:simpleType name="guid"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" /&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:attribute name="FactoryType" type="xs:QName" /&gt;
+  &lt;xs:attribute name="Id" type="xs:ID" /&gt;
+  &lt;xs:attribute name="Ref" type="xs:IDREF" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" /&gt;
+  &lt;xs:complexType name="ResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" /&gt;
+      &lt;xs:element minOccurs="0" name="StatusCode" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="ValidationResult" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseModel" nillable="true" type="tns:ResponseModel" /&gt;
+  &lt;xs:complexType name="ArrayOfResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfResponseValidationResultItem" nillable="true" type="tns:ArrayOfResponseValidationResultItem" /&gt;
+  &lt;xs:complexType name="ResponseValidationResultItem"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="Errors" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" /&gt;
+      &lt;xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ResponseValidationResultItem" nillable="true" type="tns:ResponseValidationResultItem" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="ArrayOfstring"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VSWebService.Models.Person" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:complexType name="PersonStatisticsDetailedResponseModel"&gt;
+    &lt;xs:complexContent mixed="false"&gt;
+      &lt;xs:extension base="tns:PersonStatisticsResponseModel"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element minOccurs="0" name="LastScannedUtc" nillable="true" type="xs:dateTime" /&gt;
+          &lt;xs:element minOccurs="0" name="PersonId" type="xs:int" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="PersonStatisticsDetailedResponseModel" nillable="true" type="tns:PersonStatisticsDetailedResponseModel" /&gt;
+  &lt;xs:complexType name="PersonStatisticsResponseModel"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element minOccurs="0" name="FirstScannedLocal" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="LastCardId" nillable="true" type="xs:int" /&gt;
+      &lt;xs:element minOccurs="0" name="LastOutLocal" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="LastScannedLocal" nillable="true" type="xs:dateTime" /&gt;
+      &lt;xs:element minOccurs="0" name="TotalScans" type="xs:int" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name="PersonStatisticsResponseModel" nillable="true" type="tns:PersonStatisticsResponseModel" /&gt;
+&lt;/xs:schema&gt;</pre>
+      </p>
+      <p>
+        <pre class="response-schema">&lt;tns:schema targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;tns:element name="schema"&gt;
+    &lt;tns:complexType /&gt;
+  &lt;/tns:element&gt;
+&lt;/tns:schema&gt;</pre>
+      </p>
+    </div>
+  </body>
+</html>

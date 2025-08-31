@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>CSc 120: List to String (Recursive)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body bgcolor="white">
+<p>
+<img src="../../IMGS/uadcs.gif" alt="University of Arizona, Department of Computer Science"/>
+</p>
+
+<h1>CSc 120: Format (Recursive)</h1>
+
+<h2>Expected Behavior</h2>
+<p>
+Write a <u>recursive</u> function <b>fmt</b>(<i>spec, values</i>) that is a very simple variant of Python's 
+<b>str.format</b> method.  Here's an example of usage:
+<pre>
+>>> fmt("x = {}, y = {}", [10, 20])
+'x = 10, y = 20'
+</pre>
+<p>
+<code>fmt(spec, values)</code> returns a copy of the string <code>spec</code> where the Nth occurrence of <code>"{}"</code> is replaced by the Nth value in <code>values</code>.
+<p>
+<u>Assume</u> that there are a sufficient number of values to fill all occurrences of "{}".  If there are excess values, they are simply ignored.
+<h2>Programming Requirements</h2>
+Solve this problem using recursion. 
+<p>
+<b>IMPORTANT:</b> You may not use <code>str.format</code>.
+<p/>
+<h2>Programming Requirements</h2>
+Solve this problem using recursion.  You are allowed to use <u>only</u>
+the following programming constructs:
+<p/>
+<ul>
+  <li>
+    <b>if</b> statements;
+  </li>
+  <li>
+    <b>return</b> statements;
+  </li>
+  <li>
+    assignment;
+  </li>
+  <li>
+    recursive function calls (if you use a helper function, then it must be recursive);
+  </li>
+  <li>
+    comparison operations (<b>==</b>, <b>!=</b>, etc.);
+  </li>
+  <li>
+    list indexing and slicing;
+  </li>
+  <li>
+    list and string concatenation.
+  </li>
+</ul>
+<p/>
+Solutions that go outside these constructs, e.g., by
+using <b>for</b>/<b>while</b> loops or list comprehensions,
+will not get credit.
+
+<h2>Examples</h2>
+<ol>
+  <li>
+    <b><tt>fmt("testing",[1,2,3])</tt></b><br/>
+    return value: <b><tt>'testing'</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>fmt("{{},{},{}}",[1,'two',3])</tt></b><br/>
+    return value: <b><tt>'{1,two,3}'</tt></b>
+    <p/>
+  </li>
+  <li>
+    <b><tt>fmt("L = {}.",["just a test".split()])</tt></b><br/>
+    return value: <b><tt>"L = ['just', 'a', 'test']."</tt></b>
+    <p/>
+  </li>
+
+  <li>
+    <b><tt>fmt("x = {}, y = {}", [10, 20])</tt></b><br/>
+    return value: <b><tt>'x = 10, y = 20'</tt></b>
+    <p/>
+  </li>
+<!--
+  <li>
+    <b><tt>fmt(['',''])</tt></b><br/>
+    return value: <b><tt>''</tt></b>
+    <p/>
+  </li>
+-->
+</ol>
+
+</body>
+</html>
+
