@@ -1,8 +1,10 @@
 //! HTML preprocessing to handle common malformed patterns
 
-use regex::Regex;
+use kuchiki::traits::*;
+use kuchiki::NodeRef;
 
 /// Preprocesses HTML to handle common malformed patterns
+#[derive(Clone)]
 pub struct HtmlPreprocessor;
 
 impl HtmlPreprocessor {
@@ -10,116 +12,47 @@ impl HtmlPreprocessor {
         Self
     }
 
-    /// Preprocess HTML to handle common malformed patterns
+    /// Preprocess HTML to handle common malformed patterns using a DOM parser
     pub fn preprocess(&self, html: &str) -> String {
-        let mut result = html.to_string();
-
-        // Fix unclosed tags that are commonly problematic
-        result = self.fix_unclosed_tags(&result);
-
-        // Fix malformed anchor tags
-        result = self.fix_malformed_anchors(&result);
+        // Parse HTML into a DOM tree
+        let document = kuchiki::parse_html().one(html);
 
         // Remove HTML comments
-        result = self.remove_comments(&result);
+        Self::remove_comments(&document);
 
-        // Fix malformed or incomplete tables
-        result = self.fix_table_tags(&result);
+        // Fix malformed anchor tags (ensure href is quoted and valid)
+        Self::fix_anchors(&document);
 
-        result
+        // The parser will handle unclosed/self-closing tags and table structure
+        // Serialize the DOM back to a string
+        let mut output = Vec::new();
+        document.serialize(&mut output).unwrap_or(());
+        String::from_utf8_lossy(&output).to_string()
     }
 
-    /// Fix unclosed tags that are commonly problematic
-    fn fix_unclosed_tags(&self, html: &str) -> String {
-        let mut result = html.to_string();
-
-        for tag in &["li", "p", "br", "hr", "img", "meta", "link", "input"] {
-            let tag_regex = match Regex::new(&format!(r"<{}\b([^>]*)>", tag)) {
-                Ok(regex) => regex,
-                Err(_) => continue,
-            };
-
-            result = tag_regex
-                .replace_all(&result, |caps: &regex::Captures| {
-                    let attrs = &caps[1];
-
-                    // Self-closing tags should have a trailing slash
-                    if matches!(*tag, "br" | "hr" | "img" | "meta" | "link" | "input") {
-                        format!("<{}{} />", tag, attrs)
-                    } else {
-                        // Other tags should be properly closed
-                        format!("<{}{}></{}>", tag, attrs, tag)
-                    }
-                })
-                .to_string();
+    /// Remove all comment nodes from the DOM
+    fn remove_comments(document: &NodeRef) {
+        let mut to_remove = vec![];
+        for node in document.descendants() {
+            if let kuchiki::NodeData::Comment { .. } = node.data() {
+                to_remove.push(node);
+            }
         }
-
-        result
+        for node in to_remove {
+            node.detach();
+        }
     }
 
-    /// Fix malformed anchor tags
-    fn fix_malformed_anchors(&self, html: &str) -> String {
-        let malformed_anchor_re = match Regex::new(r"<a\s+href=([^>]+)>") {
-            Ok(regex) => regex,
-            Err(_) => return html.to_string(),
-        };
-
-        malformed_anchor_re
-            .replace_all(html, |caps: &regex::Captures| {
-                let href_value = &caps[1];
-
-                // Ensure href attribute has quotes
-                if !href_value.starts_with('"') && !href_value.starts_with('\'') {
-                    format!("<a href=\"{}\">", href_value)
-                } else {
-                    caps[0].to_string()
-                }
-            })
-            .to_string()
-    }
-
-    /// Remove HTML comments
-    fn remove_comments(&self, html: &str) -> String {
-        let comment_re = match Regex::new(r"<!--[\s\S]*?-->") {
-            Ok(regex) => regex,
-            Err(_) => return html.to_string(),
-        };
-
-        comment_re.replace_all(html, "").to_string()
-    }
-
-    /// Fix malformed or incomplete tables
-    fn fix_table_tags(&self, html: &str) -> String {
-        let mut result = html.to_string();
-
-        let table_tags = ["table", "tr", "td", "th", "thead", "tbody", "tfoot"];
-
-        for tag in &table_tags {
-            let open_tag_pattern = format!(r"<{}\b[^>]*>", tag);
-            let close_tag_pattern = format!(r"</{}>", tag);
-
-            let open_re = match Regex::new(&open_tag_pattern) {
-                Ok(regex) => regex,
-                Err(_) => continue,
-            };
-
-            let close_re = match Regex::new(&close_tag_pattern) {
-                Ok(regex) => regex,
-                Err(_) => continue,
-            };
-
-            let open_count = open_re.find_iter(&result).count();
-            let close_count = close_re.find_iter(&result).count();
-
-            // Add missing closing tags
-            if open_count > close_count {
-                for _ in 0..(open_count - close_count) {
-                    result.push_str(&format!("</{}>", tag));
+    /// Fix anchor tags: ensure href is quoted and valid (basic check)
+    fn fix_anchors(document: &NodeRef) {
+        for css_match in document.select("a[href]").unwrap() {
+            let mut attributes = css_match.attributes.borrow_mut();
+            if let Some(href) = attributes.get("href") {
+                if href.trim().is_empty() {
+                    attributes.remove("href");
                 }
             }
         }
-
-        result
     }
 }
 

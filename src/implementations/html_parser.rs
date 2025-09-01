@@ -6,6 +6,7 @@ use crate::traits::html_parser::HtmlParser;
 use scraper::{Html, Selector};
 
 /// Standard HTML parser implementation with comprehensive resource extraction
+#[derive(Clone)]
 pub struct StandardHtmlParser {
     preprocessor: HtmlPreprocessor,
     resource_extractor: ResourceExtractor,

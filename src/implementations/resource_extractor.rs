@@ -37,6 +37,7 @@ pub struct ExtractionConfig {
 }
 
 /// HTML element selectors grouped by resource type
+#[derive(Clone)]
 struct HtmlSelectors {
     html_selectors: Vec<(&'static str, &'static str)>,
     image_selectors: Vec<(&'static str, &'static str)>,
@@ -89,6 +90,7 @@ impl HtmlSelectors {
 }
 
 /// Handles CSS resource extraction
+#[derive(Clone)]
 struct CssExtractor {
     import_regex: Regex,
     url_regex: Regex,
@@ -98,9 +100,9 @@ impl CssExtractor {
     fn new() -> Result<Self, regex::Error> {
         Ok(Self {
             import_regex: Regex::new(
-                r#"@import\s+(?:url\s*\(\s*[\"']?([^\"')]+)[\"']?\s*\)|[\"']([^\"']+)[\"'])"#
+                r#"@import\s+(?:url\s*\(\s*["']?([^"')]+)["']?\s*\)|["']([^"']+)["'])"#
             )?,
-            url_regex: Regex::new(r#"url\s*\(\s*[\"']?([^\"')]+)[\"']?\s*\)"#)?,
+            url_regex: Regex::new(r#"url\s*\(\s*["']?([^"')]+)["']?\s*\)"#)?,
         })
     }
 
@@ -185,6 +187,7 @@ impl CssExtractor {
 }
 
 /// Handles legacy HTML parsing with regex
+#[derive(Clone)]
 struct LegacyExtractor {
     patterns: Vec<(Regex, ResourceType)>,
     frameset_patterns: Vec<Regex>,
@@ -437,6 +440,7 @@ impl ResourceProcessor {
 }
 
 /// Main resource extractor
+#[derive(Clone)]
 pub struct ResourceExtractor {
     selectors: HtmlSelectors,
     css_extractor: CssExtractor,
@@ -470,7 +474,13 @@ impl ResourceExtractor {
 
         let mut processor = ResourceProcessor::new();
 
-        self.extract_html_resources(doc, &mut processor, &config);
+        self.extract_html_links(doc, &mut processor, &config);
+        self.extract_image_links(doc, &mut processor, &config);
+        self.extract_css_links(doc, &mut processor, &config);
+        self.extract_js_links(doc, &mut processor, &config);
+        self.extract_font_links(doc, &mut processor, &config);
+        self.extract_media_links(doc, &mut processor, &config);
+        self.extract_other_links(doc, &mut processor, &config);
         self.css_extractor.extract_from_style_elements(doc, &mut processor, &config);
         self.css_extractor.extract_from_inline_styles(doc, &mut processor, &config);
 
@@ -499,32 +509,44 @@ impl ResourceExtractor {
         processor.into_resources()
     }
 
-    // fn detect_mime_type(&self, url: &str, content_type: Option<&str>) -> ResourceType { // Unused
-    //     if let Some(mime) = content_type {
-    //         ResourceTypeGuesser::from_mime_type(mime, url)
-    //     } else {
-    //         ResourceTypeGuesser::guess_from_url(url, &ResourceType::Other("unknown".to_string()))
-    //     }
-    // }
-
-    fn extract_html_resources(
-        &self,
-        doc: &Html,
-        processor: &mut ResourceProcessor,
-        config: &ExtractionConfig,
-    ) {
+    /// Extract HTML links (a, frame, iframe, area)
+    fn extract_html_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
         self.extract_by_type(doc, &self.selectors.html_selectors, &ResourceType::Html, processor, config);
-        self.extract_by_type(doc, &self.selectors.image_selectors, &ResourceType::Image, processor, config);
-        self.extract_by_type(doc, &self.selectors.css_selectors, &ResourceType::Css, processor, config);
-        self.extract_by_type(doc, &self.selectors.js_selectors, &ResourceType::JavaScript, processor, config);
-        self.extract_by_type(doc, &self.selectors.font_selectors, &ResourceType::Font, processor, config);
-        self.extract_by_type(doc, &self.selectors.media_selectors, &ResourceType::Other("media".to_string()), processor, config);
+    }
 
+    /// Extract image links (img, picture, icon, etc.)
+    fn extract_image_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        self.extract_by_type(doc, &self.selectors.image_selectors, &ResourceType::Image, processor, config);
+    }
+
+    /// Extract CSS links (link rel=stylesheet)
+    fn extract_css_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        self.extract_by_type(doc, &self.selectors.css_selectors, &ResourceType::Css, processor, config);
+    }
+
+    /// Extract JavaScript links (script[src])
+    fn extract_js_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        self.extract_by_type(doc, &self.selectors.js_selectors, &ResourceType::JavaScript, processor, config);
+    }
+
+    /// Extract font links (link rel=preload as=font)
+    fn extract_font_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        self.extract_by_type(doc, &self.selectors.font_selectors, &ResourceType::Font, processor, config);
+    }
+
+    /// Extract media links (audio, video, source)
+    fn extract_media_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        self.extract_by_type(doc, &self.selectors.media_selectors, &ResourceType::Other("media".to_string()), processor, config);
+    }
+
+    /// Extract other resource links (embed, object, etc.)
+    fn extract_other_links(&self, doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
         for (selector_str, attr, resource_type) in &self.selectors.other_selectors {
             self.extract_by_type(doc, &[(selector_str, attr)], resource_type, processor, config);
         }
     }
 
+    /// Extract resources by selector and attribute
     fn extract_by_type(
         &self,
         doc: &Html,
@@ -534,16 +556,33 @@ impl ResourceExtractor {
         config: &ExtractionConfig,
     ) {
         for (selector_str, attr) in selectors {
-            if let Ok(selector) = Selector::parse(selector_str) {
-                for element in doc.select(&selector) {
-                    if let Some(url_attr) = element.value().attr(attr) {
-                        if *attr == "srcset" {
-                            processor.process_srcset(url_attr, resource_type, config);
-                        } else {
-                            processor.add_resource(url_attr, resource_type, config);
-                        }
-                    }
+            let selector = match Selector::parse(selector_str) {
+                Ok(sel) => sel,
+                Err(e) => {
+                    eprintln!("[ResourceExtractor] Failed to parse selector '{}': {}", selector_str, e);
+                    continue;
                 }
+            };
+            for element in doc.select(&selector) {
+                self.process_element_attr(element, attr, resource_type, processor, config);
+            }
+        }
+    }
+
+    /// Process a single element's attribute for resource extraction
+    fn process_element_attr(
+        &self,
+        element: scraper::ElementRef,
+        attr: &str,
+        resource_type: &ResourceType,
+        processor: &mut ResourceProcessor,
+        config: &ExtractionConfig,
+    ) {
+        if let Some(url_attr) = element.value().attr(attr) {
+            if attr == "srcset" {
+                processor.process_srcset(url_attr, resource_type, config);
+            } else {
+                processor.add_resource(url_attr, resource_type, config);
             }
         }
     }

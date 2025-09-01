@@ -1,7 +1,5 @@
-use crate::models::CrawlResult;
 use crate::models::PageInfo;
-
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -29,163 +27,68 @@ impl SiteSaver {
         }
     }
 
-    /// Saves a crawled website to disk
-    pub async fn save(&mut self, result: &CrawlResult, base_url: &str) -> Result<(), String> {
-        // Create the output directory if it doesn't exist
-        fs::create_dir_all(&self.output_dir)
-            .map_err(|e| format!("Failed to create output directory: {}", e))?;
-
-        // Parse the base URL to get the domain
+    /// Incrementally save a single page as it is received
+    pub async fn save_page(&mut self, page: &PageInfo, base_url: &str) -> Result<(), String> {
         let base_url_parsed = Url::parse(base_url)
             .map_err(|e| format!("Invalid base URL: {}", e))?;
-
         let domain = base_url_parsed.host_str()
             .ok_or_else(|| "Base URL has no host".to_string())?
             .to_string();
-
-        // Create a directory for the domain
         let domain_dir = self.output_dir.join(&domain);
         fs::create_dir_all(&domain_dir)
             .map_err(|e| format!("Failed to create domain directory: {}", e))?;
-
-        // First pass: Map URLs to local file paths
-        self.map_urls_to_paths(&result.pages, &base_url_parsed, &domain_dir)?;
-
-        // Second pass: Save files and rewrite links
-        self.save_files(&result.pages).await?;
-
-        println!("Website saved to: {}", domain_dir.display());
+        let local_path = match self.map_url_to_local_path(&page.url, &base_url_parsed, &domain_dir) {
+            Some(p) => p,
+            None => return Ok(()),
+        };
+        self.save_page_content(page, &local_path).await?;
+        if page.content_type.contains("text/html") {
+            for link in &page.links {
+                self.map_additional_resource(link, &base_url_parsed, &domain_dir);
+            }
+        }
         Ok(())
     }
 
-    /// Maps URLs to local file paths
-    fn map_urls_to_paths(
-        &mut self,
-        pages: &std::collections::BTreeSet<PageInfo>,
-        base_url: &Url,
-        domain_dir: &Path,
-    ) -> Result<(), String> {
-        for page in pages {
-            let url = Url::parse(&page.url)
-                .map_err(|e| format!("Invalid URL {}: {}", page.url, e))?;
-
-            // Skip URLs that are not part of the base domain
-            if url.host_str() != base_url.host_str() {
-                continue;
-            }
-
-            // Get the path relative to the base URL
-            let path = url.path();
-            let local_path = if path == "/" {
-                domain_dir.join("index.html")
+    /// Helper to map a URL to a local path, create directories, and update url_to_path
+    fn map_url_to_local_path(&mut self, url_str: &str, base_url: &Url, domain_dir: &Path) -> Option<PathBuf> {
+        if self.url_to_path.contains_key(url_str) {
+            return self.url_to_path.get(url_str).cloned();
+        }
+        let url = match Url::parse(url_str) {
+            Ok(u) => u,
+            Err(_) => return None,
+        };
+        if url.host_str() != base_url.host_str() {
+            return None;
+        }
+        let path = url.path();
+        let local_path = if path == "/" {
+            domain_dir.join("index.html")
+        } else {
+            let path = path.trim_start_matches('/');
+            let path = if path.ends_with('/') {
+                format!("{}index.html", path)
+            } else if !path.contains('.') {
+                format!("{}/index.html", path)
             } else {
-                // Remove leading slash and create path
-                let path = path.trim_start_matches('/');
-
-                // If the path ends with a slash, append "index.html"
-                let path = if path.ends_with('/') {
-                    format!("{}index.html", path)
-                } else if !path.contains('.') {
-                    // If there's no file extension, assume it's a directory and add index.html
-                    format!("{}/index.html", path)
-                } else {
-                    path.to_string()
-                };
-
-                domain_dir.join(path)
+                path.to_string()
             };
-
-            // Create parent directory if needed
-            if let Some(parent) = local_path.parent() {
-                fs::create_dir_all(parent)
-                    .map_err(|e| format!("Failed to create directory {}: {}", parent.display(), e))?;
+            domain_dir.join(path)
+        };
+        if let Some(parent) = local_path.parent() {
+            if let Err(e) = fs::create_dir_all(parent) {
+                eprintln!("Failed to create directory {}: {}", parent.display(), e);
+                return None;
             }
-
-            // Store the mapping
-            self.url_to_path.insert(page.url.clone(), local_path);
         }
-
-        // Find all additional resources (images, CSS, JS, etc.) and add them to the URL mapping
-        self.discover_additional_resources(pages, base_url, domain_dir)?;
-
-        Ok(())
+        self.url_to_path.insert(url_str.to_string(), local_path.clone());
+        Some(local_path)
     }
 
-    /// Find additional resources (images, CSS, etc.) to download
-    fn discover_additional_resources(
-        &mut self,
-        pages: &std::collections::BTreeSet<PageInfo>,
-        base_url: &Url,
-        domain_dir: &Path,
-    ) -> Result<(), String> {
-        let mut additional_resources = Vec::new();
-
-        for page in pages {
-            if page.content_type.contains("text/html") {
-                for link in &page.links {
-                    // Skip if we've already mapped this URL
-                    if self.url_to_path.contains_key(link) {
-                        continue;
-                    }
-
-                    // Parse the URL
-                    let url = match Url::parse(link) {
-                        Ok(url) => url,
-                        Err(_) => continue,
-                    };
-
-                    // Skip if not from same domain
-                    if url.host_str() != base_url.host_str() {
-                        continue;
-                    }
-
-                    additional_resources.push(link.clone());
-                }
-            }
-        }
-
-        // Map all discovered resources
-        for url in additional_resources {
-            let parsed_url = Url::parse(&url).unwrap();
-            let path = parsed_url.path().trim_start_matches('/');
-            let local_path = domain_dir.join(path);
-
-            // Create parent directory if needed
-            if let Some(parent) = local_path.parent() {
-                fs::create_dir_all(parent)
-                    .map_err(|e| format!("Failed to create directory {}: {}", parent.display(), e))?;
-            }
-
-            self.url_to_path.insert(url, local_path);
-        }
-
-        Ok(())
-    }
-
-    /// Saves files to disk and rewrites links in HTML files
-    async fn save_files(&self, pages: &std::collections::BTreeSet<PageInfo>) -> Result<(), String> {
-        let mut processed_urls = HashSet::new();
-
-        for page in pages {
-            if let Some(local_path) = self.url_to_path.get(&page.url) {
-                // Create parent directory if needed
-                if let Some(parent) = local_path.parent() {
-                    fs::create_dir_all(parent)
-                        .map_err(|e| format!("Failed to create directory {}: {}", parent.display(), e))?;
-                }
-
-                // Download and save the content based on content type
-                self.save_page_content(page, local_path).await?;
-
-                // Mark as processed
-                processed_urls.insert(page.url.clone());
-            }
-        }
-
-        // Save additional resources (images, CSS, JS) that weren't in the pages collection
-        self.save_additional_resources(&processed_urls).await?;
-
-        Ok(())
+    /// Helper to map and add an additional resource link
+    fn map_additional_resource(&mut self, link: &str, base_url: &Url, domain_dir: &Path) {
+        self.map_url_to_local_path(link, base_url, domain_dir);
     }
 
     /// Save the content of a page to disk
@@ -222,61 +125,6 @@ impl SiteSaver {
 
             file.write_all(&bytes)
                 .map_err(|e| format!("Failed to write to file {}: {}", local_path.display(), e))?;
-        }
-
-        Ok(())
-    }
-
-    /// Download and save additional resources that weren't in the original pages
-    async fn save_additional_resources(&self, processed_urls: &HashSet<String>) -> Result<(), String> {
-        for (url, path) in &self.url_to_path {
-            // Skip if we've already processed this URL
-            if processed_urls.contains(url) {
-                continue;
-            }
-
-            // Download the raw response
-            match reqwest::get(url).await {
-                Ok(response) => {
-                    let content_type = response.headers()
-                        .get("content-type")
-                        .and_then(|v| v.to_str().ok())
-                        .unwrap_or("application/octet-stream");
-
-                    // Handle HTML content with link rewriting
-                    if content_type.contains("text/html") {
-                        match response.text().await {
-                            Ok(content) => {
-                                let rewritten_content = self.rewriter.rewrite_links(url, &content, &self.url_to_path);
-
-                                let mut file = File::create(path)
-                                    .map_err(|e| format!("Failed to create file {}: {}", path.display(), e))?;
-
-                                file.write_all(rewritten_content.as_bytes())
-                                    .map_err(|e| format!("Failed to write to file {}: {}", path.display(), e))?;
-                            },
-                            Err(e) => eprintln!("Failed to get text from {}: {}", url, e),
-                        }
-                    }
-                    // Binary and other non-HTML content
-                    else {
-                        match response.bytes().await {
-                            Ok(bytes) => {
-                                let mut file = File::create(path)
-                                    .map_err(|e| format!("Failed to create file {}: {}", path.display(), e))?;
-
-                                file.write_all(&bytes)
-                                    .map_err(|e| format!("Failed to write to file {}: {}", path.display(), e))?;
-                            },
-                            Err(e) => eprintln!("Failed to get bytes from {}: {}", url, e),
-                        }
-                    }
-                },
-                Err(e) => {
-                    eprintln!("Failed to download {}: {}", url, e);
-                    // Continue with other resources even if one fails
-                }
-            }
         }
 
         Ok(())
