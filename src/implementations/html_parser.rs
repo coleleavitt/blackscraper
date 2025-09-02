@@ -3,7 +3,9 @@
 use crate::implementations::html_preprocessor::HtmlPreprocessor;
 use crate::implementations::resource_extractor::ResourceExtractor;
 use crate::traits::html_parser::HtmlParser;
+use crate::blacklist::Blacklist;
 use scraper::{Html, Selector};
+use std::sync::Arc;
 
 /// Standard HTML parser implementation with comprehensive resource extraction
 #[derive(Clone)]
@@ -16,7 +18,17 @@ impl StandardHtmlParser {
     pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
         Ok(Self {
             preprocessor: HtmlPreprocessor::new(),
-            resource_extractor: ResourceExtractor::new()?,
+            resource_extractor: ResourceExtractor::new(Arc::new(Blacklist {
+                domains: vec![],
+                urls: vec![],
+                patterns: vec![],
+            }))?, // fallback empty blacklist
+        })
+    }
+    pub fn new_with_blacklist(blacklist: Arc<Blacklist>) -> Result<Self, Box<dyn std::error::Error>> {
+        Ok(Self {
+            preprocessor: HtmlPreprocessor::new(),
+            resource_extractor: ResourceExtractor::new(blacklist)?,
         })
     }
 }

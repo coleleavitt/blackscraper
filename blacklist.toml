@@ -1,0 +1,17 @@
+domains = [
+    "youtube.com",
+    "gstatic.com",
+    "googletagmanager.com",
+    "google-analytics.com",
+    "googlesyndication.com",
+    "doubleclick.net",
+    "googleadservices.com",
+    "monday.com"
+]
+urls = [
+    "https://www.youtube.com/embed/HTTP/HTTP/HTTP/HTTP/HTTP/HTTP/youtube.com"
+]
+patterns = [
+    ".*embed/HTTP/.*"
+]
+

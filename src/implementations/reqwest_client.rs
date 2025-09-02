@@ -46,9 +46,9 @@ impl HttpClient for ReqwestClient {
                             .and_then(|s| s.parse().ok());
 
                         // Get the body text - this consumes the response
-                        match response.text().await {
-                            Ok(body) => return Ok((status, content_type, content_length, body)),
-                            Err(e) => return Err(format!("Failed to read body: {}", e)),
+                        return match response.text().await {
+                            Ok(body) => Ok((status, content_type, content_length, body)),
+                            Err(e) => Err(format!("Failed to read body: {}", e)),
                         }
                     },
                     Err(e) => {

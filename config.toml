@@ -1,0 +1,14 @@
+# Web Crawler Configuration
+
+[crawler]
+base_url = "https://dkl.cs.arizona.edu/"
+max_depth = 1000
+worker_count = 8
+user_agent = "Mozilla/5.0 (compatible; RustCrawler/1.0)"
+
+[network]
+request_timeout_ms = 10000
+
+[output]
+# Default output directory when using --save without specifying a path
+default_save_dir = "output"

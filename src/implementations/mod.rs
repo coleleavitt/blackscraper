@@ -6,7 +6,7 @@ mod multi_threaded;
 // HTML parsing components
 mod html_parser;
 mod html_preprocessor;
-mod url_parser;
+pub mod url_parser;
 mod resource_extractor;
 mod html_processor;
 // Re-exports

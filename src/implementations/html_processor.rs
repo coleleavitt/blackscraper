@@ -1,8 +1,11 @@
 //! Unified HTML processor: preprocesses and parses HTML for resource extraction
 
-use crate::implementations::html_preprocessor::HtmlPreprocessor;
 use crate::implementations::html_parser::StandardHtmlParser;
+use crate::implementations::html_preprocessor::HtmlPreprocessor;
 use crate::traits::html_parser::HtmlParser;
+use std::sync::Arc;
+
+use crate::blacklist::Blacklist;
 
 /// Unified HTML processor for cleaning and extracting data from HTML
 #[derive(Clone)]
@@ -16,6 +19,12 @@ impl HtmlProcessor {
         Ok(Self {
             preprocessor: HtmlPreprocessor::new(),
             parser: StandardHtmlParser::new()?,
+        })
+    }
+    pub fn with_blacklist(blacklist: Arc<Blacklist>) -> Result<Self, Box<dyn std::error::Error>> {
+        Ok(Self {
+            preprocessor: HtmlPreprocessor::new(),
+            parser: StandardHtmlParser::new_with_blacklist(blacklist)?,
         })
     }
 

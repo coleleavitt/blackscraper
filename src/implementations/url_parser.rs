@@ -177,15 +177,42 @@ impl StandardUrlParser {
 
         // Look for repeating path segments
         if let Ok(parsed_url) = Url::parse(url) {
+            let host = parsed_url.host_str().unwrap_or("");
+            
             if let Some(path) = parsed_url.path_segments() {
                 let segments: Vec<&str> = path.collect();
 
+                // Check for domain name being repeated as path segments
+                if !host.is_empty() {
+                    let domain_parts: Vec<&str> = host.split('.').collect();
+                    for domain_part in &domain_parts {
+                        if domain_part.len() > 3 { // Only check meaningful domain parts
+                            let count = segments.iter().filter(|&&seg| seg == *domain_part).count();
+                            if count >= 2 {
+                                return true;
+                            }
+                        }
+                    }
+                    
+                    // Check for full domain in path segments
+                    let full_domain_count = segments.iter().filter(|&&seg| seg == host).count();
+                    if full_domain_count >= 1 {
+                        return true;
+                    }
+                }
+
+                // Original logic: Look for 3+ consecutive identical segments
                 if segments.len() > 3 {
                     for i in 2..segments.len() {
                         if segments[i] == segments[i - 1] && segments[i] == segments[i - 2] {
                             return true;
                         }
                     }
+                }
+                
+                // Check for excessive path depth (likely indicates recursion)
+                if segments.len() > 20 {
+                    return true;
                 }
             }
         }

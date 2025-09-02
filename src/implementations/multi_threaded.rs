@@ -1,5 +1,6 @@
 //! Modern Tokio-optimized multi-threaded crawler implementation
 
+use crate::blacklist::Blacklist;
 use crate::config::CrawlerConfig;
 use crate::models::PageInfo;
 use crate::traits::http_client::HttpClient;
@@ -56,11 +57,28 @@ impl Crawler for ModernMultiThreadedCrawler {
             let visited = DashSet::new();
             let mut queue = vec![(self.config.base_url.clone(), 0)];
             let max_depth = self.config.max_depth;
+            let url_parser = crate::implementations::StandardUrlParser;
+
             while let Some((url, depth)) = queue.pop() {
                 println!("[DEBUG] Fetching URL: {} at depth {}", url, depth);
+
+                // Enhanced validation before processing
                 if visited.contains(&url) || depth > max_depth {
                     continue;
                 }
+
+                // Check for recursive URLs before processing
+                if url_parser.is_recursive_url(&url) {
+                    println!("[DEBUG] Skipping recursive URL: {}", url);
+                    continue;
+                }
+
+                // Check if URL is too long (potential infinite recursion indicator)
+                if url.len() > 500 {
+                    println!("[DEBUG] Skipping overly long URL ({}): {}", url.len(), url);
+                    continue;
+                }
+
                 visited.insert(url.clone());
                 match self.http_client.fetch(&url).await {
                     Ok((status, content_type, content_length, body)) => {
@@ -74,9 +92,7 @@ impl Crawler for ModernMultiThreadedCrawler {
                             ) {
                                 Ok((links, title, discovered)) => {
                                     println!("[DEBUG] Discovered {} new URLs from {}:", discovered.len(), url);
-                                    for (u, d) in &discovered {
-                                        println!("    [DEBUG] -> {} (depth {})", u, d);
-                                    }
+
                                     let page_info = PageInfo {
                                         url: url.clone(),
                                         status_code: status,
@@ -86,9 +102,20 @@ impl Crawler for ModernMultiThreadedCrawler {
                                         links: links.clone(),
                                     };
                                     callback(page_info);
-                                    for u in discovered {
-                                        if !visited.contains(&u.0) {
-                                            queue.push(u);
+
+                                    // Filter discovered URLs more strictly
+                                    for (u, d) in discovered {
+                                        // Additional validation before adding to queue
+                                        if !visited.contains(&u)
+                                            && d <= max_depth
+                                            && u.len() <= 500
+                                            && !url_parser.is_recursive_url(&u) {
+                                            println!("    [DEBUG] -> {} (depth {})", u, d);
+                                            queue.push((u, d));
+                                        } else if url_parser.is_recursive_url(&u) {
+                                            println!("    [DEBUG] Skipping recursive: {}", u);
+                                        } else if u.len() > 500 {
+                                            println!("    [DEBUG] Skipping long URL ({}): {}", u.len(), u);
                                         }
                                     }
                                 }
@@ -119,13 +146,16 @@ impl Crawler for ModernMultiThreadedCrawler {
     }
 }
 
-/// Factory for creating crawlers
 pub struct CrawlerFactory;
 
 impl CrawlerFactory {
-    pub fn create_multi_threaded(config: CrawlerConfig) -> Result<ModernMultiThreadedCrawler, String> {
+    pub fn create_multi_threaded_with_blacklist(
+        config: CrawlerConfig,
+        blacklist: Arc<Blacklist>,
+    ) -> Result<ModernMultiThreadedCrawler, String> {
         let http_client = Arc::new(ReqwestClient::new(&config.user_agent)?);
-        let html_processor = HtmlProcessor::default();
+        let html_processor = HtmlProcessor::with_blacklist(blacklist)
+            .map_err(|e| format!("HtmlProcessor error: {}", e))?;
         let url_parser = Arc::new(StandardUrlParser);
         Ok(ModernMultiThreadedCrawler::new(config, http_client, html_processor, url_parser))
     }

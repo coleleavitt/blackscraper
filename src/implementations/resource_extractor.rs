@@ -5,6 +5,8 @@ use crate::traits::url_parser::UrlParser;
 use regex::Regex;
 use scraper::{Html, Selector};
 use std::collections::HashSet;
+use std::sync::Arc;
+use crate::blacklist::Blacklist;
 
 /// Resource types that can be downloaded
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -347,24 +349,124 @@ impl ResourceTypeGuesser {
     fn is_document_file(url: &str) -> bool {
         url.ends_with(".pdf") || url.ends_with(".doc") || url.ends_with(".docx")
             || url.ends_with(".xls") || url.ends_with(".xlsx") || url.ends_with(".ppt")
-            || url.ends_with(".pptx")
+            || url.ends_with(".pptx") || url.ends_with(".zip") || url.ends_with(".rar")
+            || url.ends_with(".7z") || url.ends_with(".tar") || url.ends_with(".gz")
+            || url.ends_with(".json") || url.ends_with(".xml")
     }
 }
 
 /// Handles URL processing and validation
-struct ResourceProcessor {
+pub(crate) struct ResourceProcessor {
     url_parser: StandardUrlParser,
     resources: Vec<Resource>,
     seen_urls: HashSet<String>,
+    blacklist: Arc<Blacklist>,
 }
 
 impl ResourceProcessor {
-    fn new() -> Self {
+    fn new(blacklist: Arc<Blacklist>) -> Self {
         Self {
             url_parser: StandardUrlParser,
             resources: Vec::new(),
             seen_urls: HashSet::new(),
+            blacklist,
         }
+    }
+
+    fn is_recursive_path(url: &str) -> bool {
+        // Check for repeated path segments (e.g., /HTTP/HTTP/HTTP/...)
+        let path = if let Ok(parsed) = url::Url::parse(url) {
+            parsed.path().to_string()
+        } else {
+            // For relative URLs, just use the string
+            if let Some(idx) = url.find('?') {
+                url[..idx].to_string()
+            } else {
+                url.to_string()
+            }
+        };
+        let segments: Vec<_> = path.split('/').filter(|s| !s.is_empty()).collect();
+        let mut counts = std::collections::HashMap::new();
+        for seg in &segments {
+            *counts.entry(seg).or_insert(0) += 1;
+            // Block if any segment repeats more than 2 times (tune as needed)
+            if counts[seg] > 2 {
+                // eprintln!("[BLOCKED: recursive segment] {}", url);
+                return true;
+            }
+        }
+        // Block if path has more than 6 segments (tune as needed)
+        if segments.len() > 6 {
+            // eprintln!("[BLOCKED: too many segments] {}", url);
+            return true;
+        }
+        // Block if any segment is all uppercase and longer than 3 chars (likely placeholder)
+        for seg in &segments {
+            if seg.len() > 3 && seg.chars().all(|c| c.is_ascii_uppercase()) {
+                // eprintln!("[BLOCKED: suspicious segment] {}", url);
+                return true;
+            }
+        }
+        false
+    }
+
+    fn is_invalid_url(&self, url: &str) -> bool {
+        if self.blacklist.is_blacklisted(url) {
+            return true;
+        }
+        self.url_parser.is_event_handler(url)
+            || self.url_parser.is_invalid_url_pattern(url)
+            || self.url_parser.is_recursive_url(url)
+            || Self::is_recursive_path(url)
+            || !Self::is_valid_resource_url(url)
+    }
+
+    /// Helper to check if a resource URL is valid (matches SiteSaver logic)
+    fn is_valid_resource_url(url: &str) -> bool {
+        // Parse the URL to get the path
+        let path_owned;
+        let path: &str = if let Ok(parsed) = url::Url::parse(url) {
+            path_owned = parsed.path().to_string();
+            &path_owned
+        } else {
+            url
+        };
+        // Reject empty, only punctuation, or suspicious paths
+        if path.trim().is_empty() {
+            return false;
+        }
+        // Reject paths that are just quotes, semicolons, or similar
+        let suspicious = ["''", "'';", "%22%22", ";", "autoStopperFrame.src;", "autoStopperSrc;", "'"].iter();
+        if suspicious.clone().any(|s| path.contains(s)) {
+            return false;
+        }
+        // Split the path into segments and check for dotfiles (except .well-known)
+        for segment in path.split('/') {
+            if segment.starts_with('.') && segment != ".well-known" && !segment.is_empty() {
+                return false;
+            }
+        }
+        // Only allow paths with alphanumeric, dash, underscore, slash, and dot
+        let valid = path.chars().all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_' || c == '/' || c == '.' );
+        if !valid {
+            return false;
+        }
+        // If the path looks like a file (contains a dot and doesn't end with a slash), check extension
+        if let Some(last) = path.rsplit('/').next() {
+            if last.contains('.') && !last.ends_with('/') {
+                let allowed_exts = [
+                    "html", "htm", "css", "js", "png", "jpg", "jpeg", "svg", "gif", "webp", "pdf", "ico", "json", "xml", "txt", "woff", "woff2", "ttf", "eot", "otf", "mp4", "webm", "ogg", "mp3", "wav"
+                ];
+                if let Some(ext) = last.rsplit('.').next() {
+                    if !allowed_exts.contains(&ext.to_ascii_lowercase().as_str()) {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
+        true
     }
 
     fn add_resource(&mut self, url: &str, resource_type: &ResourceType, config: &ExtractionConfig) {
@@ -402,11 +504,6 @@ impl ResourceProcessor {
         }
     }
 
-    fn is_invalid_url(&self, url: &str) -> bool {
-        self.url_parser.is_event_handler(url)
-            || self.url_parser.is_invalid_url_pattern(url)
-            || self.url_parser.is_recursive_url(url)
-    }
 
     fn should_include_resource(&self, resource_type: &ResourceType, url: &str, config: &ExtractionConfig) -> bool {
         match resource_type {
@@ -439,20 +536,53 @@ impl ResourceProcessor {
     }
 }
 
+/// Handles JS resource extraction
+#[derive(Clone)]
+pub struct JsExtractor {
+    url_regex: Regex,
+}
+
+impl JsExtractor {
+    pub fn new() -> Result<Self, regex::Error> {
+        Ok(Self {
+            // Matches URLs in JS: '...', "...", fetch('...'), src: '...', etc.
+            url_regex: Regex::new(r#"["'](https?://[^\s"']+|/[^\s"']+|\.[^\s"']+|[a-zA-Z0-9_\-/]+\.[a-zA-Z0-9]+)["']"#)?,
+        })
+    }
+
+    pub fn extract_from_js_content(
+        &self,
+        js_content: &str,
+        processor: &mut ResourceProcessor,
+        config: &ExtractionConfig,
+    ) {
+        for cap in self.url_regex.captures_iter(js_content) {
+            if let Some(url) = cap.get(1) {
+                let url_str = url.as_str();
+                if !url_str.is_empty() {
+                    processor.add_resource(url_str, &ResourceType::Other("js-embedded".to_string()), config);
+                }
+            }
+        }
+    }
+}
+
 /// Main resource extractor
 #[derive(Clone)]
 pub struct ResourceExtractor {
     selectors: HtmlSelectors,
     css_extractor: CssExtractor,
     legacy_extractor: LegacyExtractor,
+    blacklist: Arc<Blacklist>,
 }
 
 impl ResourceExtractor {
-    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new(blacklist: Arc<Blacklist>) -> Result<Self, Box<dyn std::error::Error>> {
         Ok(Self {
             selectors: HtmlSelectors::new(),
             css_extractor: CssExtractor::new()?,
             legacy_extractor: LegacyExtractor::new()?,
+            blacklist,
         })
     }
 
@@ -472,7 +602,8 @@ impl ResourceExtractor {
             base_path: base_path.to_string(),
         };
 
-        let mut processor = ResourceProcessor::new();
+        let mut processor = ResourceProcessor::new(self.blacklist.clone());
+        let js_extractor = JsExtractor::new().expect("Failed to create JsExtractor");
 
         self.extract_html_links(doc, &mut processor, &config);
         self.extract_image_links(doc, &mut processor, &config);
@@ -484,7 +615,38 @@ impl ResourceExtractor {
         self.css_extractor.extract_from_style_elements(doc, &mut processor, &config);
         self.css_extractor.extract_from_inline_styles(doc, &mut processor, &config);
 
+        // Extract URLs from inline <script> tags
+        if let Ok(selector) = Selector::parse("script:not([src])") {
+            for element in doc.select(&selector) {
+                let js_content = element.text().collect::<String>();
+                js_extractor.extract_from_js_content(&js_content, &mut processor, &config);
+            }
+        }
+
+        // Extract URLs from event/data attributes
+        Self::extract_event_and_data_attrs(doc, &mut processor, &config);
+
         processor.into_resources()
+    }
+
+    /// Extract URLs from event handler and data-* attributes
+    fn extract_event_and_data_attrs(doc: &Html, processor: &mut ResourceProcessor, config: &ExtractionConfig) {
+        let url_regex = Regex::new(r#"https?://[^\s'"<>]+|/[^\s'"<>]+"#).unwrap();
+        for element in doc.tree.nodes() {
+            if let scraper::Node::Element(node) = element.value() {
+                for (attr, value) in node.attrs.iter() {
+                    let attr_lc = attr.local.as_ref().to_ascii_lowercase();
+                    if attr_lc.starts_with("on") || attr_lc.starts_with("data-") {
+                        for url_match in url_regex.find_iter(value) {
+                            let url_str = url_match.as_str();
+                            if !url_str.is_empty() {
+                                processor.add_resource(url_str, &ResourceType::Other("event-or-data-attr".to_string()), config);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /// Extract resources from legacy HTML using regex patterns
@@ -503,7 +665,7 @@ impl ResourceExtractor {
             base_path: base_path.to_string(),
         };
 
-        let mut processor = ResourceProcessor::new();
+        let mut processor = ResourceProcessor::new(self.blacklist.clone());
         self.legacy_extractor.extract_resources(html, &mut processor, &config);
 
         processor.into_resources()
@@ -585,11 +747,5 @@ impl ResourceExtractor {
                 processor.add_resource(url_attr, resource_type, config);
             }
         }
-    }
-}
-
-impl Default for ResourceExtractor {
-    fn default() -> Self {
-        Self::new().expect("Failed to create ResourceExtractor")
     }
 }

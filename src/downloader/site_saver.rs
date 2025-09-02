@@ -1,3 +1,4 @@
+use crate::implementations::url_parser::StandardUrlParser;
 use crate::models::PageInfo;
 use std::collections::HashMap;
 use std::fs::{self, File};
@@ -18,7 +19,7 @@ pub struct SiteSaver {
 }
 
 impl SiteSaver {
-    /// Creates a new SiteSaver with the specified output directory and http client
+    /// Creates a new SiteSaver with the specified output directory
     pub fn new<P: AsRef<Path>>(output_dir: P) -> Self {
         Self {
             output_dir: output_dir.as_ref().to_path_buf(),
@@ -27,42 +28,32 @@ impl SiteSaver {
         }
     }
 
-    /// Incrementally save a single page as it is received
-    pub async fn save_page(&mut self, page: &PageInfo, base_url: &str) -> Result<(), String> {
-        let base_url_parsed = Url::parse(base_url)
-            .map_err(|e| format!("Invalid base URL: {}", e))?;
-        let domain = base_url_parsed.host_str()
-            .ok_or_else(|| "Base URL has no host".to_string())?
-            .to_string();
-        let domain_dir = self.output_dir.join(&domain);
-        fs::create_dir_all(&domain_dir)
-            .map_err(|e| format!("Failed to create domain directory: {}", e))?;
-        let local_path = match self.map_url_to_local_path(&page.url, &base_url_parsed, &domain_dir) {
-            Some(p) => p,
-            None => return Ok(()),
-        };
-        self.save_page_content(page, &local_path).await?;
-        if page.content_type.contains("text/html") {
-            for link in &page.links {
-                self.map_additional_resource(link, &base_url_parsed, &domain_dir);
-            }
-        }
-        Ok(())
-    }
+    /// Helper to map any source URL (crawled or linked) to the target local path and insert into url_to_path
+    fn map_source_url_to_target_path(&mut self, source_url: &str, _target_base_url: &Url, domain_dir: &Path) -> Option<PathBuf> {
+        let normalizer = StandardUrlParser;
+        let normalized_url = normalizer.normalize_url(source_url);
 
-    /// Helper to map a URL to a local path, create directories, and update url_to_path
-    fn map_url_to_local_path(&mut self, url_str: &str, base_url: &Url, domain_dir: &Path) -> Option<PathBuf> {
-        if self.url_to_path.contains_key(url_str) {
-            return self.url_to_path.get(url_str).cloned();
+        // If already mapped, return the existing path
+        if let Some(existing_path) = self.url_to_path.get(&normalized_url) {
+            return Some(existing_path.clone());
         }
-        let url = match Url::parse(url_str) {
+
+        let url = match Url::parse(source_url) {
             Ok(u) => u,
-            Err(_) => return None,
+            Err(_) => {
+                println!("[SiteSaver] Could not parse URL for mapping: {}", source_url);
+                return None;
+            }
         };
-        if url.host_str() != base_url.host_str() {
+
+        // Extract the path from the source URL (regardless of host)
+        let path = url.path();
+        if !Self::is_valid_local_path(path) {
+            println!("[SiteSaver] Skipping invalid path for mapping: {}", path);
             return None;
         }
-        let path = url.path();
+
+        // Create local path based on the target domain structure, using the source URL's path
         let local_path = if path == "/" {
             domain_dir.join("index.html")
         } else {
@@ -76,23 +67,111 @@ impl SiteSaver {
             };
             domain_dir.join(path)
         };
+
         if let Some(parent) = local_path.parent() {
             if let Err(e) = fs::create_dir_all(parent) {
-                eprintln!("Failed to create directory {}: {}", parent.display(), e);
+                eprintln!("[SiteSaver] Failed to create directory {}: {}", parent.display(), e);
                 return None;
             }
         }
-        self.url_to_path.insert(url_str.to_string(), local_path.clone());
+
+        println!("[SiteSaver] Mapped (source): {} -> {}", normalized_url, local_path.display());
+        self.url_to_path.insert(normalized_url, local_path.clone());
         Some(local_path)
     }
 
-    /// Helper to map and add an additional resource link
-    fn map_additional_resource(&mut self, link: &str, base_url: &Url, domain_dir: &Path) {
-        self.map_url_to_local_path(link, base_url, domain_dir);
+    /// Incrementally save a single page as it is received
+    pub async fn save_page(&mut self, page: &PageInfo, base_url: &str) -> Result<(), String> {
+        let base_url_parsed = Url::parse(base_url)
+            .map_err(|e| format!("Invalid base URL: {}", e))?;
+        let domain = base_url_parsed.host_str()
+            .ok_or_else(|| "Base URL has no host".to_string())?
+            .to_string();
+        let domain_dir = self.output_dir.join(&domain);
+        fs::create_dir_all(&domain_dir)
+            .map_err(|e| format!("Failed to create domain directory: {}", e))?;
+
+        // Map the actual crawled URL (page.url) to its local path under the target domain
+        let local_path = match self.map_source_url_to_target_path(&page.url, &base_url_parsed, &domain_dir) {
+            Some(p) => p,
+            None => {
+                println!("[SiteSaver] Could not determine target local path for {}. Skipping save.", page.url);
+                return Ok(());
+            }
+        };
+
+        // For HTML pages, pre-map all linked URLs (resolved relative to the page URL) to their local paths
+        if page.content_type.contains("text/html") {
+            println!("[SiteSaver] Pre-mapping {} links for {}", page.links.len(), page.url);
+            for link_str in &page.links {
+                if let Ok(resolved_link_url) = Url::parse(&page.url).and_then(|u| u.join(link_str)) {
+                    self.map_source_url_to_target_path(&resolved_link_url.to_string(), &base_url_parsed, &domain_dir);
+                } else {
+                    println!("[SiteSaver] Could not resolve link: {} from base {}", link_str, page.url);
+                }
+            }
+
+            // Debug: Show current mappings (limit output)
+            println!("[SiteSaver] Current URL mappings ({}):", self.url_to_path.len());
+            for (url, path) in self.url_to_path.iter().take(20) {
+                println!("  {} -> {}", url, path.display());
+            }
+        }
+
+        // Now save the page content with link rewriting
+        self.save_page_content(page, &local_path).await?;
+
+        Ok(())
     }
+
+    /// Helper to check if a path is valid for saving
+    fn is_valid_local_path(path: &str) -> bool {
+        // Reject empty, only punctuation, or suspicious paths
+        if path.trim().is_empty() {
+            return false;
+        }
+
+        // Reject paths that are just quotes, semicolons, or similar
+        let suspicious = ["''", "'';", "%22%22", ";", "autoStopperFrame.src;", "autoStopperSrc;", "'"];
+        if suspicious.iter().any(|&s| path.contains(s)) {
+            return false;
+        }
+
+        // Split the path into segments and check for dotfiles (except .well-known)
+        for segment in path.split('/') {
+            if segment.starts_with('.') && segment != ".well-known" && !segment.is_empty() {
+                return false;
+            }
+        }
+
+        // Only allow paths with alphanumeric, dash, underscore, slash, and dot
+        if !path.chars().all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_' || c == '/' || c == '.') {
+            return false;
+        }
+
+        // If the path looks like a file, check extension
+        if let Some(last) = path.rsplit('/').next() {
+            if last.contains('.') && !last.ends_with('/') {
+                let allowed_exts = [
+                    "html", "htm", "css", "js", "png", "jpg", "jpeg", "svg", "gif", "webp",
+                    "pdf", "ico", "json", "xml", "txt", "woff", "woff2", "ttf", "eot", "otf",
+                    "mp4", "webm", "ogg", "mp3", "wav"
+                ];
+                return if let Some(ext) = last.rsplit('.').next() {
+                    allowed_exts.contains(&ext.to_ascii_lowercase().as_str())
+                } else {
+                    false
+                }
+            }
+        }
+        true
+    }
+
 
     /// Save the content of a page to disk
     async fn save_page_content(&self, page: &PageInfo, local_path: &Path) -> Result<(), String> {
+        println!("[SiteSaver] Saving to: {}", local_path.display());
+
         // Get the raw response from the URL
         let response = reqwest::get(&page.url).await
             .map_err(|e| format!("Failed to download {}: {}", page.url, e))?;
@@ -102,6 +181,8 @@ impl SiteSaver {
             // Get the HTML content as text
             let html_content = response.text().await
                 .map_err(|e| format!("Failed to get text from {}: {}", page.url, e))?;
+
+            println!("[SiteSaver] Rewriting links for: {}", page.url);
 
             // Rewrite the links in the HTML content
             let rewritten_content = self.rewriter.rewrite_links(&page.url, &html_content, &self.url_to_path);
