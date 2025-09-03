@@ -33,8 +33,8 @@ impl LinkRewriter {
         content: &str,
         url_to_path: &HashMap<String, PathBuf>,
     ) -> String {
-        println!("[LinkRewriter] Processing: {}", current_url);
-        println!("[LinkRewriter] Available mappings: {}", url_to_path.len());
+        log::debug!("Processing: {}", current_url);
+        log::debug!("Available mappings: {}", url_to_path.len());
 
         // Find current path
         let current_path = match self.url_resolver.find_current_path(current_url, url_to_path) {
@@ -46,12 +46,12 @@ impl LinkRewriter {
         let base_url = match self.url_resolver.parse_url(current_url) {
             Ok(url) => url,
             Err(e) => {
-                println!("[LinkRewriter] {}", e);
+                log::debug!("{}", e);
                 return content.to_string();
             }
         };
 
-        println!("[LinkRewriter] Current file path: {}", current_path.display());
+        log::debug!("Current file path: {}", current_path.display());
 
         // Process attributes
         let mut rewritten_content = content.to_string();
@@ -63,7 +63,7 @@ impl LinkRewriter {
         // Process src attributes
         total_replacements += self.process_attribute("src", &mut rewritten_content, &base_url, &current_path, url_to_path);
 
-        println!("[LinkRewriter] Made {} total replacements", total_replacements);
+        log::debug!("Made {} total replacements", total_replacements);
         rewritten_content
     }
 

@@ -41,7 +41,7 @@ impl AttributeProcessor {
             .filter(|url_value| self.is_url_rewriteable(url_value, base_url, url_to_path))
             .count();
 
-        println!("[AttributeProcessor] Found {} rewriteable {} attributes", count, attr_name);
+        log::debug!("Found {} rewriteable {} attributes", count, attr_name);
         count
     }
 
@@ -95,7 +95,7 @@ impl AttributeProcessor {
         let re = match Regex::new(pattern) {
             Ok(re) => re,
             Err(e) => {
-                println!("[AttributeProcessor] Failed to create regex for {}: {}", attr_name, e);
+                log::warn!("Failed to create regex for {}: {}", attr_name, e);
                 return content.to_string();
             }
         };
@@ -131,7 +131,7 @@ impl AttributeProcessor {
         let resolved_url = match base_url.join(url_value) {
             Ok(url) => url,
             Err(_) => {
-                println!("[AttributeProcessor] Failed to resolve URL: {}", url_value);
+                log::debug!("Failed to resolve URL: {}", url_value);
                 return caps.get(0).map_or_else(String::new, |m| m.as_str().to_string());
             }
         };
@@ -142,10 +142,10 @@ impl AttributeProcessor {
         // Check if we have a local path for this URL
         if let Some(target_path) = url_to_path.get(&normalized_url) {
             let relative_path = PathCalculator::calculate_relative_path(current_path, target_path);
-            println!("[AttributeProcessor] Rewriting: {} -> {}", url_value, relative_path);
+            log::debug!("Rewriting: {} -> {}", url_value, relative_path);
             format!("{}={}{}{}", attr_name, quote_char, relative_path, quote_char)
         } else {
-            println!("[AttributeProcessor] No mapping found for: {}", normalized_url);
+            log::debug!("No mapping found for: {}", normalized_url);
             caps.get(0).map_or_else(String::new, |m| m.as_str().to_string())
         }
     }

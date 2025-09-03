@@ -48,6 +48,9 @@ impl CrawlEngine {
         let semaphore = Arc::new(Semaphore::new(self.config.worker_count));
         let (url_tx, mut url_rx) = mpsc::unbounded_channel::<(String, usize)>();
         
+        let start_time = std::time::Instant::now();
+        let mut idle_cycles = 0;
+        
         // Spawn URL queue handler
         let queue_clone = Arc::clone(&queue);
         let queue_handle = tokio::spawn(async move {
@@ -73,10 +76,21 @@ impl CrawlEngine {
                     } else {
                         // Wait for workers to finish and add more URLs
                         drop(q);
-                        tokio::time::sleep(tokio::time::Duration::from_millis(10)).await;
+                        idle_cycles += 1;
+                        
+                        // Deadlock detection: if idle for too long, break out
+                        if idle_cycles > 200 { // 10 seconds at 50ms intervals
+                            log::warn!("Potential deadlock detected, terminating crawl after {} idle cycles", idle_cycles);
+                            break;
+                        }
+                        
+                        tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
                         continue;
                     }
                 };
+                
+                // Reset idle counter since we found work
+                idle_cycles = 0;
                 
                 // Spawn worker
                 let permit = semaphore.clone().acquire_owned().await?;
@@ -147,20 +161,20 @@ impl CrawlEngine {
             return None;
         }
 
-        println!("[DEBUG] Fetching URL: {} at depth {}", url, depth);
+        log::debug!("Fetching URL: {} at depth {}", url, depth);
 
         // Fetch the URL
         match self.http_client.fetch(url).await {
             Ok((status, content_type, content_length, body)) => {
                 if content_type.contains("text/html") {
-                    self.process_html_response(url, status, content_type, content_length, body, depth, &tx)
+                    self.process_html_response(url, status, content_type, content_length, body, depth, visited, &tx)
                 } else {
                     self.process_non_html_response(url, status, content_type, content_length, body, &tx);
                     None
                 }
             }
             Err(e) => {
-                println!("[DEBUG] Fetch error for {}: {}", url, e);
+                log::warn!("Fetch error for {}: {}", url, e);
                 None
             }
         }
@@ -230,6 +244,7 @@ impl CrawlEngine {
         content_length: Option<usize>,
         body: String,
         depth: usize,
+        visited: &DashSet<String>,
         tx: &mpsc::UnboundedSender<PageInfo>,
     ) -> Option<Vec<(String, usize)>> {
         match self.html_processor.process(
@@ -240,7 +255,12 @@ impl CrawlEngine {
             &self.base_path,
         ) {
             Ok((links, title, discovered)) => {
-                println!("[DEBUG] Discovered {} new URLs from {}:", discovered.len(), url);
+                let filtered_urls = self.filter_discovered_urls(discovered.clone(), visited);
+                if filtered_urls.len() > 0 {
+                    println!("Found {} new URLs to crawl from: {}", filtered_urls.len(), url);
+                } else {
+                    log::debug!("Found {} URLs (0 new) from: {}", discovered.len(), url);
+                }
 
                 // Create page info and send via channel
                 let page_info = PageInfo {
@@ -255,10 +275,10 @@ impl CrawlEngine {
                 let _ = tx.send(page_info);
 
                 // Return filtered URLs
-                Some(self.filter_discovered_urls(discovered))
+                Some(filtered_urls)
             }
             Err(e) => {
-                println!("[DEBUG] HTML processing error for {}: {}", url, e);
+                log::warn!("HTML processing error for {}: {}", url, e);
                 None
             }
         }
@@ -287,9 +307,9 @@ impl CrawlEngine {
     }
 
     /// Filter discovered URLs based on validation rules
-    fn filter_discovered_urls(&self, discovered: Vec<(String, usize)>) -> Vec<(String, usize)> {
+    fn filter_discovered_urls(&self, discovered: Vec<(String, usize)>, visited: &DashSet<String>) -> Vec<(String, usize)> {
         discovered.into_iter()
-            .filter(|(u, d)| self.should_add_url_to_queue(u, *d))
+            .filter(|(u, d)| self.should_add_url_to_queue(u, *d) && !visited.contains(u))
             .collect()
     }
 
@@ -300,21 +320,21 @@ impl CrawlEngine {
         }
 
         if !self.is_url_in_scope(url) {
-            println!("    [DEBUG] Skipping out of scope: {}", url);
+            log::debug!("Skipping out of scope: {}", url);
             return false;
         }
 
         if url.len() > 500 {
-            println!("    [DEBUG] Skipping long URL ({}): {}", url.len(), url);
+            log::debug!("Skipping long URL ({}): {}", url.len(), url);
             return false;
         }
 
         if self.url_parser.is_recursive_url(url) {
-            println!("    [DEBUG] Skipping recursive: {}", url);
+            log::debug!("Skipping recursive: {}", url);
             return false;
         }
 
-        println!("    [DEBUG] -> {} (depth {})", url, depth);
+        log::debug!("Queued: {} (depth {})", url, depth);
         true
     }
 }

@@ -8,16 +8,16 @@ pub struct PathCalculator;
 impl PathCalculator {
     /// Calculate the relative path from one file to another
     pub fn calculate_relative_path(from_path: &Path, to_path: &Path) -> String {
-        println!("[PathCalculator] Calculating relative path:");
-        println!("  From: {}", from_path.display());
-        println!("  To: {}", to_path.display());
+        log::debug!("Calculating relative path:");
+        log::debug!("  From: {}", from_path.display());
+        log::debug!("  To: {}", to_path.display());
 
         // Get parent directory of current file
         let from_dir = match from_path.parent() {
             Some(dir) => dir,
             None => {
                 let result = to_path.to_string_lossy().to_string();
-                println!("  Result: {} (no parent directory)", result);
+                log::debug!("  Result: {} (no parent directory)", result);
                 return result;
             }
         };
@@ -39,7 +39,7 @@ impl PathCalculator {
             relative_parts.join("/")
         };
 
-        println!("  Result: {}", result);
+        log::debug!("  Result: {}", result);
         result
     }
 

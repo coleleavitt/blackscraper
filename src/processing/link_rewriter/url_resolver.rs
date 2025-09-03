@@ -40,18 +40,18 @@ impl UrlResolver {
         for alt_url in &alternatives {
             let alt_normalized = self.normalizer.normalize_url(alt_url);
             if let Some(path) = url_to_path.get(&alt_normalized) {
-                println!("[UrlResolver] Found current URL using alternative: '{}' -> '{}'", alt_url, alt_normalized);
+                log::debug!("Found current URL using alternative: '{}' -> '{}'", alt_url, alt_normalized);
                 return Ok(path.clone());
             }
         }
 
         // Failed to find path
-        println!("[UrlResolver] Warning: Current URL not found in mapping: {}", current_url);
-        println!("[UrlResolver] Looking for: {}", current_normalized);
-        println!("[UrlResolver] Tried alternatives: {:?}", alternatives);
-        println!("[UrlResolver] Available keys:");
+        log::warn!("Current URL not found in mapping: {}", current_url);
+        log::debug!("Looking for: {}", current_normalized);
+        log::debug!("Tried alternatives: {:?}", alternatives);
+        log::debug!("Available keys:");
         for key in url_to_path.keys().take(10) {
-            println!("  - {}", key);
+            log::debug!("  - {}", key);
         }
         Err(format!("URL not found in mapping: {}", current_url))
     }

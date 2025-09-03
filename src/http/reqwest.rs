@@ -65,7 +65,7 @@ impl HttpClient for ReqwestClient {
                             retries -= 1;
                             if retries > 0 {
                                 let backoff = 1000 * (2_u64.pow((3 - retries) as u32)); // Longer backoff for rate limits
-                                println!("[DEBUG] Rate limited ({}), backing off {}ms: {}", status, backoff, url);
+                                log::debug!("Rate limited ({}), backing off {}ms: {}", status, backoff, url);
                                 sleep(Duration::from_millis(backoff)).await;
                                 continue;
                             }
@@ -90,11 +90,11 @@ impl HttpClient for ReqwestClient {
                     Err(e) => {
                         // Handle specific error types
                         if e.is_timeout() {
-                            println!("[DEBUG] Timeout error for {}: {}", url, e);
+                            log::debug!("Timeout error for {}: {}", url, e);
                         } else if e.is_connect() {
-                            println!("[DEBUG] Connection error for {}: {}", url, e);
+                            log::debug!("Connection error for {}: {}", url, e);
                         } else {
-                            println!("[DEBUG] Request error for {}: {}", url, e);
+                            log::debug!("Request error for {}: {}", url, e);
                         }
                         
                         last_err = Some(e);
