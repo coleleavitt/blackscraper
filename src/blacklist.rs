@@ -49,24 +49,18 @@ impl Blacklist {
         let mut compiled = Vec::new();
         for pattern in &self.patterns {
             let regex = Regex::new(pattern)
-                .map_err(|e| AppError::Regex(e))?;
+                .map_err(AppError::Regex)?;
             compiled.push(Arc::new(regex));
         }
         self.compiled_patterns = Some(compiled);
         Ok(self)
     }
 
-    pub fn is_blacklisted(&self, url: &str) -> bool {
-        self.check_exact_url(url) || self.check_domain(url) || self.check_patterns(url)
-    }
-
-    /// Check if the URL is in the exact-match blacklist.
-    fn check_exact_url(&self, url: &str) -> bool {
+    fn is_exact_match(&self, url: &str) -> bool {
         self.urls.iter().any(|u| u == url)
     }
 
-    /// Check if the URL's domain is in the domain blacklist.
-    fn check_domain(&self, url: &str) -> bool {
+    fn is_domain_match(&self, url: &str) -> bool {
         if let Ok(parsed_url) = url::Url::parse(url) {
             if let Some(host) = parsed_url.host_str() {
                 return self.domains.iter().any(|d| host.ends_with(d));
@@ -75,39 +69,38 @@ impl Blacklist {
         false
     }
 
-    /// Check if the URL matches any of the regex patterns.
-    fn check_patterns(&self, url: &str) -> bool {
+    fn is_pattern_match(&self, url: &str) -> bool {
         if let Some(ref compiled) = self.compiled_patterns {
-            compiled.iter().any(|regex| regex.is_match(url))
-        } else {
-            self.patterns
-                .iter()
-                .filter_map(|pattern| self.get_cached_regex(pattern))
-                .any(|regex| regex.is_match(url))
+            return compiled.iter().any(|regex| regex.is_match(url));
         }
+
+        self.patterns.iter().any(|pattern| {
+            let regex = {
+                let mut cache = REGEX_CACHE.lock().unwrap_or_else(|e| {
+                    log::warn!("Mutex poisoned in regex cache, recovering");
+                    e.into_inner()
+                });
+
+                cache.get(pattern).cloned().unwrap_or_else(|| {
+                    match Regex::new(pattern) {
+                        Ok(r) => {
+                            let arc_regex = Arc::new(r);
+                            cache.insert(pattern.to_string(), arc_regex.clone());
+                            arc_regex
+                        }
+                        Err(e) => {
+                            log::warn!("Invalid regex pattern '{}': {}", pattern, e);
+                            // Return a dummy regex that won't match anything
+                            Arc::new(Regex::new(r"(\b\B)").unwrap())
+                        }
+                    }
+                })
+            };
+            regex.is_match(url)
+        })
     }
 
-    /// Get a regex from the cache, or compile and cache it.
-    fn get_cached_regex(&self, pattern: &str) -> Option<Arc<Regex>> {
-        let mut cache = REGEX_CACHE.lock().unwrap_or_else(|poisoned| {
-            log::warn!("Regex cache mutex poisoned, recovering.");
-            poisoned.into_inner()
-        });
-
-        if let Some(regex) = cache.get(pattern) {
-            return Some(Arc::clone(regex));
-        }
-
-        match Regex::new(pattern) {
-            Ok(regex) => {
-                let arc_regex = Arc::new(regex);
-                cache.insert(pattern.to_string(), Arc::clone(&arc_regex));
-                Some(arc_regex)
-            }
-            Err(e) => {
-                log::warn!("Invalid regex pattern '{}': {}", pattern, e);
-                None
-            }
-        }
+    pub fn is_blacklisted(&self, url: &str) -> bool {
+        self.is_exact_match(url) || self.is_domain_match(url) || self.is_pattern_match(url)
     }
 }

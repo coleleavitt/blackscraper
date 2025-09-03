@@ -11,6 +11,7 @@ pub struct PageInfo {
     pub content_length: Option<usize>,
     pub title: Option<String>,
     pub links: Vec<String>,
+    pub content: String,
 }
 
 /// Result of a crawl operation

@@ -1,45 +1,27 @@
 //! Error types for the application
 
 use thiserror::Error;
-use std::io;
-use url::ParseError;
-use regex::Error as RegexError;
 
 /// Application error types
 #[derive(Error, Debug)]
 pub enum AppError {
     #[error("I/O error: {0}")]
-    Io(#[from] io::Error),
+    Io(#[from] std::io::Error),
 
     #[error("URL parsing error: {0}")]
-    UrlParse(#[from] ParseError),
+    UrlParse(#[from] url::ParseError),
 
-    #[error("HTTP error: {status_code} - {message}")]
-    Http {
-        status_code: u16,
-        message: String,
-    },
+    #[error("HTTP error: {0}")]
+    Reqwest(#[from] reqwest::Error),
 
     #[error("Regex error: {0}")]
-    Regex(#[from] RegexError),
+    Regex(#[from] regex::Error),
 
-    #[error("Regex compilation error: {0}")]
-    RegexCompilation(String),
-
-    #[error("Config error: {0}")]
-    Config(String),
-
-    #[error("Blacklist error: {0}")]
-    Blacklist(String),
-
-    #[error("HTML parsing error: {0}")]
-    HtmlParse(String),
-
-    #[error("Network error: {0}")]
-    Network(String),
+    #[error("Config deserialization error: {0}")]
+    Config(#[from] toml::de::Error),
 
     #[error("Serialization error: {0}")]
-    Serialization(String),
+    Serialization(#[from] toml::ser::Error),
 
     #[error("Tokio runtime error: {0}")]
     TokioRuntime(String),
@@ -48,10 +30,25 @@ pub enum AppError {
     Crawler(String),
 
     #[error("Missing argument: {0}")]
-    MissingArgument(String),
+    MissingArgument(&'static str),
+
+    #[error("HTML parsing error: {0}")]
+    HtmlParse(String),
+
+    #[error("Blacklist error: {0}")]
+    Blacklist(String),
 
     #[error("Config file error: {0}")]
-    ConfigFileError(String),
+    ConfigFile(String),
+
+    #[error("Regex compilation error: {0}")]
+    RegexCompilation(String),
+
+    #[error("Tokio semaphore error: {0}")]
+    Semaphore(String),
+    
+    #[error("Tokio join error: {0}")]
+    Join(String),
 
     #[error("Unknown error: {0}")]
     Unknown(String),
@@ -60,45 +57,20 @@ pub enum AppError {
 /// Type alias for Result with AppError
 pub type Result<T> = std::result::Result<T, AppError>;
 
-impl From<String> for AppError {
-    fn from(error: String) -> Self {
-        AppError::Unknown(error)
-    }
-}
-
-impl From<&str> for AppError {
-    fn from(error: &str) -> Self {
-        AppError::Unknown(error.to_string())
-    }
-}
-
-impl From<reqwest::Error> for AppError {
-    fn from(error: reqwest::Error) -> Self {
-        if let Some(status) = error.status() {
-            AppError::Http {
-                status_code: status.as_u16(),
-                message: error.to_string(),
-            }
-        } else {
-            AppError::Network(error.to_string())
-        }
-    }
-}
-
-impl From<toml::de::Error> for AppError {
-    fn from(error: toml::de::Error) -> Self {
-        AppError::Config(error.to_string())
-    }
-}
-
-impl From<toml::ser::Error> for AppError {
-    fn from(error: toml::ser::Error) -> Self {
-        AppError::Serialization(error.to_string())
-    }
-}
-
 impl From<Box<dyn std::error::Error>> for AppError {
     fn from(error: Box<dyn std::error::Error>) -> Self {
         AppError::Unknown(error.to_string())
+    }
+}
+
+impl From<tokio::sync::AcquireError> for AppError {
+    fn from(error: tokio::sync::AcquireError) -> Self {
+        AppError::Semaphore(error.to_string())
+    }
+}
+
+impl From<tokio::task::JoinError> for AppError {
+    fn from(error: tokio::task::JoinError) -> Self {
+        AppError::Join(error.to_string())
     }
 }

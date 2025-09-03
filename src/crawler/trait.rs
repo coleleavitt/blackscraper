@@ -10,5 +10,5 @@ pub trait Crawler: Send + Sync {
     /// Start crawling and call the callback for each PageInfo as it is crawled
     fn crawl_with_callback<'a, F>(&'a self, callback: F) -> Pin<Box<dyn Future<Output = Result<()>> + Send + 'a>>
     where
-        F: FnMut(PageInfo) + Send + 'a;
+        F: FnMut(PageInfo) + Send + 'static;
 }

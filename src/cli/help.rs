@@ -27,6 +27,7 @@ fn print_options() {
         ("-w, --workers <NUM>", "Number of worker threads"),
         ("-d, --max-depth <NUM>", "Maximum crawl depth"),
         ("-c, --config <FILE>", "Use custom config file (default: config.toml)"),
+        ("--scope [DOMAINS]", "Restrict crawling to specified domains (e.g., '*.google.com,example.com')"),
         ("-g, --generate-config [FILE]", "Generate default config file"),
         ("-h, --help", "Show this help message"),
     ];
@@ -41,6 +42,8 @@ fn print_examples() {
     let examples = [
         format!("{} --url https://example.com --save", program_name),
         format!("{} --workers 4 --max-depth 5 --save ./output", program_name),
+        format!("{} --scope '*.example.com' --save", program_name),
+        format!("{} --scope 'google.com,*.github.com' --save", program_name),
         format!("{} --config my-config.toml --save", program_name),
         format!("{} --generate-config my-config.toml", program_name),
     ];

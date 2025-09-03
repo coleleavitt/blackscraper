@@ -52,9 +52,9 @@ impl TokioCrawler {
 }
 
 impl Crawler for TokioCrawler {
-    fn crawl_with_callback<'a, F>(&'a self, callback: F) -> Pin<Box<dyn Future<Output = Result<()>> + Send + 'a>>
+    fn crawl_with_callback<'a, F>(&'a self, mut callback: F) -> Pin<Box<dyn Future<Output = Result<()>> + Send + 'a>>
     where
-        F: FnMut(PageInfo) + Send + 'a,
+        F: FnMut(PageInfo) + Send + 'static,
     {
         Box::pin(async move {
             let engine = CrawlEngine::new(
@@ -65,7 +65,22 @@ impl Crawler for TokioCrawler {
                 self.base_path.clone(),
             );
             
-            engine.crawl_all(callback).await
+            let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
+            
+            // Spawn the callback handler
+            let callback_handle = tokio::spawn(async move {
+                while let Some(page_info) = rx.recv().await {
+                    callback(page_info);
+                }
+            });
+            
+            // Start crawling
+            let crawl_result = engine.crawl_all(tx).await;
+            
+            // Wait for callback to finish processing
+            callback_handle.await?;
+            
+            crawl_result
         })
     }
 }

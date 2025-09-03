@@ -50,34 +50,8 @@ impl HtmlProcessor {
 impl Default for HtmlProcessor {
     fn default() -> Self {
         Self::new().unwrap_or_else(|e| {
-            // Log the error instead of silently handling it
-            log::error!("Failed to create standard HtmlProcessor: {}", e);
-
-            // Fallback implementation if creation fails
-            Self {
-                preprocessor: HtmlPreprocessor::new(),
-                parser: StandardHtmlParser::new().unwrap_or_else(|e| {
-                    // Log the error and create a minimal working parser
-                    log::error!("Critical error creating StandardHtmlParser: {}", e);
-
-                    // Create a minimal working parser with fallback behavior
-                    // Attempt to create a parser with an empty blacklist as a last resort
-                    let empty_blacklist = Arc::new(Blacklist::new());
-                    StandardHtmlParser::new_with_blacklist(empty_blacklist).unwrap_or_else(|e| {
-                        log::error!("Failed to create fallback parser: {:?}", e);
-
-                        // In this extreme case, we should panic with a clear error message
-                        // rather than using unsafe code or continuing with broken state
-                        panic!(
-                            "Critical failure: Unable to create any HTML parser implementation. \
-                            This indicates a fundamental system issue. Original errors: \
-                            StandardHtmlParser creation failed: {}, \
-                            Fallback parser creation failed: {:?}",
-                            e, e
-                        );
-                    })
-                }),
-            }
+            log::error!("Failed to create HtmlProcessor: {e}");
+            panic!("Critical failure creating HtmlProcessor: {e}");
         })
     }
 }

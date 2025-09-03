@@ -1,7 +1,10 @@
 # Web Crawler Configuration
 
 [crawler]
-base_url = "https://dkl.cs.arizona.edu/"
+#base_url = "https://dkl.cs.arizona.edu/"
+#base_url = "https://www2.cs.arizona.edu/classes/cs127b/fall15/"
+#base_url = "https://idscan.net/"
+base_url = "https://www.tanqueverdeschools.org/"
 max_depth = 1000
 worker_count = 8
 user_agent = "Mozilla/5.0 (compatible; RustCrawler/1.0)"

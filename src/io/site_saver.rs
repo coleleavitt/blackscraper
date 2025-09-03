@@ -132,53 +132,29 @@ impl SiteSaver {
     // Removed: Complex validation function replaced with ResourceValidator::is_valid_resource_url
 
 
-    /// Save the content of a page to disk using content from crawling (no additional HTTP request)
+    /// Save the content of a page to disk using content from PageInfo (no additional HTTP request)
     fn save_page_content_from_memory(&self, page: &PageInfo, local_path: &Path) -> Result<(), String> {
         info!("Saving to: {}", local_path.display());
 
-        // Note: We would need the actual content from the crawling phase.
-        // For now, we'll fall back to making an HTTP request, but this should be refactored
-        // to pass the content through the PageInfo struct.
-        warn!("Making additional HTTP request for content - this should be optimized");
+        // Handle HTML pages with link rewriting
+        if page.content_type.contains("text/html") {
+            info!("Rewriting links for: {}", page.url);
+            let rewritten_content = self.rewriter.rewrite_links(&page.url, &page.content, &self.url_to_path);
+
+            let mut file = File::create(local_path)
+                .map_err(|e| format!("Failed to create file {}: {}", local_path.display(), e))?;
+
+            file.write_all(rewritten_content.as_bytes())
+                .map_err(|e| format!("Failed to write to file {}: {}", local_path.display(), e))?;
+        } else {
+            // For non-HTML content, save directly
+            let mut file = File::create(local_path)
+                .map_err(|e| format!("Failed to create file {}: {}", local_path.display(), e))?;
+
+            file.write_all(page.content.as_bytes())
+                .map_err(|e| format!("Failed to write to file {}: {}", local_path.display(), e))?;
+        }
         
-        // This is a temporary implementation that still makes an HTTP request
-        // TODO: Refactor PageInfo to include the actual content
-        let rt = tokio::runtime::Handle::try_current()
-            .or_else(|_| {
-                tokio::runtime::Runtime::new()
-                    .map(|rt| rt.handle().clone())
-                    .map_err(|e| format!("Failed to get tokio runtime: {}", e))
-            })?;
-        
-        rt.block_on(async {
-            let response = reqwest::get(&page.url).await
-                .map_err(|e| format!("Failed to download {}: {}", page.url, e))?;
-
-            // Handle HTML pages with link rewriting
-            if page.content_type.contains("text/html") {
-                let html_content = response.text().await
-                    .map_err(|e| format!("Failed to get text from {}: {}", page.url, e))?;
-
-                info!("Rewriting links for: {}", page.url);
-                let rewritten_content = self.rewriter.rewrite_links(&page.url, &html_content, &self.url_to_path);
-
-                let mut file = File::create(local_path)
-                    .map_err(|e| format!("Failed to create file {}: {}", local_path.display(), e))?;
-
-                file.write_all(rewritten_content.as_bytes())
-                    .map_err(|e| format!("Failed to write to file {}: {}", local_path.display(), e))?;
-            } else {
-                let bytes = response.bytes().await
-                    .map_err(|e| format!("Failed to get bytes from {}: {}", page.url, e))?;
-
-                let mut file = File::create(local_path)
-                    .map_err(|e| format!("Failed to create file {}: {}", local_path.display(), e))?;
-
-                file.write_all(&bytes)
-                    .map_err(|e| format!("Failed to write to file {}: {}", local_path.display(), e))?;
-            }
-            
-            Ok::<(), String>(())
-        })
+        Ok(())
     }
 }

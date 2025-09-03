@@ -2,6 +2,7 @@
 
 use std::path::PathBuf;
 use log::info;
+use url::Url;
 use crate::config::{AppConfig, CrawlerConfig, DEFAULT_WORKERS};
 use crate::cli::help::print_help;
 use crate::error::{AppError, Result};
@@ -14,7 +15,7 @@ impl ArgParser {
     pub fn parse(args: &[String]) -> Result<(CrawlerConfig, Option<PathBuf>)> {
         // Load configuration from TOML file first
         let app_config = AppConfig::load_or_default("config.toml");
-        // Clone the crawler section before moving it with into()
+        // Clone is necessary since app_config is used later
         let mut config: CrawlerConfig = app_config.crawler.clone().into();
         let mut save_dir: Option<PathBuf> = None;
         let mut i = 1;
@@ -36,6 +37,9 @@ impl ArgParser {
                 },
                 "--config" | "-c" => {
                     i = Self::handle_config_arg(args, i, &mut config)?;
+                },
+                "--scope" => {
+                    i = Self::handle_scope_arg(args, i, &mut config)?;
                 },
                 "--generate-config" | "-g" => {
                     Self::handle_generate_config_arg(args, i)?;
@@ -59,10 +63,10 @@ impl ArgParser {
 
     fn handle_url_arg(args: &[String], i: usize, config: &mut CrawlerConfig) -> Result<usize> {
         if i + 1 < args.len() {
-            config.base_url = args[i + 1].clone();
+            config.base_url = args[i + 1].to_string();
             Ok(i + 2)
         } else {
-            Err(AppError::MissingArgument("url".to_string()))
+            Err(AppError::MissingArgument("url"))
         }
     }
 
@@ -89,7 +93,7 @@ impl ArgParser {
             }
             Ok(i + 2)
         } else {
-            Err(AppError::MissingArgument("number of workers".to_string()))
+            Err(AppError::MissingArgument("number of workers"))
         }
     }
 
@@ -100,7 +104,7 @@ impl ArgParser {
             }
             Ok(i + 2)
         } else {
-            Err(AppError::MissingArgument("max depth".to_string()))
+            Err(AppError::MissingArgument("max depth"))
         }
     }
 
@@ -111,15 +115,32 @@ impl ArgParser {
             *config = custom_config.crawler.into();
             Ok(i + 2)
         } else {
-            Err(AppError::MissingArgument("config file path".to_string()))
+            Err(AppError::MissingArgument("config file path"))
+        }
+    }
+
+    fn handle_scope_arg(args: &[String], i: usize, config: &mut CrawlerConfig) -> Result<usize> {
+        if i + 1 < args.len() && !args[i + 1].starts_with("--") {
+            // Domain patterns provided
+            let domains = args[i + 1].split(',').map(|s| s.trim().to_string()).collect();
+            config.allowed_domains = domains;
+            Ok(i + 2)
+        } else {
+            // No domains specified - restrict to base domain
+            if let Ok(parsed) = Url::parse(&config.base_url) {
+                if let Some(host) = parsed.host_str() {
+                    config.allowed_domains = vec![host.to_string()];
+                }
+            }
+            Ok(i + 1)
         }
     }
 
     fn handle_generate_config_arg(args: &[String], i: usize) -> Result<()> {
         let output_path = if i + 1 < args.len() && !args[i + 1].starts_with("--") {
-            args[i + 1].clone()
+            &args[i + 1]
         } else {
-            "config.toml".to_string()
+            "config.toml"
         };
 
         let default_config = AppConfig::default();
@@ -129,7 +150,7 @@ impl ArgParser {
                 std::process::exit(0);
             },
             Err(e) => {
-                Err(AppError::ConfigFileError(e.to_string()))
+                Err(AppError::ConfigFile(e.to_string()))
             }
         }
     }
@@ -146,7 +167,7 @@ impl ArgParser {
         info!("  Base URL: {}", config.base_url);
         info!("  Max Depth: {}", config.max_depth);
         info!("  Worker Count: {}", config.worker_count);
-        if let Some(ref dir) = save_dir {
+        if let Some(dir) = save_dir {
             info!("  Save Directory: {}", dir.display());
         }
     }

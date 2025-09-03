@@ -99,17 +99,18 @@ impl AppConfig {
             .map_err(|e| format!("Failed to serialize config: {}", e))?;
 
         fs::write(path, content)
-            .map_err(|e| format!("Failed to write config file: {}", e))
+            .map_err(|e| format!("Failed to write config file: {e}"))
     }
 }
 
 /// Configuration for the crawler (backward compatibility)
-#[derive(Debug, Clone)]
+#[derive(Clone, Debug)]
 pub struct CrawlerConfig {
     pub base_url: String,
-    pub worker_count: usize,
     pub max_depth: usize,
-    pub user_agent: String,
+    pub worker_count: usize,
+    pub allowed_domains: Vec<String>, // Domain patterns (e.g., "*.google.com", "example.com")
+    pub user_agent: String,  // User agent string for HTTP requests
 }
 
 impl From<AppConfig> for CrawlerConfig {
@@ -118,7 +119,8 @@ impl From<AppConfig> for CrawlerConfig {
             base_url: app_config.crawler.base_url,
             worker_count: app_config.crawler.worker_count,
             max_depth: app_config.crawler.max_depth,
-            user_agent: app_config.crawler.user_agent,
+            allowed_domains: Vec::new(), // Default to no domain restrictions
+            user_agent: app_config.crawler.user_agent, // Initialize user_agent
         }
     }
 }
@@ -129,13 +131,20 @@ impl From<CrawlerConfigSection> for CrawlerConfig {
             base_url: crawler_config.base_url,
             worker_count: crawler_config.worker_count,
             max_depth: crawler_config.max_depth,
-            user_agent: crawler_config.user_agent,
+            allowed_domains: Vec::new(), // Default to no domain restrictions  
+            user_agent: crawler_config.user_agent, // Initialize user_agent
         }
     }
 }
 
 impl Default for CrawlerConfig {
     fn default() -> Self {
-        CrawlerConfigSection::default().into()
+        Self {
+            base_url: String::new(),
+            max_depth: 3,
+            worker_count: DEFAULT_WORKERS,
+            allowed_domains: Vec::new(), // Default to no domain restrictions
+            user_agent: "Mozilla/5.0 (compatible; RustCrawler/1.0)".to_string(), // Default user agent
+        }
     }
 }

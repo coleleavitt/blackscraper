@@ -58,8 +58,8 @@ impl<'a> SimpleResourceProcessor<'a> {
                 let normalized = self.url_parser.normalize_url(&resolved_url);
                 
                 if !self.seen_urls.contains(&normalized) {
-                    self.seen_urls.insert(normalized.clone());
-                    self.resources.push(SimpleResource::new(normalized, ctx.depth));
+                    self.resources.push(SimpleResource::new(normalized.clone(), ctx.depth));
+                    self.seen_urls.insert(normalized);
                 }
             }
         }

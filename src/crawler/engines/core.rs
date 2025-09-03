@@ -8,6 +8,10 @@ use crate::crawler::StandardUrlParser;
 use crate::error::Result;
 use dashmap::DashSet;
 use std::sync::Arc;
+use tokio::sync::{mpsc, Semaphore};
+use tokio::task::JoinHandle;
+use std::collections::VecDeque;
+use tokio::sync::Mutex;
 
 /// Core crawling logic broken into focused methods
 pub struct CrawlEngine {
@@ -37,51 +41,121 @@ impl CrawlEngine {
         }
     }
 
-    /// Main crawling loop
-    pub async fn crawl_all<F>(&self, mut callback: F) -> Result<()>
-    where
-        F: FnMut(PageInfo) + Send,
-    {
-        let visited = DashSet::new();
-        let mut queue = vec![(self.config.base_url.clone(), 0)];
-
-        while let Some((url, depth)) = queue.pop() {
-            if let Some(new_urls) = self.process_single_url(&url, depth, &visited, &mut callback).await {
-                queue.extend(new_urls);
+    /// Main crawling loop with multi-threading 
+    pub async fn crawl_all(&self, tx: mpsc::UnboundedSender<PageInfo>) -> Result<()> {
+        let visited = Arc::new(DashSet::new());
+        let queue = Arc::new(Mutex::new(VecDeque::from([(self.config.base_url.clone(), 0)])));
+        let semaphore = Arc::new(Semaphore::new(self.config.worker_count));
+        let (url_tx, mut url_rx) = mpsc::unbounded_channel::<(String, usize)>();
+        
+        // Spawn URL queue handler
+        let queue_clone = Arc::clone(&queue);
+        let queue_handle = tokio::spawn(async move {
+            while let Some((url, depth)) = url_rx.recv().await {
+                let mut q = queue_clone.lock().await;
+                q.push_back((url, depth));
             }
-            println!("[DEBUG] Queue size after iteration: {}", queue.len());
+        });
+        
+        let mut active_workers = 0;
+        let mut handles: Vec<JoinHandle<()>> = Vec::new();
+        
+        loop {
+            // Check if we can spawn more workers
+            if active_workers < self.config.worker_count {
+                let (url, depth) = {
+                    let mut q = queue.lock().await;
+                    if let Some(item) = q.pop_front() {
+                        item
+                    } else if active_workers == 0 {
+                        // No URLs to process and no active workers, we're done
+                        break;
+                    } else {
+                        // Wait for workers to finish and add more URLs
+                        drop(q);
+                        tokio::time::sleep(tokio::time::Duration::from_millis(10)).await;
+                        continue;
+                    }
+                };
+                
+                // Spawn worker
+                let permit = semaphore.clone().acquire_owned().await?;
+                let visited_clone = Arc::clone(&visited);
+                let tx_clone = tx.clone();
+                let url_tx_clone = url_tx.clone();
+                let engine_clone = self.clone_for_worker();
+                
+                active_workers += 1;
+                let handle = tokio::spawn(async move {
+                    let _permit = permit; // Keep permit alive
+                    if let Some(new_urls) = engine_clone.process_single_url(&url, depth, &visited_clone, tx_clone).await {
+                        for new_url in new_urls {
+                            let _ = url_tx_clone.send(new_url);
+                        }
+                    }
+                });
+                handles.push(handle);
+            } else {
+                // Wait for at least one worker to complete
+                if let Some(handle) = handles.pop() {
+                    handle.await?;
+                    active_workers -= 1;
+                }
+            }
         }
+        
+        // Wait for all workers to complete
+        for handle in handles {
+            handle.await?;
+        }
+        
+        // Close URL queue and wait for handler
+        drop(url_tx);
+        queue_handle.await?;
         
         Ok(())
     }
+    
+    /// Create a clone suitable for worker tasks
+    fn clone_for_worker(&self) -> Self {
+        Self {
+            config: Arc::clone(&self.config),
+            http_client: Arc::clone(&self.http_client),
+            html_processor: Arc::clone(&self.html_processor),
+            base_domain: Arc::clone(&self.base_domain),
+            base_path: Arc::clone(&self.base_path),
+            url_parser: StandardUrlParser,
+        }
+    }
 
     /// Process a single URL and return new URLs to add to queue
-    async fn process_single_url<F>(
+    async fn process_single_url(
         &self,
         url: &str,
         depth: usize,
         visited: &DashSet<String>,
-        callback: &mut F,
-    ) -> Option<Vec<(String, usize)>>
-    where
-        F: FnMut(PageInfo) + Send,
-    {
-        println!("[DEBUG] Fetching URL: {} at depth {}", url, depth);
-
-        // Validation checks
-        if !self.should_process_url(url, depth, visited) {
+        tx: mpsc::UnboundedSender<PageInfo>,
+    ) -> Option<Vec<(String, usize)>> {
+        // Fast validation checks first (before any locking)
+        if !self.should_process_url_fast(url, depth) {
             return None;
         }
 
-        visited.insert(url.to_string());
+        // Atomic insert-if-not-present to prevent race conditions
+        if !visited.insert(url.to_string()) {
+            // URL already processed by another worker
+            return None;
+        }
+
+        println!("[DEBUG] Fetching URL: {} at depth {}", url, depth);
 
         // Fetch the URL
         match self.http_client.fetch(url).await {
             Ok((status, content_type, content_length, body)) => {
                 if content_type.contains("text/html") {
-                    self.process_html_response(url, status, content_type, content_length, body, depth, callback)
+                    self.process_html_response(url, status, content_type, content_length, body, depth, &tx)
                 } else {
-                    self.process_non_html_response(url, status, content_type, content_length, callback);
+                    self.process_non_html_response(url, status, content_type, content_length, body, &tx);
                     None
                 }
             }
@@ -92,27 +166,63 @@ impl CrawlEngine {
         }
     }
 
-    /// Check if URL should be processed
-    fn should_process_url(&self, url: &str, depth: usize, visited: &DashSet<String>) -> bool {
-        if visited.contains(url) || depth > self.config.max_depth {
+    /// Check if URL should be processed (without marking as visited)
+    fn should_process_url_fast(&self, url: &str, depth: usize) -> bool {
+        if depth > self.config.max_depth {
+            return false;
+        }
+
+        if !self.is_url_in_scope(url) {
             return false;
         }
 
         if self.url_parser.is_recursive_url(url) {
-            println!("[DEBUG] Skipping recursive URL: {}", url);
             return false;
         }
 
         if url.len() > 500 {
-            println!("[DEBUG] Skipping overly long URL ({}): {}", url.len(), url);
             return false;
         }
 
         true
     }
 
+    /// Check if a URL is within the defined scope
+    fn is_url_in_scope(&self, url: &str) -> bool {
+        if self.config.allowed_domains.is_empty() {
+            // No domain restrictions - allow all domains
+            true
+        } else {
+            // Check if URL matches any allowed domain pattern
+            self.config.allowed_domains.iter().any(|pattern| {
+                self.matches_domain_pattern(url, pattern)
+            })
+        }
+    }
+
+    /// Check if URL matches a domain pattern (supports wildcards like *.google.com)
+    fn matches_domain_pattern(&self, url: &str, pattern: &str) -> bool {
+        if let Ok(parsed_url) = url::Url::parse(url) {
+            if let Some(host) = parsed_url.host_str() {
+                if pattern.starts_with("*.") {
+                    // Wildcard pattern: *.google.com matches google.com, sub.google.com, etc.
+                    let domain_suffix = &pattern[2..]; // Remove "*."
+                    host.ends_with(domain_suffix) && 
+                    (host == domain_suffix || host.ends_with(&format!(".{}", domain_suffix)))
+                } else {
+                    // Exact domain match
+                    host == pattern
+                }
+            } else {
+                false
+            }
+        } else {
+            false
+        }
+    }
+
     /// Process HTML response and extract links
-    fn process_html_response<F>(
+    fn process_html_response(
         &self,
         url: &str,
         status: u16,
@@ -120,11 +230,8 @@ impl CrawlEngine {
         content_length: Option<usize>,
         body: String,
         depth: usize,
-        callback: &mut F,
-    ) -> Option<Vec<(String, usize)>>
-    where
-        F: FnMut(PageInfo) + Send,
-    {
+        tx: &mpsc::UnboundedSender<PageInfo>,
+    ) -> Option<Vec<(String, usize)>> {
         match self.html_processor.process(
             url,
             &body,
@@ -135,7 +242,7 @@ impl CrawlEngine {
             Ok((links, title, discovered)) => {
                 println!("[DEBUG] Discovered {} new URLs from {}:", discovered.len(), url);
 
-                // Create page info and call callback
+                // Create page info and send via channel
                 let page_info = PageInfo {
                     url: url.to_string(),
                     status_code: status,
@@ -143,8 +250,9 @@ impl CrawlEngine {
                     content_length,
                     title,
                     links,
+                    content: body,
                 };
-                callback(page_info);
+                let _ = tx.send(page_info);
 
                 // Return filtered URLs
                 Some(self.filter_discovered_urls(discovered))
@@ -157,17 +265,15 @@ impl CrawlEngine {
     }
 
     /// Process non-HTML response
-    fn process_non_html_response<F>(
+    fn process_non_html_response(
         &self,
         url: &str,
         status: u16,
         content_type: String,
         content_length: Option<usize>,
-        callback: &mut F,
-    )
-    where
-        F: FnMut(PageInfo) + Send,
-    {
+        body: String,
+        tx: &mpsc::UnboundedSender<PageInfo>,
+    ) {
         let page_info = PageInfo {
             url: url.to_string(),
             status_code: status,
@@ -175,8 +281,9 @@ impl CrawlEngine {
             content_length,
             title: None,
             links: Vec::new(),
+            content: body,
         };
-        callback(page_info);
+        let _ = tx.send(page_info);
     }
 
     /// Filter discovered URLs based on validation rules
@@ -189,6 +296,11 @@ impl CrawlEngine {
     /// Check if URL should be added to crawling queue
     fn should_add_url_to_queue(&self, url: &str, depth: usize) -> bool {
         if depth > self.config.max_depth {
+            return false;
+        }
+
+        if !self.is_url_in_scope(url) {
+            println!("    [DEBUG] Skipping out of scope: {}", url);
             return false;
         }
 

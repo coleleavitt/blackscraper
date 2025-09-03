@@ -76,13 +76,34 @@ impl CrawlExecutor {
     where
         C: crate::crawler::Crawler
     {
-        let mut pages = BTreeSet::new();
         let start_time = Instant::now();
 
-        runtime.block_on(async {
-            crawler.crawl_with_callback(|page_info| {
-                pages.insert(page_info);
-            }).await
+        let pages = runtime.block_on(async {
+            let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
+            let pages = Arc::new(tokio::sync::Mutex::new(BTreeSet::new()));
+            let pages_clone = pages.clone();
+            
+            // Spawn task to collect pages
+            let collector = tokio::spawn(async move {
+                while let Some(page_info) = rx.recv().await {
+                    let mut p = pages_clone.lock().await;
+                    p.insert(page_info);
+                }
+            });
+            
+            // Start crawling
+            let tx_clone = tx.clone();
+            let crawl_result = crawler.crawl_with_callback(move |page_info| {
+                let _ = tx_clone.send(page_info);
+            }).await;
+            
+            // Wait for collector to finish
+            drop(tx);
+            collector.await.map_err(|e| AppError::Join(e.to_string()))?;
+            
+            // Return pages
+            let pages = Arc::try_unwrap(pages).unwrap().into_inner();
+            crawl_result.map(|_| pages)
         })?;
 
         let elapsed = Instant::now().duration_since(start_time);
