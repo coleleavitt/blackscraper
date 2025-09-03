@@ -49,7 +49,7 @@ pub struct CrawlerConfigSection {
 impl Default for CrawlerConfigSection {
     fn default() -> Self {
         Self {
-            base_url: "https://invest.fiwealth.com/".to_string(),
+            base_url: "https://example.com/".to_string(), // Generic default instead of hardcoded domain
             worker_count: DEFAULT_WORKERS,
             max_depth: 1000,
             user_agent: "Mozilla/5.0 (compatible; RustCrawler/1.0)".to_string(),

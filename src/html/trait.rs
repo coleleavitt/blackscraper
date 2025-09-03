@@ -1,5 +1,7 @@
 //! HTML parser trait definition
 
+use crate::error::Result;
+
 /// HTML parser trait
 pub trait HtmlParser: Send + Sync {
     /// Parse HTML and extract links and title
@@ -10,5 +12,5 @@ pub trait HtmlParser: Send + Sync {
         next_depth: usize,
         base_domain: &str,
         base_path: &str,
-    ) -> Result<(Vec<String>, Option<String>, Vec<(String, usize)>), String>;
+    ) -> Result<(Vec<String>, Option<String>, Vec<(String, usize)>)>;
 }

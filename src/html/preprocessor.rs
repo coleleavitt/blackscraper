@@ -45,12 +45,25 @@ impl HtmlPreprocessor {
 
     /// Fix anchor tags: ensure href is quoted and valid (basic check)
     fn fix_anchors(document: &NodeRef) {
-        for css_match in document.select("a[href]").unwrap() {
-            let mut attributes = css_match.attributes.borrow_mut();
-            if let Some(href) = attributes.get("href") {
-                if href.trim().is_empty() {
-                    attributes.remove("href");
+        // Safely handle the CSS selector without unwrapping
+        match document.select("a[href]") {
+            Ok(matches) => {
+                for css_match in matches {
+                    let mut attributes = css_match.attributes.borrow_mut();
+                    if let Some(href) = attributes.get("href") {
+                        if href.trim().is_empty() {
+                            // Remove empty href attributes
+                            attributes.remove("href");
+                        } else if href.contains("javascript:") || href.contains("data:") {
+                            // Remove potentially unsafe href values
+                            attributes.remove("href");
+                        }
+                    }
                 }
+            }
+            Err(e) => {
+                // Log the error but continue processing
+                log::warn!("Failed to select anchor tags: {:?}", e);
             }
         }
     }

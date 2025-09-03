@@ -1,7 +1,8 @@
 //! Implementation of HTTP client using reqwest
 
 use crate::config::REQUEST_TIMEOUT_MS;
-use crate::traits::http_client::HttpClient;
+use crate::http::HttpClient;
+use crate::error::{AppError, Result};
 
 use core::time::Duration;
 use reqwest::{Client, ClientBuilder};
@@ -14,19 +15,19 @@ pub struct ReqwestClient {
 }
 
 impl ReqwestClient {
-    pub fn new(user_agent: &str) -> Result<Self, String> {
+    pub fn new(user_agent: &str) -> Result<Self> {
         let client = ClientBuilder::new()
             .timeout(Duration::from_millis(REQUEST_TIMEOUT_MS))
             .user_agent(user_agent)
             .build()
-            .map_err(|e| format!("Failed to build HTTP client: {}", e))?;
+            .map_err(|e| AppError::Network(format!("Failed to build HTTP client: {}", e)))?;
 
         Ok(Self { client })
     }
 }
 
 impl HttpClient for ReqwestClient {
-    fn fetch<'a>(&'a self, url: &'a str) -> Pin<Box<dyn Future<Output = Result<(u16, String, Option<usize>, String), String>> + Send + 'a>> {
+    fn fetch<'a>(&'a self, url: &'a str) -> Pin<Box<dyn Future<Output = Result<(u16, String, Option<usize>, String)>> + Send + 'a>> {
         Box::pin(async move {
             let mut retries = 3;
             let mut last_err = None;
@@ -48,11 +49,11 @@ impl HttpClient for ReqwestClient {
                         // Get the body text - this consumes the response
                         return match response.text().await {
                             Ok(body) => Ok((status, content_type, content_length, body)),
-                            Err(e) => Err(format!("Failed to read body: {}", e)),
+                            Err(e) => Err(AppError::Network(format!("Failed to read body: {}", e))),
                         }
                     },
                     Err(e) => {
-                        last_err = Some(e.to_string());
+                        last_err = Some(e);
                         retries -= 1;
                         let backoff = 100 * (2_u64.pow((3 - retries) as u32));
                         tokio::time::sleep(Duration::from_millis(backoff)).await;
@@ -60,7 +61,8 @@ impl HttpClient for ReqwestClient {
                 }
             }
 
-            Err(last_err.unwrap_or_else(|| "Unknown error".into()))
+            Err(AppError::Network(format!("Failed to fetch URL after 3 retries: {}", 
+                last_err.map(|e| e.to_string()).unwrap_or_else(|| "Unknown error".to_string()))))
         })
     }
 }

@@ -1,11 +1,12 @@
 //! Clean HTML parser implementation
 
-use crate::implementations::html_preprocessor::HtmlPreprocessor;
-use crate::implementations::resource_extractor::ResourceExtractor;
-use crate::traits::html_parser::HtmlParser;
+use crate::html::preprocessor::HtmlPreprocessor;
+use crate::extraction::ResourceExtractor;
+use crate::html::HtmlParser;
 use crate::blacklist::Blacklist;
 use scraper::{Html, Selector};
 use std::sync::Arc;
+use crate::error::Result;
 
 /// Standard HTML parser implementation with comprehensive resource extraction
 #[derive(Clone)]
@@ -15,17 +16,14 @@ pub struct StandardHtmlParser {
 }
 
 impl StandardHtmlParser {
-    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new() -> Result<Self> {
         Ok(Self {
             preprocessor: HtmlPreprocessor::new(),
-            resource_extractor: ResourceExtractor::new(Arc::new(Blacklist {
-                domains: vec![],
-                urls: vec![],
-                patterns: vec![],
-            }))?, // fallback empty blacklist
+            resource_extractor: ResourceExtractor::new(Arc::new(Blacklist::new()))?, // fallback empty blacklist
         })
     }
-    pub fn new_with_blacklist(blacklist: Arc<Blacklist>) -> Result<Self, Box<dyn std::error::Error>> {
+    
+    pub fn new_with_blacklist(blacklist: Arc<Blacklist>) -> Result<Self> {
         Ok(Self {
             preprocessor: HtmlPreprocessor::new(),
             resource_extractor: ResourceExtractor::new(blacklist)?,
@@ -41,7 +39,7 @@ impl HtmlParser for StandardHtmlParser {
         next_depth: usize,
         base_domain: &str,
         base_path: &str,
-    ) -> Result<(Vec<String>, Option<String>, Vec<(String, usize)>), String> {
+    ) -> Result<(Vec<String>, Option<String>, Vec<(String, usize)>)> {
         // Preprocess HTML to handle malformed patterns
         let preprocessed_html = self.preprocessor.preprocess(html);
 
