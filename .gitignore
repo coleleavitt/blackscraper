@@ -4,3 +4,4 @@ Cargo.lock
 #**obagy
 .gitignore
 output/
+.claude/

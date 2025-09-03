@@ -56,46 +56,27 @@ impl Default for HtmlProcessor {
             // Fallback implementation if creation fails
             Self {
                 preprocessor: HtmlPreprocessor::new(),
-                parser: match StandardHtmlParser::new() {
-                    Ok(parser) => parser,
-                    Err(e) => {
-                        // Log the error and create a minimal working parser
-                        log::error!("Critical error creating StandardHtmlParser: {}", e);
+                parser: StandardHtmlParser::new().unwrap_or_else(|e| {
+                    // Log the error and create a minimal working parser
+                    log::error!("Critical error creating StandardHtmlParser: {}", e);
 
-                        // Create a minimal working parser with fallback behavior
-                        // Attempt to create a parser with an empty blacklist as a last resort
-                        let empty_blacklist = Arc::new(Blacklist::new());
-                        match StandardHtmlParser::new_with_blacklist(empty_blacklist) {
-                            Ok(parser) => parser,
-                            Err(e) => {
-                                log::error!("Failed to create fallback parser: {:?}", e);
+                    // Create a minimal working parser with fallback behavior
+                    // Attempt to create a parser with an empty blacklist as a last resort
+                    let empty_blacklist = Arc::new(Blacklist::new());
+                    StandardHtmlParser::new_with_blacklist(empty_blacklist).unwrap_or_else(|e| {
+                        log::error!("Failed to create fallback parser: {:?}", e);
 
-                                // Create a custom implementation of the HtmlParser trait as the final fallback
-                                struct NullHtmlParser;
-                                impl HtmlParser for NullHtmlParser {
-                                    fn parse_html(
-                                        &self,
-                                        _base: &str,
-                                        _html: &str,
-                                        _next_depth: usize,
-                                        _base_domain: &str,
-                                        _base_path: &str,
-                                    ) -> Result<(Vec<String>, Option<String>, Vec<(String, usize)>)> {
-                                        Ok((Vec::new(), None, Vec::new()))
-                                    }
-                                }
-
-                                let null_parser = Box::new(NullHtmlParser);
-                                // This is a hack, but in this extreme error case, we need to ensure the application doesn't crash
-                                unsafe {
-                                    // We know this is bad practice, but we're in a deeply nested error case
-                                    // where the alternative is application termination
-                                    std::mem::transmute(null_parser)
-                                }
-                            }
-                        }
-                    }
-                },
+                        // In this extreme case, we should panic with a clear error message
+                        // rather than using unsafe code or continuing with broken state
+                        panic!(
+                            "Critical failure: Unable to create any HTML parser implementation. \
+                            This indicates a fundamental system issue. Original errors: \
+                            StandardHtmlParser creation failed: {}, \
+                            Fallback parser creation failed: {:?}",
+                            e, e
+                        );
+                    })
+                }),
             }
         })
     }

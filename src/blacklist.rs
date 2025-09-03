@@ -57,68 +57,57 @@ impl Blacklist {
     }
 
     pub fn is_blacklisted(&self, url: &str) -> bool {
-        // Check exact URLs first (fastest)
-        if self.urls.iter().any(|u| u == url) {
-            return true;
-        }
-        
-        // Check domain
-        if let Ok(parsed) = url::Url::parse(url) {
-            if let Some(host) = parsed.host_str() {
-                if self.domains.iter().any(|d| host.ends_with(d)) {
-                    return true;
-                }
+        self.check_exact_url(url) || self.check_domain(url) || self.check_patterns(url)
+    }
+
+    /// Check if the URL is in the exact-match blacklist.
+    fn check_exact_url(&self, url: &str) -> bool {
+        self.urls.iter().any(|u| u == url)
+    }
+
+    /// Check if the URL's domain is in the domain blacklist.
+    fn check_domain(&self, url: &str) -> bool {
+        if let Ok(parsed_url) = url::Url::parse(url) {
+            if let Some(host) = parsed_url.host_str() {
+                return self.domains.iter().any(|d| host.ends_with(d));
             }
         }
-        
-        // Check patterns with caching
-        if let Some(ref compiled_patterns) = self.compiled_patterns {
-            // Use pre-compiled patterns if available
-            for regex in compiled_patterns {
-                if regex.is_match(url) {
-                    return true;
-                }
-            }
-        } else {
-            // Fallback with caching for individual patterns
-            for pattern in &self.patterns {
-                let regex = {
-                    // Safely handle the mutex lock with proper error handling
-                    let lock_result = REGEX_CACHE.lock();
-                    let mut cache = match lock_result {
-                        Ok(guard) => guard,
-                        Err(poisoned) => {
-                            // Recover from poisoned mutex rather than panicking
-                            log::warn!("Mutex poisoned in regex cache, recovering");
-                            poisoned.into_inner()
-                        }
-                    };
-                    
-                    if let Some(cached_regex) = cache.get(pattern) {
-                        // Use a reference rather than cloning when possible
-                        Arc::clone(cached_regex)
-                    } else {
-                        match Regex::new(pattern) {
-                            Ok(regex) => {
-                                let arc_regex = Arc::new(regex);
-                                // Store pattern by value instead of cloning
-                                cache.insert(pattern.to_string(), arc_regex.clone());
-                                arc_regex
-                            }
-                            Err(e) => {
-                                log::warn!("Invalid regex pattern '{}': {}", pattern, e);
-                                continue; // Skip invalid patterns
-                            }
-                        }
-                    }
-                };
-                
-                if regex.is_match(url) {
-                    return true;
-                }
-            }
-        }
-        
         false
+    }
+
+    /// Check if the URL matches any of the regex patterns.
+    fn check_patterns(&self, url: &str) -> bool {
+        if let Some(ref compiled) = self.compiled_patterns {
+            compiled.iter().any(|regex| regex.is_match(url))
+        } else {
+            self.patterns
+                .iter()
+                .filter_map(|pattern| self.get_cached_regex(pattern))
+                .any(|regex| regex.is_match(url))
+        }
+    }
+
+    /// Get a regex from the cache, or compile and cache it.
+    fn get_cached_regex(&self, pattern: &str) -> Option<Arc<Regex>> {
+        let mut cache = REGEX_CACHE.lock().unwrap_or_else(|poisoned| {
+            log::warn!("Regex cache mutex poisoned, recovering.");
+            poisoned.into_inner()
+        });
+
+        if let Some(regex) = cache.get(pattern) {
+            return Some(Arc::clone(regex));
+        }
+
+        match Regex::new(pattern) {
+            Ok(regex) => {
+                let arc_regex = Arc::new(regex);
+                cache.insert(pattern.to_string(), Arc::clone(&arc_regex));
+                Some(arc_regex)
+            }
+            Err(e) => {
+                log::warn!("Invalid regex pattern '{}': {}", pattern, e);
+                None
+            }
+        }
     }
 }
