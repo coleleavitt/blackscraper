@@ -44,6 +44,8 @@ pub struct CrawlerConfigSection {
     pub worker_count: usize,
     pub max_depth: usize,
     pub user_agent: String,
+    #[serde(default)]
+    pub allowed_domains: Vec<String>,
 }
 
 impl Default for CrawlerConfigSection {
@@ -53,6 +55,7 @@ impl Default for CrawlerConfigSection {
             worker_count: DEFAULT_WORKERS,
             max_depth: 1000,
             user_agent: "Mozilla/5.0 (compatible; RustCrawler/1.0)".to_string(),
+            allowed_domains: Vec::new(),
         }
     }
 }
@@ -119,7 +122,7 @@ impl From<AppConfig> for CrawlerConfig {
             base_url: app_config.crawler.base_url,
             worker_count: app_config.crawler.worker_count,
             max_depth: app_config.crawler.max_depth,
-            allowed_domains: Vec::new(), // Default to no domain restrictions
+            allowed_domains: app_config.crawler.allowed_domains,
             user_agent: app_config.crawler.user_agent, // Initialize user_agent
         }
     }
@@ -131,7 +134,7 @@ impl From<CrawlerConfigSection> for CrawlerConfig {
             base_url: crawler_config.base_url,
             worker_count: crawler_config.worker_count,
             max_depth: crawler_config.max_depth,
-            allowed_domains: Vec::new(), // Default to no domain restrictions  
+            allowed_domains: crawler_config.allowed_domains,
             user_agent: crawler_config.user_agent, // Initialize user_agent
         }
     }

@@ -167,6 +167,9 @@ impl ArgParser {
         info!("  Base URL: {}", config.base_url);
         info!("  Max Depth: {}", config.max_depth);
         info!("  Worker Count: {}", config.worker_count);
+        if !config.allowed_domains.is_empty() {
+            info!("  Allowed Domains: {:?}", config.allowed_domains);
+        }
         if let Some(dir) = save_dir {
             info!("  Save Directory: {}", dir.display());
         }
